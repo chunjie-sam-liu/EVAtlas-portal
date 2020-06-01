@@ -19,6 +19,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "baseHref": "/EVEA/",
+            "deployUrl": "/EVEA/static/",
             "assets": [
               "src/favicon.ico",
               "src/assets"
