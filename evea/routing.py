@@ -4,8 +4,8 @@ from evea.routes.home import home
 from evea.routes.mirna import mirna
 
 # routing
-app.register_blueprint(home, url_prefix='/home')
-app.register_blueprint(mirna, url_prefix='/mirna')
+app.register_blueprint(home, url_prefix='/api/home')
+app.register_blueprint(mirna, url_prefix='/api/mirna')
 
 @app.route("/", methods = ["GET"])
 def index():
