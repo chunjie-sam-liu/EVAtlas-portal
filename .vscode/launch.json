@@ -5,24 +5,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Current File",
-      "type": "python",
-      "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal"
-    },
-    {
       "name": "Python: Flask",
       "type": "python",
       "request": "launch",
-      "module": "flask",
+      "program": "${workspaceRoot}/runserver.py",
       "env": {
         "FLASK_APP": "app.py",
         "FLASK_ENV": "development",
         "FLASK_DEBUG": "1",
       },
-      "args": ["run"],
+      "args": ["5000"],
       "jinja": true
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
     }
   ]
 }
