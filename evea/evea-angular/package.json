@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --aot true",
     "build": "ng build --prod --base-href /EVEA/ --deploy-url /EVEA/static/ --aot true",
     "test": "ng test",
     "lint": "ng lint",
