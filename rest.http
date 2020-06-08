@@ -1,1 +1,1 @@
-GET
+GET http://localhost:9000/api/home/test
