@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 # config database
 app.config.from_object(Config)
-app.config.from_object(ProductionConfig)
+# app.config.from_object(ProductionConfig)
 
 import evea.db
 import evea.routing
