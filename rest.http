@@ -1,1 +1,5 @@
 GET http://localhost:9000/api/home/test
+
+###
+
+GET http://bioinfo.life.hust.edu.cn/EVEA/api/home/test
