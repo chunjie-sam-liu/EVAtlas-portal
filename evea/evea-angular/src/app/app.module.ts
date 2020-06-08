@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// flex layout and animation
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
 // shared modules
 import { MaterialModule } from './shared/material/material.module';
 
@@ -17,11 +20,14 @@ import { AppComponent } from './app.component';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
+
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
