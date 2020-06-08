@@ -9,14 +9,25 @@ import { environment } from '../../../environments/environment';
 export class BaseHttpService {
   constructor(private httpClient: HttpClient) {}
 
-  public getData(route: string): Observable<any> {
+  public httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    params: {},
+  };
+
+  public getData(route: string, data?: any): Observable<any> {
     return this.httpClient
-      .get<any>(this.createRoute(route, environment.apiURL))
+      .get<any>(
+        this.generateRoute(route, environment.apiURL),
+        this.generateOptions(data)
+      )
       .pipe(catchError(this.handleError<any>()));
   }
 
-  private createRoute(route: string, envURL: string): string {
+  private generateRoute(route: string, envURL: string): string {
     return `${envURL}/${route}`;
+  }
+  private generateOptions(data: any): any {
+    return (this.httpOptions.params = data);
   }
 
   private handleError<T>(result?: T) {
