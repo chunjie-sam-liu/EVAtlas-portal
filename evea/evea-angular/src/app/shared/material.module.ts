@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { PlatformModule } from '@angular/cdk/platform';
 import { ObserversModule } from '@angular/cdk/observers';
 
+// flex layout and animation
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 // import material
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -16,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 
 const MaterialComponents = [
+  FlexLayoutModule,
   PlatformModule,
   ObserversModule,
   MatSidenavModule,
