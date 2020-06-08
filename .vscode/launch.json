@@ -8,13 +8,14 @@
       "name": "Python: Flask",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/runserver.py",
+      // "program": "${workspaceFolder}/runserver.py",
+      "module": "flask",
       "env": {
-        "FLASK_APP": "app.py",
+        "FLASK_APP": "evea",
         "FLASK_ENV": "development",
-        "FLASK_DEBUG": "1",
+        "FLASK_DEBUG": "1"
       },
-      "args": ["9000"],
+      "args": ["run"],
       "jinja": true
     }
   ]
