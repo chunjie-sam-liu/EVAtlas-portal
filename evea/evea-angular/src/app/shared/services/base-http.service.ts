@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BaseHttpService {
   constructor(private httpClient: HttpClient) {}
 
@@ -21,8 +21,9 @@ export class BaseHttpService {
 
   private handleError(result?: any) {
     return (err: any) => {
+      console.log('-----------------cj---------------');
       console.error(err);
-      return of(result);
+      // return of(result);
     };
   }
 }
