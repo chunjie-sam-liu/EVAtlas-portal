@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // testservice api
 
-import { BaseHttpService } from './shared/services/base-http.service';
+import { BaseHttpService } from './shared/base-http.service';
 import { Subscription } from 'rxjs';
 
 @Component({
