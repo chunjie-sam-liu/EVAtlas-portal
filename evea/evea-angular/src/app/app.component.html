@@ -1,26 +1,3 @@
-<div id="material-example">
-  <h1>ToolBar</h1>
+<router-outlet></router-outlet>
 
-  <mat-toolbar color="primary">
-    <span>Material Design Rocks!</span>
-  </mat-toolbar>
-
-  <br />
-
-  <h1>Buttons</h1>
-
-  <mat-card>
-    <button mat-button>Basic</button>
-    <button mat-raised-button>Raised</button>
-    <button mat-raised-button><mat-icon>favorite</mat-icon></button>
-    <button mat-fab>Fab</button>
-    <button mat-mini-fab>mFab</button>
-
-    <div *ngFor="let d of testData">
-      <h2>{{ d.samp }}</h2>
-      <p>{{ d.source }}</p>
-    </div>
-  </mat-card>
-</div>
-
-<mat-divider> </mat-divider>
+<button mat-raised-button color="primary">TEST</button>
