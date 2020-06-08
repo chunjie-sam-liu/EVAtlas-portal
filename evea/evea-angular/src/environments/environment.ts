@@ -4,5 +4,5 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://bioinfo.life.hust.edu.cn/EVEA/api',
+  apiURL: 'http://localhost:5000/api/',
 };
