@@ -14,4 +14,7 @@ mat-drawer-container {
 
 mat-drawer-content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid red;
 }
