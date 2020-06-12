@@ -16,6 +16,14 @@ const routes: Routes = [
             (m) => m.DashboardModule
           ),
       },
+      // samples routing
+      {
+        path: 'samples',
+        loadChildren: () =>
+          import('src/app/modules/samples/samples.module').then(
+            (m) => m.SamplesModule
+          ),
+      },
     ],
   },
 ];
