@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DefaultComponent } from './layouts/default/default.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { SamplesComponent } from './modules/samples/samples.component';
 
 const routes: Routes = [
+  // load default routing
   {
     path: '',
-    component: DefaultComponent,
-    children: [
-      { path: '', component: DashboardComponent },
-      { path: 'samples', component: SamplesComponent },
-    ],
+    loadChildren: () =>
+      import('./layouts/default/default.module').then((m) => m.DefaultModule),
   },
 ];
 

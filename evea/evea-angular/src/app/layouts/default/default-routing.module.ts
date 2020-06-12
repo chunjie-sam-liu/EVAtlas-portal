@@ -7,7 +7,16 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    children: [],
+    children: [
+      // dashboard routing
+      {
+        path: '',
+        loadChildren: () =>
+          import('src/app/modules/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
   },
 ];
 
