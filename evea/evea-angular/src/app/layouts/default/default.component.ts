@@ -8,8 +8,11 @@ import { Router, RouterEvent, RouteConfigLoadStart, RouteConfigLoadEnd } from '@
 })
 export class DefaultComponent implements OnInit {
   sideBarOpen = true;
+
   loading: boolean;
+
   constructor(router: Router) {
+    // Loading
     this.loading = false;
     router.events.subscribe((event: RouterEvent): void => {
       if (event instanceof RouteConfigLoadStart) {
@@ -22,7 +25,7 @@ export class DefaultComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  sideBarToggle($event: any) {
+  public sideBarToggle($event: any): any {
     this.sideBarOpen = !this.sideBarOpen;
   }
 }
