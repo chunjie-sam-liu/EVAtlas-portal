@@ -3,13 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// main app
-import { AppComponent } from './app.component';
-// share module
-// routing
-import { AppRoutingModule } from './app-routing.module';
 
-import { DefaultModule } from './layouts/default/default.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +15,7 @@ import { DefaultModule } from './layouts/default/default.module';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    DefaultModule,
+    // DefaultModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
