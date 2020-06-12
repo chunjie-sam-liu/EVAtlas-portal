@@ -5,13 +5,12 @@ const routes: Routes = [
   // load default routing
   {
     path: '',
-    loadChildren: () =>
-      import('./layouts/default/default.module').then((m) => m.DefaultModule),
+    loadChildren: () => import('./layouts/default/default.module').then((m) => m.DefaultModule),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

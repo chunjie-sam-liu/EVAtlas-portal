@@ -11,18 +11,12 @@ const routes: Routes = [
       // dashboard routing
       {
         path: '',
-        loadChildren: () =>
-          import('src/app/modules/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
+        loadChildren: () => import('src/app/modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       // samples routing
       {
         path: 'samples',
-        loadChildren: () =>
-          import('src/app/modules/samples/samples.module').then(
-            (m) => m.SamplesModule
-          ),
+        loadChildren: () => import('src/app/modules/samples/samples.module').then((m) => m.SamplesModule),
       },
     ],
   },

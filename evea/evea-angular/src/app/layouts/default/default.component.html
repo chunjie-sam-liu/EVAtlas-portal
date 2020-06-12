@@ -5,7 +5,9 @@
     <app-sidebar></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
-    <router-outlet></router-outlet>
+    <router-outlet>
+      <span class="loader" *ngIf="loading"></span>
+    </router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
 
