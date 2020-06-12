@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { PlatformModule } from '@angular/cdk/platform';
 import { ObserversModule } from '@angular/cdk/observers';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+import * as echarts from 'echarts';
+
 // flex layout and animation
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -36,7 +39,7 @@ const MaterialComponents = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, MaterialComponents],
-  exports: [MaterialComponents],
+  imports: [CommonModule, MaterialComponents, NgxEchartsModule.forRoot({ echarts })],
+  exports: [MaterialComponents, NgxEchartsModule],
 })
 export class MaterialModule {}
