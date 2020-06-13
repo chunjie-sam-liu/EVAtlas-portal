@@ -31,8 +31,14 @@ const routes: Routes = [
         path: 'specific',
         loadChildren: () => import('src/app/modules/specific/specific.module').then((m) => m.SpecificModule),
       },
-      { path: 'document', component: DocumentComponent },
-      { path: 'contact', loadChildren: () => import('src/app/modules/contact/contact.module').then((m) => m.ContactModule) },
+      {
+        path: 'document',
+        loadChildren: () => import('src/app/modules/document/document.module').then((m) => m.DocumentModule),
+      },
+      {
+        path: 'contact',
+        loadChildren: () => import('src/app/modules/contact/contact.module').then((m) => m.ContactModule),
+      },
     ],
   },
 ];
