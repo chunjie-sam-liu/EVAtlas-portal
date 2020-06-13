@@ -14,3 +14,8 @@ canvas {
 canvas:hover {
   border-bottom: 2px solid #da4233;
 }
+
+img {
+  width: 250px;
+  height: 300px;
+}
