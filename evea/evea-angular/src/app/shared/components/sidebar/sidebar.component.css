@@ -1,4 +1,4 @@
-mat-icon {
+/* mat-icon {
   vertical-align: middle;
   margin-left: 10px;
   margin-right: 20px;
@@ -17,4 +17,8 @@ img {
 
 mat-nav-list {
   margin-top: 100px;
+} */
+
+img {
+  width: 50px;
 }

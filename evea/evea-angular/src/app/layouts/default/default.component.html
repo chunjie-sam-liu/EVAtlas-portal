@@ -1,7 +1,8 @@
 <app-header (toggleSideBarForMe)="sideBarToggle($event)"></app-header>
 
-<mat-drawer-container>
-  <mat-drawer mode="side" [opened]="sideBarOpen">
+<mat-drawer-container autosize>
+  <!-- <mat-drawer mode="side" [opened]="sideBarOpen"> -->
+  <mat-drawer #drawer mode="side" disableClose="true" opened="true">
     <app-sidebar></app-sidebar>
   </mat-drawer>
   <mat-drawer-content>
@@ -10,5 +11,4 @@
     </router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
-
 <app-footer></app-footer>
