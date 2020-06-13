@@ -1,7 +1,7 @@
 <mat-card class="mat-elevation-z8">
   <mat-card-header>
     <mat-card-title> {{ author.name }}, {{ author.title }} </mat-card-title>
-    <mat-card-subtitle> Email: {{ author.email }} </mat-card-subtitle>
+    <mat-card-subtitle><canvas #canvasEl height="30px"></canvas> </mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="'assets/imgs/' + author.avatar" [alt]="author.avatar" />
   <mat-card-content>

@@ -5,3 +5,12 @@
 p {
   margin: 5px 0 0 5px;
 }
+
+canvas {
+  transition: 300ms;
+  border-radius: 4px;
+}
+
+canvas:hover {
+  border-bottom: 2px solid #da4233;
+}

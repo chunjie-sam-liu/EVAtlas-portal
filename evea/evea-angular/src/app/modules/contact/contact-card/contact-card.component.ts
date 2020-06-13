@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-contact-card',
@@ -8,7 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ContactCardComponent implements OnInit {
   @Input() author: any;
 
+  // Template reference to the canvas element
+  @ViewChild('canvasEl', { static: true }) canvasEl: ElementRef<HTMLCanvasElement>;
+
+  // Canvas 2d context
+  private context: CanvasRenderingContext2D;
+
+  private drawEmail(email: string): void {
+    this.context.font = '20px Arial';
+    this.context.textBaseline = 'middle';
+    this.context.textAlign = 'left';
+
+    const x = 0;
+    const y = (this.canvasEl.nativeElement as HTMLCanvasElement).height / 2;
+    this.context.fillText('Email: ' + email, x, y);
+  }
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.context = (this.canvasEl.nativeElement as HTMLCanvasElement).getContext('2d');
+    this.drawEmail(this.author.email);
+  }
 }
