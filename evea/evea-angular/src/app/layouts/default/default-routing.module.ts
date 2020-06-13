@@ -32,7 +32,7 @@ const routes: Routes = [
         loadChildren: () => import('src/app/modules/specific/specific.module').then((m) => m.SpecificModule),
       },
       { path: 'document', component: DocumentComponent },
-      { path: 'contact', component: ContactComponent },
+      { path: 'contact', loadChildren: () => import('src/app/modules/contact/contact.module').then((m) => m.ContactModule) },
     ],
   },
 ];

@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 /* fallback */
 @font-face {
@@ -31,4 +31,10 @@ body {
   padding: 0px;
   height: 100%;
   width: 100%;
+}
+
+h2.page-header {
+  margin: 10px 0px;
+  border-bottom: 0.5px solid #6400b2;
+  font-weight: bolder;
 }
