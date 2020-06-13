@@ -3,7 +3,7 @@
     <mat-card-title> {{ author.name }}, {{ author.title }} </mat-card-title>
     <mat-card-subtitle> Email: {{ author.email }} </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="assets/imgs/logo.png" />
+  <img mat-card-image [src]="'assets/imgs/' + author.avatar" [alt]="author.avatar" />
   <mat-card-content>
     <p>Department of Bioinformatics and Systems Biology.</p>
     <p>College of Life Science and Technology</p>
