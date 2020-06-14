@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MaterialModule } from 'src/app/shared/material.module';
+import { MaterialElevationDirective } from 'src/app/shared/directives/material-elevation.directive';
+
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ContactRoutingModule } from './contact-routing.module';
 
 import { ContactComponent } from './contact.component';
 import { ContactCardComponent } from './contact-card/contact-card.component';
-import { ContactRoutingModule } from './contact-routing.module';
-import { MaterialElevationDirective } from 'src/app/shared/directives/material-elevation.directive';
 
 @NgModule({
   declarations: [ContactComponent, ContactCardComponent, MaterialElevationDirective],
-  imports: [CommonModule, MaterialModule, ContactRoutingModule],
+  imports: [CommonModule, ContactRoutingModule, SharedModule],
 })
 export class ContactModule {}
