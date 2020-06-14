@@ -5,7 +5,7 @@ import { Directive, OnChanges, SimpleChanges, Input, ElementRef, Renderer2, Host
 })
 export class MaterialElevationDirective implements OnChanges {
   @Input() defaultElevation = 2;
-  @Input() raisedElevation = 8;
+  @Input() raisedElevation = 16;
   constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnChanges(changes: SimpleChanges) {

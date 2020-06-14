@@ -1,3 +1,12 @@
 img {
   width: 50px;
 }
+
+a.mat-list-item:hover {
+  transition: 300ms;
+  border-bottom: 2px solid #da4233;
+}
+
+a.mat-list-item:focus {
+  border-bottom: 2px solid #da4233;
+}
