@@ -4,8 +4,8 @@ import { Directive, OnChanges, SimpleChanges, Input, ElementRef, Renderer2, Host
   selector: '[appMaterialElevation]',
 })
 export class MaterialElevationDirective implements OnChanges {
-  @Input() defaultElevation = 2;
-  @Input() raisedElevation = 16;
+  @Input() defaultElevation = 4;
+  @Input() raisedElevation = 12;
   constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -27,6 +27,7 @@ export class MaterialElevationDirective implements OnChanges {
     const classesToRemove = Array.from((this.element.nativeElement as HTMLElement).classList).filter((c) =>
       c.startsWith('mat-elevation-z')
     );
+
     classesToRemove.forEach((c) => {
       this.renderer.removeClass(this.element.nativeElement, c);
     });
