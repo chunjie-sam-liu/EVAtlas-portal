@@ -5,6 +5,7 @@ img {
 a.mat-list-item:hover {
   transition: 300ms;
   border-bottom: 2px solid #da4233;
+  border-radius: 5px;
 }
 
 a.mat-list-item:focus {
