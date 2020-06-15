@@ -7,15 +7,15 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class BaseHttpService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   public httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: { 'Content-Type': 'application/json' },
     params: {},
   };
 
   public getData(route: string, data?: any): Observable<any> {
-    return this.httpClient
+    return this.http
       .get<any>(this.generateRoute(route, environment.apiURL), this.generateOptions(data))
       .pipe(catchError(this.handleError<any>()));
   }
