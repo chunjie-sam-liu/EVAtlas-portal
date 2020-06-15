@@ -12,7 +12,7 @@
           <app-samples-statistics></app-samples-statistics>
         </ng-container>
         <ng-container *ngIf="showContet">
-          <app-sample-content></app-sample-content>
+          <app-sample-content [sample]="sample"></app-sample-content>
         </ng-container>
       </div>
       <div fxFlex="30%">

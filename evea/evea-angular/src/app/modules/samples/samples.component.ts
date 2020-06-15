@@ -9,6 +9,7 @@ import samples from 'src/app/shared/constants/samples';
 export class SamplesComponent implements OnInit {
   // samples from constant
   public samples = samples;
+  public sample: any;
 
   public showStatistics = true;
   public showContet = !this.showStatistics;
@@ -18,14 +19,10 @@ export class SamplesComponent implements OnInit {
   ngOnInit(): void {}
 
   public showSample(sample: any): void {
-    this.showStatistics = false;
+    this.showStatistics = sample.name === 'stat' ? true : false;
     this.showContet = !this.showStatistics;
 
-    if (sample.name === 'stat') {
-      this.showStatistics = true;
-      this.showContet = !this.showStatistics;
-    }
-
-    console.log(sample);
+    this.sample = sample;
+    console.log(this.sample);
   }
 }

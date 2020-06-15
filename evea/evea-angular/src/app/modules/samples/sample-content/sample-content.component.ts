@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sample-content',
   templateUrl: './sample-content.component.html',
-  styleUrls: ['./sample-content.component.css']
+  styleUrls: ['./sample-content.component.css'],
 })
 export class SampleContentComponent implements OnInit {
+  @Input() sample: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
