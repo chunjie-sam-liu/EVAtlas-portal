@@ -14,9 +14,17 @@ model = api.model('Model', {
 
 @api.route('/', methods=['GET'])
 class FuzzyFoo(Resource):
-    # @api.marshal_with(model)
     @api.marshal_with(model)
     def get(self):
+        cur = mongo.db.sample_info.find().limit(5)
+        a = list(cur)
+        return a
+
+
+@api.route('/<string:sample_name>')
+class Sample(Resource):
+    @api.marshal_with(model)
+    def get(self, sample_name):
         cur = mongo.db.sample_info.find().limit(5)
         a = list(cur)
         return a
