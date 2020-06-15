@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class BaseHttpService {
   constructor(private httpClient: HttpClient) {}
 
@@ -16,10 +16,7 @@ export class BaseHttpService {
 
   public getData(route: string, data?: any): Observable<any> {
     return this.httpClient
-      .get<any>(
-        this.generateRoute(route, environment.apiURL),
-        this.generateOptions(data)
-      )
+      .get<any>(this.generateRoute(route, environment.apiURL), this.generateOptions(data))
       .pipe(catchError(this.handleError<any>()));
   }
 

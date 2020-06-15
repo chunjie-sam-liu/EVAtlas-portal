@@ -1,14 +1,31 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { SampleApiService } from '../sample-api.service';
+
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sample-content',
   templateUrl: './sample-content.component.html',
   styleUrls: ['./sample-content.component.css'],
 })
-export class SampleContentComponent implements OnInit {
+export class SampleContentComponent implements OnInit, OnDestroy {
   @Input() sample: any;
 
-  constructor() {}
+  constructor(private sampleApiService: SampleApiService) {}
 
-  ngOnInit(): void {}
+  public sampleSubscription: Subscription;
+
+  ngOnInit(): void {
+    this.getSample();
+  }
+
+  ngOnDestroy(): void {
+    this.sampleSubscription.unsubscribe();
+  }
+
+  public getSample() {
+    this.sampleSubscription = this.sampleApiService.getSample().subscribe((s) => {
+      console.log(s);
+    });
+  }
 }
