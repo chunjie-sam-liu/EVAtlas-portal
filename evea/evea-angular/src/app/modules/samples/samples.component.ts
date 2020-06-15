@@ -29,11 +29,12 @@ export class SamplesComponent implements OnInit {
     this.showStatistics = sample.name === 'stat' ? true : false;
     this.showSample = !this.showStatistics;
 
-    this.showStatistics ? this.getStatistics() : this.getSample();
+    this.showStatistics ? this.getStatistics() : this.getSample(sample.name);
   }
 
-  public getSample() {
-    this.sampleSubscription = this.sampleApiService.getSample().subscribe((s) => {
+  public getSample(sampleName: string) {
+    console.log(sampleName);
+    this.sampleSubscription = this.sampleApiService.getSample(sampleName).subscribe((s) => {
       console.log(s);
     });
   }

@@ -25,6 +25,7 @@ class FuzzyFoo(Resource):
 class Sample(Resource):
     @api.marshal_with(model)
     def get(self, sample_name):
+        print(sample_name)
         cur = mongo.db.sample_info.find().limit(5)
         a = list(cur)
         return a
