@@ -1,28 +1,24 @@
-<div fxLayout="column wrap" fxLayoutGap="20px">
-  <h1 class="page-header">
-    Samples
-  </h1>
-  <p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat autem maxime reiciendis veritatis enim blanditiis, placeat sunt nobis,
-    alias in, aliquid architecto id accusamus consectetur ea distinctio. Sunt, placeat ipsum. Suscipit modi, porro necessitatibus velit
-    consectetur voluptatum aliquid nihil optio quia omnis similique minima quis ullam iste, ducimus in illo aspernatur. Quod sint illum
-    eligendi laboriosam delectus. Magnam, doloremque facilis! Est maiores recusandae temporibus, illo ipsum omnis sunt excepturi iure
-    aspernatur amet minima consectetur vero libero a obcaecati labore dolor at? Incidunt doloribus impedit soluta fugiat laboriosam
-    deserunt, dolorem aliquid. Voluptatibus facilis illo aliquam natus aspernatur officia, vel possimus ad assumenda sint labore nostrum
-    magnam quibusdam pariatur explicabo, fuga dolores veniam enim mollitia molestiae in nulla, laborum asperiores. Unde, necessitatibus.
-    Explicabo distinctio porro voluptatibus quae sunt doloribus aut fuga, a cum dolorem eaque iure reprehenderit nam quasi illum. Illo quia
-    laborum itaque modi in natus qui, nemo ad perferendis aliquid! Voluptatibus odio voluptas vitae numquam placeat voluptate consequuntur
-    libero deserunt asperiores rerum! Officia esse eligendi quidem, debitis obcaecati incidunt vero in ducimus deserunt facere dicta, sed
-    maiores ipsam aliquid optio? Accusantium reprehenderit necessitatibus temporibus non, placeat labore quisquam cupiditate nostrum culpa
-    ea recusandae, natus optio iste incidunt accusamus. Temporibus tempora iusto corrupti a odit dignissimos cum consectetur error
-    necessitatibus impedit! A, pariatur voluptates! Voluptatibus fuga ea asperiores cupiditate facere temporibus quos facilis sit quae
-    architecto illum, laudantium enim aut accusantium. Cumque atque aliquid corrupti dolorum repellat temporibus! Asperiores, quam
-    repudiandae. Sint adipisci tempore ratione iusto, suscipit consectetur explicabo illum recusandae qui dolorem totam sequi aut. Officia,
-    tenetur error porro omnis sint aliquid voluptatem exercitationem sit dolore totam ex, sed ducimus? Veniam perspiciatis ut modi, eligendi
-    maxime placeat, necessitatibus veritatis reiciendis praesentium itaque minus quam consequuntur ullam asperiores laboriosam mollitia.
-    Laborum culpa excepturi quidem eveniet ab veritatis. Quo, laudantium. Amet, ullam!
-  </p>
-  <mat-divider></mat-divider>
-</div>
+<div fxLayout="column" fxFill>
+  <div fxFlex="none">
+    <h1 class="page-header">
+      Samples
+    </h1>
+  </div>
 
-<app-footer></app-footer>
+  <div fxFlex>
+    <div fxLayout fxFill fxLayoutGap="10px">
+      <div fxFlex="70%" style="border: 1px solid blue;"></div>
+      <div fxFlex="30%">
+        <div fxLayout="row wrap" fx.fxLayout.sm="column" fxLayoutGap="10px" fxFlexAlign="space-between center">
+          <ng-container *ngFor="let sample of samples">
+            <app-sample-card fxFlex.sm="0 1 calc(90%)" [sample]="sample" (click)="showSample(sample)"> </app-sample-card>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex="none">
+    <app-footer></app-footer>
+  </div>
+</div>
