@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { SampleApiService } from './sample-api.service';
+
 import samples from 'src/app/shared/constants/samples';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-samples',
@@ -12,16 +16,29 @@ export class SamplesComponent implements OnInit {
   public sample: any;
 
   public showStatistics = true;
-  public showContet = !this.showStatistics;
+  public showSample = !this.showStatistics;
 
-  constructor() {}
+  public sampleSubscription: Subscription;
+
+  constructor(private sampleApiService: SampleApiService) {}
 
   ngOnInit(): void {}
 
-  public showSample(sample: any): void {
-    this.showStatistics = sample.name === 'stat' ? true : false;
-    this.showContet = !this.showStatistics;
-
+  public showContent(sample: any): void {
     this.sample = sample;
+    this.showStatistics = sample.name === 'stat' ? true : false;
+    this.showSample = !this.showStatistics;
+
+    this.showStatistics ? this.getStatistics() : this.getSample();
+  }
+
+  public getSample() {
+    this.sampleSubscription = this.sampleApiService.getSample().subscribe((s) => {
+      console.log(s);
+    });
+  }
+
+  public getStatistics() {
+    console.log(this.sample);
   }
 }

@@ -11,14 +11,14 @@
         <ng-container *ngIf="showStatistics">
           <app-samples-statistics></app-samples-statistics>
         </ng-container>
-        <ng-container *ngIf="showContet">
+        <ng-container *ngIf="showSample">
           <app-sample-content [sample]="sample"></app-sample-content>
         </ng-container>
       </div>
       <div fxFlex="30%">
         <div fxLayout="row wrap" fx.fxLayout.sm="column" fxLayoutGap="10px" fxFlexAlign="space-between center">
           <ng-container *ngFor="let sample of samples">
-            <app-sample-card fxFlex.sm="0 1 calc(95%)" [sample]="sample" (click)="showSample(sample)"></app-sample-card>
+            <app-sample-card fxFlex.sm="0 1 calc(95%)" [sample]="sample" (click)="showContent(sample)"></app-sample-card>
           </ng-container>
         </div>
       </div>
