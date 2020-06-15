@@ -11,6 +11,6 @@ export class SampleApiService extends BaseHttpService {
   }
 
   public getSample() {
-    return this.getData('sample');
+    return this.getData('sample/');
   }
 }

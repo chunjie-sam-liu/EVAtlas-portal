@@ -23,6 +23,5 @@ export class SamplesComponent implements OnInit {
     this.showContet = !this.showStatistics;
 
     this.sample = sample;
-    console.log(this.sample);
   }
 }

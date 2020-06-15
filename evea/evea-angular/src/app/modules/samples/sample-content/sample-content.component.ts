@@ -16,6 +16,7 @@ export class SampleContentComponent implements OnInit, OnDestroy {
   public sampleSubscription: Subscription;
 
   ngOnInit(): void {
+    console.log(this.sample);
     this.getSample();
   }
 
