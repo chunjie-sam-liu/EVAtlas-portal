@@ -21,7 +21,7 @@ class FuzzyFoo(Resource):
         return a
 
 
-@api.route('/<string:sample_name>')
+@api.route('/<string:sample_name>', endpoint="todo")
 class Sample(Resource):
     @api.marshal_with(model)
     def get(self, sample_name):
