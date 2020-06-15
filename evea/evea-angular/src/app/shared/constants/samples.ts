@@ -19,4 +19,14 @@ export default [
     img: 'breastmilk.png',
     title: 'Breast Milk',
   },
+  {
+    name: 'colon',
+    img: 'colon.png',
+    title: 'Colon',
+  },
+  {
+    name: 'msc',
+    img: 'msc.png',
+    title: 'MSC',
+  },
 ];
