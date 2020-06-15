@@ -7,12 +7,14 @@ import samples from 'src/app/shared/constants/samples';
   styleUrls: ['./samples.component.css'],
 })
 export class SamplesComponent implements OnInit {
+  // samples from constant
   public samples = samples;
 
-  public showSample(sample: any): void {
-    console.log(sample);
-  }
   constructor() {}
 
   ngOnInit(): void {}
+
+  public showSample(sample: {}): void {
+    console.log(sample);
+  }
 }

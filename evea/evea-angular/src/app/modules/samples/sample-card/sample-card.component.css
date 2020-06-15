@@ -10,3 +10,7 @@ img {
 mat-card-footer {
   text-align: center;
 }
+
+mat-card {
+  cursor: pointer;
+}

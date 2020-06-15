@@ -1,18 +1,22 @@
 export default [
   {
-    name: 'B Cell',
+    name: 'b_cell',
     img: 'bcell.png',
+    title: 'B Cell',
   },
   {
-    name: 'Blood',
+    name: 'blood',
     img: 'blood.png',
+    title: 'Blood',
   },
   {
-    name: 'Breast',
+    name: 'breast',
     img: 'breast.png',
+    title: 'Breast',
   },
   {
-    name: 'Breast Milk',
+    name: 'breast_milk',
     img: 'breastmilk.png',
+    title: 'Breast Milk',
   },
 ];
