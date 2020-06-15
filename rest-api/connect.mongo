@@ -1,2 +1,2 @@
-db.mir2drug_cor.find().limit(5).pretty()
+db.mir2drug_cor.find().limit(2).pretty()
 
