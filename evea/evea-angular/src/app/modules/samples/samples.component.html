@@ -7,7 +7,14 @@
 
   <div fxFlex>
     <div fxLayout fxFill fxLayoutGap="10px">
-      <div fxFlex="70%" style="border: 1px solid blue;"></div>
+      <div fxFlex="70%" style="border: 1px solid blue;">
+        <ng-container *ngIf="showStatistics">
+          <app-samples-statistics></app-samples-statistics>
+        </ng-container>
+        <ng-container *ngIf="showContet">
+          <app-sample-content></app-sample-content>
+        </ng-container>
+      </div>
       <div fxFlex="30%">
         <div fxLayout="row wrap" fx.fxLayout.sm="column" fxLayoutGap="10px" fxFlexAlign="space-between center">
           <ng-container *ngFor="let sample of samples">

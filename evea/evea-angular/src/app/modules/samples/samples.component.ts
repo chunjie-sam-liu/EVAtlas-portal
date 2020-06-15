@@ -10,11 +10,22 @@ export class SamplesComponent implements OnInit {
   // samples from constant
   public samples = samples;
 
+  public showStatistics = true;
+  public showContet = !this.showStatistics;
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  public showSample(sample: {}): void {
+  public showSample(sample: any): void {
+    this.showStatistics = false;
+    this.showContet = !this.showStatistics;
+
+    if (sample.name === 'stat') {
+      this.showStatistics = true;
+      this.showContet = !this.showStatistics;
+    }
+
     console.log(sample);
   }
 }
