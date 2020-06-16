@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot true",
-    "dev-build": "ng build --prod --aot true",
+    "dev-build": "ng build --prod --base-href /static/ --deploy-url /static/ --aot true ",
     "prod-build": "ng build --prod --base-href /EVEA/ --deploy-url /EVEA/static/ --aot true",
     "test": "ng test",
     "lint": "ng lint",
