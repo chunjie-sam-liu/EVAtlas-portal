@@ -25,5 +25,4 @@ class Sample(Resource):
         print(sample_name)
         cur = mongo.db.sample_info.find().limit(10)
         s = list(cur)
-
         return s
