@@ -6,24 +6,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    // DefaultModule,
-  ],
-  providers: [
-    {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy,
-    },
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, FormsModule],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
