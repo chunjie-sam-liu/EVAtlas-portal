@@ -16,9 +16,13 @@ test_fields = {
     'samp':fields.String
     }
 
+test_fields_list = {
+  'samples': fields.List(fields.Nested(test_fields))
+}
+
 class FuzzyFoo(Resource):
-    @marshal_with(test_fields)
+    @marshal_with(test_fields_list)
     def get(self):
-        a = [{'source':'seminal','samp':'ar'},{'source':'s','samp':'e'}]
-        return a
+        a = list(mongo.db.test.find({}))
+        return {'samples': a}
 api.add_resource(FuzzyFoo,'/test')
