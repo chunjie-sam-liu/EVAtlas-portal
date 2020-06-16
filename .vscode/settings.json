@@ -10,5 +10,7 @@
     "**/*.pyc": { "when": "$(basename).py" },
     "node_modules": true,
     "venv": true
-  }
+  },
+
+  "python.formatting.provider": "yapf"
 }
