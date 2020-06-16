@@ -5,7 +5,7 @@ import { Directive, OnChanges, SimpleChanges, Input, ElementRef, Renderer2, Host
 })
 export class MaterialElevationDirective implements OnChanges {
   @Input() defaultElevation = 2;
-  @Input() raisedElevation = 8;
+  @Input() raisedElevation = 10;
   constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -22,11 +22,12 @@ export class MaterialElevationDirective implements OnChanges {
     this.setElevation(this.defaultElevation);
   }
 
-  public setElevation(amount: number) {
+  public setElevation(amount: number): void {
     // remove all elevation classes
     const classesToRemove = Array.from((this.element.nativeElement as HTMLElement).classList).filter((c) =>
       c.startsWith('mat-elevation-z')
     );
+
     classesToRemove.forEach((c) => {
       this.renderer.removeClass(this.element.nativeElement, c);
     });

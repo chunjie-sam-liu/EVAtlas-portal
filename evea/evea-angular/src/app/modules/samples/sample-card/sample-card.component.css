@@ -1,0 +1,16 @@
+img {
+  width: 140px;
+  height: 140px;
+}
+
+:host {
+  margin-bottom: 10px;
+}
+
+mat-card-footer {
+  text-align: center;
+}
+
+mat-card {
+  cursor: pointer;
+}
