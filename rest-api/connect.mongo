@@ -1,2 +1,7 @@
-db.mir2drug_cor.find().limit(2).pretty()
+
+db.sample_info.find().limit(1).pretty()
+
+db.sample_info.findOne()
+
+db.sample_info.find().limit(2).pretty()
 

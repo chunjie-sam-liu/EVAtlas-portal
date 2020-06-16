@@ -14,4 +14,6 @@ export class SampleApiService extends BaseHttpService {
   public getSample(sampleName: string): Observable<any> {
     return this.getData('sample/' + sampleName);
   }
+
+  public getStatistics() {}
 }
