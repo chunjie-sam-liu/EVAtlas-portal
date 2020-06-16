@@ -16,5 +16,7 @@
   "python.linting.enabled": true,
   "python.formatting.yapfPath": "venv/bin/yapf",
   "python.linting.pylintPath": "venv/bin/pylint",
-  "python.linting.pylintEnabled": true
+  "python.linting.pylintEnabled": true,
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "on"
 }
