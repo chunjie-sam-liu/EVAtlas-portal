@@ -4,5 +4,11 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "editor.formatOnSave": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": { "when": "$(basename).py" },
+    "node_modules": true,
+    "venv": true
   }
 }
