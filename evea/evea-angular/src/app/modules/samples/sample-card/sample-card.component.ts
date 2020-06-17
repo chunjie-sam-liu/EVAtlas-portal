@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-sample-card',
   templateUrl: './sample-card.component.html',
@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SampleCardComponent implements OnInit {
   // samples input
   @Input() sample: any;
+
+  public assets = environment.assets;
 
   constructor() {}
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-contact-card',
   templateUrl: './contact-card.component.html',
@@ -10,6 +12,8 @@ export class ContactCardComponent implements OnInit {
 
   // Template reference to the canvas element
   @ViewChild('canvasEl', { static: true }) canvasEl: ElementRef<HTMLCanvasElement>;
+
+  public assets = environment.assets;
 
   // Canvas 2d context
   private context: CanvasRenderingContext2D;
