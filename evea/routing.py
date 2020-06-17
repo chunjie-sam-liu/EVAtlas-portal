@@ -8,7 +8,6 @@ from evea.routes.mirna import mirna
 app.register_blueprint(home, url_prefix='/api/home')
 app.register_blueprint(sample, url_prefix='/api/sample')
 app.register_blueprint(mirna, url_prefix='/api/mirna')
-#
 
 
 @app.route("/", methods=["GET"])
