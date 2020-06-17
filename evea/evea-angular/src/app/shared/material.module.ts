@@ -22,6 +22,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const MaterialComponents = [
   FlexLayoutModule,
@@ -39,6 +41,8 @@ const MaterialComponents = [
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
+  MatAutocompleteModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({

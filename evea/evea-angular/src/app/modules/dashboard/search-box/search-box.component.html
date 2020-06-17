@@ -1,10 +1,32 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" />
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
+<form>
+  <mat-form-field appearance="outline" class="search-box">
+    <mat-label>Input your interested smRNA</mat-label>
+
+    <input matInput [formControl]="searchFormControl" placeholder="Ex. pat@example.com" type="text" [matAutocomplete]="auto" />
+
+    <!-- <button mat-icon-button color="warn" matPrefix>
+      <mat-icon>clear</mat-icon>
+    </button> -->
+    <button mat-icon-button color="warn" matPrefix>
+      <mat-icon>search</mat-icon>
+    </button>
+    <mat-hint>hsa-miR-146-5p</mat-hint>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngIf="isLoading">
+        <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+      </mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+
+    <mat-error *ngIf="searchFormControl.hasError('email') && !searchFormControl.hasError('required')">
+      Please input valid smRNA.
     </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')"> Email is <strong>required</strong> </mat-error>
+
+    <mat-error *ngIf="searchFormControl.hasError('required')"> Input smRNA symbol is <strong>required</strong> </mat-error>
   </mat-form-field>
 </form>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-box',
@@ -7,9 +9,24 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./search-box.component.css'],
 })
 export class SearchBoxComponent implements OnInit {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  isLoading = false;
+  searchFormControl = new FormControl();
+
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filteredOptions = this.searchFormControl.valueChanges.pipe(
+      startWith(''),
+      tap((value) => console.log(value)),
+      map((value) => this._filter(value))
+    );
+  }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter((option) => option.toLowerCase().includes(filterValue));
+  }
 }
