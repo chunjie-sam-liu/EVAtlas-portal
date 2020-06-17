@@ -18,7 +18,10 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Path": "venv/bin/flake8",
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--max-line-length=90"],
+  "python.linting.flake8Args": [
+    "--max-line-length=120",
+    "--ignore=E402,F841,F401,E302,E305,W391"
+  ],
 
   "editor.wordWrap": "on",
   "python.languageServer": "Microsoft",
