@@ -17,8 +17,8 @@
         <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
       </mat-option>
       <ng-container *ngIf="!isLoading">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{ option }}
+        <mat-option *ngFor="let rna of rnaList | async" [value]="rna">
+          {{ rna }}
         </mat-option>
       </ng-container>
     </mat-autocomplete>

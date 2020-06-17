@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith, tap } from 'rxjs/operators';
+import { map, startWith, tap, debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-box',
@@ -13,15 +13,15 @@ export class SearchBoxComponent implements OnInit {
   searchFormControl = new FormControl();
 
   options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  rnaList: Observable<string[]>;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.filteredOptions = this.searchFormControl.valueChanges.pipe(
-      startWith(''),
-      tap((value) => console.log(value)),
-      map((value) => this._filter(value))
+    this.rnaList = this.searchFormControl.valueChanges.pipe(
+      debounceTime(100),
+      tap((input) => console.log(input)),
+      map((input) => this._filter(input))
     );
   }
   private _filter(value: string): string[] {
