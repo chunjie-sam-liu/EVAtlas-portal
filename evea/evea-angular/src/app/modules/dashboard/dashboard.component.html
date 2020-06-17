@@ -1,15 +1,12 @@
 <div fxLayout="column" fxFill>
-  <div fxFlex fxLayout="row" style="border: 2px solid blue;">
-    <div fxFlex fxLayout="row" style="border: 2px solid black;">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, doloribus quia tempore quo necessitatibus incidunt eum possimus. Enim non
-      porro aut eligendi sunt voluptates expedita, dolorem, molestias, at similique doloremque!
-    </div>
-    <div fxFlex fxLayout="row" style="border: 2px solid yellow;">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, doloribus quia tempore quo necessitatibus incidunt eum possimus. Enim non
-      porro aut eligendi sunt voluptates expedita, dolorem, molestias, at similique doloremque!
+  <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="border: 2px solid blue;">
+    <div fxFlex="90%" fxLayout="column" style="border: 2px solid red;">
+      <app-search-box></app-search-box>
+
+      <!-- description -->
     </div>
   </div>
-  <div fxFlex="none" style="border: 2px solid red;">
+  <div fxFlex="none">
     <app-footer></app-footer>
   </div>
 </div>
