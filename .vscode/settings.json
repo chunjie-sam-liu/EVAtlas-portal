@@ -11,12 +11,17 @@
     "node_modules": true,
     "venv": true
   },
-  // "python.formatting.provider": "yapf",
   "python.jediEnabled": false,
   "python.linting.enabled": true,
-  // "python.formatting.yapfPath": "venv/bin/yapf",
   "python.linting.pylintPath": "venv/bin/pylint",
   "python.linting.pylintEnabled": true,
+  "python.languageServer": "Microsoft",
   "editor.minimap.enabled": false,
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{based_on_style: chromium, indent_width: 4}"
+  ]
 }

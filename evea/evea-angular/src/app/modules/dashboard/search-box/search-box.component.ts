@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith, tap, debounceTime, switchMap } from 'rxjs/operators';
+import { SearchBoxApiService } from './search-box-api.service';
 
 @Component({
   selector: 'app-search-box',
@@ -15,7 +16,7 @@ export class SearchBoxComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   rnaList: Observable<string[]>;
 
-  constructor() {}
+  constructor(searchBoxApiService: SearchBoxApiService) {}
 
   ngOnInit(): void {
     this.rnaList = this.searchFormControl.valueChanges.pipe(
