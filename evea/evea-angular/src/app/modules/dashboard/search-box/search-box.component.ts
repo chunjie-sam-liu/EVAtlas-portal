@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith, tap, debounceTime, switchMap } from 'rxjs/operators';
+import { map, startWith, tap, debounceTime, switchMap, finalize } from 'rxjs/operators';
 import { SearchBoxApiService } from './search-box-api.service';
 
 @Component({
@@ -13,21 +13,21 @@ export class SearchBoxComponent implements OnInit {
   isLoading = false;
   searchFormControl = new FormControl();
 
-  options: string[] = ['One', 'Two', 'Three'];
-  rnaList: Observable<string[]>;
+  rnaList: Observable<any[]>;
 
-  constructor(searchBoxApiService: SearchBoxApiService) {}
+  constructor(private searchBoxApiService: SearchBoxApiService) {}
 
   ngOnInit(): void {
     this.rnaList = this.searchFormControl.valueChanges.pipe(
       debounceTime(100),
-      tap((input) => console.log(input)),
-      map((input) => this._filter(input))
+      tap((value) => {
+        console.log(value);
+      }),
+      switchMap((value) => this.searchBoxApiService.getRnaList(this._transformInput(value)))
     );
   }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
 
-    return this.options.filter((option) => option.toLowerCase().includes(filterValue));
+  private _transformInput(value: string): string {
+    return value.toLowerCase().replace(/[^a-z0-9]/g, '');
   }
 }

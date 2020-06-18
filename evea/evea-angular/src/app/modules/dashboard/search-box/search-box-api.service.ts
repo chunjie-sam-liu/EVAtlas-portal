@@ -10,7 +10,7 @@ export class SearchBoxApiService extends BaseHttpService {
   constructor(http: HttpClient) {
     super(http);
   }
-  public getRnaList(str: string): Observable<any> {
-    return this.getData('search/rna/' + str);
+  public getRnaList(s: string): Observable<any> {
+    return this.getData('search/rna/' + s);
   }
 }

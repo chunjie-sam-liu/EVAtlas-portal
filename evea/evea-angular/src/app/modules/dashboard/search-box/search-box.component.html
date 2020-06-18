@@ -1,8 +1,8 @@
 <form>
   <mat-form-field appearance="outline" class="search-box">
-    <mat-label>Input your interested smRNA</mat-label>
+    <mat-label>Input your interested smRNA symbols</mat-label>
 
-    <input matInput [formControl]="searchFormControl" placeholder="Ex. pat@example.com" type="text" [matAutocomplete]="auto" />
+    <input matInput [formControl]="searchFormControl" placeholder="hsa-miR-146-5p" type="text" [matAutocomplete]="auto" />
 
     <!-- <button mat-icon-button color="warn" matPrefix>
       <mat-icon>clear</mat-icon>
@@ -17,8 +17,8 @@
         <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
       </mat-option>
       <ng-container *ngIf="!isLoading">
-        <mat-option *ngFor="let rna of rnaList | async" [value]="rna">
-          {{ rna }}
+        <mat-option *ngFor="let rna of rnaList | async" [value]="rna.rna">
+          {{ rna.rna }}
         </mat-option>
       </ng-container>
     </mat-autocomplete>
