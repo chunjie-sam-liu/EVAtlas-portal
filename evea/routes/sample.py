@@ -1,12 +1,11 @@
-from flask import Blueprint, render_template
+from flask import Blueprint
 from evea.db import mongo
-#from flask_restplus import fields, Api, Resource
-
 from flask_restful import Api, Resource, fields, marshal_with, reqparse, marshal
 
 import os
 import re
 import sys
+
 
 sample = Blueprint('sample', __name__)
 
@@ -48,27 +47,23 @@ sample_info_field = {
     "treatment": fields.String,
     "detail": fields.String,
     "phase": fields.String,
-    "ssr_tag_info": fields.List(fields.Integer),
-    "ssr_map_info": fields.List(fields.Integer),
+    "srr_tag_info": fields.List(fields.Integer),
+    "srr_map_info": fields.List(fields.Float),
     "tag_stat": fields.Nested(ncRNA_tag_stat_fields),
     "ratio_stat": fields.Nested(ncRNA_tag_ratio_fields),
 }
 
 sample_info_field_lst = {
-    "sample_info": fields.List(fields.Nested(sample_info_field)),
+    "sample_info_lst": fields.List(fields.Nested(sample_info_field)),
 }
 
-
-@api.route('/', methods=['GET'])
-@api.route('/<string:sample_name>/')
-class Sample_info(Resource):
-    @api.marshal_with(model)
+class SampleInfo(Resource):
     def get(self, sample_name):
         samples = sample_name.strip().split(',')
-        print(sample_names)
         sample_info_oj = mongo.db.sample_info.find(
             {"srr_id": {
                 "$in": samples
-            }})
+            }},{"_id":0})
         sample_info_lst = list(sample_info_oj)
-        return sample_info_lst
+        return {'sample_info_lst': sample_info_lst}
+api.add_resource(SampleInfo,"/<string:sample_name>")

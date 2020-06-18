@@ -5,5 +5,31 @@
     "editor.tabSize": 4,
     "editor.formatOnSave": true
   },
-  "python.formatting.provider": "yapf"
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": { "when": "$(basename).py" },
+    "node_modules": true,
+    "venv": true
+  },
+  "python.jediEnabled": false,
+  "python.linting.enabled": true,
+  // "python.linting.pylintPath": "venv/bin/pylint",
+  // "python.linting.pylintEnabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Path": "venv/bin/flake8",
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+    "--max-line-length=120",
+    "--ignore=E402,F841,F401,E302,E305,W391"
+  ],
+
+  "editor.wordWrap": "on",
+  "python.languageServer": "Microsoft",
+  "editor.minimap.enabled": false,
+  "python.linting.lintOnSave": true,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{based_on_style: chromium, indent_width: 4}"
+  ]
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
@@ -11,7 +12,15 @@ import { MaterialElevationDirective } from './directives/material-elevation.dire
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent, MaterialElevationDirective],
-  imports: [CommonModule, MaterialModule, RouterModule],
-  exports: [MaterialModule, HeaderComponent, FooterComponent, SidebarComponent, MaterialElevationDirective],
+  imports: [CommonModule, MaterialModule, RouterModule, FormsModule, ReactiveFormsModule],
+  exports: [
+    MaterialModule,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    MaterialElevationDirective,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class SharedModule {}

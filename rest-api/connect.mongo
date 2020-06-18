@@ -1,1 +1,1 @@
-db.exp_miRNA.aggregate([{"$match": {"GeneSymbol":{$in:["hsa-miR-21-5p"]}}}, {"$lookup":{"from": "sample_info", "localField": "srr_id", "foreignField": "srr_id", "as": "srr_info"}}, {"$match":{"srr_info.source" : {"$in": ["breast milk"]}}}, {"$unwind": "$srr_info"}, {"$project": {"_id":0, "GeneSymbol":1, "srr_id":1, "RPM":1, "source": "$srr_info.source", "ex_type": "$srr_info.ex_type"}}])
+db.sample_info.findOne()

@@ -1,12 +1,18 @@
-<div fxLayout="column wrap" fxLayoutGap="20px">
-  <h1 class="page-header">
-    Contact
-  </h1>
+<div fxLayout="column" fxFill>
+  <div fxFlex="none">
+    <h1 class="page-header">
+      Contact
+    </h1>
+  </div>
+  <div fxFlex>
+    <div fxLayout="row wrap" fxLayout.sm="column" fxLayoutGap="20px" fxFlexAlign="space-between center">
+      <ng-container *ngFor="let author of authors">
+        <app-contact-card [author]="author"></app-contact-card>
+      </ng-container>
+    </div>
+  </div>
 
-  <div fxLayout="row wrap" fxLayout.sm="column" fxLayoutGap="20px" fxFlexAlign="space-between center">
-    <ng-container *ngFor="let author of authors">
-      <app-contact-card [author]="author"></app-contact-card>
-    </ng-container>
+  <div fxFlex="none">
+    <app-footer></app-footer>
   </div>
 </div>
-<app-footer></app-footer>

@@ -8,101 +8,7 @@ import re
 import sys
 
 category = Blueprint('category', __name__)
-
 api = Api(category)
-
-category_stat_field = {
-    'category_stat':
-    fields.Nested({
-        'sample_n':
-        fields.Integer,
-        'category_type':
-        fields.Nested({
-            'ex_type': fields.String,
-            'source': fields.String,
-        }),
-    }),
-    'category_n':
-    fields.Integer,
-    'ex_type_lst':
-    fields.List(
-        fields.Nested({
-            'sample_n': fields.Integer,
-            'ex_type': fields.String,
-        })),
-    'source_type_lst':
-    fields.List(
-        fields.Nested({
-            'sample_n': fields.Integer,
-            'source_type': fields.String,
-        })),
-}
-
-
-@api.route('/', methods=['GET'])
-class CategoryStat(Resource):
-    #    @api.marshal_with(model)
-    @marshal_with(category_stat_field)
-    def get(self):
-        sample_category = {}
-        category_stat_oj = mongo.db.sample_info.aggregate([{
-            "$group": {
-                "_id": {
-                    "ex_type": "$ex_type",
-                    "source": "$source"
-                },
-                "sample_n": {
-                    "$sum": 1
-                }
-            }
-        }, {
-            "$project": {
-                "_id": 0,
-                "category_type": "$_id",
-                "sample_n": 1
-            }
-        }])
-        category_stat_lst = list(category_stat_oj)
-        category_n = len(category_stat_lst)
-        ex_type_oj = mongo.db.sample_info.aggregate([{
-            "$group": {
-                "_id": "$ex_type",
-                "sample_n": {
-                    "$sum": 1
-                }
-            }
-        }, {
-            "$project": {
-                "_id": 0,
-                "ex_type": "$_id",
-                "sample_n": 1
-            }
-        }])
-        ex_type_lst = list(ex_type_oj)
-        source_type_oj = mongo.db.sample_info.aggregate([{
-            "$group": {
-                "_id": "$source",
-                "sample_n": {
-                    "$sum": 1
-                }
-            }
-        }, {
-            "$project": {
-                "_id": 0,
-                "source_type": "$_id",
-                "sample_n": 1
-            }
-        }])
-        source_type_lst = list(source_type_oj)
-        return {
-            'category_n': category_n,
-            'category_stat': category_stat_lst,
-            'ex_type_lst': ex_type_lst,
-            'source_type_lst': source_type_lst
-        }
-
-
-api.add_resource(CategoryStat, '/api/category')
 
 ncRNA_tag_stat_fields = {
     "miRNA": fields.Integer,
@@ -147,23 +53,24 @@ sample_info_field = {
 }
 
 sample_info_field_lst = {
-    "sample_info": fields.List(fields.Nested(sample_info_field)),
+    "samples_info_lst": fields.List(fields.Nested(sample_info_field)),
     "record_n": fields.Integer,
 }
 
-
-@api.route('/<string:category_name>/<string:query_type>/')
 class Category(Resource):
     @marshal_with(category_stat_field)
-    def get(self, category_name, query_type):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('source', type=str)
+        parser.add_argument("ex_type", type=str)
+        args = parser.parse_args()
         condition = {}
-        condition['category_name'] = category_name
-        condition['query_type'] = query_type
+        condition['source'] = args['source']
+        condition['ex_type'] = args['ex_type']
         samples_oj = mongo.db.sample_info.aggregate([{"$match": condition}])
-        samples_lst = list(samples_oj)
-        return samples_lst
+        samples_info_lst = list(samples_oj)
+        record_n = len(samples_info_lst)
+        return {'samples_info_lst': samples_info_lst, 'record_n': record_n}
 
-
-api.add_resource(Category,
-                 '/api/category/<string:category_name>/<string:query_type>/')
+api.add_resource(Category, '/category')
 
