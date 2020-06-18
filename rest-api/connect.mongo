@@ -5,3 +5,5 @@ db.sample_info.findOne()
 
 db.sample_info.find().limit(2).pretty()
 
+// search rna symbol
+db.rna_symbol.find({search_name: {$regex:/let7a/}}, {rna:1, _id: 0}).limit(2).pretty()
