@@ -1,7 +1,9 @@
 aniso8601==8.0.0
 astroid==2.4.1
 attrs==19.3.0
+autopep8==1.5.3
 click==7.1.2
+flake8==3.8.3
 Flask==1.1.2
 Flask-Cors==3.0.8
 Flask-PyMongo==2.3.0
@@ -15,7 +17,11 @@ jsonschema==3.2.0
 lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
+numpy==1.18.5
+pycodestyle==2.6.0
+pyflakes==2.2.0
 pylint==2.5.2
+pylint-protobuf==0.12
 pymongo==3.10.1
 pyrsistent==0.16.0
 pytz==2020.1
