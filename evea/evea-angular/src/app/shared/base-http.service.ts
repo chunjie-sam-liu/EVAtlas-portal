@@ -15,9 +15,8 @@ export class BaseHttpService {
   };
 
   public getData(route: string, data?: any): Observable<any> {
-    return this.http
-      .get<any>(this.generateRoute(route, environment.apiURL), this.generateOptions(data))
-      .pipe(catchError(this.handleError<any>()));
+    return this.http.get<any>(this.generateRoute(route, environment.apiURL), this.generateOptions(data));
+    // .pipe(catchError(this.handleError<any>()));
   }
 
   private generateRoute(route: string, envURL: string): string {
@@ -27,10 +26,10 @@ export class BaseHttpService {
     return (this.httpOptions.params = data);
   }
 
-  private handleError<T>(result?: T) {
-    return (err: any): Observable<T> => {
-      console.error(err);
-      return of(result);
-    };
-  }
+  // private handleError<T>(result?: T) {
+  //   return (err: any): Observable<T> => {
+  //     console.error(err);
+  //     return of(result);
+  //   };
+  // }
 }
