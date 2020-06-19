@@ -1,5 +1,0 @@
-GET http://localhost:5000/api/mirna/category?mirna=hsa-miR-199a-3p&source=Serum&ex_type=exosome
-
-
-###
-GET http://localhost:5000/api/mirna/sample?mirna=hsa-miR-21-5p,hsa-miR-199a-3p&sample=SRR10417160,SRR10417152

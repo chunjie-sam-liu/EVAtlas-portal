@@ -33,3 +33,8 @@ miR_basic_fields = {
 miR_basic_list_fields = {
     'mirna_basic_list': fields.List(fields.Nested(miR_basic_fields))
 }
+
+
+class ncRNAList(Resource):
+    ncRNA_lst = ['miRNA', 'rRNA', 'tRNA', 'piRNA', 'snoRNA', 'snRNA', 'pRNA', 'scRNA']
+    
