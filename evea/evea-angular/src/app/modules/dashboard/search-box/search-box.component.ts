@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith, tap, debounceTime, switchMap, finalize } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, tap, debounceTime, switchMap, finalize, catchError } from 'rxjs/operators';
+
 import { SearchBoxApiService } from './search-box-api.service';
 
 @Component({
@@ -13,21 +14,45 @@ export class SearchBoxComponent implements OnInit {
   isLoading = false;
   searchFormControl = new FormControl();
 
-  rnaList: Observable<any[]>;
+  rnaList: any[];
 
   constructor(private searchBoxApiService: SearchBoxApiService) {}
 
   ngOnInit(): void {
-    this.rnaList = this.searchFormControl.valueChanges.pipe(
-      debounceTime(100),
-      tap((value) => {
-        console.log(value);
-      }),
-      switchMap((value) => this.searchBoxApiService.getRnaList(this._transformInput(value)))
-    );
+    this.searchFormControl.valueChanges
+      .pipe(
+        debounceTime(500),
+        tap((val) => {
+          // http is requesting, isLoading true
+          this.isLoading = true;
+        }),
+        switchMap((val) => {
+          val = this._transformInput(val);
+          if (val !== '') {
+            return this.searchBoxApiService.getRnaList(val).pipe(
+              catchError((err) => {
+                // if !err.ok nothing input
+                this.isLoading = true;
+                return of([]);
+              }),
+              finalize(() => {
+                // http requesting is done, isLoading false
+                this.isLoading = false;
+              })
+            );
+          } else {
+            // val is ' ', please input something
+            this.isLoading = false;
+            return of([]);
+          }
+        })
+      )
+      .subscribe((res) => {
+        this.rnaList = res;
+      });
   }
 
-  private _transformInput(value: string): string {
-    return value.toLowerCase().replace(/[^a-z0-9]/g, '');
+  private _transformInput(v: string): string {
+    return v.toLowerCase().replace(/[^a-z0-9]/g, '');
   }
 }
