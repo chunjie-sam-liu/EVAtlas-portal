@@ -12,20 +12,20 @@ api = Api(drug)
 
 mir_drug_database_fields = {
     "FDA" : fields.String,
-    "Detection method " : fields.String,
+    "Method" : fields.String,
     "Reference" : fields.String,
     "CID" : fields.String,
     "miRBase" : fields.String,
-    "small melocule" : fields.String,
+    "Small_molecule" : fields.String,
     "Support" : fields.String,
-    "Detection method":fields.String,
-    "DB" : fields.String,
-    "mirna" : fields.String(attribute="miRNA"),
+    "Source" : fields.String,
+    "miRNA" : fields.String,
     "Year" : fields.String,
     "PMID" : fields.String,
-    "Expression pattern of miRNA" : fields.String,
+    "Pattern" : fields.String,
     "Species" : fields.String,
-    "Condition" : fields.String
+    "Condition" : fields.String,
+
 }
 
 mir_drug_database_list_fields = {
@@ -42,14 +42,15 @@ class DrugDB(Resource):
         result = []
         miRNA = args["mirna"][4:]
         if miRNA:
-            result = list(mongo.db.mir2drug_db.find({"mirna":miRNA}))
+            result = list(mongo.db.mir2drug_db.find({"miRNA":miRNA}))
             if len(result) == 0:
                 if "-3p" in miRNA or "-5p" in miRNA:
                     miRNA = miRNA[:-3]
-                    result = list(mongo.db.mir2drug_db.find({"mirna":miRNA}))
+                    result = list(mongo.db.mir2drug_db.find({"miRNA":miRNA}))
                     if len(result) == 0:
                         miRNA = miRNA+"*"
-                        result = list(mongo.db.mir2drug_db.find({"mirna":miRNA}))
+                        result = list(mongo.db.mir2drug_db.find({"miRNA":miRNA}))
+        print(result)
         return {"mir_drug_list":result,"records_num":len(result)}
 api.add_resource(DrugDB,"/db")
 
