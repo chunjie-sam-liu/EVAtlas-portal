@@ -1,15 +1,14 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from evea.db import mongo
 from flask_restful import Api, Resource, fields, marshal_with, reqparse, marshal
+from collections import Counter, defaultdict
 
 import os
 import re
 import sys
 
-
-sample = Blueprint('sample', __name__)
-
-api = Api(sample)
+category = Blueprint('category', __name__)
+api = Api(category)
 
 ncRNA_tag_stat_fields = {
     "miRNA": fields.Integer,
@@ -47,23 +46,31 @@ sample_info_field = {
     "treatment": fields.String,
     "detail": fields.String,
     "phase": fields.String,
-    "srr_tag_info": fields.List(fields.Integer),
-    "srr_map_info": fields.List(fields.Float),
+    "ssr_tag_info": fields.List(fields.Integer),
+    "ssr_map_info": fields.List(fields.Integer),
     "tag_stat": fields.Nested(ncRNA_tag_stat_fields),
     "ratio_stat": fields.Nested(ncRNA_tag_ratio_fields),
 }
 
 sample_info_field_lst = {
-    "sample_info_lst": fields.List(fields.Nested(sample_info_field)),
+    "samples_info_lst": fields.List(fields.Nested(sample_info_field)),
+    "record_n": fields.Integer,
 }
 
-class SampleInfo(Resource):
-    def get(self, sample_name):
-        samples = sample_name.strip().split(',')
-        sample_info_oj = mongo.db.sample_info.find(
-            {"srr_id": {
-                "$in": samples
-            }},{"_id":0})
-        sample_info_lst = list(sample_info_oj)
-        return {'sample_info_lst': sample_info_lst}
-api.add_resource(SampleInfo,"/<string:sample_name>")
+class Category(Resource):
+    @marshal_with(category_stat_field)
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('source', type=str)
+        parser.add_argument("ex_type", type=str)
+        args = parser.parse_args()
+        condition = {}
+        condition['source'] = args['source']
+        condition['ex_type'] = args['ex_type']
+        samples_oj = mongo.db.sample_info.aggregate([{"$match": condition}])
+        samples_info_lst = list(samples_oj)
+        record_n = len(samples_info_lst)
+        return {'samples_info_lst': samples_info_lst, 'record_n': record_n}
+
+api.add_resource(Category, '/category')
+

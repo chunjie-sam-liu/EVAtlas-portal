@@ -1,3 +1,7 @@
 
 ###
-GET http://localhost:5000/api/sample/breast_milk
+GET http://localhost:5000/api/sample/
+
+
+###
+GET http://localhost:5000/api/sample/SRR10417160,SRR9675297
