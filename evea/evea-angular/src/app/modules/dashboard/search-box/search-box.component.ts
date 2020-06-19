@@ -55,4 +55,7 @@ export class SearchBoxComponent implements OnInit {
   private _transformInput(v: string): string {
     return v.toLowerCase().replace(/[^a-z0-9]/g, '');
   }
+  private _illegalInput(i: string): boolean {
+    return true;
+  }
 }
