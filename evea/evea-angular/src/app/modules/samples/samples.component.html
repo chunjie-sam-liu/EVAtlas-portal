@@ -6,7 +6,7 @@
   </div>
 
   <div fxFlex>
-    <div fxLayout fxFill fxLayoutGap="10px">
+    <div fxLayout fxFill fxLayoutGap="20px">
       <div fxFlex="70%" style="border: 1px solid blue;">
         <ng-container *ngIf="showStatistics">
           <app-samples-statistics></app-samples-statistics>
@@ -16,7 +16,7 @@
         </ng-container>
       </div>
       <div fxFlex="30%">
-        <div fxLayout="row wrap" fx.fxLayout.sm="column" fxLayoutGap="10px" fxFlexAlign="space-between center">
+        <div fxLayout="row wrap" fx.fxLayout.sm="column" fxLayoutGap="20px" fxFlexAlign="space-between center">
           <ng-container *ngFor="let sample of samples">
             <app-sample-card fxFlex.sm="0 1 calc(95%)" [sample]="sample" (click)="showContent(sample)"></app-sample-card>
           </ng-container>
