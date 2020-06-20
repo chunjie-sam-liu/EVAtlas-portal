@@ -19,6 +19,7 @@ export class SearchBoxComponent implements OnInit {
   isSelected = false;
   searchFormControl = new FormControl();
   rnaList: any[];
+  rnaExample = 'hsa-miR-146-5p';
 
   constructor(private searchBoxApiService: SearchBoxApiService, private router: Router) {}
 
@@ -62,6 +63,9 @@ export class SearchBoxComponent implements OnInit {
   public rnaSelected(s: string): void {
     // redirect to mirna
     this.router.navigate([`rna/detail/${s}`]);
+  }
+  public clickExample(): void {
+    this.router.navigate([`rna/detail/${this.rnaExample}`]);
   }
 
   private _transformInput(s: string): string {

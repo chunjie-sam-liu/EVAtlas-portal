@@ -23,7 +23,7 @@
 
         <mat-hint *ngIf="!hasRequest && isLegalInput">
           <mat-chip-list>
-            <mat-chip color="primary" selected>Example: hsa-miR-146-5p</mat-chip>
+            <mat-chip color="primary" selected (click)="clickExample()">Example: {{ rnaExample }}</mat-chip>
           </mat-chip-list>
         </mat-hint>
 
