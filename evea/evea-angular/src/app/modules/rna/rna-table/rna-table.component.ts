@@ -8,7 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RnaTableComponent implements OnInit {
   @Input() rnaType: string;
 
+  displayedColumns = ['seqNo', 'description', 'duration'];
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onRowClicked(row: any) {
+    console.log('Row clicked: ', row);
+  }
 }
