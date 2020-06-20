@@ -24,6 +24,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
 
 const MaterialComponents = [
   FlexLayoutModule,
@@ -46,6 +50,10 @@ const MaterialComponents = [
   MatChipsModule,
   MatBadgeModule,
   MatTabsModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatProgressSpinner,
+  MatSortModule,
 ];
 
 @NgModule({
