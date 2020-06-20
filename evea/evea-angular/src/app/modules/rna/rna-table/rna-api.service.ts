@@ -10,14 +10,17 @@ export class RnaApiService {
   constructor(private http: HttpClient) {}
 
   findRnas(count: number, filter = '', pageNumber = 0, pageSize = 3): Observable<any[]> {
-    return this.http
-      .get('http://localhost:5000/api/ncrna/ncRNA_lst', {
-        params: new HttpParams()
-          .set('ncrna', 'miRNA')
-          .set('filter', filter)
-          .set('pageNumber', pageNumber.toString())
-          .set('pageSize', pageSize.toString()),
-      })
-      .pipe(map((res) => res.ncRNA_lst));
+    return (
+      this.http
+        .get('http://localhost:5000/api/ncrna/ncRNA_lst', {
+          params: new HttpParams()
+            .set('ncrna', 'miRNA')
+            .set('filter', filter)
+            .set('pageNumber', pageNumber.toString())
+            .set('pageSize', pageSize.toString()),
+        })
+        // tslint:disable-next-line: no-string-literal
+        .pipe(map((res) => res['ncRNA_lst']))
+    );
   }
 }

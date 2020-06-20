@@ -6,9 +6,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { RnaComponent } from './rna.component';
 import { RnaTableComponent } from './rna-table/rna-table.component';
+import { RnaDetailComponent } from './rna-detail/rna-detail.component';
 
 @NgModule({
-  declarations: [RnaComponent, RnaTableComponent],
+  declarations: [RnaComponent, RnaTableComponent, RnaDetailComponent],
   imports: [CommonModule, RnaRoutingModule, SharedModule],
 })
 export class RnaModule {}
