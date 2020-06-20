@@ -26,7 +26,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+// import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 
 const MaterialComponents = [
@@ -52,7 +52,7 @@ const MaterialComponents = [
   MatTabsModule,
   MatTableModule,
   MatPaginatorModule,
-  MatProgressSpinner,
+  // MatProgressSpinner,
   MatSortModule,
 ];
 
