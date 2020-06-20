@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, tap, debounceTime, switchMap, finalize, catchError } from 'rxjs/operators';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 import { SearchBoxApiService } from './search-box-api.service';
 
@@ -12,8 +13,10 @@ import { SearchBoxApiService } from './search-box-api.service';
 })
 export class SearchBoxComponent implements OnInit {
   isLoading = false;
+  isLegalInput = true;
+  hasInput = true;
+  hasRequest = false;
   searchFormControl = new FormControl();
-
   rnaList: any[];
 
   constructor(private searchBoxApiService: SearchBoxApiService) {}
@@ -24,38 +27,43 @@ export class SearchBoxComponent implements OnInit {
         debounceTime(500),
         tap((val) => {
           // http is requesting, isLoading true
-          this.isLoading = true;
+          this.isLegalInput = this._checkInput(val);
+          this.isLoading = this.isLegalInput;
+          this.hasRequest = false;
+          console.log(val);
         }),
         switchMap((val) => {
           val = this._transformInput(val);
-          if (val !== '') {
-            return this.searchBoxApiService.getRnaList(val).pipe(
-              catchError((err) => {
-                // if !err.ok nothing input
-                this.isLoading = true;
-                return of([]);
-              }),
-              finalize(() => {
-                // http requesting is done, isLoading false
-                this.isLoading = false;
-              })
-            );
-          } else {
-            // val is ' ', please input something
-            this.isLoading = false;
-            return of([]);
-          }
+          this.isLoading = val === '' ? false : this.isLoading;
+
+          return !this.isLegalInput || val === ''
+            ? of([])
+            : this.searchBoxApiService.getRnaList(val).pipe(
+                catchError(() => {
+                  // if !err.ok nothing input
+                  this.isLoading = true;
+                  return of([]);
+                }),
+                finalize(() => {
+                  // http requesting is done, isLoading false
+                  this.hasRequest = true;
+                  this.isLoading = false;
+                })
+              );
         })
       )
       .subscribe((res) => {
         this.rnaList = res;
+        this.hasInput = this.rnaList.length > 0 && this.hasRequest ? true : false;
       });
   }
 
-  private _transformInput(v: string): string {
-    return v.toLowerCase().replace(/[^a-z0-9]/g, '');
+  private _transformInput(s: string): string {
+    return s.toLowerCase().replace(/[^a-z0-9]/g, '');
   }
-  private _illegalInput(i: string): boolean {
-    return true;
+
+  private _checkInput(s: string): boolean {
+    const regex = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]/g;
+    return !regex.test(s);
   }
 }

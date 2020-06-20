@@ -1,13 +1,12 @@
 <form>
-  <mat-form-field appearance="outline" class="search-box">
+  <mat-form-field appearance="outline" class="search-box" [color]="isLegalInput ? 'primary' : 'warn'">
     <mat-label>Input your interested small RNA symbols</mat-label>
 
-    <input matInput [formControl]="searchFormControl" placeholder="hsa-miR-146-5p" type="text" [matAutocomplete]="auto" />
+    <input matInput [formControl]="searchFormControl" [matAutocomplete]="auto" placeholder="hsa-miR-146-5p" type="text" />
 
     <button mat-icon-button color="warn" matPrefix>
       <mat-icon>search</mat-icon>
     </button>
-    <mat-hint>Example: hsa-miR-146-5p</mat-hint>
 
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngIf="isLoading">
@@ -20,10 +19,12 @@
       </ng-container>
     </mat-autocomplete>
 
-    <mat-error *ngIf="searchFormControl.hasError('email') && !searchFormControl.hasError('required')">
-      Please input valid smRNA.
-    </mat-error>
+    <mat-hint *ngIf="isLegalInput && !hasRequest">Example: hsa-miR-146-5p</mat-hint>
 
-    <mat-error *ngIf="searchFormControl.hasError('required')"> Input smRNA symbol is <strong>required</strong> </mat-error>
+    <mat-hint *ngIf="!isLegalInput" class="illegal">
+      Warning: Input is illegal, please input valid symbol.
+    </mat-hint>
+
+    <mat-hint *ngIf="hasRequest && !hasInput" class="has-input">Warning: The input is not included in our database. </mat-hint>
   </mat-form-field>
 </form>

@@ -1,3 +1,14 @@
 .search-box {
   width: 100%;
 }
+
+mat-hint {
+  font-size: 16px;
+}
+
+.illegal {
+  color: #da4233;
+}
+.has-input {
+  color: #da4233;
+}
