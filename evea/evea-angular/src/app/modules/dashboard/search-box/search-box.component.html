@@ -21,7 +21,7 @@
           </ng-container>
         </mat-autocomplete>
 
-        <mat-hint *ngIf="isLegalInput && hasInput">
+        <mat-hint *ngIf="!hasRequest && isLegalInput">
           <mat-chip-list>
             <mat-chip color="primary" selected>Example: hsa-miR-146-5p</mat-chip>
           </mat-chip-list>
@@ -29,13 +29,13 @@
 
         <mat-hint *ngIf="!isLegalInput" class="illegal">
           <mat-chip-list>
-            <mat-chip color="warn" selected>Warning: Input is illegal, please input valid symbol.</mat-chip>
+            <mat-chip color="warn" selected>Warning!: Input is illegal, please input valid symbol.</mat-chip>
           </mat-chip-list>
         </mat-hint>
 
         <mat-hint *ngIf="hasRequest && !hasInput" class="has-input">
           <mat-chip-list>
-            <mat-chip color="warn" selected> Warning: The input is not included in our database. </mat-chip>
+            <mat-chip color="accent" selected> Warning: The input is not included in our database. </mat-chip>
           </mat-chip-list>
         </mat-hint>
       </mat-form-field>
