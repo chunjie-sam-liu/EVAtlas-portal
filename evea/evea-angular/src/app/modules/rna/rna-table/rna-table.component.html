@@ -1,1 +1,32 @@
-{{ rnaType }}
+<mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <!-- <h2>{{course?.description}}</h2> -->
+
+  <!-- <img class="course-thumbnail" [src]="course?.iconUrl"> -->
+
+  <mat-form-field>
+    <input matInput placeholder="Input" #input />
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-progress-bar></mat-progress-bar>
+  </div>
+
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
+      <mat-cell class="description-cell" *matCellDef="let rna">{{ rna.GeneSymbol }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <mat-header-cell *matHeaderCellDef>Count</mat-header-cell>
+
+      <mat-cell class="duration-cell" *matCellDef="let rna">{{ rna.count }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="10" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+</mat-card>

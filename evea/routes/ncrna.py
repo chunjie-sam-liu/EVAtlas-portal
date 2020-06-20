@@ -114,5 +114,5 @@ class ncRNAlist(Resource):
         ncrna_exp_db = 'exp_'+args['ncrna'].strip()
         ncrna_exp_oj = mongo.db[ncrna_exp_db].aggregate([{"$match":{"RPM": {"$gte": args['expv']}}},{"$group": {"_id":"$GeneSymbol", "count":{"$sum":1}}},{"$project":{"_id":0, "GeneSymbol":"$_id", "count":1}}, {"$sort":{"count":-1}}])
         ncrna_lst = list(ncrna_exp_oj)
-        return {'ncRNA_lst':ncrna_lst}
+        return {'ncRNA_lst':ncrna_lst[0:10]}
 api.add_resource(ncRNAlist, "/ncRNA_lst")

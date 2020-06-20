@@ -9,19 +9,15 @@ import { map } from 'rxjs/operators';
 export class RnaApiService {
   constructor(private http: HttpClient) {}
 
-  findLessons(courseId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3): Observable<any[]> {
+  findRnas(count: number, filter = '', pageNumber = 0, pageSize = 3): Observable<any[]> {
     return this.http
-      .get('/api/lessons', {
+      .get('http://localhost:5000/api/ncrna/ncRNA_lst', {
         params: new HttpParams()
-          .set('courseId', courseId.toString())
+          .set('ncrna', 'miRNA')
           .set('filter', filter)
-          .set('sortOrder', sortOrder)
           .set('pageNumber', pageNumber.toString())
           .set('pageSize', pageSize.toString()),
       })
-      .pipe(
-        // tslint:disable-next-line: no-string-literal
-        map((res) => res['payload'])
-      );
+      .pipe(map((res) => res.ncRNA_lst));
   }
 }

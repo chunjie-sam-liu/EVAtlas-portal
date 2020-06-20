@@ -1,20 +1,52 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { debounceTime, distinctUntilChanged, startWith, tap, delay } from 'rxjs/operators';
+import { merge, fromEvent } from 'rxjs';
+import { Rna } from 'src/app/shared/model/rna-table';
+import { RnaApiService } from './rna-api.service';
+import { RnaDataSource } from './rna-data-source';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-rna-table',
   templateUrl: './rna-table.component.html',
   styleUrls: ['./rna-table.component.css'],
 })
-export class RnaTableComponent implements OnInit {
+export class RnaTableComponent implements OnInit, AfterViewInit {
   @Input() rnaType: string;
 
-  displayedColumns = ['seqNo', 'description', 'duration'];
+  rna: Rna;
+  dataSource: RnaDataSource;
+  displayedColumns = ['symbol', 'count'];
 
-  constructor() {}
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('input') input: ElementRef;
 
-  ngOnInit(): void {}
+  constructor(private route: ActivatedRoute, private rnaApiService: RnaApiService) {}
 
-  onRowClicked(row: any) {
-    console.log('Row clicked: ', row);
+  ngOnInit(): void {
+    this.rna = this.route.snapshot.data['app-rna-table'];
+    this.dataSource = new RnaDataSource(this.rnaApiService);
+    this.dataSource.loadRnas(1, '', 0, 3);
+  }
+  ngAfterViewInit(): void {
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadRnaPage();
+        })
+      )
+      .subscribe();
+
+    merge(this.paginator.page)
+      .pipe(tap(() => this.loadRnaPage()))
+      .subscribe();
+  }
+
+  loadRnaPage() {
+    this.dataSource.loadRnas(1, this.input.nativeElement.value, this.paginator.pageIndex, this.paginator.pageSize);
   }
 }
