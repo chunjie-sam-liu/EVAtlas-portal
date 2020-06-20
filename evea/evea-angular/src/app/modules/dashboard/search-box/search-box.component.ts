@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, tap, debounceTime, switchMap, finalize, catchError } from 'rxjs/operators';
 
 import { SearchBoxApiService } from './search-box-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-box',
@@ -19,7 +20,7 @@ export class SearchBoxComponent implements OnInit {
   searchFormControl = new FormControl();
   rnaList: any[];
 
-  constructor(private searchBoxApiService: SearchBoxApiService) {}
+  constructor(private searchBoxApiService: SearchBoxApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.searchFormControl.valueChanges
@@ -60,7 +61,7 @@ export class SearchBoxComponent implements OnInit {
 
   public rnaSelected(s: string): void {
     // redirect to mirna
-    console.log(s);
+    this.router.navigate([`rna/detail/${s}`]);
   }
 
   private _transformInput(s: string): string {
