@@ -8,7 +8,7 @@
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-progress-bar></mat-progress-bar>
+    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
   </div>
 
   <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
