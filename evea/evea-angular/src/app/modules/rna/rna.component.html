@@ -4,9 +4,23 @@
       RNA Expression
     </h1>
   </div>
-  <div fxFlex></div>
+
+  <!-- rna tabls -->
+  <div fxFlex fxLayout="column">
+    <div fxFlex>
+      <mat-tab-group mat-stretch-tabs dynamicHeight color="warn">
+        <mat-tab *ngFor="let tab of rnaTypes">
+          <ng-template mat-tab-label>{{ tab.label }}</ng-template>
+          <app-rna-table [rnaType]="tab.label"></app-rna-table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
 
   <div fxFlex="none">
     <app-footer></app-footer>
   </div>
 </div>
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nesciunt temporibus, in tenetur sint eum nemo recusandae hic ut porro,
+deleniti, eos omnis! Voluptates amet eum odio, dolor repellendus repellat!
