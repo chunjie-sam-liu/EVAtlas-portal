@@ -23,6 +23,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MaterialComponents = [
   FlexLayoutModule,
@@ -44,6 +45,7 @@ const MaterialComponents = [
   MatProgressBarModule,
   MatChipsModule,
   MatBadgeModule,
+  MatTabsModule,
 ];
 
 @NgModule({
