@@ -26,5 +26,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 
-  <mat-paginator [length]="10" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+  <mat-paginator [length]="rnaTable?.rnaRecordCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
 </mat-card>

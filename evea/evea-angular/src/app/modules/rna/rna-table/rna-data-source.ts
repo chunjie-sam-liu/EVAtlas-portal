@@ -2,10 +2,10 @@ import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { RnaApiService } from './rna-api.service';
-import { Rna } from 'src/app/shared/model/rna-table';
+import { RnaRecord } from 'src/app/shared/model/rna-record';
 
-export class RnaDataSource implements DataSource<Rna> {
-  private rnaSubject = new BehaviorSubject<Rna[]>([]);
+export class RnaDataSource implements DataSource<RnaRecord> {
+  private rnaRecordSubject = new BehaviorSubject<RnaRecord[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -13,25 +13,25 @@ export class RnaDataSource implements DataSource<Rna> {
 
   constructor(private rnaApiService: RnaApiService) {}
 
-  loadRnas(count: number, filter: string, pageIndex: number, pageSize: number) {
+  loadRnaRecords(rnaType: string, filter: string, pageIndex: number, pageSize: number) {
     this.loadingSubject.next(true);
 
     this.rnaApiService
-      .findRnas(count, filter, pageIndex, pageSize)
+      .findRnas(rnaType, filter, pageIndex, pageSize)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((rnas) => this.rnaSubject.next(rnas));
+      .subscribe((rnas) => this.rnaRecordSubject.next(rnas));
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<Rna[]> {
+  connect(collectionViewer: CollectionViewer): Observable<RnaRecord[]> {
     console.log('Connecting data source');
-    return this.rnaSubject.asObservable();
+    return this.rnaRecordSubject.asObservable();
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.rnaSubject.complete();
+    this.rnaRecordSubject.complete();
     this.loadingSubject.complete();
   }
 }

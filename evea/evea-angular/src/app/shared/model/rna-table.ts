@@ -1,4 +1,4 @@
-export interface Rna {
-  count: number;
-  symbol: string;
+export interface RnaTable {
+  rnaRecordCount: number;
+  rnaType: string;
 }

@@ -2,25 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BaseHttpService } from 'src/app/shared/base-http.service';
+import { RnaTable } from 'src/app/shared/model/rna-table';
+import { RnaRecord } from 'src/app/shared/model/rna-record';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RnaApiService {
-  constructor(private http: HttpClient) {}
+export class RnaApiService extends BaseHttpService {
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
-  findRnas(count: number, filter = '', pageNumber = 0, pageSize = 3): Observable<any[]> {
-    return (
-      this.http
-        .get('http://localhost:5000/api/ncrna/ncRNA_lst', {
-          params: new HttpParams()
-            .set('ncrna', 'miRNA')
-            .set('filter', filter)
-            .set('pageNumber', pageNumber.toString())
-            .set('pageSize', pageSize.toString()),
-        })
-        // tslint:disable-next-line: no-string-literal
-        .pipe(map((res) => res['ncRNA_lst']))
-    );
+  findRnas(rnaType: string, filter = '', pageIndex = 0, pageSize = 3): Observable<RnaRecord[]> {
+    // tslint:disable-next-line: no-string-literal
+    return this.getData('ncrna/ncRNA_lst', {
+      ncrna: rnaType,
+      filter,
+      pageIndex: pageIndex.toString,
+      pageSize: pageSize.toString,
+    }).pipe(map((res) => res.ncRNA_lst));
   }
 }
