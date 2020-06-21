@@ -134,5 +134,25 @@ class SamplesExpStat(Resource):
 api.add_resource(SamplesExpStat, '/samplesexp')
 
 
+model_oa_dist = {}
+class OverAllMappingDistribution(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('ex_type', type=str)
+        args = parser.parse_args()
 
+        if args.ex_type not in ['exosome', 'Extracellular microvesicle']:
+            return []
+
+        mcur = mongo.db.sample_info.find({
+            'ex_type': args.ex_type
+        }, {
+            '_id': 0,
+            'srr_id': 1,
+            'ex_type': 1,
+            'tag_stat': 1,
+            'srr_tag_info': 1
+        })
+        return list(mcur)
+api.add_resource(OverAllMappingDistribution, '/oa_dist')
 

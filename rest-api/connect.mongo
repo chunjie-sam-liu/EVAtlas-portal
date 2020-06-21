@@ -1,2 +1,5 @@
 db.sample_info.find({"source": {"$in":["Serum", "breast milk"]}}, {"srr_id": 1, "_id":0})
 
+
+
+db.sample_info.find().limit(2).pretty()
