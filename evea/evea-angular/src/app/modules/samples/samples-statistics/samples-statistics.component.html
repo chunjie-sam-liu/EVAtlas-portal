@@ -1,13 +1,18 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <div fxFlex="none">
     <h2 class="page-subheader">
-      Statistics
+      Sample statistics and mapping distribution
     </h2>
   </div>
   <div fxFlex fxLayout fxLayout.lt-md="column" fxLayoutGap="20px">
     <div fxFlex>
       <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
-        <p>samples-statistics works!</p>
+        <mat-card-header>
+          <mat-card-title>Mapping rate distribution</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div echarts [options]="mappingRate" class="chart-hight"></div>
+        </mat-card-content>
       </mat-card>
     </div>
     <div fxFlex>
