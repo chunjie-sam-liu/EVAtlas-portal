@@ -7,11 +7,10 @@ import os
 import re
 import sys
 
-category = Blueprint('category', __name__)
+anno = Blueprint('anno', __name__)
+api = Api(anno)
 
-api = Api(category)
-
-miR_basic_fields = {
+ncrna_basic_fields = {
     'pre_acc': fields.String(attribute='premiRNA_acc'),
     'pre_seq': fields.String(attribute='premiRNA_seq'),
     'accession': fields.String(attribute='miRNA_acc'),
@@ -20,21 +19,24 @@ miR_basic_fields = {
     'chromosome': fields.String(attribute='miRNA_chr'),
     'sequence': fields.String(attribute='miRNA_seq'),
     'end': fields.String(attribute='miRNA_end'),
-    'mirna': fields.String(attribute='miRNA_id'),
     'premirna': fields.String(attribute='premiRNA_id'),
     'family': fields.String(attribute='miRNA_fam'),
     'pre_end': fields.Integer(attribute='premiRNA_end'),
     'pre_start': fields.Integer(attribute='premiRNA_start'),
-    'first_base': fields.String,
-    'two_to_eight': fields.String,
-    'the_remaining': fields.String,
 }
 
-miR_basic_list_fields = {
-    'mirna_basic_list': fields.List(fields.Nested(miR_basic_fields))
+ncrna_basic_list_fields = {
+    'mirna_basic_list': fields.List(fields.Nested(ncrna_basic_fields))
 }
 
 
-class ncRNAList(Resource):
-    ncRNA_lst = ['miRNA', 'rRNA', 'tRNA', 'piRNA', 'snoRNA', 'snRNA', 'pRNA', 'scRNA']
-    
+class ncrnaAnno(Resource):
+    @marshal_with(ncrna_basic_list_fields)
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('ncrna', type = str)
+        args = parser.parse_args()
+        query_ncrna_list = args['ncrna'].strip().split(',')
+        ncrna_list = list(mongo.db.ncrna_anno.find({"GeneSymbol":{"$in":query_ncrna_list}}))
+        return {'mirna_basic_list': ncrna_list}
+api.add_resource(ncrnaAnno,'/')
