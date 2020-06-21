@@ -6,6 +6,7 @@ import { RnaTable } from 'src/app/shared/model/rna-table';
 import { RnaApiService } from './rna-api.service';
 import { RnaDataSource } from './rna-data-source';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-rna-table',
@@ -20,35 +21,41 @@ export class RnaTableComponent implements OnInit, AfterViewInit {
   displayedColumns = ['symbol', 'count'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
   constructor(private route: ActivatedRoute, private rnaApiService: RnaApiService) {}
 
   ngOnInit(): void {
-    // console.log(this.route.snapshot);
-    console.log(this.route.snapshot.url);
-    // this.rna = this.route.snapshot.data['app-rna-table'];
     this.dataSource = new RnaDataSource(this.rnaApiService);
-    this.dataSource.loadRnaRecords(this.rnaType, '', 0, 3);
+    this.dataSource.loadRnaRecords(this.rnaType, '', 'asc', 0, 10);
   }
   ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+
     fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
         debounceTime(150),
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-          this.loadRnaPage();
+          this.loadRnaRecordsPage();
         })
       )
       .subscribe();
 
-    merge(this.paginator.page)
-      .pipe(tap(() => this.loadRnaPage()))
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(tap(() => this.loadRnaRecordsPage()))
       .subscribe();
   }
 
-  loadRnaPage() {
-    this.dataSource.loadRnaRecords(this.rnaType, this.input.nativeElement.value, this.paginator.pageIndex, this.paginator.pageSize);
+  loadRnaRecordsPage() {
+    this.dataSource.loadRnaRecords(
+      this.rnaType,
+      this.input.nativeElement.value,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
   }
 }

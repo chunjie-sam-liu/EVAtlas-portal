@@ -7,7 +7,14 @@
     <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
   </div>
 
-  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+  <mat-table
+    class="lessons-table mat-elevation-z8"
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="count"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
       <mat-cell class="description-cell" *matCellDef="let rna">
@@ -26,5 +33,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 
-  <mat-paginator [length]="rnaTable?.rnaRecordCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+  <mat-paginator [length]="rnaTable?.rnaRecordCount" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
 </mat-card>

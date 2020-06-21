@@ -13,11 +13,11 @@ export class RnaDataSource implements DataSource<RnaRecord> {
 
   constructor(private rnaApiService: RnaApiService) {}
 
-  loadRnaRecords(rnaType: string, filter: string, pageIndex: number, pageSize: number) {
+  loadRnaRecords(rnaType: string, filter: string, sortOrder: string, pageIndex: number, pageSize: number) {
     this.loadingSubject.next(true);
 
     this.rnaApiService
-      .findRnas(rnaType, filter, pageIndex, pageSize)
+      .findRnaRecords(rnaType, filter, sortOrder, pageIndex, pageSize)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
