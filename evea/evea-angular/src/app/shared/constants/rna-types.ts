@@ -6,6 +6,18 @@ export default [
     label: 'snoRNA',
   },
   {
+    label: 'piRNA',
+  },
+  {
+    label: 'snRNA',
+  },
+  {
+    label: 'rRNA',
+  },
+  {
     label: 'tRNA',
+  },
+  {
+    label: 'pRNA',
   },
 ];
