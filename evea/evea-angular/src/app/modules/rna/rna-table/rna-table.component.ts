@@ -2,7 +2,7 @@ import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild } from '
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, startWith, tap, delay } from 'rxjs/operators';
 import { merge, fromEvent } from 'rxjs';
-import { Rna } from 'src/app/shared/model/rna-table';
+import { RnaTable } from 'src/app/shared/model/rna-table';
 import { RnaApiService } from './rna-api.service';
 import { RnaDataSource } from './rna-data-source';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,7 +15,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class RnaTableComponent implements OnInit, AfterViewInit {
   @Input() rnaType: string;
 
-  rna: Rna;
+  rnaTable: RnaTable;
   dataSource: RnaDataSource;
   displayedColumns = ['symbol', 'count'];
 
@@ -27,9 +27,9 @@ export class RnaTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // console.log(this.route.snapshot);
     console.log(this.route.snapshot.url);
-    this.rna = this.route.snapshot.data['app-rna-table'];
+    // this.rna = this.route.snapshot.data['app-rna-table'];
     this.dataSource = new RnaDataSource(this.rnaApiService);
-    this.dataSource.loadRnas(1, '', 0, 3);
+    this.dataSource.loadRnaRecords(this.rnaType, '', 0, 3);
   }
   ngAfterViewInit(): void {
     fromEvent(this.input.nativeElement, 'keyup')
@@ -49,6 +49,6 @@ export class RnaTableComponent implements OnInit, AfterViewInit {
   }
 
   loadRnaPage() {
-    this.dataSource.loadRnas(1, this.input.nativeElement.value, this.paginator.pageIndex, this.paginator.pageSize);
+    this.dataSource.loadRnaRecords(this.rnaType, this.input.nativeElement.value, this.paginator.pageIndex, this.paginator.pageSize);
   }
 }
