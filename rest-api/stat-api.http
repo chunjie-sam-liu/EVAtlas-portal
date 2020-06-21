@@ -6,8 +6,7 @@ GET http://localhost:5000/api/stat/samplesexp?querys=SRR10417239,SRR10733720&ncR
 
 ###
 GET http://localhost:5000/api/stat/samplesexp?querys=SRR10417239,SRR10733720&query_type=sample
-###
-#5s
+
 GET http://localhost:5000/api/stat/samplesexp?querys=Serum&query_type=source
 
 #15s

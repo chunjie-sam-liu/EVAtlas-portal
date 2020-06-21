@@ -1,0 +1,1 @@
+GET http://localhost:5000/api/anno?ncrna=hsa-miR-495-3p

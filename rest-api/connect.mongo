@@ -1,4 +1,6 @@
-db.sample_info.find({"source": {"$in":["Serum", "breast milk"]}}, {"srr_id": 1, "_id":0})
+db.exp_miRNA.aggregate([{"$match":{"RPM": {"$gte": 0.5}}},{"$group": {"_id":"$GeneSymbol", "count":{"$sum":1}}}, {"$project":{"_id":0, "GeneSymbol":"$_id", "count":1}}, {"$sort":{"count":-1}}])
+
+
 
 
 
