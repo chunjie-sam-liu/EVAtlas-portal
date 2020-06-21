@@ -38,6 +38,11 @@ h1.page-header {
   border-bottom: 0.5px solid #6400b2;
   font-weight: bolder;
 }
+h2.page-subheader {
+  margin: 10px 0px;
+  border-bottom: 0.5px solid #da4233;
+  font-weight: bolder;
+}
 
 a {
   text-decoration: none;
