@@ -25,6 +25,8 @@ export class RnaTableComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private rnaApiService: RnaApiService) {}
 
   ngOnInit(): void {
+    // console.log(this.route.snapshot);
+    console.log(this.route.snapshot.url);
     this.rna = this.route.snapshot.data['app-rna-table'];
     this.dataSource = new RnaDataSource(this.rnaApiService);
     this.dataSource.loadRnas(1, '', 0, 3);
