@@ -148,8 +148,6 @@ class OverAllMappingDistribution(Resource):
             'ex_type': args.ex_type
         }, {
             '_id': 0,
-            'srr_id': 1,
-            'ex_type': 1,
             'tag_stat': 1,
             'srr_tag_info': 1
         })

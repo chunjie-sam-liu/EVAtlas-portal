@@ -20,4 +20,7 @@ export default [
   {
     label: 'pRNA',
   },
+  {
+    label: 'scRNA',
+  },
 ];
