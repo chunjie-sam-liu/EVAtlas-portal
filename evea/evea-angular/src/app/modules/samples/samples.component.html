@@ -16,7 +16,7 @@
         </ng-container>
       </div>
       <div fxFlex="30%">
-        <div fxLayout="row wrap" fx.fxLayout.sm="column" fxLayoutGap="20px" fxFlexAlign="space-between center">
+        <div fxLayout="row wrap" fxLayout.md="column" fxLayoutGap="20px" fxFlexAlign="space-between center">
           <ng-container *ngFor="let sample of samples">
             <app-sample-card fxFlex.sm="0 1 calc(95%)" [sample]="sample" (click)="showContent(sample)"></app-sample-card>
           </ng-container>
