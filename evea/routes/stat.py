@@ -141,7 +141,7 @@ class OverAllMappingDistribution(Resource):
         parser.add_argument('ex_type', type=str)
         args = parser.parse_args()
 
-        if args.ex_type not in ['Exosomes', 'Microvesciles']:
+        if args.ex_type not in ['Exosomes', 'Microvesicles']:
             return []
 
         mcur = mongo.db.sample_info.find({
