@@ -99,8 +99,8 @@ export class SamplesStatisticsComponent implements OnInit {
           type: 'bar',
         },
       ],
-      animationEasing: 'bounceOut',
-      animationDelay: (i) => i * 0.2,
+      // animationEasing: 'bounceOut',
+      // animationDelay: (i) => i * 0.2,
     };
   }
 

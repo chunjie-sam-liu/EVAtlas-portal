@@ -1,7 +1,7 @@
 export default [
   {
     name: 'stat',
-    img: 'bcell.png',
+    img: 'stat.png',
     title: 'Show Statistics',
   },
   {
