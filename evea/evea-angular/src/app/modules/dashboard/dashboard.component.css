@@ -3,5 +3,5 @@
 }
 
 .not-float {
-  min-height: max-content;
+  min-height: fit-content;
 }
