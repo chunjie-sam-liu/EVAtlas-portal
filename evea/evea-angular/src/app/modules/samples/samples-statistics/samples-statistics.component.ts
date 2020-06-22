@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StatApiService } from './stat-api.service';
 import { EChartOption } from 'echarts';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
-import { sortBy as _sortBy } from 'lodash-es';
+import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
+import rnaType from 'src/app/shared/constants/rna-types';
 
 @Component({
   selector: 'app-samples-statistics',
@@ -18,18 +19,21 @@ export class SamplesStatisticsComponent implements OnInit {
   mvMappingRateTitle = 'Microvesicles mapping rate';
   mvMappingRate: EChartOption;
   mvMappingDistTitle = 'Microvesicles RNA mapping distribution';
-  mvMappinDist: EChartOption;
+  mvMappingDist: EChartOption;
 
   constructor(private statApiService: StatApiService) {}
 
   ngOnInit(): void {
     // get exosome data
     this.statApiService.getDist('Exosomes').subscribe((res) => {
+      console.log(res[1]);
       this.exoMappingRate = this._mappingRate(res, this.exoMappingRateTitle);
+      this.exoMappingDist = this._rnaMappingDist(res, this.exoMappingDistTitle);
     });
     // get microvesicle data
     this.statApiService.getDist('Microvesicles').subscribe((res) => {
       this.mvMappingRate = this._mappingRate(res, this.mvMappingRateTitle);
+      this.mvMappingDist = this._rnaMappingDist(res, this.mvMappingDistTitle);
     });
   }
 
@@ -100,7 +104,67 @@ export class SamplesStatisticsComponent implements OnInit {
     };
   }
 
-  private _rnaDistribution(d: MappingDist[]): EChartOption {
-    return {};
+  private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
+    const series = rnaType.map((v) => ({
+      name: v.label,
+      type: 'bar',
+      stack: 'total',
+      data: [],
+    }));
+
+    d.map((v) => {
+      const tagSum = _sum(_values(v.tag_stat));
+      series.map((s) => {
+        s.data.push(v.tag_stat[s.name] / tagSum);
+      });
+    });
+
+    return {
+      title: {
+        show: false,
+        text: title,
+      },
+      grid: {
+        top: '2%',
+        left: '10%',
+        right: '2%',
+        bottom: '10%',
+      },
+      toolbox: {
+        showTitle: true,
+        feature: {
+          data: { show: false },
+          saveAsImage: {
+            title: 'Save as image',
+          },
+        },
+      },
+      tooltip: {
+        show: true,
+        trigger: 'axis',
+      },
+      legend: {
+        data: series.map((v) => v.name),
+      },
+      xAxis: {
+        type: 'category',
+        show: true,
+        name: 'Samples',
+        nameLocation: 'center',
+        nameTextStyle: { fontWeight: 'bolder' },
+        axisTick: { show: false },
+        axisLabel: { show: false },
+        data: d.map((v) => v.srr_id),
+      },
+      yAxis: {
+        type: 'value',
+        show: true,
+        name: 'Mapping rate',
+        nameLocation: 'center',
+        nameTextStyle: { fontWeight: 'bolder' },
+        nameGap: 30,
+      },
+      series,
+    };
   }
 }
