@@ -8,13 +8,13 @@
     <div fxFlex>
       <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
         <mat-card-header>
-          <mat-card-title>Mapping rate distribution</mat-card-title>
+          <mat-card-title>{{ exoMappingRateTitle }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <div class="spinner-container" *ngIf="!mappingRate">
+          <div class="spinner-container" *ngIf="!exoMappingRate">
             <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
           </div>
-          <div echarts [options]="mappingRate" class="chart-hight"></div>
+          <div echarts [options]="exoMappingRate" class="chart-hight"></div>
         </mat-card-content>
       </mat-card>
     </div>
@@ -27,7 +27,15 @@
   <div fxFlex fxLayout fxLayout.lt-md="column" fxLayoutGap="20px">
     <div fxFlex>
       <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
-        <p>samples-statistics works!</p>
+        <mat-card-header>
+          <mat-card-title>{{ mvMappingRateTitle }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="spinner-container" *ngIf="!mvMappingRate">
+            <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+          </div>
+          <div echarts [options]="mvMappingRate" class="chart-hight"></div>
+        </mat-card-content>
       </mat-card>
     </div>
     <div fxFlex>
