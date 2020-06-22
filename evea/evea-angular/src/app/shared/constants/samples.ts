@@ -2,7 +2,7 @@ export default [
   {
     name: 'stat',
     img: 'stat.png',
-    title: 'Show Statistics',
+    title: 'Statistics',
   },
   {
     name: 'b_cell',
