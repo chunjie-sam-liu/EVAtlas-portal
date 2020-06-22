@@ -1,3 +1,7 @@
 .overview {
   margin-top: 10px;
 }
+
+.not-float {
+  min-height: max-content;
+}

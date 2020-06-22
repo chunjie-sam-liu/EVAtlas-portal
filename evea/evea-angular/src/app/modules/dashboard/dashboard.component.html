@@ -1,7 +1,9 @@
 <div fxLayout="column" fxFill>
-  <div fxFlex style="border: 1px solid black;">
-    <div fxLayout="column" fxLayoutGap="10px" style="border: 1px solid red;">
-      <div fxFlex="grow" fxLayout="row"><app-search-box fxFlex></app-search-box></div>
+  <div fxFlex fxLayout="row" fxLayoutAlign="center center" class="not-float">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxFlex="grow" fxLayout="row">
+        <app-search-box fxFlex></app-search-box>
+      </div>
       <div fxFlex="grow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" class="overview">
         <app-feature-discription fxFlex="50%"></app-feature-discription>
         <app-stat-overview fxFlex="50%"></app-stat-overview>
