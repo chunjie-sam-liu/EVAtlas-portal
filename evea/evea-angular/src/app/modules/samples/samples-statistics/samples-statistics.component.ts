@@ -10,25 +10,30 @@ import { sortBy as _sortBy } from 'lodash-es';
   styleUrls: ['./samples-statistics.component.css'],
 })
 export class SamplesStatisticsComponent implements OnInit {
+  exoMappingRateTitle = 'Exosomes mapping rate';
   exoMappingRate: EChartOption;
-  exoMappingRateTitle = 'Exosomes mapping rate distribution';
+  exoMappingDistTitle = 'Exosomes RNA mapping distribution';
+  exoMappingDist: EChartOption;
+
+  mvMappingRateTitle = 'Microvesicles mapping rate';
   mvMappingRate: EChartOption;
-  mvMappingRateTitle = 'Microvesicles mapping rate distribution';
+  mvMappingDistTitle = 'Microvesicles RNA mapping distribution';
+  mvMappinDist: EChartOption;
 
   constructor(private statApiService: StatApiService) {}
 
   ngOnInit(): void {
     // get exosome data
     this.statApiService.getDist('Exosomes').subscribe((res) => {
-      this.exoMappingRate = this._densityPlot(res, this.exoMappingRateTitle);
+      this.exoMappingRate = this._mappingRate(res, this.exoMappingRateTitle);
     });
     // get microvesicle data
     this.statApiService.getDist('Microvesicles').subscribe((res) => {
-      this.mvMappingRate = this._densityPlot(res, this.mvMappingRateTitle);
+      this.mvMappingRate = this._mappingRate(res, this.mvMappingRateTitle);
     });
   }
 
-  private _densityPlot(d: MappingDist[], title: string): EChartOption {
+  private _mappingRate(d: MappingDist[], title: string): EChartOption {
     let dRate = d.map((v) => ({
       srrID: v.srr_id,
       mappingRate: (v.srr_tag_info[1] / v.srr_tag_info[0]).toFixed(2),
@@ -93,5 +98,9 @@ export class SamplesStatisticsComponent implements OnInit {
       animationEasing: 'bounceOut',
       animationDelay: (i) => i * 0.2,
     };
+  }
+
+  private _rnaDistribution(d: MappingDist[]): EChartOption {
+    return {};
   }
 }
