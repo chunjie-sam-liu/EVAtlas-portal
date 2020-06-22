@@ -1,6 +1,6 @@
 <div fxLayout="column" fxFill>
-  <div fxFlex fxLayout="row" fxLayoutAlign="center center">
-    <div fxFlex fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex style="border: 1px solid black;">
+    <div fxLayout="column" fxLayoutGap="10px" style="border: 1px solid red;">
       <div fxFlex="grow" fxLayout="row"><app-search-box fxFlex></app-search-box></div>
       <div fxFlex="grow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" class="overview">
         <app-feature-discription fxFlex="50%"></app-feature-discription>
@@ -8,7 +8,6 @@
       </div>
     </div>
   </div>
-
   <div fxFlex="none">
     <app-footer></app-footer>
   </div>
