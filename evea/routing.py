@@ -1,6 +1,6 @@
 from flask import render_template
 from evea import app
-from evea.routes.home import home  #ok
+# from evea.routes.home import home  #ok
 from evea.routes.sample import sample  #ok
 from evea.routes.ncrna import ncrna  #adapt to all ncrnas
 from evea.routes.stat import stat #ok
