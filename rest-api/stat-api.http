@@ -14,6 +14,6 @@ GET http://localhost:5000/api/stat/samplesexp?querys=Serum&query_type=source
 GET http://localhost:5000/api/stat/samplesexp?querys=exosome&query_type=ex_type
 
 ###
-GET http://localhost:5000/api/stat/oa_dist?ex_type=Microvesciles
+GET http://localhost:5000/api/stat/oa_dist?ex_type=Microvesicles
 ###
 GET http://localhost:5000/api/stat/oa_dist?ex_type=Exosomes

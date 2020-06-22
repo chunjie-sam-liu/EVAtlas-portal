@@ -10,7 +10,7 @@ from evea.routes.drug import drug #ok
 from evea.routes.anno import anno
 
 # routing
-app.register_blueprint(home, url_prefix='/api/home')
+# app.register_blueprint(home, url_prefix='/api/home')
 app.register_blueprint(sample, url_prefix='/api/sample')
 app.register_blueprint(ncrna, url_prefix='/api/ncrna')
 app.register_blueprint(drug, url_prefix='/api/drug')
