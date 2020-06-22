@@ -40,6 +40,6 @@ export class SamplesComponent implements OnInit {
   }
 
   public getStatistics() {
-    console.log(this.sample);
+    // console.log(this.sample);
   }
 }

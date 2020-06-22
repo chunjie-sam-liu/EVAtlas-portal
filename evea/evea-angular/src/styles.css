@@ -48,3 +48,7 @@ a {
   text-decoration: none;
   color: #6400b2;
 }
+
+.not-float {
+  min-height: fit-content;
+}
