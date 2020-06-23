@@ -7,20 +7,23 @@
       <dl>
         <dt>miRNA ID</dt>
         <dd>
-          <a href="" target="_blank">{{ rnaSymbol }}</a>
+          <a [href]="'http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=' + rnaSymbol" target="_blank">{{ rnaSymbol }}</a>
         </dd>
 
         <dt>miRNA Acc.</dt>
         <dd>{{ rna.accession }}</dd>
 
-        <dt>Mature Seq.</dt>
-        <dd>{{ rna.sequence }}</dd>
-
-        <dt>Precursor</dt>
-        <dd>{{ rna.premirna }}</dd>
+        <dt>Position</dt>
+        <dd>{{ rna.chromosome }}: {{ rna.start | number }}-{{ rna.end | number }}</dd>
 
         <dt>miRNA family</dt>
         <dd>{{ rna.family }}</dd>
+
+        <dt>Mature Seq.</dt>
+        <dd [innerHTML]="rna.sequence | redSeed"></dd>
+
+        <dt>Precursor</dt>
+        <dd>{{ rna.premirna }}</dd>
       </dl>
     </div>
 

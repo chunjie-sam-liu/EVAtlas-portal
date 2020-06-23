@@ -4,7 +4,7 @@
       <mat-form-field appearance="outline" class="search-box" [color]="isLegalInput ? 'primary' : 'warn'">
         <mat-label>Input your interested small RNA symbols</mat-label>
 
-        <input matInput [formControl]="searchFormControl" [matAutocomplete]="auto" placeholder="hsa-miR-146-5p" type="text" />
+        <input matInput [formControl]="searchFormControl" [matAutocomplete]="auto" [placeholder]="rnaExample" type="text" />
 
         <button mat-icon-button color="warn" matPrefix>
           <mat-icon>search</mat-icon>
