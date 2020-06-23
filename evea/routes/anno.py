@@ -37,6 +37,14 @@ class ncrnaAnno(Resource):
         parser.add_argument('ncrna', type = str)
         args = parser.parse_args()
         query_ncrna_list = args['ncrna'].strip().split(',')
-        ncrna_list = list(mongo.db.ncrna_anno.find({"GeneSymbol":{"$in":query_ncrna_list}}))
+        mcur = mongo.db.ncrna_anno.find({"GeneSymbol":{"$in":query_ncrna_list}})
+        ncrna_list = list(mcur)
         return {'mirna_basic_list': ncrna_list}
 api.add_resource(ncrnaAnno,'/')
+
+class OneSymbolAnno(Resource):
+    @marshal_with(ncrna_basic_fields)
+    def get(self, rna):
+        mcur = mongo.db.ncrna_anno.find_one({'GeneSymbol': rna})
+        return mcur
+api.add_resource(OneSymbolAnno, '/one/<string:rna>')
