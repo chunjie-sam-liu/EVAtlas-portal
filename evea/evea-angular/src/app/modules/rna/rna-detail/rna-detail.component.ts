@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RnaDetailApiService } from './rna-detail-api.service';
 
 @Component({
   selector: 'app-rna-detail',
@@ -8,11 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RnaDetailComponent implements OnInit {
   rnaSymbol: string;
-  constructor(private route: ActivatedRoute) {
+  rnaBasicInfo: any;
+
+  constructor(private route: ActivatedRoute, private rnaDetailApiService: RnaDetailApiService) {
     this.route.params.subscribe((params) => {
       this.rnaSymbol = params.rna;
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => {
+      this.rnaBasicInfo = res;
+    });
+  }
 }
