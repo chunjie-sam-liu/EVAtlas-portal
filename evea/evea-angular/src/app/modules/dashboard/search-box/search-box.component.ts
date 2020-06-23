@@ -19,7 +19,7 @@ export class SearchBoxComponent implements OnInit {
   isSelected = false;
   searchFormControl = new FormControl();
   rnaList: any[];
-  rnaExample = 'hsa-miR-146-5p';
+  rnaExample = 'hsa-let-7a-3p';
 
   constructor(private searchBoxApiService: SearchBoxApiService, private router: Router) {}
 
