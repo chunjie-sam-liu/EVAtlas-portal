@@ -52,3 +52,27 @@ a {
 .not-float {
   min-height: fit-content;
 }
+
+dd {
+  margin: 10px;
+}
+dd::after {
+  content: '\A';
+  white-space: pre-line;
+}
+dd:last-of-type::after {
+  content: '';
+}
+dd,
+dt {
+  margin: 10px;
+  display: inline;
+  vertical-align: middle;
+}
+
+dt {
+  font-weight: bolder;
+}
+dt::after {
+  content: ': ';
+}

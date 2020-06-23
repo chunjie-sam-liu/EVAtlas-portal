@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RnaDetailApiService } from '../rna-detail-api.service';
+import { RnaBasicInfo } from 'src/app/shared/model/rna-basic-info';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rna-basic-info',
@@ -9,11 +11,11 @@ import { RnaDetailApiService } from '../rna-detail-api.service';
 export class RnaBasicInfoComponent implements OnInit {
   @Input() rnaSymbol: string;
 
+  rnaBasicInfo$: Observable<RnaBasicInfo>;
+
   constructor(private rnaDetailApiService: RnaDetailApiService) {}
 
   ngOnInit(): void {
-    this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => {
-      console.log(res);
-    });
+    this.rnaBasicInfo$ = this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol);
   }
 }
