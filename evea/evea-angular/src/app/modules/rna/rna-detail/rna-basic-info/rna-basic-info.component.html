@@ -4,9 +4,23 @@
   </mat-card-header>
   <mat-card-content>
     <div *ngIf="rnaBasicInfo$ | async as rna; else loading">
-      <dl style="border: 1px solid black;">
-        <dt>miRNA access</dt>
+      <dl>
+        <dt>miRNA ID</dt>
+        <dd>
+          <a href="" target="_blank">{{ rnaSymbol }}</a>
+        </dd>
+
+        <dt>miRNA Acc.</dt>
         <dd>{{ rna.accession }}</dd>
+
+        <dt>Mature Seq.</dt>
+        <dd>{{ rna.sequence }}</dd>
+
+        <dt>Precursor</dt>
+        <dd>{{ rna.premirna }}</dd>
+
+        <dt>miRNA family</dt>
+        <dd>{{ rna.family }}</dd>
       </dl>
     </div>
 
