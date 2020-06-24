@@ -16,3 +16,4 @@ npm install
 
 npm run build:prod
 npm run compodoc
+npm run stat
