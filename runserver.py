@@ -5,9 +5,9 @@ p = sys.argv[1]
 
 
 def runserver():
-    port = int(os.environ.get('PORT', p))
-    app.run(host='localhost', port=port)
+    port = int(os.environ.get("PORT", p))
+    app.run(host="localhost", port=port)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     runserver()
