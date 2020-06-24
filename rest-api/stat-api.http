@@ -22,3 +22,8 @@ GET http://localhost:5000/api/stat/oa_dist?query_type=tissues&query_item=Blood
 ###
 GET http://localhost:5000/api/stat/oa_dist?query_type=condition&query_item=Disease
 
+# over all sample mapping distribution
+GET http://localhost:5000/api/stat/oa_dist?ex_type=Microvesicles
+###
+GET http://localhost:5000/api/stat/oa_dist?ex_type=Exosomes
+

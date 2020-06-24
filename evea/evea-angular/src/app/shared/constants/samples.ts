@@ -1,8 +1,8 @@
 export default [
   {
     name: 'stat',
-    img: 'bcell.png',
-    title: 'Show Statistics',
+    img: 'stat.png',
+    title: 'Statistics',
   },
   {
     name: 'b_cell',

@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RnaDetailComponent implements OnInit {
   rnaSymbol: string;
+
   constructor(private route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
       this.rnaSymbol = params.rna;

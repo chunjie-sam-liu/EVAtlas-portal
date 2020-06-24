@@ -4,4 +4,4 @@ db.exp_miRNA.aggregate([{"$match":{"RPM": {"$gte": 0.5}}},{"$group": {"_id":"$Ge
 
 
 
-db.sample_info.find().limit(2).pretty()
+db.sample_info.find({ex_type: {$ne: 'Exosomes'}}).limit(2).pretty()
