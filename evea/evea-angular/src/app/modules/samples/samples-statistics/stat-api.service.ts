@@ -15,7 +15,8 @@ export class StatApiService extends BaseHttpService {
 
   public getDist(exType: string): Observable<MappingDist[]> {
     return this.getData('stat/oa_dist', {
-      ex_type: exType,
+      query_type: 'ex_type',
+      query_item: exType,
     });
   }
 }

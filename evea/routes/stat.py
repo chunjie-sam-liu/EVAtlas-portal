@@ -15,16 +15,16 @@ category_stat_field = {
         {
             "sample_n": fields.Integer,
             "category_type": fields.Nested(
-                {"ex_type": fields.String, "source": fields.String,}
+                {"ex_type": fields.String, "source": fields.String}
             ),
         }
     ),
     "category_n": fields.Integer,
     "ex_type_lst": fields.List(
-        fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String,})
+        fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String})
     ),
     "source_type_lst": fields.List(
-        fields.Nested({"sample_n": fields.Integer, "source_type": fields.String,})
+        fields.Nested({"sample_n": fields.Integer, "source_type": fields.String})
     ),
 }
 
@@ -72,7 +72,7 @@ api.add_resource(CategoryStat, "/category")
 
 exp_stat_field = {
     "exp_level": fields.List(
-        fields.Nested({"exp_flag": fields.String, "count": fields.Integer,})
+        fields.Nested({"exp_flag": fields.String, "count": fields.Integer})
     ),
     "count": fields.Integer,
     "ncRNA": fields.String,
@@ -195,6 +195,7 @@ class OverAllMappingDistribution(Resource):
         args = parser.parse_args()
         query_type = args["query_type"]
         query_item = args["query_item"]
+        print(query_type, query_item)
         mcur = mongo.db.sample_info.find(
             {query_type: query_item},
             {"_id": 0, "srr_id": 1, "tag_stat": 1, "srr_tag_info": 1},
