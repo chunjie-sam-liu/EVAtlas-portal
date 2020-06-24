@@ -2,6 +2,7 @@
   "workbench.sideBar.location": "right",
   "files.exclude": {
     "node_modules": true,
-    "documentation": true
-  }
+    "documentation": true,
+  },
+  "gitlens.mode.active": "zen"
 }
