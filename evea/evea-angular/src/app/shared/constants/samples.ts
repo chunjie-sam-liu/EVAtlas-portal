@@ -27,7 +27,7 @@ export default [
   {
     name: 'Bone_marrow',
     img: 'Bone_marrow.png',
-    title: 'Bone_marrow',
+    title: 'Bone marrow',
   },
   {
     name: 'Bone',
@@ -122,7 +122,7 @@ export default [
   {
     name: 'Umbilical_cord',
     img: 'Umbilical_cord.png',
-    title: 'Umbilical_cord',
+    title: 'Umbilical cord',
   },
   {
     name: 'Uterus',

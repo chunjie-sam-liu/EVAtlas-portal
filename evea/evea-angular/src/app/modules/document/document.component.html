@@ -5,8 +5,320 @@
     </h1>
   </div>
   <div fxFlex class="not-float">
-    <p>test</p>
-    <p>haha</p>
+    <p>Introduction, Quick start, Data Summary, Data Download of EVmiRNA</p>
+    <h2>Introduction</h2>
+    <p>
+      EVmiRNA (Extracellular vesicle miRNA expression database) is a comprehensive database including<span style="color: DarkViolet;">
+        miRNA expression profiles, miRNA related drug, miRNA regulated pathways, miRNA function, and related publications</span
+      >. We analysed 461 small RNA sequencing datasets of EVs from 17 human tissues/diseses.
+    </p>
+    <h2>Quick Start</h2>
+    <h3>Browse</h3>
+    <ol>
+      <li>
+        <p>
+          <a href="http://bioinfo.life.hust.edu.cn/EVmiRNA#!/browse">EV Samples:</a> Click sources of Exosomes or Microvesicles, and users
+          can browse sample cancer types, heatmap, expressed miRNAs, SRA sample information.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="http://bioinfo.life.hust.edu.cn/EVmiRNA#!/mirnalist">miRNAs list:</a> miRNA basic infomation was presented in this page,
+          and users can click expression detail button to get the epxression histogram. Click the miRNA ID link, users can browsed
+          comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related drug, miRNA regulated
+          pathways, miRNA function, and related publications.
+        </p>
+      </li>
+      <li>
+        <p>
+          <a href="http://bioinfo.life.hust.edu.cn/EVmiRNA#!/special">Specific miRNA:</a> We use SEGtool (<a
+            href="http://bioinfo.life.hust.edu.cn/SEGtool/"
+            target="_blank"
+            >SEGtools R packages link</a
+          >
+          and <a href="https://www.ncbi.nlm.nih.gov/pubmed/28981576" target="_blank">SEGtools reference link</a>) to identify specific
+          miRNAs in each source and cancer. The specific miRNAs maybe potential miRNA biomarkers. Users can browse these miRNAs to help
+          their researches.
+        </p>
+      </li>
+    </ol>
+    <h3>Search</h3>
+    <ol>
+      <li>
+        <p>
+          Users can search by miRNA, and click <a href="http://bioinfo.life.hust.edu.cn/EVmiRNA/#!/search">search</a> button to get miRNA
+          basic infomation, miRNA expression profiles, miRNA related drug, miRNA regulated pathways, miRNA function, and related
+          publications.
+        </p>
+      </li>
+      <li><p>Users can Choose miRNA expression region and Select source types to get miRNA list.</p></li>
+    </ol>
+    <h2>Data Summary</h2>
+    <ol>
+      <li>
+        <p>
+          We downloaded all exosomes and microvesicles miRNA samples from
+          <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a>, after quality control, we obtained 461 samples
+          (4 of these sample were sequenced by ourselves, 1 health control Fibroblasts microvesicles sample and 3 health control
+          Mensenchymal stem cell microvesicles samples.). As below, we presented the sample summary.
+        </p>
+        <p><b>Small RNA sequencing data mapping Strategy</b></p>
+        <p>
+          Datasets with ambiguous description of experiment design and less raw reads were discarded. Subsequently, for each dataset, reads
+          with the multiple N bases (>5) or unexpected length after adapter remove (> 45 nt or < 15 nt) or with low quality (mean quality <=
+          20) were filtered, and dataset with less reads (< 1M) after the procedure were discarded. Finally, 462 EV datasets were kept for
+          further analysis, which including 225 exosome and 236 MV samples from 17 tissues and 10 cancer types (Table 1). Clean reads were
+          mapped to human pre-miRNA sequences from miRBase V21 (22) by bowtie (23) with 1 mismatch allowed to identify known miRNAs. The sum
+          of all the isoforms mapped to each miRNA was used to calculate the normalized expression profile. RPM (expressed Reads Per Million
+          reads) were employed to assess miRNAs expression profiling and normalize the expression values across samples and conditions.
+        </p>
+        <br /><br /><b>Data Reference</b>
+      </li>
+      <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+      <br />
+      <br />
+      <br />
+      <br />
+      <li>
+        <p>
+          Annotation data source. miRNA basic information was collected from miRbase. Pathway information was collected from KEGG database,
+          and use Hypergeometric p-value to filter miRNA pathway pairs. Publication information was collected from NCBI pubmed database.
+          miRNA function was collected from NCBI RIF database. miRNA Drug information was collected from SM2miR (Small molecular miRNA
+          database). miRNA targets was from TargetScan, miRanda, TarBase, miRTarBase, miR2Disease, miRecords and miRWalk.
+        </p>
+        <b>miRNA annotation</b>
+        <img src="/static/EVmiRNA/image/document1.png" width="60%" class="img-responsive" />
+      </li>
+      <li>
+        <p>
+          We applied SEGtool to identify Specific miRNAs of cancer and tissue. We used miRNA expression cutoff RPM >= 100 to identify
+          specific miRNAs in cancer group and tissue group. We found that in cancer group, Exosome can identify more specific miRNAs.
+        </p>
+        <p>
+          <b>Specific miRNA</b>
+        </p>
+
+        <table>
+          <tr>
+            <td>Cancer/Source</td>
+            <td>EV type</td>
+            <td>Cancer/Source type</td>
+            <td>Specific miRNA counts</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Breast adenocarcinoma</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Chronic lymphocytic leukemia</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Colon carcinoma</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Leukemia</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Lymphoma</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Oral Cancer</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Prostate Cancer</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>EXO</td>
+            <td>Squamous cell carcinoma</td>
+            <td>34</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>MV</td>
+            <td>Breast adenocarcinoma</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>MV</td>
+            <td>Chronic myelocytic leukemia</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>MV</td>
+            <td>Colon carcinoma</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>MV</td>
+            <td>Pancreatic Cancer</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>Cancer</td>
+            <td>MV</td>
+            <td>Prostate Cancer</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Blood</td>
+            <td>67</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>B-lymphoblastoid cell lines</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Breast</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Breast milk</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Chronic lymphocytic leukemia cell</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Colon</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Human epithelial cells</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Human mammary epithelial</td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Human mast cell</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Kidney</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Lymph</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Mesenchymal Stem Cells</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Saliva</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Seminal fluid</td>
+            <td>17</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>EXO</td>
+            <td>Tongue</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>MV</td>
+            <td>Blood</td>
+            <td>56</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>MV</td>
+            <td>Breast</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>MV</td>
+            <td>Colon</td>
+            <td>29</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>MV</td>
+            <td>Fibroblasts</td>
+            <td>110</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>MV</td>
+            <td>Mesenchymal Stem Cells</td>
+            <td>79</td>
+          </tr>
+          <tr>
+            <td>Source</td>
+            <td>MV</td>
+            <td>Urine</td>
+            <td>92</td>
+          </tr>
+        </table>
+      </li>
+    </ol>
+    <h2>Data Download</h2>
+    <h3>Expression Download</h3>
+    <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+    <br />
+    <br />
+    <h3>Isoform Download</h3>
+    <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
   </div>
   <div fxFlex="none">
     <app-footer></app-footer>
