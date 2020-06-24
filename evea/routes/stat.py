@@ -134,18 +134,16 @@ class SamplesExpStat(Resource):
 api.add_resource(SamplesExpStat, '/samplesexp')
 
 
-model_oa_dist = {}
 class OverAllMappingDistribution(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('ex_type', type=str)
+        parser.add_argument('query_type', type=str)
+        parser.add_argument('query_item', type=str)
         args = parser.parse_args()
-
-        if args.ex_type not in ['exosome', 'Extracellular microvesicle']:
-            return []
-
+        query_type = args['query_type']
+        query_item = args['query_item']
         mcur = mongo.db.sample_info.find({
-            'ex_type': args.ex_type
+            query_type: query_item
         }, {
             '_id': 0,
             'srr_id': 1,
@@ -155,3 +153,25 @@ class OverAllMappingDistribution(Resource):
         return list(mcur)
 api.add_resource(OverAllMappingDistribution, '/oa_dist')
 
+
+class SampleShow(Resource):
+    def get(self, sample_name):
+        parser = reqparse.RequestParser()
+        parser.add_argument('tissues', type=str)
+        parser.add_argument('ex_type', type=str)
+        parser.add_argument('detail', type=int, default=0)
+        args = parser.parse_args()
+        condition = []
+        basic_match = {"$match":{"tissues": args['tissues'], "ex_type": args['ex_type']})
+        basic_stat = {"$group": {"_id":{"disease": "$disease"}, "projects":{"$addToSet": "$srp_id"}, "source":{"$addToSet": "$source"}, "srr_count":{"$sum":1}, "srr_map_info": {"$push":"$srr_map_info"}, "ratio_stat": {"$push":"$ratio_stat"}, "srr_id": {"$push":"$srr_id"}}}
+
+        if args['detail']:
+            condition.append({"$group": {"_id":{"disease": "$disease", "material":"$material"}, "projects":{"$addToSet": "$srp_id"}, "source":{"$addToSet": "$source"}, "srr_count":{"$sum":1}, "srr_map_info": {"$push":"$srr_map_info"}, "ratio_stat": {"$push":"$ratio_stat"}, "srr_id": {"$push":"$srr_id"}}})
+        else:
+            condition.append("")
+        ncrna_exp_db = args['type'].strip()+'_samexp'
+        ncrna_query = args['ncrna'].strip()
+        tmp_l = ['disease', 'tissues', 'source', 'material', 'condition', 'ex_type']
+        condition = { i: "$exp."+i for i in tmp_l if args[i] }        
+        return {'sample_info_lst': sample_info_lst}
+api.add_resource(SampleShow,"/<string:sample_name>")

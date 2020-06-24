@@ -11,9 +11,14 @@ GET http://localhost:5000/api/stat/samplesexp?querys=Serum&query_type=source
 
 #15s
 ###
-GET http://localhost:5000/api/stat/samplesexp?querys=exosome&query_type=ex_type
+GET http://localhost:5000/api/stat/samplesexp?querys=Exosomes&query_type=ex_type
 
 ###
-GET http://localhost:5000/api/stat/oa_dist?ex_type=Extracellular microvesicle
+GET http://localhost:5000/api/stat/oa_dist?query_type=ex_type&query_item=Microvesicles
+
 ###
-GET http://localhost:5000/api/stat/oa_dist?ex_type=exosome
+GET http://localhost:5000/api/stat/oa_dist?query_type=tissues&query_item=Blood
+
+###
+GET http://localhost:5000/api/stat/oa_dist?query_type=condition&query_item=Disease
+

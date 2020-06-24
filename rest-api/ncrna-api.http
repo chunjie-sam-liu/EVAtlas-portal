@@ -1,4 +1,4 @@
-GET http://localhost:5000/api/ncrna/category?ncrna=hsa-miR-199a-3p&source=Serum&ex_type=exosome&type=miRNA
+GET http://localhost:5000/api/ncrna/category?ncrna=hsa-miR-199a-3p&source=Serum&ex_type=Exosomes&type=miRNA
 
 
 ###
@@ -7,3 +7,14 @@ GET http://localhost:5000/api/ncrna/sample?ncrna=hsa-miR-21-5p,hsa-miR-199a-3p&s
 
 ###
 GET http://localhost:5000/api/ncrna/ncRNA_lst?ncrna=snRNA&expv=1
+
+###
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1
+
+###any combination can work
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1&disease=1&source=1&material=1&condition=1
+
+###Return all expression for scatter
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA
+
+

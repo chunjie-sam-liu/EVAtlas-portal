@@ -116,3 +116,24 @@ class ncRNAlist(Resource):
         ncrna_lst = list(ncrna_exp_oj)
         return {'ncRNA_lst':ncrna_lst[0:10]}
 api.add_resource(ncRNAlist, "/ncRNA_lst")
+
+class ncRNAexp(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('ncrna', type=str)
+        parser.add_argument('type', type=str)
+        parser.add_argument('disease', type=int, default=0)
+        parser.add_argument('tissues', type=int, default=0)
+        parser.add_argument('source', type=int, default=0)
+        parser.add_argument('material', type=int, default=0)
+        parser.add_argument('condition', type=int, default=0)
+        parser.add_argument('ex_type', type=int, default=0)
+        args = parser.parse_args()
+        ncrna_exp_db = args['type'].strip()+'_samexp'
+        ncrna_query = args['ncrna'].strip()
+        tmp_l = ['disease', 'tissues', 'source', 'material', 'condition', 'ex_type']
+        condition = { i: "$exp."+i for i in tmp_l if args[i] }        
+        ncrna_exp_oj = mongo.db[ncrna_exp_db].aggregate([{"$match":{"GeneSymbol":ncrna_query}}, {"$unwind": "$exp"}, {"$group":{"_id":condition, "exp_lst":{"$push":"$exp.RPM"}}}, {"$project":{"_id":0, "combination":"$_id", "exp_lst":1}}])
+        result_lst = list(ncrna_exp_oj)
+        return {'data':result_lst}
+api.add_resource(ncRNAexp, "/ncrnaexp")

@@ -67,3 +67,5 @@ class SampleInfo(Resource):
         sample_info_lst = list(sample_info_oj)
         return {'sample_info_lst': sample_info_lst}
 api.add_resource(SampleInfo,"/<string:sample_name>")
+
+
