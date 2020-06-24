@@ -7,7 +7,7 @@ import re
 import sys
 
 
-sample = Blueprint('sample', __name__)
+sample = Blueprint("sample", __name__)
 
 api = Api(sample)
 
@@ -57,15 +57,15 @@ sample_info_field_lst = {
     "sample_info_lst": fields.List(fields.Nested(sample_info_field)),
 }
 
+
 class SampleInfo(Resource):
     def get(self, sample_name):
-        samples = sample_name.strip().split(',')
+        samples = sample_name.strip().split(",")
         sample_info_oj = mongo.db.sample_info.find(
-            {"srr_id": {
-                "$in": samples
-            }},{"_id":0})
+            {"srr_id": {"$in": samples}}, {"_id": 0}
+        )
         sample_info_lst = list(sample_info_oj)
-        return {'sample_info_lst': sample_info_lst}
-api.add_resource(SampleInfo,"/<string:sample_name>")
+        return {"sample_info_lst": sample_info_lst}
 
 
+api.add_resource(SampleInfo, "/<string:sample_name>")

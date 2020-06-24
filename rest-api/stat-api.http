@@ -27,3 +27,13 @@ GET http://localhost:5000/api/stat/oa_dist?ex_type=Microvesicles
 ###
 GET http://localhost:5000/api/stat/oa_dist?ex_type=Exosomes
 
+#show sample stat (size, mapping, material and source) of exsomes-tissues-material category
+#the parameter of "detail" divides the above info by material 
+
+###
+GET http://localhost:5000/api/stat/samstats?ex_type=Exosomes&tissues=Brain&detail=1
+
+#return the sample info in srp, such as the normal and disease
+###
+GET http://localhost:5000/api/stat/srpstats?srp=SRP168558
+
