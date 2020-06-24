@@ -6,10 +6,10 @@ export default [
     avatar: 'guoay.png',
   },
   {
-    name: 'Chun-Jie Liu',
-    title: 'Ph.D., Postdoc',
-    email: 'chunjie.sam.liu@gmail.com',
-    avatar: 'liucj.png',
+    name: 'Gui-Yan Xie',
+    title: 'Ph.D. Candidate',
+    email: 'xieguiyan@hust.edu.cn',
+    avatar: 'xiegy.png',
   },
   {
     name: 'Qiong Zhang',
@@ -18,9 +18,9 @@ export default [
     avatar: 'zhangq.png',
   },
   {
-    name: 'Gui-Yan Xie',
-    title: 'Ph.D. Candidate',
-    email: 'xieguiyan@hust.edu.cn',
-    avatar: 'xiegy.png',
+    name: 'Chun-Jie Liu',
+    title: 'Ph.D., Postdoc',
+    email: 'chunjie.sam.liu@gmail.com',
+    avatar: 'liucj.png',
   },
 ];
