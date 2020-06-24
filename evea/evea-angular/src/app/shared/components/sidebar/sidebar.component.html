@@ -1,5 +1,5 @@
-<div fxLayout="row">
-  <button mat-fab (click)="isExpanded = !isExpanded" color="warn" style="margin: 10px;">
+<div fxLayout="row" (click)="isExpanded = !isExpanded">
+  <button mat-fab color="warn" style="margin: 10px;">
     <img [src]="assets + '/imgs/logo.png'" alt="EVA" />
   </button>
   <h1 *ngIf="isExpanded">EVAtlas</h1>
