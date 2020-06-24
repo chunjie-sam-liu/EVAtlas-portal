@@ -29,7 +29,8 @@
   "python.linting.lintOnSave": true,
 
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "venv/bin/black"
+  "python.formatting.blackPath": "venv/bin/black",
+  "gitlens.mode.active": "zen"
   // "python.formatting.yapfArgs": [
   //   "--style",
   //   "{based_on_style: pep8, indent_width: 4}"
