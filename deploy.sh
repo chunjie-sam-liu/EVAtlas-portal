@@ -14,4 +14,5 @@ pip install -r requirement.txt
 cd evea/evea-angular/
 npm install
 
-npm run prod-build
+npm run build:prod
+npm run compodoc
