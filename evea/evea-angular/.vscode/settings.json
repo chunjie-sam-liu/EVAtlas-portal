@@ -1,3 +1,7 @@
 {
-  "workbench.sideBar.location": "right"
+  "workbench.sideBar.location": "right",
+  "files.exclude": {
+    "node_modules": true,
+    "documentation": true
+  }
 }
