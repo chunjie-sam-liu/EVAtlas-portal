@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseHttpService } from 'src/app/shared/base-http.service';
 import { RnaTable } from 'src/app/shared/model/rna-table';
@@ -23,5 +23,9 @@ export class RnaApiService extends BaseHttpService {
       pageIndex: pageIndex.toString,
       pageSize: pageSize.toString,
     }).pipe(map((res) => res.ncRNA_lst));
+  }
+
+  findRnaTable(rnaType: string): Observable<RnaTable> {
+    return this.getData('ncrna/table' + rnaType);
   }
 }
