@@ -260,5 +260,3 @@ class SrpSam(Resource):
 
 
 api.add_resource(SrpSam, "/srpstats")
-
-rtr
