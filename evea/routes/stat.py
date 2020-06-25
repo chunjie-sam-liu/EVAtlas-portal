@@ -195,7 +195,6 @@ class OverAllMappingDistribution(Resource):
         args = parser.parse_args()
         query_type = args["query_type"]
         query_item = args["query_item"]
-        print(query_type, query_item)
         mcur = mongo.db.sample_info.find(
             {query_type: query_item},
             {"_id": 0, "srr_id": 1, "tag_stat": 1, "srr_tag_info": 1},
@@ -262,3 +261,4 @@ class SrpSam(Resource):
 
 api.add_resource(SrpSam, "/srpstats")
 
+rtr
