@@ -15,7 +15,7 @@ category_stat_field = {
         {
             "sample_n": fields.Integer,
             "category_type": fields.Nested(
-                {"ex_type": fields.String, "source": fields.String,}
+                {"ex_type": fields.String, "tissues": fields.String,}
             ),
         }
     ),
@@ -23,7 +23,7 @@ category_stat_field = {
     "ex_type_lst": fields.List(
         fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String,})
     ),
-    "source_type_lst": fields.List(
+    "tissues_type_lst": fields.List(
         fields.Nested({"sample_n": fields.Integer, "source_type": fields.String,})
     ),
 }
@@ -37,7 +37,7 @@ class CategoryStat(Resource):
             [
                 {
                     "$group": {
-                        "_id": {"ex_type": "$ex_type", "source": "$source"},
+                        "_id": {"ex_type": "$ex_type", "tissues": "$tissues"},
                         "sample_n": {"$sum": 1},
                     }
                 },
@@ -55,7 +55,7 @@ class CategoryStat(Resource):
         ex_type_lst = list(ex_type_oj)
         source_type_oj = mongo.db.sample_info.aggregate(
             [
-                {"$group": {"_id": "$source", "sample_n": {"$sum": 1}}},
+                {"$group": {"_id": "$tissues", "sample_n": {"$sum": 1}}},
                 {"$project": {"_id": 0, "source_type": "$_id", "sample_n": 1}},
             ]
         )
@@ -64,7 +64,7 @@ class CategoryStat(Resource):
             "category_n": category_n,
             "category_stat": category_stat_lst,
             "ex_type_lst": ex_type_lst,
-            "source_type_lst": source_type_lst,
+            "tissues_type_lst": source_type_lst,
         }
 
 
@@ -235,10 +235,39 @@ class SampleStat(Resource):
         return {"sample_stats": sample_stats}
 
 
-api.add_resource(SampleStat, "/samstats")
+class SrpShow(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("tissues", type=str)
+        args = parser.parse_args()
+        condition = []
+        basic_match = {"$match": {"tissues": args["tissues"]}}
+        condition.append(basic_match)
+        basic_stat = {
+            "$group": {
+                "_id": "$srp_id",
+                "ex_type": {"$addToSet": "$ex_type"},
+                "disease": {"$addToSet": "$disease"},
+                "material": {"$addToSet": "$material"},
+                "source": {"$addToSet": "$source"},
+                "srr_count": {"$sum": 1},
+                "normal_n": {
+                    "$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 1, 0]}
+                },
+                "case_n": {
+                    "$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 0, 1]}
+                },
+            }
+        }
+        condition.append(basic_stat)
+        srp_lst = list(mongo.db.sample_info.aggregate(condition))
+        return {"srp_lst": srp_lst}
 
 
-class SrpSam(Resource):
+api.add_resource(SrpShow, "/Srplst")
+
+
+class SrpMapStat(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
@@ -247,17 +276,46 @@ class SrpSam(Resource):
         basic_match = {"$match": {"srp_id": args["srp"]}}
         stat_para = {
             "$group": {
-                "_id": {"condition": "$condition"},
+                "_id": "$condition",
                 "srr_count": {"$sum": 1},
                 "map_info": {"$push": "$srr_map_info"},
                 "srr_id": {"$push": "$srr_id"},
-                "source": {"$addToSet": "$source"},
             }
         }
         condition.extend([basic_match, stat_para])
-        srp_stats = list(mongo.db.sample_info.aggregate(condition))
-        return {"srp_stats": srp_stats}
+        srp_map_stats = list(mongo.db.sample_info.aggregate(condition))
+        return {"srp_stats": srp_map_stats, "srp_id": args["srp"]}
 
 
-api.add_resource(SrpSam, "/srpstats")
+api.add_resource(SrpMapStat, "/srpmapstat")
+
+
+class SrpRatioStat(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("srp", type=str)
+        args = parser.parse_args()
+        ncRNA_lst = [
+            "miRNA",
+            "rRNA",
+            "tRNA",
+            "piRNA",
+            "snoRNA",
+            "snRNA",
+            "pRNA",
+            "scRNA",
+        ]
+        condition = []
+        basic_match = {"$match": {"srp_id": args["srp"]}}
+        stat_para = {"$group": {"_id": "$srp_id"}}
+        tmp_ratio = {i + "_ratio": {"$push": "$ratio_stat." + i} for i in ncRNA_lst}
+        stat_para["$group"].update(tmp_ratio)
+        tmp_avg = {i + "_avg": {"$avg": "$ratio_stat." + i} for i in ncRNA_lst}
+        stat_para["$group"].update(tmp_avg)
+        condition.extend([basic_match, stat_para])
+        srp_ratio_stats = list(mongo.db.sample_info.aggregate(condition))
+        return {"srp_ratio_stats": srp_ratio_stats}
+
+
+api.add_resource(SrpRatioStat, "/srpratiostat")
 

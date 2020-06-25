@@ -1,4 +1,18 @@
-db.sample_info.aggregate([{"$match":{"srp_id": "SRP168558"}}, {"$group": {"_id":{"condition":"$condition"}, "srr_count": {"$sum": 1}, "map_info": {"$push": "$srr_map_info"}, "srr_id": {"$push": "$srr_id"}, "source": {"$addToSet": "$source"}}}])
+db.sample_info_exp.aggregate([{"$match":{"srp_id": "SRP168558"}}, {"$project":{"srr_id":1, "condition":1, "ncrna_exp":1}}, {"$match":{"ncrna_exp.ncrna":""} "map_info": {"$push": "$srr_map_info"}, "srr_id": {"$push": "$srr_id"}, "source": {"$addToSet": "$source"}}}])
+
+
+
+db.miRNA_samexp.aggregate([{"$unwind": "$exp"},{"$match":{"exp.srp_id": "SRP229107"}}, {"$group":{"_id":{"GeneSymbol":"$GeneSymbol", "condition":"$exp.condition"}, "exp_lst":{"$push":"$exp.RPM"}, "srr_lst":{"$push":"$exp.srr_id"}, "avg":{"$avg":"$exp.RPM"}, "max":{"$max":"$exp.RPM"}, "min":{"$min":"$exp.RPM"}}}, {"$sort":{"min":-1, "max":1}}, {"$limit":40}])
+
+
+db.sample_info.aggregate([{"$match": {"tissues": "Breast"}}, {"$group":{"_id": "$srp_id", "ex_type": {"$addToSet": "$ex_type"}, "disease": {"$addToSet":"$disease"}, "material": {"$addToSet":"$material"}, "source": {"$addToSet":"$source"}, "srr_count": {"$sum": 1}, "normal_n":{"$sum": {"$cond": [ { "$eq": [ "$condition", "Normal" ] }, 1, 0 ]}}, "case_n":{"$sum": {"$cond": [ { "$eq": [ "$condition", "Normal" ] }, 0, 1 ]}}}}])
+
+
+db.sample_info.aggregate([{'$match': {'srp_id': 'SRP229107'}}, {'$group': {'_id': '$condition', 'srr_count': {'$sum': 1}, 'map_info': {'$push': '$srr_map_info'}, 'srr_id': {'$push': '$srr_id'}}}])
+
+
+db.sample_info.aggregate([{'$match': {'srp_id': 'SRP229107'}},{"$group": {"_id":"$srp_id", "mir_ratio":{"$push":"$ratio_stat.miRNA"}, "avg":{"$avg":"$ratio_stat.miRNA"}}}])
+
 
 
 
