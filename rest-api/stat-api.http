@@ -44,5 +44,12 @@ GET http://localhost:5000/api/stat/samstats?ex_type=Exosomes&tissues=Brain&detai
 
 #return the sample info in srp, such as the normal and disease
 ###
-GET http://localhost:5000/api/stat/srpstats?srp=SRP168558
+GET http://localhost:5000/api/stat/srpmapstat?srp=SRP229107
 
+
+#srp_lst for sample page 
+###
+GET http://localhost:5000/api/stat/Srplst?tissues=Brain
+
+###
+GET http://localhost:5000/api/stat/srpratiostat?srp=SRP229107

@@ -208,3 +208,33 @@ class ncRNAexp(Resource):
 
 
 api.add_resource(ncRNAexp, "/ncrnaexp")
+
+
+class ExpHeatmap(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("srp", type=str)
+        args = parser.parse_args()
+        ncRNA_lst = [
+            "miRNA",
+            "rRNA",
+            "tRNA",
+            "piRNA",
+            "snoRNA",
+            "snRNA",
+            "pRNA",
+            "scRNA",
+        ]
+        condition = []
+        basic_match = {"$match": {"srp_id": args["srp"]}}
+        stat_para = {"$group": {"_id": "$srp_id"}}
+        tmp_ratio = {i + "_ratio": {"$push": "$ratio_stat." + i} for i in ncRNA_lst}
+        stat_para["$group"].update(tmp_ratio)
+        tmp_avg = {i + "_avg": {"$avg": "$ratio_stat." + i} for i in ncRNA_lst}
+        show_lst = tmp_avg.keys()
+        stat_para["$group"].update(tmp_avg)
+        condition.extend([basic_match, stat_para])
+        srp_ratio_stats = list(mongo.db.sample_info.aggregate(condition))
+        heatmap_ncrna_lst = sorted(
+            [(k, srp_ratio_stats[0][k]) for k in show_lst], lambda a: a[1], reverse=True
+        )[0:3]
