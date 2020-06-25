@@ -7,7 +7,7 @@ import os
 import re
 import sys
 
-category = Blueprint('category', __name__)
+category = Blueprint("category", __name__)
 api = Api(category)
 
 ncRNA_tag_stat_fields = {
@@ -57,20 +57,22 @@ sample_info_field_lst = {
     "record_n": fields.Integer,
 }
 
+
 class Category(Resource):
     @marshal_with(category_stat_field)
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('source', type=str)
+        parser.add_argument("source", type=str)
         parser.add_argument("ex_type", type=str)
         args = parser.parse_args()
         condition = {}
-        condition['source'] = args['source']
-        condition['ex_type'] = args['ex_type']
+        condition["source"] = args["source"]
+        condition["ex_type"] = args["ex_type"]
         samples_oj = mongo.db.sample_info.aggregate([{"$match": condition}])
         samples_info_lst = list(samples_oj)
         record_n = len(samples_info_lst)
-        return {'samples_info_lst': samples_info_lst, 'record_n': record_n}
+        return {"samples_info_lst": samples_info_lst, "record_n": record_n}
 
-api.add_resource(Category, '/category')
+
+api.add_resource(Category, "/category")
 
