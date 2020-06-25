@@ -1,0 +1,32 @@
+<mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <mat-table [dataSource]="dataSource" matSort matSortActive="srr_count" matSortDisableClear matSortDirection="desc">
+    <ng-container matColumnDef="_id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Project ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row._id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="disease">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Disease</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.disease }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ex_type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>EVs</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.ex_type }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="source">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Source</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.source }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="srr_count">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Sample count</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.srr_count }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
