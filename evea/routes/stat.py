@@ -21,7 +21,7 @@ category_stat_field = {
     ),
     "category_n": fields.Integer,
     "ex_type_lst": fields.List(
-        fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String,})
+        fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String})
     ),
     "tissues_type_lst": fields.List(
         fields.Nested({"sample_n": fields.Integer, "source_type": fields.String,})
@@ -72,7 +72,7 @@ api.add_resource(CategoryStat, "/category")
 
 exp_stat_field = {
     "exp_level": fields.List(
-        fields.Nested({"exp_flag": fields.String, "count": fields.Integer,})
+        fields.Nested({"exp_flag": fields.String, "count": fields.Integer})
     ),
     "count": fields.Integer,
     "ncRNA": fields.String,

@@ -20,8 +20,8 @@ export class RnaApiService extends BaseHttpService {
       ncrna: rnaType,
       filter,
       sortOrder,
-      pageIndex: pageIndex.toString,
-      pageSize: pageSize.toString,
+      pageIndex: pageIndex.toString(),
+      pageSize: pageSize.toString(),
     }).pipe(map((res) => res.ncRNA_lst));
   }
 

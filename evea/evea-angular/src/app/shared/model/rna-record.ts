@@ -1,5 +1,7 @@
 export interface RnaRecord {
   GeneSymbol: string;
-  count?: string;
+  position: string;
+  sampleCount?: number;
+  diseaseCount?: number;
   seq?: string;
 }

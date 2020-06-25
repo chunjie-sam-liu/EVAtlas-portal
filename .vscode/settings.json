@@ -20,7 +20,7 @@
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
     "--max-line-length=128",
-    "--ignore=E402,F841,F401,E302,E305,W391"
+    "--ignore=E401,E402,F841,F401,E302,E305,W391"
   ],
 
   "editor.wordWrap": "on",
@@ -29,9 +29,6 @@
   "python.linting.lintOnSave": true,
 
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "venv/bin/black"
-  // "python.formatting.yapfArgs": [
-  //   "--style",
-  //   "{based_on_style: pep8, indent_width: 4}"
-  // ]
+  "python.formatting.blackPath": "venv/bin/black",
+  "gitlens.mode.active": "zen"
 }
