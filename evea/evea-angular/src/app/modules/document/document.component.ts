@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export interface PeriodicElement {
   EV_type: string;
@@ -28,6 +29,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DocumentComponent implements OnInit {
   displayedColumns: string[] = ['Source', 'EV_type', 'Cancer_Source_type', 'Specific_miRNA_counts'];
   dataSource = ELEMENT_DATA;
+
+  public assets = environment.assets;
+
   constructor() {}
 
   ngOnInit(): void {}
