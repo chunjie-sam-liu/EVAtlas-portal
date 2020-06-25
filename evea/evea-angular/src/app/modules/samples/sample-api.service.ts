@@ -10,8 +10,4 @@ export class SampleApiService extends BaseHttpService {
   constructor(http: HttpClient) {
     super(http);
   }
-
-  public getSample(sampleName: string): Observable<any> {
-    return this.getData('sample/' + sampleName);
-  }
 }

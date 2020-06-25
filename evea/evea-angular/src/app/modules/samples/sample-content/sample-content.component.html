@@ -1,3 +1,18 @@
-<p>Title: {{ sample.title }}</p>
-
-<p>Name: {{ sample.name }}</p>
+<div fxLayout="column" fxLayoutGap="20px">
+  <div fxFlex="none">
+    <h2 class="page-subheader">
+      <span style="color: #da4233;">
+        {{ sample.title }}
+      </span>
+      exsosomes and microparticles.
+    </h2>
+  </div>
+  <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4"> </mat-card>
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4"> </mat-card>
+  </div>
+  <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4"> </mat-card>
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4"> </mat-card>
+  </div>
+</div>

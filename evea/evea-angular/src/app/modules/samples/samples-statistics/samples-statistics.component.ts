@@ -26,7 +26,6 @@ export class SamplesStatisticsComponent implements OnInit {
   ngOnInit(): void {
     // get exosome data
     this.statApiService.getDist('Exosomes').subscribe((res) => {
-      console.log(res[1]);
       this.exoMappingRate = this._mappingRate(res, this.exoMappingRateTitle);
       this.exoMappingDist = this._rnaMappingDist(res, this.exoMappingDistTitle);
     });

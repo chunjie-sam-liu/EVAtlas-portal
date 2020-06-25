@@ -32,7 +32,12 @@ GET http://localhost:5000/api/stat/oa_dist?query_type=ex_type&query_item=Exosome
 #the parameter of "detail" divides the above info by material
 
 ###
-GET http://localhost:5000/api/stat/samstats?ex_type=Exosomes&tissues=Brain
+
+###
+# get tissues
+GET http://localhost:5000/api/stat/samstats?ex_type=Exosomes&tissues=Breast
+###
+GET http://localhost:5000/api/stat/samstats?ex_type=Microvesicles&tissues=Breast
 
 ###
 GET http://localhost:5000/api/stat/samstats?ex_type=Exosomes&tissues=Brain&detail=1
