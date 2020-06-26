@@ -15,7 +15,7 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tiss
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1&disease=1&source=1&material=1&condition=1
 
 ###Return all expression for scatter
-GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA&ex_type=Exosomes
 
 ###srp expression for heatmap
 GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP214462&ncrna=miRNA
