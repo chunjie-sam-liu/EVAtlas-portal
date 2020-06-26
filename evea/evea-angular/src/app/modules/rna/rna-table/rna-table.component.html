@@ -21,12 +21,12 @@
     </ng-container>
 
     <ng-container matColumnDef="tissues">
-      <mat-header-cell *matHeaderCellDef>Expressed in NO. Tissues</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Expressed in number of tissues</mat-header-cell>
       <mat-cell class="duration-cell" *matCellDef="let rna">{{ rna.tissues }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="samples">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Expressed in NO. Samples</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Expressed in number of samples</mat-header-cell>
       <mat-cell class="duration-cell" *matCellDef="let rna">{{ rna.samples | number }}</mat-cell>
     </ng-container>
 
