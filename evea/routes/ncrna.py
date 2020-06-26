@@ -207,3 +207,28 @@ class SampleRankExp(Resource):
 
 api.add_resource(SampleRankExp, "/samrankexp")
 
+
+class ncRNASrpExp(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("srp", type=str)
+        parser.add_argument("class", type=str)
+        parser.add_argument("page", type=int, default=1)
+        parser.add_argument("size", type=int, default=50)
+        args = parser.parse_args()
+        record_skip = (args["page"] - 1) * args["size"]
+        record_limit = args["size"]
+        condition = {}
+        condition["srp_id"] = args["srp"]
+        if args["class"]:
+            condition["class"] = args["class"]
+        result_lst = list(
+            mongo.db.srp_exp.find(condition, {"_id": 0})
+            .skip(record_skip)
+            .limit(record_limit)
+        )
+        print(result_lst)
+        return {"data": result_lst}
+
+
+api.add_resource(ncRNASrpExp, "/ncrnasrpexp")

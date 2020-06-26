@@ -18,13 +18,12 @@ db.sample_info.aggregate([{'$match': {'srp_id': 'SRP229107'}}, {'$group': {'_id'
 
 db.sample_info.aggregate([{'$match': {'srp_id': 'SRP229107'}},{"$group": {"_id":"$srp_id", "mir_ratio":{"$push":"$ratio_stat.miRNA"}, "avg":{"$avg":"$ratio_stat.miRNA"}}}])
 
-db.sample_exp.aggregate([{"$match":{"srr_id":"SRR10417160"}},{"$unwind": "$ncrna_exp"}, {"$match":{"ncrna_exp.RPM":{"$gte":1}}}, {"$sort":{"ncrna_exp.RPM":-1}},                 {
-                    "$group": {
-                        "_id": "$ncrna_exp.ncrna",
-                        "rna_exp": {"$push": "$ncrna_exp.RPM"},
-                        "rna_lst": {"$push": "$ncrna_exp.GeneSymbol"},
-                    }
-                }, {"$project": {"_id":0, "class":"$_id", "rna_exp_lst":{"$slice": [ "$rna_exp", 10 ] }}}])
+db.sample_info.aggregate({"$group":{"_id":{"ex_type":"$ex_type", "tissues":"$tissues"}, "srr_lst":{"$addToSet":"$srr_id"}}})
 
+db.miRNA_samexp.aggregate([{"$unwind":"$exp"}, {'$match': {'exp.srp_id': 'SRP229107'}}, {"$group":{"_id":"$GeneSymbol", "exp_lst":{"$push":"$exp.RPM"}, "avg":{"$avg":"$exp.RPM"}}}, {"$sort":{"avg":-1}}])
 
+db.srp_exp.find({'srp_id':"SRP214462", "class":"miRNA"})
+db.srp_exp.find({'srp_id':"SRP214462", "class":"miRNA"})
+
+db.srp_exp.find({'srp_id': 'SRR10417160', 'class': 'miRNA'})
 

@@ -27,3 +27,13 @@ GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&size=30
 
 #retuan all expressed ncrnas in ranked order
 GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&all=1
+
+
+# return the ranked expressed ncRNA with srp_id in the given class
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=SRP214462&class=miRNA&page=2&size=5
+
+
+# return all ncRNA
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=SRP214462&page=2&size=5
