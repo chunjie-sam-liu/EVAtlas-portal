@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TissueTable } from 'src/app/shared/model/tissue-table';
-import { ProjectStat } from 'src/app/shared/model/project-stat';
+import { MappingDist } from 'src/app/shared/model/mapping-dist';
 
 @Injectable({
   providedIn: 'root',
@@ -26,9 +26,9 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.srp_lst));
   }
 
-  public getProjectStat(id: string): Observable<ProjectStat> {
+  public getProjectStat(id: string): Observable<MappingDist[]> {
     return this.getData('stat/srpratiostat', {
       srp: id,
-    }).pipe(map((res) => res.srp_ratio_stats[0]));
+    });
   }
 }

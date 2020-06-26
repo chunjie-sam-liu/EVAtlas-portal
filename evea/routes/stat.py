@@ -295,6 +295,16 @@ class SrpRatioStat(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
         args = parser.parse_args()
+
+        condition = {"srp_id": args.srp}
+        output = {"_id": 0, "srr_tag_info": 1, "srr_id": 1, "tag_stat": 1, "disease": 1}
+        mcur = mongo.db.sample_info.find(condition, output)
+        return list(mcur)
+
+    def get_old(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("srp", type=str)
+        args = parser.parse_args()
         ncRNA_lst = [
             "miRNA",
             "rRNA",

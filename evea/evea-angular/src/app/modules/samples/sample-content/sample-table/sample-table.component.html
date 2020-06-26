@@ -28,8 +28,8 @@
     </ng-container>
 
     <ng-container matColumnDef="srr_count">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Sample count</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.srr_count }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header># Samples (case, control)</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.srr_count }} ({{ row.case_n }}, {{ row.normal_n }})</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
