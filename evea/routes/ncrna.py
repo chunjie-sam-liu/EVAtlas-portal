@@ -105,18 +105,28 @@ class ncRNAexp(Resource):
         parser.add_argument("source", type=int, default=0)
         parser.add_argument("material", type=int, default=0)
         parser.add_argument("condition", type=int, default=0)
-        parser.add_argument("ex_type", type=int, default=0)
+        parser.add_argument("ex_type", type=str, default=0)
         args = parser.parse_args()
         ncrna_exp_db = args["type"].strip() + "_samexp"
         ncrna_query = args["ncrna"].strip()
-        tmp_l = ["disease", "tissues", "source", "material", "condition", "ex_type"]
+        tmp_l = ["disease", "tissues", "source", "material", "condition"]
         condition = {i: "$exp." + i for i in tmp_l if args[i]}
         ncrna_exp_oj = mongo.db[ncrna_exp_db].aggregate(
             [
                 {"$match": {"GeneSymbol": ncrna_query}},
                 {"$unwind": "$exp"},
+                {"$match": {"exp.ex_type": args["ex_type"]}},
                 {"$group": {"_id": condition, "exp_lst": {"$push": "$exp.RPM"}}},
-                {"$project": {"_id": 0, "combination": "$_id", "exp_lst": 1}},
+                {
+                    "$project": {
+                        "_id": 0,
+                        "tissues": "$_id.tissues",
+                        "exp_lst": 1,
+                        "average": {"$avg": "$exp_lst"},
+                        "min": {"$min": "$exp_lst"},
+                        "max": {"$max": "$exp_lst"},
+                    }
+                },
             ]
         )
         result_lst = list(ncrna_exp_oj)
@@ -142,3 +152,58 @@ class SrpHeatmap(Resource):
 
 
 api.add_resource(SrpHeatmap, "/srpheatmap")
+
+
+class SampleRankExp(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("sample", type=str)
+        parser.add_argument("all", type=int, default=0)
+        parser.add_argument("size", type=int, default=30)
+        args = parser.parse_args()
+        query_sample = args["sample"].strip()
+        condition = [
+            {"$match": {"srr_id": query_sample}},
+            {"$unwind": "$ncrna_exp"},
+            {"$match": {"ncrna_exp.RPM": {"$gte": 1}}},
+            {"$sort": {"ncrna_exp.RPM": -1}},
+        ]
+        if args["all"]:
+            condition.append(
+                {
+                    "$project": {
+                        "_id": 0,
+                        "GeneSymbol": "$ncrna_exp.GeneSymbol",
+                        "RPM": "$ncrna_exp.RPM",
+                        "class": "$ncrna_exp.ncrna",
+                    }
+                }
+            )
+            samplerankexp = list(mongo.db.sample_exp.aggregate(condition))
+            return {"samplerankexp": samplerankexp}
+        else:
+            condition.extend(
+                [
+                    {
+                        "$group": {
+                            "_id": "$ncrna_exp.ncrna",
+                            "rna_exp": {"$push": "$ncrna_exp.RPM"},
+                            "rna_lst": {"$push": "$ncrna_exp.GeneSymbol"},
+                        }
+                    },
+                    {
+                        "$project": {
+                            "_id": 0,
+                            "class": "$_id",
+                            "rna_exp_lst": {"$slice": ["$rna_exp", args["size"]]},
+                            "rna_sym_lst": {"$slice": ["$rna_lst", args["size"]]},
+                        }
+                    },
+                ]
+            )
+            samplerankexp = list(mongo.db.sample_exp.aggregate(condition))
+            return {"samplerankexp": samplerankexp}
+
+
+api.add_resource(SampleRankExp, "/samrankexp")
+
