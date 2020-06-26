@@ -14,26 +14,26 @@ export default [
     img: 'Adrenal_gland.png',
     title: 'Adrenal gland',
   },
-  {
-    name: 'Bladder',
-    img: 'Bladder.png',
-    title: 'Bladder',
-  },
+  // {
+  //   name: 'Bladder',
+  //   img: 'Bladder.png',
+  //   title: 'Bladder',
+  // },
   {
     name: 'Blood',
     img: 'Blood.png',
     title: 'Blood',
   },
-  {
-    name: 'Bone_marrow',
-    img: 'Bone_marrow.png',
-    title: 'Bone marrow',
-  },
-  {
-    name: 'Bone',
-    img: 'Bone.png',
-    title: 'Bone',
-  },
+  // {
+  //   name: 'Bone_marrow',
+  //   img: 'Bone_marrow.png',
+  //   title: 'Bone marrow',
+  // },
+  // {
+  //   name: 'Bone',
+  //   img: 'Bone.png',
+  //   title: 'Bone',
+  // },
   {
     name: 'Brain',
     img: 'Brain.png',
@@ -119,11 +119,11 @@ export default [
     img: 'Tongue.png',
     title: 'Tongue',
   },
-  {
-    name: 'Umbilical_cord',
-    img: 'Umbilical_cord.png',
-    title: 'Umbilical cord',
-  },
+  // {
+  //   name: 'Umbilical_cord',
+  //   img: 'Umbilical_cord.png',
+  //   title: 'Umbilical cord',
+  // },
   {
     name: 'Uterus',
     img: 'Uterus.png',
