@@ -15,8 +15,7 @@ GET http://localhost:5000/api/ncrna/ncRNA_lst
   &size=10
 
 ###
-GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1
-
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=Exosomes
 ###any combination can work
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1&disease=1&source=1&material=1&condition=1
 
@@ -26,4 +25,20 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA
 ###srp expression for heatmap
 GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP214462&ncrna=miRNA
 
+#return the top x expressed ncRNA of each ncRNA class for samples
 
+###
+GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&size=30
+
+#retuan all expressed ncrnas in ranked order
+GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&all=1
+
+
+# return the ranked expressed ncRNA with srp_id in the given class
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=SRP214462&class=miRNA&page=2&size=5
+
+
+# return all ncRNA
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=SRP214462&page=2&size=5
