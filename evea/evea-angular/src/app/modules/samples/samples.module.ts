@@ -10,6 +10,7 @@ import { SamplesStatisticsComponent } from './samples-statistics/samples-statist
 import { SampleContentComponent } from './sample-content/sample-content.component';
 import { SampleTableComponent } from './sample-content/sample-table/sample-table.component';
 import { SampleStatComponent } from './sample-content/sample-stat/sample-stat.component';
+import { SampleRnaAvgComponent } from './sample-content/sample-rna-avg/sample-rna-avg.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SampleStatComponent } from './sample-content/sample-stat/sample-stat.co
     SampleContentComponent,
     SampleTableComponent,
     SampleStatComponent,
+    SampleRnaAvgComponent,
   ],
   imports: [CommonModule, SamplesRoutingModule, SharedModule],
 })
