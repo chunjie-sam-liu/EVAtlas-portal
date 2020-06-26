@@ -23,7 +23,7 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tiss
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA&ex_type=Exosomes
 
 ###srp expression for heatmap
-GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP214462&ncrna=miRNA
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP145491&ncrna=miRNA
 
 #return the top x expressed ncRNA of each ncRNA class for samples
 

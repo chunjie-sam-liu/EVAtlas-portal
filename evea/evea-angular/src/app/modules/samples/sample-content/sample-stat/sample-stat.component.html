@@ -12,13 +12,13 @@
   </mat-card>
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
-      <mat-card-title>{{ projectPieTitle }}</mat-card-title>
+      <mat-card-title>{{ projectHeatmapTitle }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div *ngIf="!projectPie">
+      <div *ngIf="!projectHeatmap">
         <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
       </div>
-      <div echarts [options]="projectPie" class="chart-hight"></div>
+      <div echarts [options]="projectHeatmap" class="chart-hight"></div>
     </mat-card-content>
   </mat-card>
 </div>

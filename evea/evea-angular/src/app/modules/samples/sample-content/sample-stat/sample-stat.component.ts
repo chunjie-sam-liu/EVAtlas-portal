@@ -5,6 +5,7 @@ import { EChartOption } from 'echarts';
 import rnaType from 'src/app/shared/constants/rna-types';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
 import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
+import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
 
 @Component({
   selector: 'app-sample-stat',
@@ -13,8 +14,8 @@ import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
 })
 export class SampleStatComponent implements OnInit, OnChanges {
   @Input() tissueRecord: TissueTable;
-  projectPie: EChartOption;
-  projectPieTitle: string;
+  projectHeatmap: EChartOption;
+  projectHeatmapTitle: string;
   projectDist: EChartOption;
   projectDistTitle: string;
   constructor(private contentApiService: ContentApiService) {}
@@ -22,11 +23,15 @@ export class SampleStatComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.projectPieTitle = `${this.tissueRecord._id} mean`;
+    this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap`;
     this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
 
     this.contentApiService.getProjectStat(this.tissueRecord._id).subscribe((res) => {
       this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
+    });
+
+    this.contentApiService.getProjectHeatmap(this.tissueRecord._id).subscribe((res) => {
+      this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }
   private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
@@ -91,5 +96,9 @@ export class SampleStatComponent implements OnInit, OnChanges {
       },
       series,
     };
+  }
+
+  private _rnaHeatmap(d: RnaHeatmap[], title: string): EChartOption {
+    return {};
   }
 }

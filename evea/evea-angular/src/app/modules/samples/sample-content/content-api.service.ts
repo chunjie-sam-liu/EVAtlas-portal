@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TissueTable } from 'src/app/shared/model/tissue-table';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
+import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,12 @@ export class ContentApiService extends BaseHttpService {
     return this.getData('stat/srpratiostat', {
       srp: id,
     });
+  }
+
+  public getProjectHeatmap(id: string): Observable<RnaHeatmap[]> {
+    return this.getData('ncrna/srpheatmap', {
+      srp: id,
+      ncrna: 'miRNA',
+    }).pipe(map((res) => res.miRNA));
   }
 }
