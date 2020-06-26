@@ -69,7 +69,10 @@ ncRNA_count_fields = {
     "GeneSymbol": fields.String,
 }
 
-ncRNA_count_fields_lst = {"ncRNA_lst": fields.List(fields.Nested(ncRNA_count_fields))}
+ncRNA_count_fields_lst = {
+    "ncRNA_lst": fields.List(fields.Nested(ncRNA_count_fields)),
+    "n_recourd": fields.Integer,
+}
 
 
 class ncRNAlist(Resource):
@@ -90,14 +93,13 @@ class ncRNAlist(Resource):
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
 
-        mcur = (
-            mongo.db.ncrna_hit.find(condition, {"class": 0, "_id": 0})
-            .sort("sample_n", sort_option[args.sort])
-            .skip(record_skip)
-            .limit(record_limit)
+        mcur = mongo.db.ncrna_hit.find(condition, {"class": 0, "_id": 0}).sort(
+            "sample_n", sort_option[args.sort]
         )
-        ncrna_lst = list(mcur)
-        return {"ncRNA_lst": ncrna_lst}
+        n_record = mcur.count()
+
+        ncrna_lst = list(mcur.skip(record_skip).limit(record_limit))
+        return {"ncRNA_lst": ncrna_lst, "n_recourd": n_record}
 
 
 api.add_resource(ncRNAlist, "/ncRNA_lst")
