@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from evea.db import mongo
+import pymongo
 from flask_restful import Api, Resource, fields, marshal_with, reqparse, marshal
 
 import itertools
@@ -68,28 +69,37 @@ ncRNA_count_fields = {
     "GeneSymbol": fields.String,
 }
 
-ncRNA_count_fields_lst = {"ncRNA_lst": fields.List(fields.Nested(ncRNA_count_fields))}
+ncRNA_count_fields_lst = {
+    "ncRNA_lst": fields.List(fields.Nested(ncRNA_count_fields)),
+    "n_recourd": fields.Integer,
+}
 
 
 class ncRNAlist(Resource):
     @marshal_with(ncRNA_count_fields_lst)
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument("ncrna", type=str)
-        parser.add_argument("page", type=int, default=1)
+        parser.add_argument("ncrna", type=str, required=True)
+        parser.add_argument("filter", type=str, default="")
+        parser.add_argument("sort", type=str, default="desc")
+        parser.add_argument("page", type=int, default=0)
         parser.add_argument("size", type=int, default=50)
         args = parser.parse_args()
-        record_skip = (args["page"] - 1) * args["size"]
+        record_skip = args["page"] * args["size"]
         record_limit = args["size"]
-        condition = {}
-        condition["class"] = {"$in": args["ncrna"].strip().split(",")}
-        ncrna_exp_oj = (
-            mongo.db.ncrna_hit.find(condition, {"class": 0, "_id": 0})
-            .skip(record_skip)
-            .limit(record_limit)
+        sort_option = {"asc": 1, "desc": -1}
+
+        condition = {"class": args.ncrna}
+        if args.filter != "":
+            condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
+
+        mcur = mongo.db.ncrna_hit.find(condition, {"class": 0, "_id": 0}).sort(
+            "sample_n", sort_option[args.sort]
         )
-        ncrna_lst = list(ncrna_exp_oj)
-        return {"ncRNA_lst": ncrna_lst}
+        n_record = mcur.count()
+
+        ncrna_lst = list(mcur.skip(record_skip).limit(record_limit))
+        return {"ncRNA_lst": ncrna_lst, "n_recourd": n_record}
 
 
 api.add_resource(ncRNAlist, "/ncRNA_lst")

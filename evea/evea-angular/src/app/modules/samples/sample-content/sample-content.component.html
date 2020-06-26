@@ -11,8 +11,6 @@
     <app-sample-table fxFlex [tissueTable$]="tissueTable$" ($tissueRow)="displayTissueStat($event)"></app-sample-table>
   </div>
   <ng-container *ngIf="showProject">
-    <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
-      <app-sample-stat fxFlex [tissueRecord]="tissueRecord"></app-sample-stat>
-    </div>
+    <app-sample-stat fxFlex="grow" [tissueRecord]="tissueRecord"></app-sample-stat>
   </ng-container>
 </div>
