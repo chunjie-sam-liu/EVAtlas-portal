@@ -4,7 +4,7 @@ import { ContentApiService } from '../content-api.service';
 import { EChartOption } from 'echarts';
 import rnaType from 'src/app/shared/constants/rna-types';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
-import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
+import { sortBy as _sortBy, values as _values, sum as _sum, indexOf } from 'lodash-es';
 import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
 
 @Component({
@@ -23,7 +23,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap`;
+    this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
     this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
 
     this.contentApiService.getProjectStat(this.tissueRecord._id).subscribe((res) => {
@@ -99,6 +99,82 @@ export class SampleStatComponent implements OnInit, OnChanges {
   }
 
   private _rnaHeatmap(d: RnaHeatmap[], title: string): EChartOption {
-    return {};
+    let yAxis = [];
+    const xAxis = [];
+    const data = [];
+    d.map((v) => {
+      xAxis.push(v.srr_id);
+      yAxis.push(...v.mir_lst);
+    });
+    yAxis = [...new Set(yAxis)];
+    xAxis.map((v, i) => {
+      yAxis.map((vv, ii) => {
+        data.push([i, ii, '-']);
+      });
+    });
+    d.map((v, i) => {
+      v.mir_lst.map((vv, ii) => {
+        data[i * 50 + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
+      });
+    });
+
+    return {
+      title: {
+        show: false,
+        text: title,
+      },
+      grid: {
+        top: '2%',
+        left: '10%',
+        right: '2%',
+        bottom: '20%',
+      },
+      toolbox: {
+        showTitle: true,
+        feature: {
+          data: { show: false },
+          saveAsImage: {
+            title: 'Save as image',
+          },
+        },
+      },
+      tooltip: {
+        show: true,
+      },
+      xAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        splitArea: { show: true },
+        data: xAxis,
+      },
+      yAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        splitArea: { show: true },
+        data: yAxis,
+      },
+      visualMap: {
+        min: 0,
+        max: 10,
+        calculable: true,
+        orient: 'horizontal',
+        left: 'center',
+        bottom: '2%',
+      },
+      series: [
+        {
+          name: 'Punch Card',
+          type: 'heatmap',
+          data,
+          label: { show: false },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    };
   }
 }
