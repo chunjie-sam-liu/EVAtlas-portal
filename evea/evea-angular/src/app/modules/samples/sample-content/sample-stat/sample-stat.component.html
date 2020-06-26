@@ -1,15 +1,4 @@
-<div fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
-  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-    <mat-card-header>
-      <mat-card-title>{{ projectPieTitle }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div *ngIf="!projectPie">
-        <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-      </div>
-      <div echarts [options]="projectPie" class="chart-hight"></div>
-    </mat-card-content>
-  </mat-card>
+<div fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
       <mat-card-title>{{ projectDistTitle }}</mat-card-title>
@@ -19,6 +8,17 @@
         <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
       </div>
       <div echarts [options]="projectDist" class="chart-hight"></div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <mat-card-header>
+      <mat-card-title>{{ projectPieTitle }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="!projectPie">
+        <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+      </div>
+      <div echarts [options]="projectPie" class="chart-hight"></div>
     </mat-card-content>
   </mat-card>
 </div>

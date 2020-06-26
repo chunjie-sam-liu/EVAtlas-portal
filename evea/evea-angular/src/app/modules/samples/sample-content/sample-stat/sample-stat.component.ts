@@ -23,7 +23,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.projectPieTitle = `${this.tissueRecord._id} mean`;
-    this.projectDistTitle = `${this.tissueRecord._id}`;
+    this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
 
     this.contentApiService.getProjectStat(this.tissueRecord._id).subscribe((res) => {
       this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
@@ -79,7 +79,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
         nameTextStyle: { fontWeight: 'bolder' },
         axisTick: { show: false },
         axisLabel: { show: false },
-        data: d.map((v) => `${v.srr_id} (${v.disease})`),
+        data: d.map((v) => `${v.srr_id} (${v.disease}, ${v.ex_type})`),
       },
       yAxis: {
         type: 'value',
