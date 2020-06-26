@@ -15,17 +15,12 @@ export class RnaApiService extends BaseHttpService {
   }
 
   findRnaRecords(rnaType: string, filter = '', sortOrder = 'asc', pageIndex = 0, pageSize = 10): Observable<RnaRecord[]> {
-    // tslint:disable-next-line: no-string-literal
     return this.getData('ncrna/ncRNA_lst', {
       ncrna: rnaType,
-      filter,
-      sortOrder,
-      pageIndex: pageIndex.toString(),
-      pageSize: pageSize.toString(),
+      filter: filter.toString(),
+      sort: sortOrder,
+      page: pageIndex.toString(),
+      size: pageSize.toString(),
     }).pipe(map((res) => res.ncRNA_lst));
-  }
-
-  findRnaTable(rnaType: string): Observable<RnaTable> {
-    return this.getData('ncrna/table' + rnaType);
   }
 }
