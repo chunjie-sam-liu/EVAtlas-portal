@@ -11,9 +11,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialElevationDirective } from './directives/material-elevation.directive';
 import { EchartsModule } from './echarts.module';
 import { RedSeedPipe } from './pipes/red-seed.pipe';
+import { RmclPipe } from './pipes/rmcl.pipe';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SidebarComponent, MaterialElevationDirective, RedSeedPipe],
+  declarations: [HeaderComponent, FooterComponent, SidebarComponent, MaterialElevationDirective, RedSeedPipe, RmclPipe],
   imports: [CommonModule, MaterialModule, EchartsModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     MaterialModule,
@@ -25,6 +26,7 @@ import { RedSeedPipe } from './pipes/red-seed.pipe';
     FormsModule,
     ReactiveFormsModule,
     RedSeedPipe,
+    RmclPipe,
   ],
 })
 export class SharedModule {}

@@ -11,13 +11,18 @@
     </ng-container>
 
     <ng-container matColumnDef="ex_type">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>EVs</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>EV type</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.ex_type }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="source">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Source</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.source }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.source | rmcl }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="material">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Material</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.material | rmcl }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="srr_count">

@@ -13,7 +13,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class SampleTableComponent implements OnInit, OnChanges {
   @Input() tissueTable$: Observable<TissueTable[]>;
 
-  displayedColumns = ['_id', 'disease', 'ex_type', 'source', 'srr_count'];
+  displayedColumns = ['_id', 'disease', 'ex_type', 'source', 'material', 'srr_count'];
   dataSource: MatTableDataSource<TissueTable>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
