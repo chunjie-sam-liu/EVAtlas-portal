@@ -12,12 +12,15 @@ export class SampleContentComponent implements OnInit, OnChanges {
   @Input() sample: any;
 
   tissueTable$: Observable<TissueTable[]>;
-  tissueTableDisplayedColumns = ['srr_count'];
 
   constructor(private contentApiService: ContentApiService) {}
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
     this.tissueTable$ = this.contentApiService.getTissueTable(changes.sample.currentValue.title);
+  }
+
+  public displayStat(tissue: TissueTable): void {
+    console.log(tissue);
   }
 }

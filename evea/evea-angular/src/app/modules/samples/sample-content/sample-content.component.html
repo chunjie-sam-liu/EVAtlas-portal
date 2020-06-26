@@ -8,7 +8,7 @@
     </h2>
   </div>
   <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
-    <app-sample-table fxFlex [tissueTable$]="tissueTable$"></app-sample-table>
+    <app-sample-table fxFlex [tissueTable$]="tissueTable$" ($tissueRow)="displayStat($event)"></app-sample-table>
   </div>
   <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
     <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4"> </mat-card>

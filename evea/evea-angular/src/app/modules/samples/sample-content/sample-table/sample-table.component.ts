@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TissueTable } from 'src/app/shared/model/tissue-table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class SampleTableComponent implements OnInit, OnChanges {
   @Input() tissueTable$: Observable<TissueTable[]>;
+  @Output() $tissueRow = new EventEmitter<TissueTable>();
 
   displayedColumns = ['_id', 'disease', 'ex_type', 'source', 'material', 'srr_count'];
   dataSource: MatTableDataSource<TissueTable>;
@@ -28,5 +29,8 @@ export class SampleTableComponent implements OnInit, OnChanges {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+  public showTissueStat(row: TissueTable): void {
+    this.$tissueRow.emit(row);
   }
 }

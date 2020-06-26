@@ -2,7 +2,9 @@
   <mat-table [dataSource]="dataSource" matSort matSortActive="srr_count" matSortDisableClear matSortDirection="desc">
     <ng-container matColumnDef="_id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Project ID</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row._id }}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button color="primary" (click)="showTissueStat(row)">{{ row._id }}</button>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="disease">
