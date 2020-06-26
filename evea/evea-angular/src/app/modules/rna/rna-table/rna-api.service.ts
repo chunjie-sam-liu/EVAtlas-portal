@@ -14,13 +14,13 @@ export class RnaApiService extends BaseHttpService {
     super(http);
   }
 
-  findRnaRecords(rnaType: string, filter = '', sortOrder = 'asc', pageIndex = 0, pageSize = 10): Observable<RnaRecord[]> {
+  findRnaRecords(rnaType: string, filter = '', sortOrder = 'asc', pageIndex = 0, pageSize = 10): Observable<any> {
     return this.getData('ncrna/ncRNA_lst', {
       ncrna: rnaType,
       filter: filter.toString(),
       sort: sortOrder,
       page: pageIndex.toString(),
       size: pageSize.toString(),
-    }).pipe(map((res) => res.ncRNA_lst));
+    });
   }
 }

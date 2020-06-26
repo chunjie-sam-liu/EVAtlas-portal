@@ -52,4 +52,4 @@ GET http://localhost:5000/api/stat/srpmapstat?srp=SRP229107
 GET http://localhost:5000/api/stat/Srplst?tissues=Breast
 
 ###
-GET http://localhost:5000/api/stat/srpratiostat?srp=SRP145491
+GET http://localhost:5000/api/stat/srpratiostat?srp=ERP013193

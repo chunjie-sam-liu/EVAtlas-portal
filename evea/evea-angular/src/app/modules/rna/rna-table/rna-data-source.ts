@@ -1,6 +1,6 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { catchError, tap, finalize } from 'rxjs/operators';
+import { catchError, tap, map, finalize } from 'rxjs/operators';
 import { RnaApiService } from './rna-api.service';
 import { RnaRecord } from 'src/app/shared/model/rna-record';
 
@@ -10,7 +10,7 @@ export class RnaDataSource implements DataSource<RnaRecord> {
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
-  public length: number;
+  public resultLength: number;
 
   constructor(private rnaApiService: RnaApiService) {}
 
@@ -21,8 +21,9 @@ export class RnaDataSource implements DataSource<RnaRecord> {
       .findRnaRecords(rnaType, filter, sortOrder, pageIndex, pageSize)
       .pipe(
         tap((val) => {
-          this.length = val.length;
+          this.resultLength = val.n_recourd;
         }),
+        map((res) => res.ncRNA_lst),
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
