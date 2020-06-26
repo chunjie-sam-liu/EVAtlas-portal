@@ -15,7 +15,7 @@ category_stat_field = {
         {
             "sample_n": fields.Integer,
             "category_type": fields.Nested(
-                {"ex_type": fields.String, "tissues": fields.String,}
+                {"ex_type": fields.String, "tissues": fields.String}
             ),
         }
     ),
@@ -24,7 +24,7 @@ category_stat_field = {
         fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String})
     ),
     "tissues_type_lst": fields.List(
-        fields.Nested({"sample_n": fields.Integer, "source_type": fields.String,})
+        fields.Nested({"sample_n": fields.Integer, "source_type": fields.String})
     ),
 }
 
