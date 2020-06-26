@@ -2,10 +2,15 @@ db.sample_info_exp.aggregate([{"$match":{"srp_id": "SRP168558"}}, {"$project":{"
 
 
 
-db.miRNA_samexp.aggregate([{"$unwind": "$exp"},{"$match":{"exp.srp_id": "SRP229107"}}, {"$group":{"_id":{"GeneSymbol":"$GeneSymbol", "condition":"$exp.condition"}, "exp_lst":{"$push":"$exp.RPM"}, "srr_lst":{"$push":"$exp.srr_id"}, "avg":{"$avg":"$exp.RPM"}, "max":{"$max":"$exp.RPM"}, "min":{"$min":"$exp.RPM"}}}, {"$sort":{"min":-1, "max":1}}, {"$limit":40}])
+db.miRNA_samexp.aggregate([{"$unwind": "$exp"},{"$match":{"exp.srp_id": "SRP229107", "GeneSymbol":{"$in":["hsa-miR-30c-5p", "hsa-miR-10b-5p", "hsa-mir-7641-2-5p", "hsa-miR-185-5p", "hsa-miR-222-3p", "hsa-let-7c-5p"]}}}, {"$group":{"_id":"$exp.srr_id", "exp_lst":{"$push":"$exp.RPM"}, "mir_lst":{"$push":"$GeneSymbol"}, "condition":{"$addToSet":"$exp.condition"}}}])
+
+db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 0.01}}}, {"$group": {"_id": "$GeneSymbol", "count": {"$sum": 1}, "tissues":{"$addToSet":"$exp.tissues"}}}, {"$project":{"tissue_n":{"$size":"$tissues"}, "_id":0, "GeneSymbol":"$_id", "sample_n":"$count"}}, {"$sort":{"tissue_n":1}}, {"$limit":5}])
 
 
-db.sample_info.aggregate([{"$match": {"tissues": "Breast"}}, {"$group":{"_id": "$srp_id", "ex_type": {"$addToSet": "$ex_type"}, "disease": {"$addToSet":"$disease"}, "material": {"$addToSet":"$material"}, "source": {"$addToSet":"$source"}, "srr_count": {"$sum": 1}, "normal_n":{"$sum": {"$cond": [ { "$eq": [ "$condition", "Normal" ] }, 1, 0 ]}}, "case_n":{"$sum": {"$cond": [ { "$eq": [ "$condition", "Normal" ] }, 0, 1 ]}}}}])
+db.sample_info.aggregate([{"$match":{"srp_id":"SRP062587"}}])
+
+
+db.sample_info.aggregate([{"$group":{"_id": "$srp_id", "ex_type": {"$addToSet": "$ex_type"}, "disease": {"$addToSet":"$disease"}, "material": {"$addToSet":"$material"}, "source": {"$addToSet":"$source"}, "srr_count": {"$sum": 1}, "normal_n":{"$sum": {"$cond": [ { "$eq": [ "$condition", "Normal" ] }, 1, 0 ]}}, "case_n":{"$sum": {"$cond": [ { "$eq": [ "$condition", "Normal" ] }, 0, 1 ]}}}}])
 
 
 db.sample_info.aggregate([{'$match': {'srp_id': 'SRP229107'}}, {'$group': {'_id': '$condition', 'srr_count': {'$sum': 1}, 'map_info': {'$push': '$srr_map_info'}, 'srr_id': {'$push': '$srr_id'}}}])

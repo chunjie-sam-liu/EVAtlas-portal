@@ -5,8 +5,9 @@ GET http://localhost:5000/api/ncrna/category?ncrna=hsa-miR-199a-3p&source=Serum&
 GET http://localhost:5000/api/ncrna/sample?ncrna=hsa-miR-21-5p,hsa-miR-199a-3p&sample=SRR10417160,SRR10417152&type=miRNA
 
 
+#ncrna list: symbol loci sample_n tissue_n
 ###
-GET http://localhost:5000/api/ncrna/ncRNA_lst?ncrna=snRNA&expv=1
+GET http://localhost:5000/api/ncrna/ncRNA_lst?ncrna=miRNA&page=2&size=5
 
 ###
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1
@@ -16,5 +17,8 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tiss
 
 ###Return all expression for scatter
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA
+
+###srp expression for heatmap
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP214462&ncrna=miRNA
 
 
