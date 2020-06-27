@@ -31,7 +31,6 @@ export class RnaDataSource implements DataSource<RnaRecord> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<RnaRecord[]> {
-    console.log('Connecting data source');
     return this.rnaRecordSubject.asObservable();
   }
 

@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { TissueTable } from 'src/app/shared/model/tissue-table';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
 import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
+import { ISOMethod } from 'src/app/shared/model/iso-method';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +50,9 @@ export class ContentApiService extends BaseHttpService {
       page: pageIndex.toString(),
       size: pageSize.toString(),
     });
+  }
+
+  public getIsoMethod(id: string): Observable<ISOMethod> {
+    return this.getData('sample/project/' + id);
   }
 }

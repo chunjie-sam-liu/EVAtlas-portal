@@ -5,3 +5,9 @@ GET http://localhost:5000/api/sample/
 
 ###
 GET http://localhost:5000/api/sample/SRR10417160,SRR9675297
+
+
+
+###
+# isolation method
+GET http://localhost:5000/api/sample/project/ERP013193

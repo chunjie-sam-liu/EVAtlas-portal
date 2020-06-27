@@ -4,5 +4,10 @@
     "node_modules": true,
     "documentation": true,
   },
-  "gitlens.mode.active": "zen"
+  "gitlens.mode.active": "zen",
+  "cSpell.words": [
+    "exsosomes",
+    "microparticles",
+    "rnas"
+  ]
 }
