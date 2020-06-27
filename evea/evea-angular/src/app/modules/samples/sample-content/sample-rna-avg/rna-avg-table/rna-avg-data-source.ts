@@ -27,7 +27,6 @@ export class RnaAvgDataSource implements DataSource<RnaAvgRecord> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<RnaAvgRecord[]> {
-    console.log('Connecting data source');
     return this.rnaRecordSubject.asObservable();
   }
 
