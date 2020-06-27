@@ -23,11 +23,42 @@ db.sample_info.aggregate({"$group":{"_id":{"ex_type":"$ex_type", "tissues":"$tis
 db.miRNA_samexp.aggregate([{"$unwind":"$exp"}, {'$match': {'exp.srp_id': 'SRP229107'}}, {"$group":{"_id":"$GeneSymbol", "exp_lst":{"$push":"$exp.RPM"}, "avg":{"$avg":"$exp.RPM"}}}, {"$sort":{"avg":-1}}])
 
 db.srp_exp.find({'srp_id':"SRP214462", "class":"miRNA"})
-db.srp_exp.find({'srp_id':"SRP214462", "class":"miRNA"})
+db.srp_exp.find({'srp_id':"SRP145491", "class":"miRNA"})
 
 db.srp_exp.find({'srp_id': 'SRR10417160', 'class': 'miRNA'})
 
 
-// isolation method find one
+db.exp_miRNA.aggregate([{"$match":{"srr_id":{"$in":["SRR5631183", "SRR5631182"]}}},{"$group": {"_id":"$GeneSymbol", "exp_lst":{"$addToSet": "$RPM"}}}])
+
+db.exp_miRNA.distinct('GeneSymbol')
+
+db.sample_info.distinct('srr_id')
+
+db.test.find({"GeneSymbol":"hsa-miR-19b-1-5p"})
+
+db.exp_miRNA.find({'GeneSymbol':"hsa-miR-19b-1-5p", "srr_id": "SRR2105398"})
+
+
+db.sample_info.aggregate([{"$group":{"_id": {"tissues":"$tissues", "ex_type":"$ex_type"}}}
+db.test.update({"GeneSymbol": "hsa-miR-4655-3p","srr_id": "SRR2105143"},{ "$push":{"scores":{"$each":[{'1':'2'}, {'3':'4'}, {'5':'6'}]}}}) 
+
+db.test.find({"GeneSymbol": "pRNA.1"})
+
+db.sample_info.find({}, {"_id":0, ''})
+
+db.miRNA_samexp.distinct("GeneSymbol")
+
+db.spe_exp.find({"ex_type":"Exosomes", "condition":{"$in":["Cancer", "Disease"]}, "disease":{"$exists": true }, "GeneSymbol":"hsa-miR-99b-5p"}, {"_id":0})
+
+db.spe_exp.aggregate([{"$match":{"disease":{"$exists": true }, "condition":{"$in":["Cancer", "Disease"]}}}, {"$group":{"_id":{"ex_type":"$ex_type", "disease":"$disease", "class":"$class"}, "GeneSymbol":{"$push":"$GeneSymbol"}}}, {"$project":{"ex_type":"$_id.ex_type", "disease":"$_id.disease", "class":"$_id.class", "_id":0, "GeneSymbol":1}}, {"$group":{"_id":{"ex_type":"$ex_type", "disease":"$disease"}, "ncrna":{"$push":{"class": "$class", "GeneSymbol":"$GeneSymbol"}}}},{"$project":{"ex_type":"$_id.ex_type", "disease":"$_id.disease","ncrna":"$ncrna", "_id":0}},{"$out":"spe_disease"}])
+
+db.spe_exp.aggregate([{"$match":{"tissue":{"$exists": true }}}, {"$group":{"_id":{"ex_type":"$ex_type", "tissue":"$tissue", "class":"$class"}, "GeneSymbol":{"$push":"$GeneSymbol"}}}, {"$project":{"ex_type":"$_id.ex_type", "tissue":"$_id.tissue", "class":"$_id.class", "_id":0, "GeneSymbol":1}}, {"$group":{"_id":{"ex_type":"$ex_type", "tissue":"$tissue"}, "ncrna":{"$push":{"class": "$class", "GeneSymbol":"$GeneSymbol"}}}},{"$project":{"ex_type":"$_id.ex_type", "tissue":"$_id.tissue","ncrna":"$ncrna", "_id":0}},{"$out":"spe_tissue"}])
+
+db.spe_tissue.find({'ex_type': 'Exosomes', 'tissue': {'$regex': 'Adipose', '$options': 'i'}}, {"_id": 0, "ncrna": 1})
+
+db.sample_info.find({'ex_type': 'Exosomes', 'condition':{"$ne":"Normal"}, "disease": "Multiple sclerosis"}, {"_id":0, "srr_id":1})
 
 db.isolation_method.findOne({'srp': 'ERP013193'})
+
+
+

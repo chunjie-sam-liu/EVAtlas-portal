@@ -1,0 +1,21 @@
+
+##return tissue lst and spe ncrna lst
+###
+GET http://localhost:5000/api/spe/spetype?type=tissue&ex_type=Exosomes
+
+#return filtered disease lst and spe ncrna lst
+###
+GET http://localhost:5000/api/spe/spetype?type=tissue&ex_type=Exosomes&filter=Adipose
+
+#return disease lst and spe ncrna lst
+###
+GET http://localhost:5000/api/spe/spetype?type=disease&ex_type=Exosomes
+
+
+#return the srr_id lst for spe disease
+###
+GET http://localhost:5000/api/spe/spesrr?type=disease&ex_type=Exosomes&term=Neuroblastoma
+
+##return the srr_id lst for spe tissue
+###
+GET http://localhost:5000/api/spe/spesrr?type=tissues&ex_type=Exosomes&term=Brain

@@ -33,7 +33,6 @@ class mirnaTarget(Resource):
             mirna_target_oj = mongo.db.mir2target.aggregate(
                 [
                     {"$match": {"miRNA": args["mirna"]}},
-                    {"$sort": {"confidence": -1}},
                     {"$skip": record_skip},
                     {"$limit": args["records"]},
                 ]
