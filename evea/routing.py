@@ -9,6 +9,7 @@ from evea.routes.target import target  # ok
 from evea.routes.search import search  # ok
 from evea.routes.drug import drug  # ok
 from evea.routes.anno import anno
+from evea.routes.spe import spe
 
 # routing
 # app.register_blueprint(home, url_prefix='/api/home')
@@ -18,6 +19,8 @@ app.register_blueprint(drug, url_prefix="/api/drug")
 app.register_blueprint(stat, url_prefix="/api/stat")
 app.register_blueprint(target, url_prefix="/api/target")
 app.register_blueprint(anno, url_prefix="/api/anno")
+app.register_blueprint(spe, url_prefix="/api/spe")
+
 
 # app.register_blueprint(function, url_prefix='/api/function')
 
