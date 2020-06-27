@@ -14,3 +14,12 @@ table {
 img {
   width: 350px;
 }
+.zm {
+  width: 100%;
+  text-align: center;
+}
+.evi_func {
+  width: 40%;
+  text-align: center;
+  margin-left: 20px;
+}
