@@ -83,7 +83,7 @@ class ncRNAlist(Resource):
         parser.add_argument("filter", type=str, default="")
         parser.add_argument("sort", type=str, default="desc")
         parser.add_argument("page", type=int, default=0)
-        parser.add_argument("size", type=int, default=50)
+        parser.add_argument("size", type=int, default=10)
         args = parser.parse_args()
         record_skip = args["page"] * args["size"]
         record_limit = args["size"]
@@ -221,24 +221,32 @@ api.add_resource(SampleRankExp, "/samrankexp")
 class ncRNASrpExp(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument("srp", type=str)
-        parser.add_argument("class", type=str)
-        parser.add_argument("page", type=int, default=1)
-        parser.add_argument("size", type=int, default=50)
+        parser.add_argument("srp", type=str, required=True)
+        parser.add_argument("class", type=str, required=True)
+        parser.add_argument("filter", type=str, default="")
+        parser.add_argument("sort", type=str, default="desc")
+        parser.add_argument("page", type=int, default=0)
+        parser.add_argument("size", type=int, default=10)
         args = parser.parse_args()
-        record_skip = (args["page"] - 1) * args["size"]
+        record_skip = args["page"] * args["size"]
         record_limit = args["size"]
-        condition = {}
-        condition["srp_id"] = args["srp"]
-        if args["class"]:
-            condition["class"] = args["class"]
-        result_lst = list(
-            mongo.db.srp_exp.find(condition, {"_id": 0})
-            .skip(record_skip)
-            .limit(record_limit)
+        sort_option = {"asc": 1, "desc": -1}
+
+        condition = {
+            "srp_id": args.srp,
+            "class": args["class"],
+        }
+
+        if args.filter != "":
+            condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
+
+        mcur = mongo.db.srp_exp.find(condition, {"_id": 0}).sort(
+            "avg", sort_option[args.sort]
         )
-        print(result_lst)
-        return {"data": result_lst}
+        n_record = mcur.count()
+        result_lst = list(mcur.skip(record_skip).limit(record_limit))
+
+        return {"data": result_lst, "n_record": n_record}
 
 
 api.add_resource(ncRNASrpExp, "/ncrnasrpexp")

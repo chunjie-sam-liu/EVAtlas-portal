@@ -4,7 +4,8 @@ import { ContentApiService } from '../content-api.service';
 import { EChartOption } from 'echarts';
 import rnaType from 'src/app/shared/constants/rna-types';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
-import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
+import { sortBy as _sortBy, values as _values, sum as _sum, indexOf } from 'lodash-es';
+import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
 
 @Component({
   selector: 'app-sample-stat',
@@ -13,8 +14,8 @@ import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
 })
 export class SampleStatComponent implements OnInit, OnChanges {
   @Input() tissueRecord: TissueTable;
-  projectPie: EChartOption;
-  projectPieTitle: string;
+  projectHeatmap: EChartOption;
+  projectHeatmapTitle: string;
   projectDist: EChartOption;
   projectDistTitle: string;
   constructor(private contentApiService: ContentApiService) {}
@@ -22,11 +23,15 @@ export class SampleStatComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.projectPieTitle = `${this.tissueRecord._id} mean`;
-    this.projectDistTitle = `${this.tissueRecord._id}`;
+    this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
+    this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
 
     this.contentApiService.getProjectStat(this.tissueRecord._id).subscribe((res) => {
       this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
+    });
+
+    this.contentApiService.getProjectHeatmap(this.tissueRecord._id).subscribe((res) => {
+      this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }
   private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
@@ -79,7 +84,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
         nameTextStyle: { fontWeight: 'bolder' },
         axisTick: { show: false },
         axisLabel: { show: false },
-        data: d.map((v) => `${v.srr_id} (${v.disease})`),
+        data: d.map((v) => `${v.srr_id} (${v.disease}, ${v.ex_type})`),
       },
       yAxis: {
         type: 'value',
@@ -90,6 +95,86 @@ export class SampleStatComponent implements OnInit, OnChanges {
         nameGap: 30,
       },
       series,
+    };
+  }
+
+  private _rnaHeatmap(d: RnaHeatmap[], title: string): EChartOption {
+    let yAxis = [];
+    const xAxis = [];
+    const data = [];
+    d.map((v) => {
+      xAxis.push(v.srr_id);
+      yAxis.push(...v.mir_lst);
+    });
+    yAxis = [...new Set(yAxis)];
+    xAxis.map((v, i) => {
+      yAxis.map((vv, ii) => {
+        data.push([i, ii, '-']);
+      });
+    });
+    d.map((v, i) => {
+      v.mir_lst.map((vv, ii) => {
+        data[i * 50 + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
+      });
+    });
+
+    return {
+      title: {
+        show: false,
+        text: title,
+      },
+      grid: {
+        top: '2%',
+        left: '10%',
+        right: '2%',
+        bottom: '20%',
+      },
+      toolbox: {
+        showTitle: true,
+        feature: {
+          data: { show: false },
+          saveAsImage: {
+            title: 'Save as image',
+          },
+        },
+      },
+      tooltip: {
+        show: true,
+      },
+      xAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        splitArea: { show: true },
+        data: xAxis,
+      },
+      yAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        splitArea: { show: true },
+        data: yAxis,
+      },
+      visualMap: {
+        min: 0,
+        max: 10,
+        calculable: true,
+        orient: 'horizontal',
+        left: 'center',
+        bottom: '2%',
+      },
+      series: [
+        {
+          name: 'Punch Card',
+          type: 'heatmap',
+          data,
+          label: { show: false },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
     };
   }
 }
