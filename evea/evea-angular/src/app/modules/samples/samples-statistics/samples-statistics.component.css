@@ -1,0 +1,5 @@
+.custom-badge > .mat-badge-content {
+  width: 30px;
+  height: 20px;
+  line-height: 20px;
+}
