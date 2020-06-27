@@ -27,3 +27,7 @@ db.srp_exp.find({'srp_id':"SRP214462", "class":"miRNA"})
 
 db.srp_exp.find({'srp_id': 'SRR10417160', 'class': 'miRNA'})
 
+
+// isolation method find one
+
+db.isolation_method.findOne({'srp': 'ERP013193'})

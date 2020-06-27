@@ -69,3 +69,19 @@ class SampleInfo(Resource):
 
 
 api.add_resource(SampleInfo, "/<string:sample_name>")
+
+
+model_iso_mtd = {"srp": fields.String, "method": fields.String}
+
+
+class IsolationMethod(Resource):
+    @marshal_with(model_iso_mtd)
+    def get(self, id):
+        condition = {"srp": id}
+        print(condition)
+        mcur = mongo.db.isolation_method.find_one(condition)
+        return mcur
+
+
+api.add_resource(IsolationMethod, "/project/<string:id>")
+
