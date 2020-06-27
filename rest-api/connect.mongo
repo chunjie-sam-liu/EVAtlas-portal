@@ -27,7 +27,7 @@ db.srp_exp.find({'srp_id':"SRP145491", "class":"miRNA"})
 
 db.srp_exp.find({'srp_id': 'SRR10417160', 'class': 'miRNA'})
 
-<<<<<<< HEAD
+
 db.exp_miRNA.aggregate([{"$match":{"srr_id":{"$in":["SRR5631183", "SRR5631182"]}}},{"$group": {"_id":"$GeneSymbol", "exp_lst":{"$addToSet": "$RPM"}}}])
 
 db.exp_miRNA.distinct('GeneSymbol')
@@ -57,9 +57,8 @@ db.spe_exp.aggregate([{"$match":{"tissue":{"$exists": true }}}, {"$group":{"_id"
 db.spe_tissue.find({'ex_type': 'Exosomes', 'tissue': {'$regex': 'Adipose', '$options': 'i'}}, {"_id": 0, "ncrna": 1})
 
 db.sample_info.find({'ex_type': 'Exosomes', 'condition':{"$ne":"Normal"}, "disease": "Multiple sclerosis"}, {"_id":0, "srr_id":1})
-=======
-
-// isolation method find one
 
 db.isolation_method.findOne({'srp': 'ERP013193'})
->>>>>>> f777011bc692f3a0f039e8e77632281541c1ac51
+
+
+

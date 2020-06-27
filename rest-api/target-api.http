@@ -1,6 +1,6 @@
 
-GET http://localhost:5000/api/target/
+GET http://localhost:5000/api/target?mirna=hsa-miR-21-5p
 
 
 ###
-GET http://localhost:5000/api/target?mirna=hsa-miR-21-5p&page=1&records=5
+GET http://localhost:5000/api/target?mirna=hsa-miR-21-5p
