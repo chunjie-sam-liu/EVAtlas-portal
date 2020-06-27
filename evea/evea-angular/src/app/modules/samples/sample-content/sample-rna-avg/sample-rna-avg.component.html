@@ -1,4 +1,7 @@
 <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <mat-card-header>
+    <mat-card-title> {{ tissueRecord._id }} small RNA average expression </mat-card-title>
+  </mat-card-header>
   <mat-tab-group mat-stretch-tabs dynamicHeight color="warn">
     <mat-tab *ngFor="let tab of rnaTypes">
       <ng-template mat-tab-label>{{ tab.label }}</ng-template>
