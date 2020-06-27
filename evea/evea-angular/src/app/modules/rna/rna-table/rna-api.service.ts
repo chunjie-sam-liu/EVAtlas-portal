@@ -14,7 +14,7 @@ export class RnaApiService extends BaseHttpService {
     super(http);
   }
 
-  findRnaRecords(rnaType: string, filter = '', sortOrder = 'asc', pageIndex = 0, pageSize = 10): Observable<any> {
+  findRnaRecords(rnaType: string, filter = '', sortOrder = 'desc', pageIndex = 0, pageSize = 10): Observable<any> {
     return this.getData('ncrna/ncRNA_lst', {
       ncrna: rnaType,
       filter: filter.toString(),

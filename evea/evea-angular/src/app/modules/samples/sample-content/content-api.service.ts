@@ -39,4 +39,15 @@ export class ContentApiService extends BaseHttpService {
       ncrna: 'miRNA',
     }).pipe(map((res) => res.srp_heatmap_lst[0].miRNA));
   }
+
+  public getRnaAvgRecords(id: string, rnaType: string, filter = '', sortOrder = 'desc', pageIndex = 0, pageSize = 10): Observable<any> {
+    return this.getData('ncrna/ncrnasrpexp', {
+      srp: id,
+      class: rnaType,
+      filter: filter.toString(),
+      sort: sortOrder,
+      page: pageIndex.toString(),
+      size: pageSize.toString(),
+    });
+  }
 }
