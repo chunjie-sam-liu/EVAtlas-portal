@@ -21,6 +21,13 @@
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="count">
+    <mat-header-cell *matHeaderCellDef>Expressed in number of samples</mat-header-cell>
+    <mat-cell *matCellDef="let rna">
+      {{ rna.count | number }}
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

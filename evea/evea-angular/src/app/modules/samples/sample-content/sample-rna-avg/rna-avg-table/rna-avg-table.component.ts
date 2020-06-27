@@ -17,7 +17,7 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() tissueRecord: TissueTable;
 
   dataSource: RnaAvgDataSource;
-  displayedColumns = ['symbol', 'avg'];
+  displayedColumns = ['symbol', 'avg', 'count'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
