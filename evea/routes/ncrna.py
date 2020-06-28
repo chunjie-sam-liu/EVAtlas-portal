@@ -63,7 +63,10 @@ source_ex_type_exp_fields_lst = {
 }
 
 ncRNA_count_fields = {
-    "loci": fields.String(attribute="loci"),
+    "chromosome": fields.String(attribute="chromosome"),
+    "strand": fields.String(attribute="-"),
+    "end": fields.String(attribute="end"),
+    "start": fields.String(attribute="start"),
     "tissues": fields.Integer(attribute="tissue_n"),
     "samples": fields.Integer(attribute="sample_n"),
     "GeneSymbol": fields.String,

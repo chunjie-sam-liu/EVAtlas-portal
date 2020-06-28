@@ -9,7 +9,7 @@ GET http://localhost:5000/api/ncrna/sample?ncrna=hsa-miR-21-5p,hsa-miR-199a-3p&s
 ###
 GET http://localhost:5000/api/ncrna/ncRNA_lst
   ?ncrna=miRNA
-  &filter=
+  &filter=let
   &sort=asc
   &page=0
   &size=10
