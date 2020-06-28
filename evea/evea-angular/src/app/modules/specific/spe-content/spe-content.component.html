@@ -7,7 +7,7 @@
   </div>
 
   <ng-container *ngIf="speTissue$ | async as speTissue; else loading">
-    <mat-card fxFlex *ngFor="let ncrna of speTissue.ncrna" appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <mat-card fxFlex *ngFor="let ncrna of speTissue.ncrna.sort(sortGS)" appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header class="page-subheader">
         <mat-card-title>
           {{ ncrna.class }} from {{ tissue.ex_type | lowercase }} specificly expressed in {{ tissue.tissue }}
