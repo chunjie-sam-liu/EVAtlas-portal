@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartOption } from 'echarts';
 import RnaTypeDist from 'src/app/shared/constants/rna-type-dist';
+import statDistData from 'src/app/shared/constants/sample-stat-overview';
 
 @Component({
   selector: 'app-stat-overview',
@@ -31,5 +32,72 @@ export class StatOverviewComponent implements OnInit {
     ],
   };
 
+  statTitle = 'Tissues and samples in EVatlas';
+  statDist: EChartOption = this._statDist(statDistData, this.statTitle);
+
   ngOnInit(): void {}
+
+  private _statDist(d: any, title: string): EChartOption {
+    return {
+      title: {
+        show: false,
+        text: title,
+      },
+      grid: {
+        top: '2%',
+        left: '10%',
+        right: '2%',
+        bottom: '20%',
+      },
+      toolbox: {
+        showTitle: true,
+        feature: {
+          data: { show: false },
+          saveAsImage: {
+            title: 'Save as image',
+          },
+        },
+      },
+      tooltip: {
+        show: true,
+        trigger: 'axis',
+      },
+      legend: {
+        data: d.legend,
+      },
+      xAxis: {
+        type: 'category',
+        show: true,
+        name: 'Tissues',
+        nameLocation: 'center',
+        nameGap: 60,
+        nameTextStyle: { fontWeight: 'bolder' },
+        axisTick: { show: false },
+        axisLabel: { show: true, interval: 0, rotate: 45 },
+        data: d.xAxis,
+      },
+      yAxis: {
+        type: 'value',
+        show: true,
+        name: 'Number of samples',
+        nameLocation: 'center',
+        nameTextStyle: { fontWeight: 'bolder' },
+        nameGap: 30,
+      },
+      series: [
+        {
+          name: d.legend[0],
+          type: 'bar',
+          stack: 'total',
+          data: d.exo,
+        },
+        {
+          name: d.legend[1],
+          type: 'bar',
+          stack: 'total',
+          data: d.mv,
+        },
+      ],
+    };
+  }
 }
