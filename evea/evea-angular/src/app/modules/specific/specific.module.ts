@@ -5,9 +5,10 @@ import { SpecificRoutingModule } from './specific-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { SpecificComponent } from './specific.component';
+import { SpeContentComponent } from './spe-content/spe-content.component';
 
 @NgModule({
-  declarations: [SpecificComponent],
+  declarations: [SpecificComponent, SpeContentComponent],
   imports: [CommonModule, SpecificRoutingModule, SharedModule],
 })
 export class SpecificModule {}

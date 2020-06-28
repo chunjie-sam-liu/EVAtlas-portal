@@ -11,8 +11,17 @@
         <h2 class="page-subheader">Exosomes</h2>
         <div fxLayout="row wrap" fxLayoutGap="10px" fxFlexAlign="space-between center">
           <ng-container *ngFor="let exo of exos">
-            <mat-card fxFlex.sm="0 1 calc(95%)" appMaterialElevation defaultElevation="4" raisedElevation="15" class="card-margin">
-              <img mat-card-image [src]="assets + '/sample-imgs/' + exo.tissue.replace(' ', '_') + '.png'" />
+            <mat-card
+              fxFlex.sm="0 1 calc(95%)"
+              appMaterialElevation
+              defaultElevation="4"
+              raisedElevation="15"
+              class="card-margin"
+              (click)="showContent(exo)"
+            >
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <img mat-card-image [src]="assets + '/sample-imgs/' + exo.tissue.replace(' ', '_') + '.png'" />
+              </div>
               <mat-card-footer>{{ exo.tissue }}</mat-card-footer>
             </mat-card>
           </ng-container>
@@ -21,8 +30,17 @@
         <h2 class="page-subheader">Microvesicles</h2>
         <div fxLayout="row wrap" fxLayoutGap="10px" fxFlexAlign="space-between center">
           <ng-container *ngFor="let mv of mvs">
-            <mat-card fxFlex.sm="0 1 calc(95%)" appMaterialElevation defaultElevation="4" raisedElevation="15" class="card-margin">
-              <img mat-card-image [src]="assets + '/sample-imgs/' + mv.tissue.replace(' ', '_') + '.png'" />
+            <mat-card
+              fxFlex.sm="0 1 calc(95%)"
+              appMaterialElevation
+              defaultElevation="4"
+              raisedElevation="15"
+              class="card-margin"
+              (click)="showContent(mv)"
+            >
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <img mat-card-image [src]="assets + '/sample-imgs/' + mv.tissue.replace(' ', '_') + '.png'" />
+              </div>
               <mat-card-footer>{{ mv.tissue }}</mat-card-footer>
             </mat-card>
           </ng-container>
