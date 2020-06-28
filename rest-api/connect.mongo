@@ -70,3 +70,8 @@ db.spe_tissue.find({"ex_type": "Microvesicles"}, {"tissue": 1, "ex_type":1, "_id
 
 
 db.spe_tissue.find({}, {"tissue": 1, "ex_type":1, "_id": 0})
+
+
+db.spe_tissue.find({"ex_type": "Microvesicles", "tissue": "Brain"}, {"_id": 0}).toArray()
+
+db.spe_tissue.find({"ex_type": "Microvesicles", "tissue": "Brain"}, {"_id": 0}).sort({"class": -1}).toArray()

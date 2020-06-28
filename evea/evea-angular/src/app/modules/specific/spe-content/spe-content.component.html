@@ -1,1 +1,14 @@
 {{ tissue.ex_type }} {{ tissue.tissue }}
+
+<ng-container *ngIf="speTissue$ | async as speTissue; else loading">
+  <div *ngFor="let ncrna of speTissue.ncrna">
+    {{ ncrna.class }}
+    <p *ngFor="let s of ncrna.GeneSymbol">
+      {{ s }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+</ng-template>
