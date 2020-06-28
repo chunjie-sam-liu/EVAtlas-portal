@@ -1,4 +1,7 @@
-GET http://localhost:5000/api/anno/?ncrna=hsa-miR-495-3p
+GET http://localhost:5000/api/anno/?ncrna=hsa-miR-21-5p
+
+###
+GET http://localhost:5000/api/anno/?ncrna=U3
 
 ###
 GET http://localhost:5000/api/anno/one/hsa-let-7a-3p
