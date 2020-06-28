@@ -1,3 +1,8 @@
-<mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
-  <div echarts [options]="chartOption" class="demo-chart"></div>
-</mat-card>
+<div fxFlex="grow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" class="overview">
+  <mat-card fxFlex="50%" appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <div echarts [options]="statDist" class="chart-hight"></div>
+  </mat-card>
+  <mat-card fxFlex="50%" appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <div echarts [options]="pieChart" class="chart-hight"></div>
+  </mat-card>
+</div>

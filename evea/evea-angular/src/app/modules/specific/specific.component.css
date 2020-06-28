@@ -1,0 +1,16 @@
+.card-margin {
+  margin-bottom: 10px;
+}
+
+img {
+  width: 100px;
+  height: 80px;
+}
+
+mat-card-footer {
+  text-align: center;
+}
+
+mat-card {
+  cursor: pointer;
+}

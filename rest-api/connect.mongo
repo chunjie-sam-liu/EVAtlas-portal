@@ -40,7 +40,7 @@ db.exp_miRNA.find({'GeneSymbol':"hsa-miR-19b-1-5p", "srr_id": "SRR2105398"})
 
 
 db.sample_info.aggregate([{"$group":{"_id": {"tissues":"$tissues", "ex_type":"$ex_type"}}}
-db.test.update({"GeneSymbol": "hsa-miR-4655-3p","srr_id": "SRR2105143"},{ "$push":{"scores":{"$each":[{'1':'2'}, {'3':'4'}, {'5':'6'}]}}}) 
+db.test.update({"GeneSymbol": "hsa-miR-4655-3p","srr_id": "SRR2105143"},{ "$push":{"scores":{"$each":[{'1':'2'}, {'3':'4'}, {'5':'6'}]}}})
 
 db.test.find({"GeneSymbol": "pRNA.1"})
 
@@ -60,5 +60,25 @@ db.sample_info.find({'ex_type': 'Exosomes', 'condition':{"$ne":"Normal"}, "disea
 
 db.isolation_method.findOne({'srp': 'ERP013193'})
 
+// specific expression
+db.spe_tissue.find({"ex_type": "Exosomes"}).count()
+db.spe_tissue.find({"ex_type": "Microvesicles"}).count()
 
+// export as constan
+db.spe_tissue.find({"ex_type": "Exosomes"}, {"tissue": 1, "ex_type":1, "_id": 0}).sort({"tissue": 1}).toArray()
+db.spe_tissue.find({"ex_type": "Microvesicles"}, {"tissue": 1, "ex_type":1, "_id": 0}).sort({"tissue": 1}).toArray()
+
+
+db.spe_tissue.find({}, {"tissue": 1, "ex_type":1, "_id": 0})
+
+
+db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}},{"$group": {"_id": "$GeneSymbol", "count": {"$sum": 1}, "tissues":{"$addToSet":"$exp.tissues"}}}, {"$project": {"_id": 0, "GeneSymbol": "$_id", "sample_n": "$count", "tissue_n":{"$size":"$tissues"}}}, {"$lookup": {"from":"ncrna_anno", "localField": "GeneSymbol", "foreignField": "GeneSymbol", "as":"anno"}}, {"$unwind": "$anno"}, {"$project": {"_id": 0, "GeneSymbol": 1, "sample_n": 1, "tissue_n":1, "chromosome":"$anno.chr", "start":"$anno.start", "end":"$anno.end", "strand":"$anno.strand"}},{"$sort":{"tissue_n":-1}}])
+
+
+db.ncrna_anno.find({"GeneSymbol":"hsa-miR-495-3p"})
+
+
+db.spe_tissue.find({"ex_type": "Microvesicles", "tissue": "Brain"}, {"_id": 0}).toArray()
+
+db.spe_tissue.find({"ex_type": "Microvesicles", "tissue": "Brain"}, {"_id": 0}).sort({"class": -1}).toArray()
 
