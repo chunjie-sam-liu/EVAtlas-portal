@@ -70,3 +70,8 @@ db.spe_tissue.find({"ex_type": "Microvesicles"}, {"tissue": 1, "ex_type":1, "_id
 
 
 db.spe_tissue.find({}, {"tissue": 1, "ex_type":1, "_id": 0})
+
+db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}},{"$group": {"_id": "$GeneSymbol", "count": {"$sum": 1}, "tissues":{"$addToSet":"$exp.tissues"}}}, {"$project": {"_id": 0, "GeneSymbol": "$_id", "sample_n": "$count", "tissue_n":{"$size":"$tissues"}}}, {"$lookup": {"from":"ncrna_anno", "localField": "GeneSymbol", "foreignField": "GeneSymbol", "as":"anno"}}, {"$unwind": "$anno"}, {"$project": {"_id": 0, "GeneSymbol": 1, "sample_n": 1, "tissue_n":1, "chromosome":"$anno.chr", "start":"$anno.start", "end":"$anno.end", "strand":"$anno.strand"}},{"$sort":{"tissue_n":-1}}])
+
+
+db.ncrna_anno.find({"GeneSymbol":"hsa-miR-495-3p"})
