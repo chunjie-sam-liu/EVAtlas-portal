@@ -23,7 +23,6 @@ class ncrnaAnno(Resource):
         # ncrna_list = list(mcur)
         return mcur
 
-
 api.add_resource(ncrnaAnno, "/")
 
 
