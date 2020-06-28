@@ -3,8 +3,12 @@
     <h1 class="page-header">{{ rnaSymbol }} expression in EVs</h1>
   </div>
   <div fxFlex class="not-float">
-    <div fxLayout>
-      <app-rna-basic-info fxFlex [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <app-rna-basic-info fxFlex="grow" [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
+      <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
+        <app-rna-basic-info fxFlex [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
+        <app-rna-basic-info fxFlex [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
+      </div>
     </div>
   </div>
 
