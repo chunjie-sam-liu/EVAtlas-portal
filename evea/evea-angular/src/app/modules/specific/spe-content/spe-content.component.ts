@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { SpeApiService } from '../spe-api.service';
+import { Observable } from 'rxjs';
+import { SpeTissue } from 'src/app/shared/model/spe-tissue';
 
 @Component({
   selector: 'app-spe-content',
@@ -7,10 +10,13 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 })
 export class SpeContentComponent implements OnInit, OnChanges {
   @Input() tissue: any;
-  constructor() {}
+
+  speTissue$: Observable<SpeTissue>;
+  constructor(private speApiService: SpeApiService) {}
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.tissue);
+    this.speTissue$ = this.speApiService.getSpeTissue('tissue', this.tissue.ex_type, this.tissue.tissue);
   }
 }

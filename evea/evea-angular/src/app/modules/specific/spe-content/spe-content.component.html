@@ -1,1 +1,26 @@
-{{ tissue.ex_type }} {{ tissue.tissue }}
+<div fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex="none">
+    <h2 class="page-subheader">
+      <span style="color: #da4233;"> {{ tissue.tissue }} {{ tissue.ex_type | lowercase }} </span>
+      specific RNA expression.
+    </h2>
+  </div>
+
+  <ng-container *ngIf="speTissue$ | async as speTissue; else loading">
+    <mat-card fxFlex *ngFor="let ncrna of speTissue.ncrna" appMaterialElevation defaultElevation="4" raisedElevation="4">
+      <mat-card-header class="page-subheader">
+        <mat-card-title>
+          {{ ncrna.class }} from {{ tissue.ex_type | lowercase }} specificly expressed in {{ tissue.tissue }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-chip-list>
+          <mat-chip *ngFor="let s of ncrna.GeneSymbol" color="accent" selected>{{ s }}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-template #loading>
+    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+  </ng-template>
+</div>
