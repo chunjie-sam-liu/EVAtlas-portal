@@ -20,8 +20,8 @@ class ncrnaAnno(Resource):
         mcur = mongo.db.ncrna_anno.find_one(
             {"GeneSymbol": {"$in": query_ncrna_list}}, {"_id": 0}
         )
-        # ncrna_list = list(mcur)
         return mcur
+
 
 api.add_resource(ncrnaAnno, "/")
 
