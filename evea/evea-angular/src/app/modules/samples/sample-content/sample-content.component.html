@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="20px">
+<div fxLayout="column" fxLayoutGap="10px">
   <div fxFlex="none">
     <h2 class="page-subheader">
       <span style="color: #da4233;">
@@ -7,7 +7,7 @@
       exsosomes and microparticles.
     </h2>
   </div>
-  <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="20px">
+  <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
     <app-sample-table fxFlex [tissueTable$]="tissueTable$" ($tissueRow)="displayTissueStat($event)"></app-sample-table>
   </div>
   <ng-container *ngIf="showProject">
