@@ -13,6 +13,8 @@ export class RnaDetailApiService extends BaseHttpService {
   }
 
   public findRnaBasicInfo(s: string): Observable<RnaBasicInfo> {
-    return this.getData('anno/one/' + s);
+    return this.getData('anno', {
+      ncrna: s,
+    });
   }
 }
