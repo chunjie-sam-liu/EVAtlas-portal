@@ -40,7 +40,7 @@ db.exp_miRNA.find({'GeneSymbol':"hsa-miR-19b-1-5p", "srr_id": "SRR2105398"})
 
 
 db.sample_info.aggregate([{"$group":{"_id": {"tissues":"$tissues", "ex_type":"$ex_type"}}}
-db.test.update({"GeneSymbol": "hsa-miR-4655-3p","srr_id": "SRR2105143"},{ "$push":{"scores":{"$each":[{'1':'2'}, {'3':'4'}, {'5':'6'}]}}}) 
+db.test.update({"GeneSymbol": "hsa-miR-4655-3p","srr_id": "SRR2105143"},{ "$push":{"scores":{"$each":[{'1':'2'}, {'3':'4'}, {'5':'6'}]}}})
 
 db.test.find({"GeneSymbol": "pRNA.1"})
 
@@ -60,5 +60,13 @@ db.sample_info.find({'ex_type': 'Exosomes', 'condition':{"$ne":"Normal"}, "disea
 
 db.isolation_method.findOne({'srp': 'ERP013193'})
 
+// specific expression
+db.spe_tissue.find({"ex_type": "Exosomes"}).count()
+db.spe_tissue.find({"ex_type": "Microvesicles"}).count()
+
+// export as constan
+db.spe_tissue.find({"ex_type": "Exosomes"}, {"tissue": 1, "ex_type":1, "_id": 0}).sort({"tissue": 1}).toArray()
+db.spe_tissue.find({"ex_type": "Microvesicles"}, {"tissue": 1, "ex_type":1, "_id": 0}).sort({"tissue": 1}).toArray()
 
 
+db.spe_tissue.find({}, {"tissue": 1, "ex_type":1, "_id": 0})
