@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartOption } from 'echarts';
+import RnaTypeDist from 'src/app/shared/constants/rna-type-dist';
 
 @Component({
   selector: 'app-stat-overview',
@@ -8,18 +9,24 @@ import { EChartOption } from 'echarts';
 })
 export class StatOverviewComponent implements OnInit {
   constructor() {}
-  chartOption: EChartOption = {
-    xAxis: {
-      type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    },
-    yAxis: {
-      type: 'value',
+  pieChart: EChartOption = {
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b} : ({d}%)',
     },
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line',
+        name: 'RNA mapping percentage in MV/EXO',
+        type: 'pie',
+        radius: '90%',
+        data: RnaTypeDist.map((v) => ({ name: v.rnaType, value: v.total })),
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
+        },
       },
     ],
   };
