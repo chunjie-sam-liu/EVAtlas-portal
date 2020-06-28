@@ -5,10 +5,7 @@
   <div fxFlex class="not-float">
     <div fxLayout="column" fxLayoutGap="10px">
       <app-rna-basic-info fxFlex="grow" [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
-      <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-        <app-rna-basic-info fxFlex [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
-        <app-rna-basic-info fxFlex [rnaSymbol]="rnaSymbol"></app-rna-basic-info>
-      </div>
+      <app-rna-expr fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px"></app-rna-expr>
     </div>
   </div>
 
