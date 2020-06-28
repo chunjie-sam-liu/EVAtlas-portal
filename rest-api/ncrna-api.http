@@ -16,6 +16,10 @@ GET http://localhost:5000/api/ncrna/ncRNA_lst
 
 ###
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=Exosomes
+
+###
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=Microvesicles
+
 ###any combination can work
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1&disease=1&source=1&material=1&condition=1
 
