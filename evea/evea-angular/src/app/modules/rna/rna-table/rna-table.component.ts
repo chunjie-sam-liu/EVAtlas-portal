@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, distinctUntilChanged, startWith, tap, delay } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { merge, fromEvent } from 'rxjs';
-import { RnaTable } from 'src/app/shared/model/rna-table';
 import { RnaApiService } from './rna-api.service';
 import { RnaDataSource } from './rna-data-source';
 import { MatPaginator } from '@angular/material/paginator';
