@@ -8,7 +8,25 @@
     <div fxLayout fxLayoutGap="10px">
       <div fxFlex="70%"></div>
       <div fxFlex="30%">
-        <app-spe-card></app-spe-card>
+        <h2 class="page-subheader">Exosomes</h2>
+        <div fxLayout="row wrap" fxLayoutGap="10px" fxFlexAlign="space-between center">
+          <ng-container *ngFor="let exo of exos">
+            <mat-card fxFlex.sm="0 1 calc(95%)" appMaterialElevation defaultElevation="4" raisedElevation="15" class="card-margin">
+              <img mat-card-image [src]="assets + '/sample-imgs/' + exo.tissue.replace(' ', '_') + '.png'" />
+              <mat-card-footer>{{ exo.tissue }}</mat-card-footer>
+            </mat-card>
+          </ng-container>
+        </div>
+
+        <h2 class="page-subheader">Microvesicles</h2>
+        <div fxLayout="row wrap" fxLayoutGap="10px" fxFlexAlign="space-between center">
+          <ng-container *ngFor="let mv of mvs">
+            <mat-card fxFlex.sm="0 1 calc(95%)" appMaterialElevation defaultElevation="4" raisedElevation="15" class="card-margin">
+              <img mat-card-image [src]="assets + '/sample-imgs/' + mv.tissue.replace(' ', '_') + '.png'" />
+              <mat-card-footer>{{ mv.tissue }}</mat-card-footer>
+            </mat-card>
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>
