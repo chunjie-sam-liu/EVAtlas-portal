@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { RnaBasicInfo } from 'src/app/shared/model/rna-basic-info';
 import { RnaExpr } from 'src/app/shared/model/rna-expr';
 import { map } from 'rxjs/operators';
-import { Drug } from 'src/app/shared/model/drug';
-import { MirTarget } from 'src/app/shared/model/mir-target';
+import { DrugRecord } from 'src/app/shared/model/drug';
+import { TargetRecord } from 'src/app/shared/model/mir-target';
 
 @Injectable({
   providedIn: 'root',
@@ -29,12 +29,10 @@ export class RnaDetailApiService extends BaseHttpService {
     }).pipe(map((res) => res.data));
   }
 
-  public getmiRNADrugs(mirna: string): Observable<Drug> {
-    return this.getData('drug/db', { mirna });
+  public getmiRNADrugs(mirna: string): Observable<DrugRecord[]> {
+    return this.getData('drug/db', { mirna }).pipe(map((res) => res.mir_drug_list));
   }
-  public getmiRNATarget(mirna: string): Observable<MirTarget[]> {
-    return this.getData('target', {
-      mirna,
-    }).pipe(map((res) => res.mir_target_list));
+  public getmiRNATarget(mirna: string): Observable<TargetRecord[]> {
+    return this.getData('target', { mirna }).pipe(map((res) => res.mir_target_list));
   }
 }

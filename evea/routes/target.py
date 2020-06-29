@@ -6,12 +6,12 @@ target = Blueprint("target", __name__)
 api = Api(target)
 
 mir_target_fields = {
-    "mirna": fields.String,
-    "confidence": fields.String,
-    "target": fields.String,
-    "pubmedid": fields.String,
-    "source": fields.String,
-    "experiment": fields.String,
+    "mirna": fields.String(attribute="miRNA"),
+    "Confidence": fields.String(attribute="confidence"),
+    "Target": fields.String(attribute="target"),
+    "PMID": fields.String(attribute="pubmedid"),
+    "Source": fields.String(attribute="source"),
+    "Experiment": fields.String(attribute="experiment"),
 }
 
 mir_target_list_fields = {
@@ -24,21 +24,11 @@ class mirnaTarget(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument("mirna", type=str)
-        parser.add_argument("page", type=int, default=1)
-        parser.add_argument("records", type=int, default=10)
         args = parser.parse_args()
-        record_skip = (args["page"] - 1) * args["records"]
-        condition = {}
-        if args["mirna"]:
-            mirna_target_oj = mongo.db.mir2target.aggregate(
-                [
-                    {"$match": {"miRNA": args["mirna"]}},
-                    {"$skip": record_skip},
-                    {"$limit": args["records"]},
-                ]
-            )
-            mirna_target_lst = list(mirna_target_oj)
-            return {"mir_target_list": mirna_target_lst}
+        condition = {"miRNA": args.mirna}
+        mcur = mongo.db.mir2target.find(condition)
+
+        return {"mir_target_list": list(mcur.limit(2000))}
 
 
-api.add_resource(mirnaTarget, "/")
+api.add_resource(mirnaTarget, "")
