@@ -24,10 +24,10 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-mir-4292-3p&type=miRNA&ti
 GET http://localhost:5000/api/ncrnaexp?ncrna=hsa-miR-21-5p&type=miRNA&tissues=1&ex_type=Exosomes
 
 ###any combination can work
-GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-let-7a-3p&type=miRNA&tissues=1&ex_type=1&disease=1&source=1&material=1&condition=1
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type=rRNA&tissues=1&ex_type=1&disease=1&source=1&material=1&condition=1
 
 ###Return all expression for scatter
-GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=RNU2-2P.1&type=snRNA&ex_type=Exosomes
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type=rRNA&ex_type=Exosomes
 
 ###srp expression for heatmap
 GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP057172&ncrna=miRNA
