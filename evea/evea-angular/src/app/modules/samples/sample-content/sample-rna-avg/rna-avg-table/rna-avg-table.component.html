@@ -13,7 +13,7 @@
   <ng-container matColumnDef="symbol">
     <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
     <mat-cell *matCellDef="let rna">
-      <a (click)="goToDetail(rna.GeneSymbol)">{{ rna.GeneSymbol }}</a>
+      <a [routerLink]="['/rna/detail', rna.GeneSymbol]">{{ rna.GeneSymbol }}</a>
     </mat-cell>
   </ng-container>
 
