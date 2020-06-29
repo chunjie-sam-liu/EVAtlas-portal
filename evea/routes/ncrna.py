@@ -4,6 +4,7 @@ import pymongo
 from flask_restful import Api, Resource, fields, marshal_with, reqparse, marshal
 
 import itertools
+import re
 
 ncrna = Blueprint("ncrna", __name__)
 api = Api(ncrna)
@@ -125,9 +126,16 @@ class ncRNAexp(Resource):
         ncrna_query = args["ncrna"].strip()
         tmp_l = ["disease", "tissues", "source", "material", "condition"]
         condition = {i: "$exp." + i for i in tmp_l if args[i]}
+        print(args)
         ncrna_exp_oj = mongo.db[ncrna_exp_db].aggregate(
             [
-                {"$match": {"GeneSymbol": ncrna_query}},
+                {
+                    "$match": {
+                        "GeneSymbol": {
+                            "$regex": re.compile(r"{0}".format(ncrna_query), re.I)
+                        }
+                    }
+                },
                 {"$unwind": "$exp"},
                 {"$match": {"exp.ex_type": args["ex_type"]}},
                 {"$group": {"_id": condition, "exp_lst": {"$push": "$exp.RPM"}}},
