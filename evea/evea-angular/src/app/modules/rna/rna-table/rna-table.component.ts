@@ -16,7 +16,7 @@ export class RnaTableComponent implements OnInit, AfterViewInit {
   @Input() rnaType: string;
 
   dataSource: RnaDataSource;
-  displayedColumns = ['symbol', 'loci', 'tissues', 'samples'];
+  displayedColumns = ['symbol', 'loci', 'strand', 'tissues', 'samples'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
