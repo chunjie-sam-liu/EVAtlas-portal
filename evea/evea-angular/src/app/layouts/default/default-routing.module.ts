@@ -3,9 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DefaultComponent } from './default.component';
 
-import { ContactComponent } from 'src/app/modules/contact/contact.component';
-import { DocumentComponent } from 'src/app/modules/document/document.component';
-
 const routes: Routes = [
   {
     path: '',
