@@ -12,10 +12,13 @@
       </mat-card-header>
       <mat-card-content>
         <p>
-          EVAtlas (Extracellular Vescile Atlas) is a comprehensive database depositing <span style="color: DarkViolet;">
-          expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span> in more than 2,000 EV samples
-          from 23 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to explore the conditional 
-          expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated pathways, miRNA functions, and related publications.
+          EVAtlas (Extracellular Vescile Atlas) is a comprehensive database depositing
+          <span style="color: DarkViolet;">
+            expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span
+          >
+          in more than 2,000 EV samples from 23 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to
+          explore the conditional expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated pathways, miRNA
+          functions, and related publications.
         </p>
         <h3>Abstract Summary</h3>
         <img mat-card-image class="zm" [src]="assets + '/imgs/' + 'zm.png'" />
@@ -32,27 +35,27 @@
         <ol>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/samples">Sample module:</a> helps users to search the project and sample information of Exosomes or Microvesicles in tissues
-              , and browse their component ratio, heatmap and expression profiles of 8 tyes of ncRNAs.
+              <a routerLink="/samples">Sample module:</a> helps users to search the project and sample information of Exosomes or
+              Microvesicles in tissues , and browse their component ratio, heatmap and expression profiles of 8 tyes of ncRNAs.
             </p>
           </li>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/rna">Expression module:</a> display the expression distribution of ncRNAs in collected samples and tissues, and provides the 
-              basic information and expressin profiles for ncRNAs across samples and conditions. For miRNAs, users can browsed
-              comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related drug, miRNA regulated
-              pathways, miRNA function, and related publications.
+              <a routerLink="/rna">Expression module:</a> display the expression distribution of ncRNAs in collected samples and tissues,
+              and provides the basic information and expressin profiles for ncRNAs across samples and conditions. For miRNAs, users can
+              browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related drug, miRNA
+              regulated pathways, miRNA function, and related publications.
             </p>
           </li>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA, piRNA and others)
-              in tissues and diseases.
+              <a routerLink="/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA,
+              piRNA and others) in tissues and diseases.
             </p>
           </li>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/">Search module:</a> provides a quick search function for users to rapidly inquery the expression profiles of
+              <a routerLink="/">Search module:</a> provides a quick search function for users to rapidly inquery the expression profiles of
               their interested ncRNAs across samples and conditions.
             </p>
           </li>
@@ -70,9 +73,9 @@
           <li>
             <p>
               We downloaded a total of 2,831 small RNA sequencing datasets of exosomes and microvesicles samples
-              <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a> (up to 30/05/2020). 
-              Then, we manually examined the sources of samples and their isolation method to ensure their categories (exosome or microvesicle or others)
-              according to Mateescu's paper (details in the following picture). Finally, after quality control, we obtained 
+              <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a> (up to 30/05/2020). Then, we manually
+              examined the sources of samples and their isolation method to ensure their categories (exosome or microvesicle or others)
+              according to Mateescu's paper (details in the following picture). Finally, after quality control, we obtained
               <strong style="color: DarkViolet;">2,271</strong> samples from 23 human tissues(organs) and 40 diseases. Furthermore,.
             </p>
             <h3>EV isolation techniques</h3>
@@ -117,22 +120,22 @@
               Datasets with ambiguous description of experiment design and less raw reads were discarded. Subsequently, for each dataset,
               reads with the multiple N bases (>1) or unexpected length after adapter remove (> 45 nt or < 15 nt) or with low quality (mean
               quality <= 20) were filtered, and dataset with less reads (< 1M) after the procedure were discarded. Finally, 2271 EV datasets
-              were kept for further analysis, which including 1,660 exosome and 563 MV samples from 23 human tissues(organs) and 40 diseases (Table 1).
-              Clean reads were mapped to human pre-miRNA sequences from miRBase V22 and other ncRNAs from Genebank using bowtie (1 mismatch allowed) 
-              to identify known ncRNAs and estimate their abundance. The normalization method of RPM (expressed Reads Per Million reads) were employed 
-              to assess the expression level of ncRNAs across samples and conditions.
+              were kept for further analysis, which including 1,660 exosome and 563 MV samples from 23 human tissues(organs) and 40 diseases
+              (Table 1). Clean reads were mapped to human pre-miRNA sequences from miRBase V22 and other ncRNAs from Genebank using bowtie
+              (1 mismatch allowed) to identify known ncRNAs and estimate their abundance. The normalization method of RPM (expressed Reads
+              Per Million reads) were employed to assess the expression level of ncRNAs across samples and conditions.
             </p>
           </li>
           <br />
           <li>
             <p>
-              Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the snoRNA annotation was obtained from snoRNABase.
-              The annotation information of snRNA, scRNA and pRNA were parsed from ENSEMBL v86 gtf file. The rRNA and tRNA information were incubated from NCBI GeneBank database.
-              The miRNA basic information was collected from miRbase. Pathway information was collected from KEGG
-              database, and use Hypergeometric p-value to filter miRNA pathway pairs. Publication information was collected from NCBI pubmed
-              database. miRNA function was collected from NCBI RIF database. miRNA Drug information was collected from SM2miR (Small
-              molecular miRNA database). miRNA targets was from TargetScan, miRanda, TarBase, miRTarBase, miR2Disease, miRecords and
-              miRWalk.
+              Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the snoRNA annotation was
+              obtained from snoRNABase. The annotation information of snRNA, scRNA and pRNA were parsed from ENSEMBL v86 gtf file. The rRNA
+              and tRNA information were incubated from NCBI GeneBank database. The miRNA basic information was collected from miRbase.
+              Pathway information was collected from KEGG database, and use Hypergeometric p-value to filter miRNA pathway pairs.
+              Publication information was collected from NCBI pubmed database. miRNA function was collected from NCBI RIF database. miRNA
+              Drug information was collected from SM2miR (Small molecular miRNA database). miRNA targets was from TargetScan, miRanda,
+              TarBase, miRTarBase, miR2Disease, miRecords and miRWalk.
             </p>
             <b>RNA types & annotation</b>
             <img mat-card-image class="df" [src]="assets + '/imgs/' + 'data_function_static.png'" />
