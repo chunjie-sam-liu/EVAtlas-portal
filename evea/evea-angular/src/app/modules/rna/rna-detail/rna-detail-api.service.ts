@@ -20,7 +20,7 @@ export class RnaDetailApiService extends BaseHttpService {
     });
   }
 
-  public findRnaExpr(ncrna: string, type: string = 'miRNA', tissues: number = 1, exType: string = 'Exosomes'): Observable<RnaExpr> {
+  public findRnaExpr(ncrna: string, type: string = 'miRNA', tissues: number = 1, exType: string = 'Exosomes'): Observable<RnaExpr[]> {
     return this.getData('ncrna/ncrnaexp', {
       ncrna,
       type,

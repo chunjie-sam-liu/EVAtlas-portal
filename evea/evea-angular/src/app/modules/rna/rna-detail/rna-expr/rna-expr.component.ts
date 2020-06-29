@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EChartOption } from 'echarts';
+import * as echarts from 'echarts';
 import { RnaDetailApiService } from '../rna-detail-api.service';
 import { RnaExpr } from 'src/app/shared/model/rna-expr';
 
@@ -27,13 +28,81 @@ export class RnaExprComponent implements OnInit {
       this.exoDist = this._plotDist(res, this.exoDistTitle);
     });
 
-    // this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-    //   this.mvDist = this._plotDist(res, this.mvDistTitle);
-    // });
+    this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
+      this.mvDist = this._plotDist(res, this.mvDistTitle);
+    });
   }
 
-  private _plotDist(d: RnaExpr, title: string): EChartOption {
-    console.log(d);
-    return {};
+  private _plotDist(d: RnaExpr[], title: string): EChartOption {
+    const dd = d.sort((a, b) => (a.average > b.average ? -1 : 1));
+    const dataShadow = [];
+    const data = dd.map((v) => v.average);
+    const dataAxis = dd.map((v) => {
+      dataShadow.push(data[0] + data[0] * 0.1);
+      return v.tissues.replace('_', ' ');
+    });
+
+    return {
+      title: { show: false, text: title },
+      grid: { top: '2%', left: '10%', right: '2%', bottom: '20%' },
+      toolbox: {
+        showTtile: true,
+        feature: {
+          data: { show: false },
+          saveAsImage: { title: 'Save as image' },
+        },
+      },
+      xAxis: {
+        axisLabel: {
+          // inside: true,
+          rotate: '45',
+          textStyle: { color: '#000' },
+        },
+        axisTick: { show: false },
+        axisLine: { show: false },
+        data: dataAxis,
+        z: 10,
+      },
+      yAxis: {
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: {
+          textStyle: {
+            color: '#999',
+          },
+        },
+      },
+      dataZoom: [{ type: 'inside' }],
+      series: [
+        {
+          type: 'bar',
+          itemStyle: { color: 'rgba(0,0,0,0.05)' },
+          barGap: '-100%',
+          barCategoryGap: '40%',
+          data: dataShadow,
+          animation: false,
+        },
+        {
+          type: 'bar',
+          itemStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#83bff6' },
+              { offset: 0.5, color: '#188df0' },
+              { offset: 1, color: '#188df0' },
+            ]),
+          },
+          emphasis: {
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#2378f7' },
+                { offset: 0.7, color: '#2378f7' },
+                { offset: 1, color: '#83bff6' },
+              ]),
+            },
+          },
+          data,
+        },
+      ],
+    };
   }
 }
