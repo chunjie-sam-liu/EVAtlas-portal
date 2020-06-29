@@ -8,9 +8,10 @@ import { RnaComponent } from './rna.component';
 import { RnaTableComponent } from './rna-table/rna-table.component';
 import { RnaDetailComponent } from './rna-detail/rna-detail.component';
 import { RnaBasicInfoComponent } from './rna-detail/rna-basic-info/rna-basic-info.component';
+import { RnaExprComponent } from './rna-detail/rna-expr/rna-expr.component';
 
 @NgModule({
-  declarations: [RnaComponent, RnaTableComponent, RnaDetailComponent, RnaBasicInfoComponent],
+  declarations: [RnaComponent, RnaTableComponent, RnaDetailComponent, RnaBasicInfoComponent, RnaExprComponent],
   imports: [CommonModule, RnaRoutingModule, SharedModule],
 })
 export class RnaModule {}

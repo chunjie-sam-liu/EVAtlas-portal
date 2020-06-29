@@ -3,27 +3,27 @@
     <mat-card-title> {{ rnaSymbol }} basic information </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div *ngIf="rnaBasicInfo$ | async as rna; else loading">
+    <div *ngIf="rnaBasicInfo as rna; else loading">
       <dl>
-        <dt>miRNA ID</dt>
+        <dt>Symbol</dt>
         <dd>
-          <a [href]="'http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=' + rnaSymbol" target="_blank">{{ rnaSymbol }}</a>
+          <a [href]="rna.query_url" target="_blank">{{ rnaSymbol }}</a>
         </dd>
 
-        <dt>miRNA Acc.</dt>
-        <dd>{{ rna.accession }}</dd>
-
         <dt>Position</dt>
-        <dd>{{ rna.chromosome }}: {{ rna.start | number }}-{{ rna.end | number }}</dd>
+        <dd>{{ rna.chr }}: {{ rna.start | number }} - {{ rna.end | number }}</dd>
 
-        <dt>miRNA family</dt>
-        <dd>{{ rna.family }}</dd>
-
+        <dt>Strand</dt>
+        <dd>{{ rna.strand }}</dd>
+        <!--
         <dt>Mature Seq.</dt>
-        <dd [innerHTML]="rna.sequence | redSeed"></dd>
+        <dd [innerHTML]="rna.sequence | redSeed"></dd> -->
 
-        <dt>Precursor</dt>
-        <dd>{{ rna.premirna }}</dd>
+        <dt>Source</dt>
+        <dd>{{ rna.source }}</dd>
+
+        <dt>RNA type</dt>
+        <dd>{{ rna.class }}</dd>
       </dl>
     </div>
 

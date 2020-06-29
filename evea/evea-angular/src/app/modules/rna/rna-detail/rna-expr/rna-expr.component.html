@@ -1,0 +1,23 @@
+<mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <mat-card-header>
+    <mat-card-title>
+      {{ exoDistTitle }}
+    </mat-card-title>
+  </mat-card-header>
+  <div *ngIf="!exoDist">
+    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+  </div>
+  <div echarts [options]="exoDist" class="chart-hight"></div>
+</mat-card>
+
+<mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <mat-card-header>
+    <mat-card-title>
+      {{ mvDistTitle }}
+    </mat-card-title>
+  </mat-card-header>
+  <div *ngIf="!mvDist">
+    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+  </div>
+  <div echarts [options]="mvDist" class="chart-hight"></div>
+</mat-card>
