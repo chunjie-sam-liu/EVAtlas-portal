@@ -35,29 +35,43 @@
         <ol>
           <li>
             <p>
+              <<<<<<< HEAD
               <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/samples">Sample module:</a> helps users to search the project and sample
               information of Exosomes or Microvesicles in tissues , and browse their component ratio, heatmap and expression profiles of 8
-              tyes of ncRNAs.
+              tyes of ncRNAs. ======= <a routerLink="/samples">Sample module:</a> helps users to search the project and sample information
+              of Exosomes or Microvesicles in tissues , and browse their component ratio, heatmap and expression profiles of 8 tyes of
+              ncRNAs. >>>>>>> 8f65607142fcff03897e4f3484c38164aaa99125
             </p>
           </li>
           <li>
             <p>
+              <<<<<<< HEAD
               <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/rna">Expression module:</a> display the expression distribution of ncRNAs in
               collected samples and tissues, and provides the basic information and expressin profiles for ncRNAs across samples and
               conditions. For miRNAs, users can browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression
-              profiles, miRNA related drug, miRNA regulated pathways, miRNA function, and related publications.
+              profiles, miRNA related drug, miRNA regulated pathways, miRNA function, and related publications. =======
+              <a routerLink="/rna">Expression module:</a> display the expression distribution of ncRNAs in collected samples and tissues,
+              and provides the basic information and expressin profiles for ncRNAs across samples and conditions. For miRNAs, users can
+              browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related drug, miRNA
+              regulated pathways, miRNA function, and related publications. >>>>>>> 8f65607142fcff03897e4f3484c38164aaa99125
             </p>
           </li>
           <li>
             <p>
+              <<<<<<< HEAD
               <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/specific">Specific Expression module:</a> users can browse the specific
-              expression patterns of ncRNAs(miRNA, piRNA and others) in tissues and diseases.
+              expression patterns of ncRNAs(miRNA, piRNA and others) in tissues and diseases. =======
+              <a routerLink="/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA,
+              piRNA and others) in tissues and diseases. >>>>>>> 8f65607142fcff03897e4f3484c38164aaa99125
             </p>
           </li>
           <li>
             <p>
+              <<<<<<< HEAD
               <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/">Search module:</a> provides a quick search function for users to rapidly
-              inquery the expression profiles of their interested ncRNAs across samples and conditions.
+              inquery the expression profiles of their interested ncRNAs across samples and conditions. =======
+              <a routerLink="/">Search module:</a> provides a quick search function for users to rapidly inquery the expression profiles of
+              their interested ncRNAs across samples and conditions. >>>>>>> 8f65607142fcff03897e4f3484c38164aaa99125
             </p>
           </li>
         </ol>
@@ -73,11 +87,11 @@
         <ol>
           <li>
             <p>
-              We downloaded all exosomes and microvesicles miRNA samples from
-              <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a>, after quality control, we obtained
-              <strong style="color: DarkViolet;">2271</strong>
-              samples (4 of these sample were sequenced by ourselves, 1 health control Fibroblasts microvesicles sample and 3 health control
-              Mensenchymal stem cell microvesicles samples.). As below, we presented the sample summary.
+              We downloaded a total of 2,831 small RNA sequencing datasets of exosomes and microvesicles samples
+              <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a> (up to 30/05/2020). Then, we manually
+              examined the sources of samples and their isolation method to ensure their categories (exosome or microvesicle or others)
+              according to Mateescu's paper (details in the following picture). Finally, after quality control, we obtained
+              <strong style="color: DarkViolet;">2,271</strong> samples from 23 human tissues(organs) and 40 diseases. Furthermore,.
             </p>
             <h3>EV isolation techniques</h3>
             <img mat-card-image class="evi_func" [src]="assets + '/imgs/' + 'evisolated.jpg'" />
@@ -119,124 +133,24 @@
             <p><b>Small RNA sequencing data mapping Strategy</b></p>
             <p>
               Datasets with ambiguous description of experiment design and less raw reads were discarded. Subsequently, for each dataset,
-              reads with the multiple N bases (>5) or unexpected length after adapter remove (> 45 nt or < 15 nt) or with low quality (mean
-              quality <= 20) were filtered, and dataset with less reads (< 1M) after the procedure were discarded. Finally, 462 EV datasets
-              were kept for further analysis, which including 225 exosome and 236 MV samples from 17 tissues and 10 cancer types (Table 1).
-              Clean reads were mapped to human pre-miRNA sequences from miRBase V21 (22) by bowtie (23) with 1 mismatch allowed to identify
-              known miRNAs. The sum of all the isoforms mapped to each miRNA was used to calculate the normalized expression profile. RPM
-              (expressed Reads Per Million reads) were employed to assess miRNAs expression profiling and normalize the expression values
-              across samples and conditions.
+              reads with the multiple N bases (>1) or unexpected length after adapter remove (> 45 nt or < 15 nt) or with low quality (mean
+              quality <= 20) were filtered, and dataset with less reads (< 1M) after the procedure were discarded. Finally, 2271 EV datasets
+              were kept for further analysis, which including 1,660 exosome and 563 MV samples from 23 human tissues(organs) and 40 diseases
+              (Table 1). Clean reads were mapped to human pre-miRNA sequences from miRBase V22 and other ncRNAs from Genebank using bowtie
+              (1 mismatch allowed) to identify known ncRNAs and estimate their abundance. The normalization method of RPM (expressed Reads
+              Per Million reads) were employed to assess the expression level of ncRNAs across samples and conditions.
             </p>
-            <b>Data Reference</b>
           </li>
-          <ol>
-            <li>
-              Ben-Dov IZ et al., "Cell and Microvesicle Urine microRNA Deep Sequencing Profiles from Healthy Individuals: Observations with
-              Potential Impact on Biomarker Studies.", PLoS One, 2016 Jan 19;11(1):e0147249
-            </li>
-            <li>
-              Cha DJ et al., "KRAS-dependent sorting of miRNA to exosomes.", Elife, 2015 Jul 1;4:e07197
-            </li>
-            <li>
-              Haderk F et al., "Extracellular vesicles in chronic lymphocytic leukemia.", Leuk Lymphoma, 2013 Aug;54(8):1826-30
-            </li>
-            <li>
-              Hannafon BN et al., "Plasma exosome microRNAs are indicative of breast cancer.", Breast Cancer Res, 2016 Sep 8;18(1):90
-            </li>
-            <li>
-              Hoshina S, Sekizuka T, Kataoka M, Hasegawa H, Hamada H, Kuroda M, et al. (2016) Profile of Exosomal and Intracellular microRNA
-              in Gamma-Herpesvirus-Infected Lymphoma Cell Lines. PLoS ONE 11(9): e0162574. https://doi.org/10.1371/journal.pone.0162574
-            </li>
-            <li>
-              Huang X et al., "Characterization of human plasma-derived exosomal RNAs by deep sequencing.", BMC Genomics, 2013 May 10;14:319
-            </li>
-            <li>
-              Huang X et al., "Exosomal miR-1290 and miR-375 as prognostic markers in castration-resistant prostate cancer.", Eur Urol, 2014
-              Aug 14;67(1):33-41
-            </li>
-            <li>
-              Ji H, Chen M, Greening DW, He W, Rai A, Zhang W, et al. (2014) Deep Sequencing of RNA from Three Different Extracellular
-              Vesicle (EV) Subtypes Released from the Human LIM1863 Colon Cancer Cell Line Uncovers Distinct Mirna-Enrichment Signatures.
-              PLoS ONE 9(10): e110314. https://doi.org/10.1371/journal.pone.0110314
-            </li>
-            <li>
-              Kangas, Reeta, Timo Törmäkangas, Vidal Fey, Juha Pursiheimo, Ilkka Miinalainen, Markku Alen, and Jaakko Kaprio et al. 2017.
-              "Aging And Serum Exomir Content In Women-Effects Of Estrogenic Hormone Replacement Therapy". Scientific Reports 7 (1).
-              Springer Nature. doi:10.1038/srep42702
-            </li>
-            <li>
-              Koppers-Lalic D et al., "Nontemplated nucleotide additions distinguish the small RNA composition in cells from exosomes.",
-              Cell Rep, 2014 Sep 18;8(6):1649-1658
-            </li>
-            <li>
-              Li L, Li C, Wang S, Wang Z, Jiang J, Wang W et al. Exosomes derived from hypoxic oral squamous cell carcinoma cells deliver
-              miR-21 to normoxic cells to elicit a prometastatic phenotype. Cancer Res 2016; 76: 1770–1780.
-            </li>
-            <li>
-              Lässer, Cecilia, Ganesh Vilas Shelke, Ashish Yeri, Dae-Kyum Kim, Rossella Crescitelli, Stefania Raimondo, Margareta Sjöstrand,
-              Yong Song Gho, Kendall Van Keuren Jensen, and Jan Lötvall. 2016. "Two Distinct Extracellular RNA Signatures Released By A
-              Single Cell Type Identified By Microarray And Next-Generation Sequencing". RNA Biology 14 (1): 58-72. Informa UK Limited.
-              doi:10.1080/15476286.2016.1249092.
-            </li>
-            <li>
-              Ogawa Y et al., "Small RNA transcriptomes of two types of exosomes in human whole saliva determined by next generation
-              sequencing.", Biol Pharm Bull, 2013;36(1):66-75
-            </li>
-            <li>
-              Reza AM et al., "Human adipose mesenchymal stem cell-derived exosomal-miRNAs are critical factors for inducing
-              anti-proliferation signalling to A2780 and SKOV-3 ovarian cancer cells.", Sci Rep, 2016 Dec 8;6:38498
-            </li>
-            <li>
-              BTosar, J. P., F. Gambaro, J. Sanguinetti, B. Bonilla, K. W. Witwer, and A. Cayota. 2015. "Assessment Of Small RNA Sorting
-              Into Different Extracellular Fractions Revealed By High-Throughput Sequencing Of Breast Cell Lines". Nucleic Acids Research 43
-              (11): 5601-5616. Oxford University Press (OUP). doi:10.1093/nar/gkv432
-            </li>
-            <li>
-              Tsang EK et al., "Small RNA Sequencing in Cells and Exosomes Identifies eQTLs and 14q32 as a Region of Active Export.", G3
-              (Bethesda), 2017 Jan 5;7(1):31-39
-            </li>
-            <li>
-              Vojtech L et al., "Exosomes in human semen carry a distinctive repertoire of small non-coding RNAs with potential regulatory
-              functions.", Nucleic Acids Res, 2014 May 16;42(11):7290-304
-            </li>
-            <li>
-              Vyas, Neha, Ankita Walvekar, Dhananjay Tate, Vairavan Lakshmanan, Dhiru Bansal, Alessandra Lo Cicero, Graca Raposo, Dasaradhi
-              Palakodeti, and Jyotsna Dhawan. 2014. "Vertebrate Hedgehog Is Secreted On Two Types Of Extracellular Vesicles With Different
-              Signaling Properties". Scientific Reports 4 (1). Springer Nature. doi:10.1038/srep07357.
-            </li>
-            <li>
-              Yuan T et al., "Plasma extracellular RNA profiles in healthy and cancer patients.", Sci Rep, 2016 Jan 20;6:19413
-            </li>
-            <li>
-              Yuan T et al., "eRNA: a graphic user interface-based tool optimized for large data analysis from high-throughput RNA
-              sequencing.", BMC Genomics, 2014 Mar 5;15:176
-            </li>
-            <li>
-              Zhang HM, Li Q, Zhu X, Liu W, Hu H, Liu T, Cheng FJ, You Y, Zhong Z, Zou P, Guo AY#. miR-146b-5p within BCR-ABL1-Positive
-              Microvesicles Promotes Leukemic Transformation of Hematopoietic Cells. Cancer Research. 2016 Mar 24:canres-2120
-            </li>
-            <li>
-              Zhou Q, Li M, Wang X, Li Q, Wang T, Zhu Q, et al. . Immune-related microRNAs are abundant in breast milk exosomes. Int J Biol
-              Sci (2012) 8:118–23. 10.7150/ijbs.8.118
-            </li>
-            <li>
-              impson MR, Brede G, Johansen J, Johnsen R, Storrø O, Sætrom P, et al. (2015) Human Breast Milk miRNA, Maternal Probiotic
-              Supplementation and Atopic Dermatitis in Offspring. PLoS ONE 10(12): e0143496. https://doi.org/10.1371/journal.pone.0143496
-            </li>
-            <li>
-              van Balkom, Bas W. M., Almut S. Eisele, D. Michiel Pegtel, Sander Bervoets, and Marianne C. Verhaar. 2015. "Quantitative And
-              Qualitative Analysis Of Small Rnas In Human Endothelial Cells And Exosomes Provides Insights Into Localized RNA Processing,
-              Degradation And Sorting". Journal Of Extracellular Vesicles 4 (1): 26760. Informa UK Limited. doi:10.3402/jev.v4.26760.
-            </li>
-          </ol>
           <br />
           <li>
             <p>
-              Annotation data source. miRNA basic information was collected from miRbase. Pathway information was collected from KEGG
-              database, and use Hypergeometric p-value to filter miRNA pathway pairs. Publication information was collected from NCBI pubmed
-              database. miRNA function was collected from NCBI RIF database. miRNA Drug information was collected from SM2miR (Small
-              molecular miRNA database). miRNA targets was from TargetScan, miRanda, TarBase, miRTarBase, miR2Disease, miRecords and
-              miRWalk.
+              Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the snoRNA annotation was
+              obtained from snoRNABase. The annotation information of snRNA, scRNA and pRNA were parsed from ENSEMBL v86 gtf file. The rRNA
+              and tRNA information were incubated from NCBI GeneBank database. The miRNA basic information was collected from miRbase.
+              Pathway information was collected from KEGG database, and use Hypergeometric p-value to filter miRNA pathway pairs.
+              Publication information was collected from NCBI pubmed database. miRNA function was collected from NCBI RIF database. miRNA
+              Drug information was collected from SM2miR (Small molecular miRNA database). miRNA targets was from TargetScan, miRanda,
+              TarBase, miRTarBase, miR2Disease, miRecords and miRWalk.
             </p>
             <b>RNA types & annotation</b>
             <img mat-card-image class="df" [src]="assets + '/imgs/' + 'data_function_static.png'" />
@@ -251,7 +165,7 @@
             </p>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <ng-container matColumnDef="Source">
-                <th mat-header-cell *matHeaderCellDef>Source</th>
+                <th mat-header-cell *matHeaderCellDef>No.</th>
                 <td mat-cell *matCellDef="let element">{{ element.Source }}</td>
               </ng-container>
 

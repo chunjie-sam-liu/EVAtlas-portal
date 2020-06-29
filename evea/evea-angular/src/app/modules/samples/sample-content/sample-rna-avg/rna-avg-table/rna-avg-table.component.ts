@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { RnaAvgDataSource } from './rna-avg-data-source';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { merge, fromEvent } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rna-avg-table',
@@ -23,7 +24,7 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
-  constructor(private contentApiService: ContentApiService) {}
+  constructor(private contentApiService: ContentApiService, private router: Router) {}
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
@@ -59,5 +60,9 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
+  }
+
+  public goToDetail(s: string) {
+    this.router.navigate([`rna/detail/${s}`]);
   }
 }

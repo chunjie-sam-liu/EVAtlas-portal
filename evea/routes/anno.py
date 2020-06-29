@@ -16,10 +16,8 @@ class ncrnaAnno(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("ncrna", type=str)
         args = parser.parse_args()
-        query_ncrna_list = args["ncrna"].strip().split(",")
-        mcur = mongo.db.ncrna_anno.find_one(
-            {"GeneSymbol": {"$in": query_ncrna_list}}, {"_id": 0}
-        )
+        print(args["ncrna"])
+        mcur = mongo.db.ncrna_anno.find_one({"GeneSymbol": args["ncrna"]}, {"_id": 0})
         return mcur
 
 

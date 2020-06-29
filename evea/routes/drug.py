@@ -50,7 +50,6 @@ class DrugDB(Resource):
                     if len(result) == 0:
                         miRNA = miRNA + "*"
                         result = list(mongo.db.mir2drug_db.find({"miRNA": miRNA}))
-        print(result)
         return {"mir_drug_list": result, "records_num": len(result)}
 
 
