@@ -21,8 +21,8 @@ export class RnaExprComponent implements OnInit {
   constructor(private rnaDetialApiService: RnaDetailApiService) {}
 
   ngOnInit(): void {
-    this.exoDistTitle = `${this.rnaSymbol} from exosomes expression in tissues`;
-    this.mvDistTitle = `${this.rnaSymbol} from microvesicles expression in tissues`;
+    this.exoDistTitle = `${this.rnaSymbol} from exosome expression across tissues`;
+    this.mvDistTitle = `${this.rnaSymbol} from microvesicle expression across tissues`;
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
       this.exoDist = this._plotDist(res, this.exoDistTitle);
