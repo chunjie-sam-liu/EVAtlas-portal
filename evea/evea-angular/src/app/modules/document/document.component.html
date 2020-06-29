@@ -47,12 +47,14 @@
               regulated pathways, miRNA function, and related publications.
             </p>
           </li>
+
           <li>
             <p>
               <a routerLink="/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA,
               piRNA and others) in tissues and diseases.
             </p>
           </li>
+
           <li>
             <p>
               <a routerLink="/">Search module:</a> provides a quick search function for users to rapidly inquery the expression profiles of
@@ -150,17 +152,17 @@
             </p>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <ng-container matColumnDef="Source">
-                <th mat-header-cell *matHeaderCellDef>Source/Cancer</th>
+                <th mat-header-cell *matHeaderCellDef>No.</th>
                 <td mat-cell *matCellDef="let element">{{ element.Source }}</td>
               </ng-container>
 
               <ng-container matColumnDef="EV_type">
-                <th mat-header-cell *matHeaderCellDef>EV_type</th>
+                <th mat-header-cell *matHeaderCellDef>EV type</th>
                 <td mat-cell *matCellDef="let element">{{ element.EV_type }}</td>
               </ng-container>
 
               <ng-container matColumnDef="Cancer_Source_type">
-                <th mat-header-cell *matHeaderCellDef>Cancer/Source type</th>
+                <th mat-header-cell *matHeaderCellDef>Source type</th>
                 <td mat-cell *matCellDef="let element">{{ element.Cancer_Source_type }}</td>
               </ng-container>
 
