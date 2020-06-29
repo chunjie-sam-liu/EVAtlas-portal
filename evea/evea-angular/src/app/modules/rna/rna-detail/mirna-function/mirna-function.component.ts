@@ -31,7 +31,6 @@ export class MirnaFunctionComponent implements OnInit {
     });
 
     this.rnaDetailApi.getmiRNATarget(this.rnaSymbol).subscribe((res) => {
-      console.log(res);
       this.dataSourceTarget = new MatTableDataSource(res);
       this.dataSourceTarget.paginator = this.paginatorTarget;
     });
