@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EChartOption } from 'echarts';
 import { RnaDetailApiService } from '../rna-detail-api.service';
+import { RnaBasicInfo } from 'src/app/shared/model/rna-basic-info';
 
 @Component({
   selector: 'app-rna-expr',
@@ -8,6 +9,8 @@ import { RnaDetailApiService } from '../rna-detail-api.service';
   styleUrls: ['./rna-expr.component.css'],
 })
 export class RnaExprComponent implements OnInit {
+  @Input() rnaInfo: RnaBasicInfo;
+
   exoDist: EChartOption;
   mvDist: EChartOption;
   constructor(private rnaDetialApiService: RnaDetailApiService) {}

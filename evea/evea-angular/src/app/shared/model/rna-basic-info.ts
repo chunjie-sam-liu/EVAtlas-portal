@@ -9,6 +9,7 @@ export interface RnaBasicInfo {
   source: string;
   pre: string;
   query_url: string;
+  class: string;
 }
 
 export interface LociList {
