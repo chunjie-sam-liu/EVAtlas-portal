@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { RnaDetailApiService } from '../rna-detail-api.service';
 
 @Component({
   selector: 'app-mirna-function',
@@ -9,7 +10,15 @@ export class MirnaFunctionComponent implements OnInit {
   @Input() rnaSymbol: string;
   @Input() rnaType: string;
 
-  constructor() {}
+  constructor(private rnaDetailApi: RnaDetailApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rnaDetailApi.getmiRNADrugs(this.rnaSymbol).subscribe((res) => {
+      console.log(res);
+    });
+
+    this.rnaDetailApi.getmiRNATarget(this.rnaSymbol).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }
