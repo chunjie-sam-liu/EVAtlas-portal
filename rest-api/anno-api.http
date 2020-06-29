@@ -5,3 +5,6 @@ GET http://localhost:5000/api/anno/?ncrna=U3
 
 ###
 GET http://localhost:5000/api/anno/one/hsa-let-7a-3p
+
+###
+GET http://localhost:5000/api/anno/?ncrna=hsa_rRNA_HUMRGM_1:5025:+
