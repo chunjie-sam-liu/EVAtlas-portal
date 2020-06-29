@@ -21,19 +21,19 @@ export class RnaExprComponent implements OnInit {
   constructor(private rnaDetialApiService: RnaDetailApiService) {}
 
   ngOnInit(): void {
-    this.exoDistTitle = `${this.rnaSymbol} from exosome expression across tissues`;
-    this.mvDistTitle = `${this.rnaSymbol} from microvesicle expression across tissues`;
+    this.exoDistTitle = `${this.rnaSymbol} from exosome average expression across tissues`;
+    this.mvDistTitle = `${this.rnaSymbol} from microvesicle average expression across tissues`;
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
-      this.exoDist = this._plotDist(res, this.exoDistTitle);
+      this.exoDist = this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
     });
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-      this.mvDist = this._plotDist(res, this.mvDistTitle);
+      this.mvDist = this._plotDist(res, this.mvDistTitle, this.rnaSymbol);
     });
   }
 
-  private _plotDist(d: RnaExpr[], title: string): EChartOption {
+  private _plotDist(d: RnaExpr[], title: string, r: string): EChartOption {
     const dd = d.sort((a, b) => (a.average > b.average ? -1 : 1));
     const dataShadow = [];
     const data = dd.map((v) => v.average);
@@ -54,7 +54,6 @@ export class RnaExprComponent implements OnInit {
       },
       xAxis: {
         axisLabel: {
-          // inside: true,
           rotate: '45',
           textStyle: { color: '#000' },
         },
@@ -64,6 +63,12 @@ export class RnaExprComponent implements OnInit {
         z: 10,
       },
       yAxis: {
+        type: 'value',
+        show: true,
+        name: `${r} expression (RPM)`,
+        nameLocation: 'center',
+        nameTextStyle: { fontWeight: 'bolder' },
+        nameGap: 50,
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
