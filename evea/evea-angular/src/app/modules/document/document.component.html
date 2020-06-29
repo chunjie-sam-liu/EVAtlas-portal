@@ -8,13 +8,14 @@
   <div fxFlex class="not-float">
     <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
-        <mat-card-title>Introductio</mat-card-title>
+        <mat-card-title>Introduction</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <p>
-          EVAtlas (Extracellular Vescile Atlas ) is a comprehensive database including<span style="color: DarkViolet;">
-            miRNA expression profiles, miRNA related drug, miRNA regulated pathways, miRNA function, and related publications</span
-          >. We analysed 461 small RNA sequencing datasets of EVs from 17 human tissues/diseses.
+          EVAtlas (Extracellular Vescile Atlas) is a comprehensive database depositing <span style="color: DarkViolet;">
+          expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span> in more than 2,000 EV samples
+          from 23 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to explore the conditional 
+          expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated pathways, miRNA functions, and related publications.
         </p>
         <h3>Abstract Summary</h3>
         <img mat-card-image class="zm" [src]="assets + '/imgs/' + 'zm.png'" />
@@ -24,47 +25,37 @@
 
     <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
-        <mat-card-title>Quick Start</mat-card-title>
+        <mat-card-title>Function modules</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h3>Browse</h3>
+        <h3></h3>
         <ol>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/samples">Samples:</a> Click sources of Exosomes or Microvesicles, and users
-              can browse sample cancer types, heatmap, expressed miRNAs, SRA sample information.
+              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/samples">Sample module:</a> helps users to search the project and sample information of Exosomes or Microvesicles in tissues
+              , and browse their component ratio, heatmap and expression profiles of 8 tyes of ncRNAs.
             </p>
           </li>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/rna">RNA Expression:</a> miRNA basic infomation was presented in this page,
-              and users can click expression detail button to get the epxression histogram. Click the miRNA ID link, users can browsed
+              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/rna">Expression module:</a> display the expression distribution of ncRNAs in collected samples and tissues, and provides the 
+              basic information and expressin profiles for ncRNAs across samples and conditions. For miRNAs, users can browsed
               comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related drug, miRNA regulated
               pathways, miRNA function, and related publications.
             </p>
           </li>
           <li>
             <p>
-              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/specific">Specific Expression:</a> We use SEGtool (<a
-                href="http://bioinfo.life.hust.edu.cn/SEGtool/"
-                target="_blank"
-                >SEGtools R packages link</a
-              >
-              and <a href="https://www.ncbi.nlm.nih.gov/pubmed/28981576" target="_blank">SEGtools reference link</a>) to identify specific
-              miRNAs in each source and cancer. The specific miRNAs maybe potential miRNA biomarkers. Users can browse these miRNAs to help
-              their researches.
+              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA, piRNA and others)
+              in tissues and diseases.
             </p>
           </li>
-        </ol>
-        <h3>Search</h3>
-        <ol>
           <li>
             <p>
-              Users can search by miRNA, and click <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/">Home</a> button to get miRNA basic
-              infomation, miRNA expression profiles, miRNA related drug, miRNA regulated pathways, miRNA function, and related publications.
+              <a href="http://bioinfo.life.hust.edu.cn/EVEA/#/">Search module:</a> provides a quick search function for users to rapidly inquery the expression profiles of
+              their interested ncRNAs across samples and conditions.
             </p>
           </li>
-          <li><p>Users can Choose miRNA expression region and Select source types to get miRNA list.</p></li>
         </ol>
       </mat-card-content>
     </mat-card>
