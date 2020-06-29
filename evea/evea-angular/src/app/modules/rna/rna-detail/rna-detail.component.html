@@ -5,7 +5,19 @@
   <div fxFlex class="not-float">
     <div fxLayout="column" fxLayoutGap="10px">
       <app-rna-basic-info fxFlex="grow" [rnaSymbol]="rnaSymbol" [rnaBasicInfo]="rnaBasicInfo"></app-rna-basic-info>
-      <app-rna-expr fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px"></app-rna-expr>
+      <ng-container *ngIf="rnaType; else loading">
+        <app-rna-expr
+          fxFlex="grow"
+          fxLayout
+          fxLayout.lt-lg="column"
+          fxLayoutGap="10px"
+          [rnaSymbol]="rnaSymbol"
+          [rnaType]="rnaType"
+        ></app-rna-expr>
+      </ng-container>
+      <ng-template #loading>
+        <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+      </ng-template>
     </div>
   </div>
 

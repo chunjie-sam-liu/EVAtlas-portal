@@ -10,15 +10,18 @@ import { RnaDetailApiService } from './rna-detail-api.service';
 })
 export class RnaDetailComponent implements OnInit {
   rnaSymbol: string;
+  rnaType: string;
   rnaBasicInfo: RnaBasicInfo;
 
   constructor(private route: ActivatedRoute, private rnaDetailApiService: RnaDetailApiService) {
     this.route.params.subscribe((params) => {
       this.rnaSymbol = params.rna;
     });
+    this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => {
+      this.rnaBasicInfo = res;
+      this.rnaType = res.class;
+    });
   }
 
-  ngOnInit(): void {
-    this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => (this.rnaBasicInfo = res));
-  }
+  ngOnInit(): void {}
 }

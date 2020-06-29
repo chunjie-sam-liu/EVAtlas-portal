@@ -4,6 +4,7 @@ import { BaseHttpService } from 'src/app/shared/base-http.service';
 import { Observable } from 'rxjs';
 import { RnaBasicInfo } from 'src/app/shared/model/rna-basic-info';
 import { RnaExpr } from 'src/app/shared/model/rna-expr';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,6 @@ export class RnaDetailApiService extends BaseHttpService {
       type,
       tissues,
       ex_type: exType,
-    });
+    }).pipe(map((res) => res.data));
   }
 }
