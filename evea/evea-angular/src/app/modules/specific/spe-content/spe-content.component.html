@@ -15,7 +15,7 @@
       </mat-card-header>
       <mat-card-content>
         <mat-chip-list>
-          <mat-chip *ngFor="let s of ncrna.GeneSymbol" color="accent" selected>{{ s }}</mat-chip>
+          <mat-chip *ngFor="let s of ncrna.GeneSymbol" color="accent" selected (click)="goToDetail(s)">{{ s }}</mat-chip>
         </mat-chip-list>
       </mat-card-content>
     </mat-card>
