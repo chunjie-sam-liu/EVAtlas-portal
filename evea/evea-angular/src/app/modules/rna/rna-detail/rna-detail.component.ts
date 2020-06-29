@@ -11,6 +11,7 @@ import { RnaDetailApiService } from './rna-detail-api.service';
 export class RnaDetailComponent implements OnInit {
   rnaSymbol: string;
   rnaType: string;
+  isMiRNA: boolean;
   rnaBasicInfo: RnaBasicInfo;
 
   constructor(private route: ActivatedRoute, private rnaDetailApiService: RnaDetailApiService) {
@@ -20,6 +21,7 @@ export class RnaDetailComponent implements OnInit {
     this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => {
       this.rnaBasicInfo = res;
       this.rnaType = res.class;
+      this.isMiRNA = this.rnaType === 'miRNA' ? true : false;
     });
   }
 
