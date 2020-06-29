@@ -63,10 +63,14 @@ source_ex_type_exp_fields_lst = {
 }
 
 ncRNA_count_fields = {
-    "loci": fields.String(attribute="loci"),
+    "chromosome": fields.String(attribute="chromosome"),
+    "strand": fields.String(attribute="strand"),
+    "end": fields.String(attribute="end"),
+    "start": fields.String(attribute="start"),
     "tissues": fields.Integer(attribute="tissue_n"),
     "samples": fields.Integer(attribute="sample_n"),
     "GeneSymbol": fields.String,
+    "class": fields.String(attribute="class"),
 }
 
 ncRNA_count_fields_lst = {
@@ -93,7 +97,7 @@ class ncRNAlist(Resource):
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
 
-        mcur = mongo.db.ncrna_hit.find(condition, {"class": 0, "_id": 0}).sort(
+        mcur = mongo.db.ncrna_hit.find(condition, {"_id": 0}).sort(
             "sample_n", sort_option[args.sort]
         )
         n_record = mcur.count()

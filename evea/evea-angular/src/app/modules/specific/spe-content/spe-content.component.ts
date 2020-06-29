@@ -19,4 +19,8 @@ export class SpeContentComponent implements OnInit, OnChanges {
     console.log(this.tissue);
     this.speTissue$ = this.speApiService.getSpeTissue('tissue', this.tissue.ex_type, this.tissue.tissue);
   }
+
+  public sortGS(a: any, b: any) {
+    return a.GeneSymbol > b.GeneSymbol ? -1 : 1;
+  }
 }
