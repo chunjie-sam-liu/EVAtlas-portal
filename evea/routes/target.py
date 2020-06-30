@@ -32,3 +32,37 @@ class mirnaTarget(Resource):
 
 
 api.add_resource(mirnaTarget, "")
+
+model_targets = {
+    "mir_target_list": fields.List(fields.Nested(mir_target_fields)),
+    "n_record": fields.Integer(),
+}
+
+
+class FilterTargets(Resource):
+    @marshal_with(model_targets)
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("mirna", type=str, required=True)
+        parser.add_argument("filter", type=str, default="")
+        parser.add_argument("page", type=int, default=0)
+        parser.add_argument("size", type=int, default=5)
+        args = parser.parse_args()
+
+        record_skip = args.page * args.size
+        record_limit = args.size
+
+        condition = {"miRNA": args.mirna}
+        if args.filter != "":
+            condition["target"] = {"$regex": args.filter, "$options": "i"}
+
+        mcur = mongo.db.mir2target.find(condition)
+        n_record = mcur.count()
+        return {
+            "mir_target_list": list(mcur.skip(record_skip).limit(record_limit)),
+            "n_record": n_record,
+        }
+
+
+api.add_resource(FilterTargets, "/filter")
+

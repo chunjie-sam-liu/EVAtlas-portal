@@ -23,7 +23,14 @@
     <mat-card-title> {{ rnaSymbol }} target genes </mat-card-title>
   </mat-card-header>
 
-  <div class="spinner-container" *ngIf="!dataSourceTarget">
+  <mat-form-field>
+    <input matInput placeholder="Input target gene" #input />
+    <button mat-icon-button color="warn" matPrefix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSourceTarget.loading$ | async">
     <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
   </div>
 
@@ -36,5 +43,10 @@
     <mat-header-row *matHeaderRowDef="displayedColumnsTarget"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumnsTarget"></mat-row>
   </mat-table>
-  <mat-paginator #paginatorTarget [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    #paginatorTarget
+    [length]="dataSourceTarget.resultLength"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
 </mat-card>

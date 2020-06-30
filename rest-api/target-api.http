@@ -4,3 +4,11 @@ GET http://localhost:5000/api/target?mirna=hsa-miR-21-5p
 
 ###
 GET http://localhost:5000/api/target?mirna=hsa-miR-21-5p
+
+###
+# pagination for mirna targets
+GET http://localhost:5000/api/target/filter
+  ?mirna=hsa-miR-21-5p
+  &filter=
+  &page=0
+  &size=5

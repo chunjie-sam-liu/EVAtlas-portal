@@ -35,4 +35,13 @@ export class RnaDetailApiService extends BaseHttpService {
   public getmiRNATarget(mirna: string): Observable<TargetRecord[]> {
     return this.getData('target', { mirna }).pipe(map((res) => res.mir_target_list));
   }
+
+  public getTargetRecords(mirna: string, filter: string, pageIndex: number = 0, pageSize: number = 5): Observable<any> {
+    return this.getData('target/filter', {
+      mirna,
+      filter: filter.toString(),
+      page: pageIndex.toString(),
+      size: pageSize.toString(),
+    });
+  }
 }
