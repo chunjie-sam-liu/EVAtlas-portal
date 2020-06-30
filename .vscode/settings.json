@@ -30,5 +30,6 @@
 
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "venv/bin/black",
-  "gitlens.mode.active": "zen"
+  "gitlens.mode.active": "zen",
+  "cSpell.words": ["Exosome", "exosomes", "imgs"]
 }
