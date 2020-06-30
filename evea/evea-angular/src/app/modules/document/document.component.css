@@ -9,7 +9,8 @@
   color: #f44336;
 }
 table {
-  width: 70%;
+  width: 80%;
+  /* text-align: center; */
 }
 img {
   width: 350px;

@@ -16,7 +16,7 @@
           <span style="color: DarkViolet;">
             expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span
           >
-          in more than 2,000 EV samples from 23 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to
+          in more than 2,000 EV samples from 22 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to
           explore the conditional expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated pathways, miRNA
           functions, and related publications.
         </p>
@@ -169,6 +169,16 @@
               <ng-container matColumnDef="Specific_miRNA_counts">
                 <th mat-header-cell *matHeaderCellDef>Specific miRNA counts</th>
                 <td mat-cell *matCellDef="let element">{{ element.Specific_miRNA_counts }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Specific_piRNA_counts">
+                <th mat-header-cell *matHeaderCellDef>Specific piRNA counts</th>
+                <td mat-cell *matCellDef="let element">{{ element.Specific_piRNA_counts }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="Specific_others_counts">
+                <th mat-header-cell *matHeaderCellDef>Specific others counts</th>
+                <td mat-cell *matCellDef="let element">{{ element.Specific_others_counts }}</td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
