@@ -1,5 +1,5 @@
 {
-  "workbench.sideBar.location": "right",
+  "workbench.sideBar.location": "left",
   "files.exclude": {
     "node_modules": true,
     "documentation": true
