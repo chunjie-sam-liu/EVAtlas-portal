@@ -16,6 +16,7 @@
         "FLASK_DEBUG": "1"
       },
       "args": ["run", "--port=5000"],
+      // "args": ["run", "--port=6000"], for xiegy port
       "jinja": true
     }
   ]
