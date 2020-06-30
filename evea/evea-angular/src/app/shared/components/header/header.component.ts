@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSideBarForMe = new EventEmitter<any>();
+
+  public assets = environment.assets;
 
   constructor() {}
 

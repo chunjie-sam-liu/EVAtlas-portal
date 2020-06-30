@@ -5,6 +5,11 @@
     "documentation": true
   },
   "gitlens.mode.active": "zen",
-  "cSpell.words": ["exsosomes", "microparticles", "rnas"],
+  "cSpell.words": [
+    "biomarkers",
+    "exsosomes",
+    "microparticles",
+    "rnas"
+  ],
   "editor.minimap.enabled": false
 }

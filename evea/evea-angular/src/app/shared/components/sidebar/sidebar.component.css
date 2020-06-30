@@ -11,3 +11,8 @@ a.mat-list-item:hover {
 a.mat-list-item:focus {
   border-bottom: 2px solid #da4233;
 }
+
+.ev_pic {
+  width: 270px;
+  height: 150px;
+}
