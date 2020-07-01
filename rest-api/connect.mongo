@@ -87,13 +87,20 @@ db.test.update({"GeneSymbol": {"$in":["hsa-miR-4655-3p", "hsa-miR-4737","hsa-mir
 db.sample_info.aggregate([{"$group":{"_id":"disease"}}])
 
 db.ncrna_anno.find({"GeneSymbol": "hsa_rRNA_AF004338_1:302:+"})
-db.rRNA_samexp.aggregate([{"$match":{"GeneSymbol": {"$regex": "hsa_rRNA_HUMRGM_1:5025:"}}}])
+db.rRNA_samexp.count()
 
 db.ncrna_hit.update({"GeneSymbol":"hsa_tRNA_X54483_357:428:+"}, {"$set":{"chromosome":"test"}})
 
 db.ncrna_hit.find({"GeneSymbol":"hsa_rRNA_HUMRGM_1:5025:+"})
 
-db.ncrna_hit.find({"class":'tRNA'})
+db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}, {""}])
 
-db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}},{"$group": {"_id": "$GeneSymbol", "count": {"$sum": 1}, "tissues":{"$addToSet":"$exp.tissues"}}}, {"$project": {"_id": 0, "GeneSymbol": "$_id", "sample_n": "$count", "tissue_n":{"$size":"$tissues"}}}, {"$lookup": {"from":"ncrna_anno", "localField": "GeneSymbol", "foreignField": "GeneSymbol", "as":"anno"}}, {"$unwind": "$anno"}, {"$project": {"_id": 0, "GeneSymbol": 1, "sample_n": 1, "tissue_n":1, "chromosome":"$anno.chr", "start":"$anno.start", "end":"$anno.end", "strand":"$anno.strand", "class":"$anno.class"}},{"$sort":{"tissue_n":-1}}]))
+db.ncrna_hit.findOne({"GeneSymbol":"hsa_piRNA_28605"})
 
+db.piRNA_samexp.find({"GeneSymbol":"hsa_piRNA_28605"})
+
+
+db.piRNA_samexp.aggregate([{"$match":{"GeneSymbol":"hsa_piRNA_28605"}},{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}])
+
+
+db.ncrna_anno.find({"GeneSymbol": "hsa-miR-4792"})
