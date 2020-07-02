@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiURL: 'http://localhost/EVAtlas/api',
+  apiURL: 'http://bioinfo.life.hust.edu.cn/EVEA/api',
   assets: 'static/assets',
 };
