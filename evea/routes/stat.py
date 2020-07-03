@@ -250,6 +250,7 @@ class SrpShow(Resource):
                 "disease": {"$addToSet": "$disease"},
                 "material": {"$addToSet": "$material"},
                 "source": {"$addToSet": "$source"},
+                "pubmed": {"$addToSet": "$pubmed_id"},
                 "srr_count": {"$sum": 1},
                 "normal_n": {
                     "$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 1, 0]}
