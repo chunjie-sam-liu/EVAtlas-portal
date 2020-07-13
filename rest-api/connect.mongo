@@ -99,6 +99,8 @@ db.ncrna_hit.findOne({"GeneSymbol":"hsa_piRNA_28605"})
 
 db.piRNA_samexp.find({"GeneSymbol":"hsa_piRNA_28605"})
 
+db.sample_info.distinct("source")
+
 
 db.piRNA_samexp.aggregate([{"$match":{"GeneSymbol":"hsa_piRNA_28605"}},{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}])
 

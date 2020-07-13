@@ -47,9 +47,17 @@ GET http://localhost:5000/api/stat/samstats?ex_type=Exosomes&tissues=Brain&detai
 GET http://localhost:5000/api/stat/srpmapstat?srp=SRP229107
 
 
-#srp_lst for sample page
+#srp_lst for sample page: tissue selection
 ###
-GET http://localhost:5000/api/stat/Srplst?tissues=Brain
+GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Brain
 
+
+#srp_lst for sample page: source selection
+GET http://localhost:5000/api/stat/Srplst?select=source&query=Serum
 ###
 GET http://localhost:5000/api/stat/srpratiostat?srp=SRP108326
+
+
+#get categories for keyword
+###
+GET http://localhost:5000/api/stat/catekey?cate=source

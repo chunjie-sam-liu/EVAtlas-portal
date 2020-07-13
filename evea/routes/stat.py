@@ -238,10 +238,13 @@ class SampleStat(Resource):
 class SrpShow(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument("tissues", type=str)
+        parser.add_argument("select", type=str)
+        parser.add_argument("query", type=str)
         args = parser.parse_args()
         condition = []
-        basic_match = {"$match": {"tissues": args["tissues"]}}
+        inner_query_lst = ["tissues", "source"]
+        inner_query_lst.remove(args["select"])
+        basic_match = {"$match": {args["select"]: args["query"]}}
         condition.append(basic_match)
         basic_stat = {
             "$group": {
@@ -249,7 +252,7 @@ class SrpShow(Resource):
                 "ex_type": {"$addToSet": "$ex_type"},
                 "disease": {"$addToSet": "$disease"},
                 "material": {"$addToSet": "$material"},
-                "source": {"$addToSet": "$source"},
+                inner_query_lst[0]: {"$addToSet": "$" + inner_query_lst[0]},
                 "pubmed": {"$addToSet": "$pubmed_id"},
                 "srr_count": {"$sum": 1},
                 "normal_n": {
@@ -337,3 +340,15 @@ class SrpRatioStat(Resource):
 
 api.add_resource(SrpRatioStat, "/srpratiostat")
 
+
+class Cate4Key(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("cate", type=str)
+        args = parser.parse_args()
+
+        cate_lst = mongo.db.sample_info.distinct(args["cate"])
+        return {"cate": cate_lst}
+
+
+api.add_resource(Cate4Key, "/catekey")
