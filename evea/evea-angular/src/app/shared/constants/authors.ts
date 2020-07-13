@@ -11,16 +11,16 @@ export default [
     email: 'xieguiyan@hust.edu.cn',
     avatar: 'xiegy.png',
   },
-  {
-    name: 'Qiong Zhang',
-    title: 'Ph.D., Postdoc',
-    email: 'zhangqiong@hust.edu.cn',
-    avatar: 'zhangq.png',
-  },
-  {
-    name: 'Chun-Jie Liu',
-    title: 'Ph.D., Postdoc',
-    email: 'chunjie.sam.liu@gmail.com',
-    avatar: 'liucj.png',
-  },
+  // {
+  //   name: 'Qiong Zhang',
+  //   title: 'Ph.D., Postdoc',
+  //   email: 'zhangqiong@hust.edu.cn',
+  //   avatar: 'zhangq.png',
+  // },
+  // {
+  //   name: 'Chun-Jie Liu',
+  //   title: 'Ph.D., Postdoc',
+  //   email: 'chunjie.sam.liu@gmail.com',
+  //   avatar: 'liucj.png',
+  // },
 ];
