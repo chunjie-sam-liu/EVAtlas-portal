@@ -15,5 +15,5 @@ cd evea/evea-angular/
 npm install
 
 npm run build:prod
-npm run compodoc
-npm run stat
+# npm run compodoc
+# npm run stat

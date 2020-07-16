@@ -1,9 +1,9 @@
 export default [
-  {
-    name: 'stat',
-    img: 'stat.png',
-    title: 'Statistics',
-  },
+  // {
+  //   name: 'stat',
+  //   img: 'stat.png',
+  //   title: 'Statistics',
+  // },
   {
     name: 'Adipose',
     img: 'Adipose.png',
