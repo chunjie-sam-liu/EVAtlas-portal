@@ -14,6 +14,7 @@ GET http://localhost:5000/api/stat/samplesexp?querys=Serum&query_type=source
 GET http://localhost:5000/api/stat/samplesexp?querys=Exosomes&query_type=ex_type
 
 ###
+# over all sample mapping distribution (Microvesicles)
 GET http://localhost:5000/api/stat/oa_dist?query_type=ex_type&query_item=Microvesicles
 
 ###
@@ -26,6 +27,7 @@ GET http://localhost:5000/api/stat/oa_dist?query_type=condition&query_item=Disea
 # over all sample mapping distribution
 GET http://localhost:5000/api/stat/oa_dist?query_type=Microvesicles
 ###
+# over all sample mapping distribution (Exosomes)
 GET http://localhost:5000/api/stat/oa_dist?query_type=ex_type&query_item=Exosomes
 
 #show sample stat (size, mapping, material and source) of exsomes-tissues-material category
@@ -51,6 +53,8 @@ GET http://localhost:5000/api/stat/srpmapstat?srp=SRP229107
 ###
 GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Brain
 
+###
+GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Adipose
 
 #srp_lst for sample page: source selection
 GET http://localhost:5000/api/stat/Srplst?select=source&query=Serum

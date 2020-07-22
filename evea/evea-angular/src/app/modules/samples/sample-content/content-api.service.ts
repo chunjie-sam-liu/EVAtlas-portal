@@ -22,9 +22,11 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.sample_stats));
   }
 
-  public getTissueTable(tissue: string): Observable<TissueTable[]> {
+  public getTissueTable(select: string, query: string): Observable<TissueTable[]> {
     return this.getData('stat/Srplst', {
-      tissues: tissue,
+      select: select,
+      query: query,
+      // tissues: tissue,
     }).pipe(map((res) => res.srp_lst));
   }
 

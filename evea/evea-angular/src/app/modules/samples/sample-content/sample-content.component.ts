@@ -14,11 +14,11 @@ export class SampleContentComponent implements OnInit, OnChanges {
   tissueTable$: Observable<TissueTable[]>;
   tissueRecord: TissueTable;
 
-  constructor(private contentApiService: ContentApiService) {}
+  constructor(private contentApiService: ContentApiService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   ngOnChanges(changes: SimpleChanges): void {
-    this.tissueTable$ = this.contentApiService.getTissueTable(changes.sample.currentValue.title);
+    this.tissueTable$ = this.contentApiService.getTissueTable('tissues', changes.sample.currentValue.title);
     this.showProject = false;
   }
 
