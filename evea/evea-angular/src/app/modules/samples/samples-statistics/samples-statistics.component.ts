@@ -5,6 +5,8 @@ import { MappingDist } from 'src/app/shared/model/mapping-dist';
 import { sortBy as _sortBy, values as _values, sum as _sum } from 'lodash-es';
 import rnaType from 'src/app/shared/constants/rna-types';
 import statDistData from 'src/app/shared/constants/sample-stat-overview';
+import exosomesStat from 'src/app/shared/constants/exosomes-stat-resu';
+import microvesiclesStat from 'src/app/shared/constants/microvesicles-stat-resu';
 
 @Component({
   selector: 'app-samples-statistics',
@@ -12,34 +14,43 @@ import statDistData from 'src/app/shared/constants/sample-stat-overview';
   styleUrls: ['./samples-statistics.component.css'],
 })
 export class SamplesStatisticsComponent implements OnInit {
-  statTitle = 'Tissues and samples in EVatlas';
+  statTitle='Tissues and samples in EVatlas';
   statDist: EChartOption;
 
-  exoMappingRateTitle = 'Exosomes mapping rate';
+  exoMappingRateTitle='Exosomes mapping rate';
   exoMappingRate: EChartOption;
-  exoMappingDistTitle = 'Exosomes RNA mapping distribution';
+  exoMappingDistTitle='Exosomes RNA mapping distribution';
   exoMappingDist: EChartOption;
 
-  mvMappingRateTitle = 'Microvesicles mapping rate';
+  mvMappingRateTitle='Microvesicles mapping rate';
   mvMappingRate: EChartOption;
-  mvMappingDistTitle = 'Microvesicles RNA mapping distribution';
+  mvMappingDistTitle='Microvesicles RNA mapping distribution';
   mvMappingDist: EChartOption;
 
-  constructor(private statApiService: StatApiService) {}
+  tmpData: any;
+
+  constructor(private statApiService: StatApiService) { }
 
   ngOnInit(): void {
     // stat
-    this.statDist = this._statDist(statDistData, this.statTitle);
+    this.statDist=this._statDist(statDistData, this.statTitle);
     // get exosome data
-    this.statApiService.getDist('Exosomes').subscribe((res) => {
-      this.exoMappingRate = this._mappingRate(res, this.exoMappingRateTitle);
-      this.exoMappingDist = this._rnaMappingDist(res, this.exoMappingDistTitle);
-    });
+    this.tmpData=this._mappingRate(exosomesStat, this.exoMappingRateTitle);
+
+
+    this.exoMappingRate=this._mappingRate(exosomesStat, this.exoMappingRateTitle);
+    this.exoMappingDist=this._rnaMappingDist(exosomesStat, this.exoMappingDistTitle);
+    // this.statApiService.getDist('Exosomes').subscribe((res) => {
+    //   this.exoMappingRate = this._mappingRate(res, this.exoMappingRateTitle);
+    //   this.exoMappingDist = this._rnaMappingDist(res, this.exoMappingDistTitle);
+    // });
     // get microvesicle data
-    this.statApiService.getDist('Microvesicles').subscribe((res) => {
-      this.mvMappingRate = this._mappingRate(res, this.mvMappingRateTitle);
-      this.mvMappingDist = this._rnaMappingDist(res, this.mvMappingDistTitle);
-    });
+    this.mvMappingRate=this._mappingRate(microvesiclesStat, this.mvMappingRateTitle);
+    this.mvMappingDist=this._rnaMappingDist(microvesiclesStat, this.mvMappingDistTitle);
+    // this.statApiService.getDist('Microvesicles').subscribe((res) => {
+    //   this.mvMappingRate = this._mappingRate(res, this.mvMappingRateTitle);
+    //   this.mvMappingDist = this._rnaMappingDist(res, this.mvMappingDistTitle);
+    // });
   }
   private _statDist(d: any, title: string): EChartOption {
     return {
@@ -106,11 +117,11 @@ export class SamplesStatisticsComponent implements OnInit {
   }
 
   private _mappingRate(d: MappingDist[], title: string): EChartOption {
-    let dRate = d.map((v) => ({
+    let dRate=d.map((v) => ({
       srrID: v.srr_id,
-      mappingRate: (v.srr_tag_info[1] / v.srr_tag_info[0]).toFixed(2),
+      mappingRate: (v.srr_tag_info[1]/v.srr_tag_info[0]).toFixed(2),
     }));
-    dRate = _sortBy(dRate, ['mappingRate']).reverse();
+    dRate=_sortBy(dRate, ['mappingRate']).reverse();
     return {
       title: {
         show: false,
@@ -173,7 +184,7 @@ export class SamplesStatisticsComponent implements OnInit {
   }
 
   private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
-    const series = rnaType.map((v) => ({
+    const series=rnaType.map((v) => ({
       name: v.label,
       type: 'bar',
       stack: 'total',
@@ -181,9 +192,9 @@ export class SamplesStatisticsComponent implements OnInit {
     }));
 
     d.map((v) => {
-      const tagSum = _sum(_values(v.tag_stat));
+      const tagSum=_sum(_values(v.tag_stat));
       series.map((s) => {
-        s.data.push(v.tag_stat[s.name] / tagSum);
+        s.data.push(v.tag_stat[s.name]/tagSum);
       });
     });
 

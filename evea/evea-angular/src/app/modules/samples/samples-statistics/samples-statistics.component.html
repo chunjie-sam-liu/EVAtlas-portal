@@ -1,74 +1,8 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <div fxFlex="none">
     <h2 class="page-subheader">
-      Sample statistics and mapping distribution
+      Sample classification and Browse by tissues, sources or types
     </h2>
   </div>
-  <!-- <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-      <mat-card-header>
-        <mat-card-title>
-          <span matBadge="22" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary">Tissues</span> and
-          <span matBadge="2095" matBadgeOverlap="true" matBadgeColor="primary" class="custom-badge">samples</span> of
-          <span matBadge="1572" matBadgeOverlap="true" matBadgeColor="primary" class="custom-badge">exosome</span> and
-          <span matBadge="503" matBadgeOverlap="true" matBadgeColor="primary" class="custom-badge">microvesicles</span>
-          in EVAtlas
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div *ngIf="!statDist">
-          <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-        </div>
-        <div echarts [options]="statDist" class="chart-hight"></div>
-      </mat-card-content>
-    </mat-card>
-  </div> -->
-  <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-      <mat-card-header>
-        <mat-card-title>{{ exoMappingRateTitle }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div *ngIf="!exoMappingRate">
-          <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-        </div>
-        <div echarts [options]="exoMappingRate" class="chart-hight"></div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-      <mat-card-header>
-        <mat-card-title>{{ exoMappingDistTitle }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div *ngIf="!exoMappingDist">
-          <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-        </div>
-        <div echarts [options]="exoMappingDist" class="chart-hight"></div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-      <mat-card-header>
-        <mat-card-title>{{ mvMappingRateTitle }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="spinner-container" *ngIf="!mvMappingRate">
-          <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-        </div>
-        <div echarts [options]="mvMappingRate" class="chart-hight"></div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-      <mat-card-header>
-        <mat-card-title>{{ mvMappingDistTitle }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div *ngIf="!mvMappingDist">
-          <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-        </div>
-        <div echarts [options]="mvMappingDist" class="chart-hight"></div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+
 </div>
