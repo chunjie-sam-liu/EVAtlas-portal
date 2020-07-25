@@ -27,7 +27,7 @@ export class SamplesStatisticsComponent implements OnInit {
   mvMappingDistTitle='Microvesicles RNA mapping distribution';
   mvMappingDist: EChartOption;
 
-  tmpData: any;
+
 
   constructor(private statApiService: StatApiService) { }
 
@@ -35,8 +35,6 @@ export class SamplesStatisticsComponent implements OnInit {
     // stat
     this.statDist=this._statDist(statDistData, this.statTitle);
     // get exosome data
-    this.tmpData=this._mappingRate(exosomesStat, this.exoMappingRateTitle);
-
 
     this.exoMappingRate=this._mappingRate(exosomesStat, this.exoMappingRateTitle);
     this.exoMappingDist=this._rnaMappingDist(exosomesStat, this.exoMappingDistTitle);

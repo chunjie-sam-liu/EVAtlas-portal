@@ -8,10 +8,12 @@ import { environment } from 'src/environments/environment';
 export class SampleCardComponent implements OnInit {
   // samples input
   @Input() sample: any;
+  // sources inputt
+  @Input() source: any;
 
-  public assets = environment.assets;
+  public assets=environment.assets;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

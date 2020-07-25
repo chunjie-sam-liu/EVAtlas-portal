@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import samples from 'src/app/shared/constants/samples';
+import sources from 'src/app/shared/constants/sources';
 
 @Component({
   selector: 'app-samples',
@@ -9,19 +10,29 @@ import samples from 'src/app/shared/constants/samples';
 })
 export class SamplesComponent implements OnInit {
   // samples from constant
-  public samples = samples;
+  public samples=samples;
   public sample: any;
 
-  public showStatistics = true;
-  public showSample = !this.showStatistics;
+  // sample sources from constant
+  public sources=sources;
+  public source: any;
 
-  constructor() {}
+  //layout params
+  public testSam="99%";
+  public testResu="1%";
 
-  ngOnInit(): void {}
+  public showStatistics=true;
+  public showSample=!this.showStatistics;
+
+  constructor() { }
+
+  ngOnInit(): void { }
 
   public showContent(sample: any): void {
-    this.sample = sample;
-    this.showStatistics = sample.name === 'stat' ? true : false;
-    this.showSample = !this.showStatistics;
+    this.sample=sample;
+    this.testSam="30%";
+    this.testResu="70%";
+    this.showStatistics=sample.name==='stat'? true:false;
+    this.showSample=!this.showStatistics;
   }
 }
