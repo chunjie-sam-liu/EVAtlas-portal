@@ -28,5 +28,15 @@ export default [
     name: 'Urine',
     img: 'Urine.png',
     title: 'Urine',
+  },
+  {
+    name: 'Cell line',
+    img: 'Cell_line.png',
+    title: 'Cell line',
+  },
+  {
+    name: 'Cells',
+    img: 'Cells.png',
+    title: 'Cells',
   }
 ]
