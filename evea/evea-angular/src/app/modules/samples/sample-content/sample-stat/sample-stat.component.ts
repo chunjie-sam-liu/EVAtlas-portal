@@ -102,16 +102,19 @@ export class SampleStatComponent implements OnInit, OnChanges {
     let yAxis=[];
     const xAxis=[];
     const data=[];
+    console.log(d);
     d.map((v) => {
       xAxis.push(v.srr_id);
       yAxis.push(...v.mir_lst);
     });
     yAxis=[...new Set(yAxis)];
+    // push element to plot data
     xAxis.map((v, i) => {
       yAxis.map((vv, ii) => {
         data.push([i, ii, '-']);
       });
     });
+    console.log(data);
     d.map((v, i) => {
       v.mir_lst.map((vv, ii) => {
         data[i*50+yAxis.indexOf(vv)]=[i, yAxis.indexOf(vv), v.exp_lst[ii]];

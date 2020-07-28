@@ -12,9 +12,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class SampleTableComponent implements OnInit, OnChanges {
   @Input() tissueTable$: Observable<TissueTable[]>;
+  sample: any;
   @Output() $tissueRow=new EventEmitter<TissueTable>();
 
   displayedColumns=['_id', 'disease', 'ex_type', 'tissues', 'source', 'material', 'srr_count', 'pubmed'];
+
   dataSource: MatTableDataSource<TissueTable>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -28,6 +30,7 @@ export class SampleTableComponent implements OnInit, OnChanges {
       this.dataSource=new MatTableDataSource(res);
       this.dataSource.paginator=this.paginator;
       this.dataSource.sort=this.sort;
+      // console.log(this.dataSource);
     });
   }
   public showTissueStat(row: TissueTable): void {

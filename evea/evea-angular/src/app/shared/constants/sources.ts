@@ -36,14 +36,15 @@ export default [
     select: 'source'
   },
   {
-    name: 'Cell line',
-    img: 'Cell_line.png',
-    title: 'Cell line',
-  },
-  {
     name: 'Cells',
     img: 'Cells.png',
     title: 'Cells',
+    select: 'source'
+  },
+  {
+    name: 'Cell line',
+    img: 'Cell_line.png',
+    title: 'Cell_line',
     select: 'source'
   }
 ]
