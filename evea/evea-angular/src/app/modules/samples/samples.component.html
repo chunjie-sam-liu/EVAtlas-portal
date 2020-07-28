@@ -7,7 +7,7 @@
 
   <div fxFlex class="not-float">
     <div fxLayout fxLayoutGap="10px">
-      <div [fxFlex]="testSam">
+      <div [fxFlex]="samLay">
         <h2 class="page-subheader">
           Tissues
         </h2>
@@ -30,7 +30,7 @@
           </ng-container>
         </div>
       </div>
-      <div [fxFlex]="testResu">
+      <div [fxFlex]="resuLay">
         <ng-container *ngIf="showStatistics">
           <app-samples-statistics></app-samples-statistics>
         </ng-container>

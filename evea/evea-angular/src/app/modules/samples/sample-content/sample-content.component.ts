@@ -10,7 +10,7 @@ import { TissueTable } from 'src/app/shared/model/tissue-table';
 })
 export class SampleContentComponent implements OnInit, OnChanges {
   @Input() sample: any;
-  showProject = false;
+  showProject=false;
   tissueTable$: Observable<TissueTable[]>;
   tissueRecord: TissueTable;
 
@@ -18,12 +18,12 @@ export class SampleContentComponent implements OnInit, OnChanges {
 
   ngOnInit(): void { }
   ngOnChanges(changes: SimpleChanges): void {
-    this.tissueTable$ = this.contentApiService.getTissueTable('tissues', changes.sample.currentValue.title);
-    this.showProject = false;
+    this.tissueTable$=this.contentApiService.getTissueTable(this.sample.select, changes.sample.currentValue.title);
+    this.showProject=false;
   }
 
   public displayTissueStat(tissue: TissueTable): void {
-    this.showProject = true;
-    this.tissueRecord = tissue;
+    this.showProject=true;
+    this.tissueRecord=tissue;
   }
 }

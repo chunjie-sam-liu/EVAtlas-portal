@@ -18,24 +18,24 @@ export class SampleStatComponent implements OnInit, OnChanges {
   projectHeatmapTitle: string;
   projectDist: EChartOption;
   projectDistTitle: string;
-  constructor(private contentApiService: ContentApiService) {}
+  constructor(private contentApiService: ContentApiService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
-    this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
+    this.projectHeatmapTitle=`${this.tissueRecord._id} miRNA Heatmap (top 50)`;
+    this.projectDistTitle=`${this.tissueRecord._id} RNA mapping distribution`;
 
     this.contentApiService.getProjectStat(this.tissueRecord._id).subscribe((res) => {
-      this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
+      this.projectDist=this._rnaMappingDist(res, this.projectDistTitle);
     });
 
     this.contentApiService.getProjectHeatmap(this.tissueRecord._id).subscribe((res) => {
-      this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
+      this.projectHeatmap=this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }
   private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
-    const series = rnaType.map((v) => ({
+    const series=rnaType.map((v) => ({
       name: v.label,
       type: 'bar',
       stack: 'total',
@@ -43,9 +43,9 @@ export class SampleStatComponent implements OnInit, OnChanges {
     }));
 
     d.map((v) => {
-      const tagSum = _sum(_values(v.tag_stat));
+      const tagSum=_sum(_values(v.tag_stat));
       series.map((s) => {
-        s.data.push(v.tag_stat[s.name] / tagSum);
+        s.data.push(v.tag_stat[s.name]/tagSum);
       });
     });
 
@@ -55,7 +55,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
         text: title,
       },
       grid: {
-        top: '2%',
+        top: '10%',
         left: '10%',
         right: '2%',
         bottom: '10%',
@@ -99,14 +99,14 @@ export class SampleStatComponent implements OnInit, OnChanges {
   }
 
   private _rnaHeatmap(d: RnaHeatmap[], title: string): EChartOption {
-    let yAxis = [];
-    const xAxis = [];
-    const data = [];
+    let yAxis=[];
+    const xAxis=[];
+    const data=[];
     d.map((v) => {
       xAxis.push(v.srr_id);
       yAxis.push(...v.mir_lst);
     });
-    yAxis = [...new Set(yAxis)];
+    yAxis=[...new Set(yAxis)];
     xAxis.map((v, i) => {
       yAxis.map((vv, ii) => {
         data.push([i, ii, '-']);
@@ -114,7 +114,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
     });
     d.map((v, i) => {
       v.mir_lst.map((vv, ii) => {
-        data[i * 50 + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
+        data[i*50+yAxis.indexOf(vv)]=[i, yAxis.indexOf(vv), v.exp_lst[ii]];
       });
     });
 
@@ -124,8 +124,8 @@ export class SampleStatComponent implements OnInit, OnChanges {
         text: title,
       },
       grid: {
-        top: '2%',
-        left: '10%',
+        top: '8%',
+        left: '18%',
         right: '2%',
         bottom: '20%',
       },

@@ -17,6 +17,11 @@
       <mat-cell *matCellDef="let row">{{ row.ex_type }}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="tissues">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tissue</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.tissues | rmcl }}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="source">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Source</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.source | rmcl }}</mat-cell>
@@ -30,6 +35,16 @@
     <ng-container matColumnDef="srr_count">
       <mat-header-cell *matHeaderCellDef mat-sort-header># Samples (case, control)</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.srr_count }} ({{ row.case_n }}, {{ row.normal_n }})</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pubmed">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Pubmed</mat-header-cell>
+      <!-- <mat-cell *matCellDef="let row">{{ row.pubmed }}</mat-cell> -->
+      <mat-cell *matCellDef="let row">
+        <a href='http://www.evtrack.org/study_summary.php?PMID={{ row.pubmed }}'><span class="material-icons">
+            find_in_page
+          </span></a>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

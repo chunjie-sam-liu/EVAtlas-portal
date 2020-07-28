@@ -18,33 +18,33 @@ export class RnaExprComponent implements OnInit {
   mvDist: EChartOption;
   mvDistTitle: string;
 
-  constructor(private rnaDetialApiService: RnaDetailApiService) {}
+  constructor(private rnaDetialApiService: RnaDetailApiService) { }
 
   ngOnInit(): void {
-    this.exoDistTitle = `${this.rnaSymbol} from exosomes average expression across tissues`;
-    this.mvDistTitle = `${this.rnaSymbol} from microvesicles average expression across tissues`;
+    this.exoDistTitle=`${this.rnaSymbol} from exosomes average expression across tissues`;
+    this.mvDistTitle=`${this.rnaSymbol} from microvesicles average expression across tissues`;
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
-      this.exoDist = this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
+      this.exoDist=this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
     });
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-      this.mvDist = this._plotDist(res, this.mvDistTitle, this.rnaSymbol);
+      this.mvDist=this._plotDist(res, this.mvDistTitle, this.rnaSymbol);
     });
   }
 
   private _plotDist(d: RnaExpr[], title: string, r: string): EChartOption {
-    const dd = d.sort((a, b) => (a.average > b.average ? -1 : 1));
-    const dataShadow = [];
-    const data = dd.map((v) => v.average);
-    const dataAxis = dd.map((v) => {
-      dataShadow.push(data[0] + data[0] * 0.1);
+    const dd=d.sort((a, b) => (a.average>b.average? -1:1));
+    const dataShadow=[];
+    const data=dd.map((v) => v.average);
+    const dataAxis=dd.map((v) => {
+      dataShadow.push(data[0]+data[0]*0.1);
       return v.tissues.replace('_', ' ');
     });
 
     return {
       title: { show: false, text: title },
-      grid: { top: '2%', left: '10%', right: '2%', bottom: '20%' },
+      grid: { top: '8%', left: '10%', right: '2%', bottom: '20%' },
       toolbox: {
         showTtile: true,
         feature: {

@@ -43,7 +43,7 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.srp_heatmap_lst[0].miRNA));
   }
 
-  public getRnaAvgRecords(id: string, rnaType: string, filter = '', sortOrder = 'desc', pageIndex = 0, pageSize = 10): Observable<any> {
+  public getRnaAvgRecords(id: string, rnaType: string, filter='', sortOrder='desc', pageIndex=0, pageSize=10): Observable<any> {
     return this.getData('ncrna/ncrnasrpexp', {
       srp: id,
       class: rnaType,
@@ -55,6 +55,6 @@ export class ContentApiService extends BaseHttpService {
   }
 
   public getIsoMethod(id: string): Observable<ISOMethod> {
-    return this.getData('sample/project/' + id);
+    return this.getData('sample/project/'+id);
   }
 }

@@ -252,6 +252,8 @@ class SrpShow(Resource):
                 "ex_type": {"$addToSet": "$ex_type"},
                 "disease": {"$addToSet": "$disease"},
                 "material": {"$addToSet": "$material"},
+                "source": {"$addToSet": "$source"},
+                "tissues": {"$addToSet": "$tissues"},
                 inner_query_lst[0]: {"$addToSet": "$" + inner_query_lst[0]},
                 "pubmed": {"$addToSet": "$pubmed_id"},
                 "srr_count": {"$sum": 1},

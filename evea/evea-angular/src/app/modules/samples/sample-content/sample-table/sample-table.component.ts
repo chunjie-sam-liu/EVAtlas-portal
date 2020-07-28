@@ -12,22 +12,22 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class SampleTableComponent implements OnInit, OnChanges {
   @Input() tissueTable$: Observable<TissueTable[]>;
-  @Output() $tissueRow = new EventEmitter<TissueTable>();
+  @Output() $tissueRow=new EventEmitter<TissueTable>();
 
-  displayedColumns = ['_id', 'disease', 'ex_type', 'source', 'material', 'srr_count'];
+  displayedColumns=['_id', 'disease', 'ex_type', 'tissues', 'source', 'material', 'srr_count', 'pubmed'];
   dataSource: MatTableDataSource<TissueTable>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.tissueTable$.subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource=new MatTableDataSource(res);
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort=this.sort;
     });
   }
   public showTissueStat(row: TissueTable): void {
