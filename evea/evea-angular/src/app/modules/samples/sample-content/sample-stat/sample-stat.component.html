@@ -10,7 +10,10 @@
       <div echarts [options]="projectDist" class="chart-hight"></div>
     </mat-card-content>
   </mat-card>
-  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+</div>
+<br />
+<div fxLayout fxLayout.lt-xl="column" fxLayoutGap="10px">
+  <mat-card fxFlex="100%" appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
       <mat-card-title>{{ projectHeatmapTitle }}</mat-card-title>
     </mat-card-header>
@@ -18,7 +21,7 @@
       <div *ngIf="!projectHeatmap">
         <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
       </div>
-      <div echarts [options]="projectHeatmap" class="chart-hight"></div>
+      <div echarts [options]="projectHeatmap" class="chart-heathight"></div>
     </mat-card-content>
   </mat-card>
 </div>

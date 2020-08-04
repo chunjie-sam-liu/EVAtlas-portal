@@ -234,18 +234,29 @@ export class SampleStatComponent implements OnInit, OnChanges {
       xAxisF=xAxisF.concat(xAxis);
     };
 
+    //quartile data for the range of the visualMap
+    let qArray=[];
+    d.map((q) => {
+      qArray=qArray.concat(q.exp_lst);
+    });
+    qArray.sort(function (a, b) {
+      return a-b;
+    });
+    let qValue=qArray[Math.ceil(qArray.length/4)*3];
+
     return {
       title: {
         show: true,
         text: "Samples",
         left: 'center',
-        bottom: '10%'
+        bottom: '7%'
       },
       grid: {
-        top: '8%',
-        left: '18%',
+        height: "600px",
+        top: '3%',
+        left: '13%',
         right: '2%',
-        bottom: '20%',
+        // bottom: '3%',
       },
       toolbox: {
         showTitle: true,
@@ -273,14 +284,17 @@ export class SampleStatComponent implements OnInit, OnChanges {
         axisTick: { show: false },
         splitArea: { show: true },
         data: ydata,
+        axisLabel: {
+          interval: 0
+        }
       },
       visualMap: {
         min: 0,
-        max: 100,
+        max: qValue,
         calculable: true,
         orient: 'horizontal',
         left: 'center',
-        bottom: '2%',
+        bottom: '1%',
       },
       series: [
         {
