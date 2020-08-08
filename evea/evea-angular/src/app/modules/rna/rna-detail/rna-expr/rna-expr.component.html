@@ -1,23 +1,51 @@
-<mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-  <mat-card-header>
-    <mat-card-title>
-      {{ exoDistTitle }}
-    </mat-card-title>
-  </mat-card-header>
-  <div *ngIf="!exoDist">
-    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-  </div>
-  <div echarts [options]="exoDist" class="chart-hight"></div>
-</mat-card>
+<div fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <mat-card-header>
+      <mat-card-title>
+        {{ exoDistTitle }}
+      </mat-card-title>
+    </mat-card-header>
+    <div *ngIf="!exoDist">
+      <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+    </div>
+    <div echarts [options]="exoDist" class="chart-hight"></div>
+  </mat-card>
 
-<mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
-  <mat-card-header>
-    <mat-card-title>
-      {{ mvDistTitle }}
-    </mat-card-title>
-  </mat-card-header>
-  <div *ngIf="!mvDist">
-    <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-  </div>
-  <div echarts [options]="mvDist" class="chart-hight"></div>
-</mat-card>
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <mat-card-header>
+      <mat-card-title>
+        {{ mvDistTitle }}
+      </mat-card-title>
+    </mat-card-header>
+    <div *ngIf="!mvDist">
+      <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+    </div>
+    <div echarts [options]="mvDist" class="chart-hight"></div>
+  </mat-card>
+</div>
+
+<div fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px" style="margin-top: 10px;">
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <mat-card-header>
+      <mat-card-title>
+        {{ exoSouDistTitle }}
+      </mat-card-title>
+    </mat-card-header>
+    <div *ngIf="!exoSouDist">
+      <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+    </div>
+    <div echarts [options]="exoSouDist" class="chart-hight"></div>
+  </mat-card>
+
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <mat-card-header>
+      <mat-card-title>
+        {{ mvSouDistTitle }}
+      </mat-card-title>
+    </mat-card-header>
+    <div *ngIf="!mvSouDist">
+      <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+    </div>
+    <div echarts [options]="mvSouDist" class="chart-hight"></div>
+  </mat-card>
+</div>

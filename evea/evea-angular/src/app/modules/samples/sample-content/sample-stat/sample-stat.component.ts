@@ -6,7 +6,7 @@ import rnaType from 'src/app/shared/constants/rna-types';
 import { MappingDist } from 'src/app/shared/model/mapping-dist';
 import { sortBy as _sortBy, values as _values, sum as _sum, indexOf, functions } from 'lodash-es';
 import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
-import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
+// import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
 
 @Component({
   selector: 'app-sample-stat',

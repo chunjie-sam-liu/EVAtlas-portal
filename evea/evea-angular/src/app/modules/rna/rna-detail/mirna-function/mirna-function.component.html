@@ -43,10 +43,6 @@
     <mat-header-row *matHeaderRowDef="displayedColumnsTarget"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumnsTarget"></mat-row>
   </mat-table>
-  <mat-paginator
-    #paginatorTarget
-    [length]="dataSourceTarget.resultLength"
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-  ></mat-paginator>
+  <mat-paginator #paginatorTarget [length]="dataSourceTarget.resultLength" [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons></mat-paginator>
 </mat-card>

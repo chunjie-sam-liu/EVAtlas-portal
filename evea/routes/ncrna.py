@@ -143,6 +143,7 @@ class ncRNAexp(Resource):
                     "$project": {
                         "_id": 0,
                         "tissues": "$_id.tissues",
+                        "source": "$_id.source",
                         "exp_lst": 1,
                         "average": {"$avg": "$exp_lst"},
                         "min": {"$min": "$exp_lst"},

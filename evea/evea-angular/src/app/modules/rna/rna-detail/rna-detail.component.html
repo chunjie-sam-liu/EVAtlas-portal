@@ -6,26 +6,18 @@
     <div fxLayout="column" fxLayoutGap="10px">
       <app-rna-basic-info fxFlex="grow" [rnaSymbol]="rnaSymbol" [rnaBasicInfo]="rnaBasicInfo"></app-rna-basic-info>
       <ng-container *ngIf="rnaType; else loading">
-        <app-rna-expr
-          fxFlex="grow"
-          fxLayout
-          fxLayout.lt-lg="column"
-          fxLayoutGap="10px"
-          [rnaSymbol]="rnaSymbol"
-          [rnaType]="rnaType"
-        ></app-rna-expr>
+        <app-rna-expr [rnaSymbol]="rnaSymbol" [rnaType]="rnaType"></app-rna-expr>
       </ng-container>
 
       <ng-container *ngIf="isMiRNA; else empty">
-        <app-mirna-function
-          fxFlex="grow"
-          fxLayout
-          fxLayout.lt-lg="column"
-          fxLayoutGap="10px"
-          [rnaSymbol]="rnaSymbol"
-          [rnaType]="rnaType"
-        ></app-mirna-function>
+        <app-mirna-function fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px" [rnaSymbol]="rnaSymbol"
+          [rnaType]="rnaType"></app-mirna-function>
       </ng-container>
+
+      <ng-container *ngIf="isMiRNA; else empty">
+        <app-rna-ref></app-rna-ref>
+      </ng-container>
+
       <ng-template #loading>
         <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
       </ng-template>
