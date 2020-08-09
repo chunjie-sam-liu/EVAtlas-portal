@@ -19,7 +19,14 @@ api.add_resource(TCGAmiRNA, "/tcga_mirna/<string:mirna>")
 
 
 class FuncmiRNA(Resource):
-    pass
+    def get(self, mirna):
+        condition = {"miRNA_id": mirna}
+        output = {"_id": 0}
+        mcur = mongo.db.func_miRNA.find_one(condition, output)
+        return mcur
+
+
+api.add_resource(FuncmiRNA, "/func_mirna/<string:mirna>")
 
 
 class TCGAsnoRNA(Resource):
