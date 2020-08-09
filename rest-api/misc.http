@@ -1,0 +1,8 @@
+
+# mirna tcga expression
+GET http://localhost:5000/api/misc/tcga_mirna/hsa-let-7a-5p
+
+
+# snorna tcga expression
+###
+GET http://localhost:5000/api/misc/tcga_snorna/hsa-let-7a-5p
