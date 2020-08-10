@@ -5,14 +5,7 @@
     "documentation": true
   },
   "gitlens.mode.active": "zen",
-  "cSpell.words": [
-    "biomarkers",
-    "exosomes",
-    "exsosomes",
-    "microparticles",
-    "microvesicles",
-    "rnas"
-  ],
+  "cSpell.words": ["biomarkers", "exosomes", "exsosomes", "microparticles", "microvesicles", "rnas"],
   "editor.minimap.enabled": false,
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#2f7c47",
