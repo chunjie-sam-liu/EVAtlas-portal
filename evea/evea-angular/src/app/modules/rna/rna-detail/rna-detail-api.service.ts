@@ -17,10 +17,10 @@ export class RnaDetailApiService extends BaseHttpService {
   }
 
   public findRnaBasicInfo(s: string): Observable<RnaBasicInfo> {
-    return this.getData('anno/one/'+s);
+    return this.getData('anno/one/' + s);
   }
 
-  public findRnaExpr(ncrna: string, type: string='miRNA', tissues: number=1, exType: string='Exosomes'): Observable<RnaExpr[]> {
+  public findRnaExpr(ncrna: string, type: string = 'miRNA', tissues: number = 1, exType: string = 'Exosomes'): Observable<RnaExpr[]> {
     return this.getData('ncrna/ncrnaexp', {
       ncrna,
       type,
@@ -29,7 +29,7 @@ export class RnaDetailApiService extends BaseHttpService {
     }).pipe(map((res) => res.data));
   }
 
-  public findRnaExprS(ncrna: string, type: string='miRNA', source: number=1, exType: string='Exosomes'): Observable<RnaExpr[]> {
+  public findRnaExprS(ncrna: string, type: string = 'miRNA', source: number = 1, exType: string = 'Exosomes'): Observable<RnaExpr[]> {
     return this.getData('ncrna/ncrnaexp', {
       ncrna,
       type,
@@ -45,7 +45,7 @@ export class RnaDetailApiService extends BaseHttpService {
     return this.getData('target', { mirna }).pipe(map((res) => res.mir_target_list));
   }
 
-  public getTargetRecords(mirna: string, filter: string, pageIndex: number=0, pageSize: number=5): Observable<any> {
+  public getTargetRecords(mirna: string, filter: string, pageIndex: number = 0, pageSize: number = 5): Observable<any> {
     return this.getData('target/filter', {
       mirna,
       filter: filter.toString(),
