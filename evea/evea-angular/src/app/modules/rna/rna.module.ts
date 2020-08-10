@@ -11,10 +11,10 @@ import { RnaBasicInfoComponent } from './rna-detail/rna-basic-info/rna-basic-inf
 import { RnaExprComponent } from './rna-detail/rna-expr/rna-expr.component';
 import { MirnaFunctionComponent } from './rna-detail/mirna-function/mirna-function.component';
 import { RnaRefComponent } from './rna-detail/rna-ref/rna-ref.component';
-import { RnaKeggComponent } from './rna-detail/rna-kegg/rna-kegg.component';
+import { RnaMiscComponent } from './rna-detail/rna-misc/rna-misc.component';
 
 @NgModule({
-  declarations: [RnaComponent, RnaTableComponent, RnaDetailComponent, RnaBasicInfoComponent, RnaExprComponent, MirnaFunctionComponent, RnaRefComponent, RnaKeggComponent],
+  declarations: [RnaComponent, RnaTableComponent, RnaDetailComponent, RnaBasicInfoComponent, RnaExprComponent, MirnaFunctionComponent, RnaRefComponent, RnaMiscComponent],
   imports: [CommonModule, RnaRoutingModule, SharedModule],
 })
-export class RnaModule {}
+export class RnaModule { }
