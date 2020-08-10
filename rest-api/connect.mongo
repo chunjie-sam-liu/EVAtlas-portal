@@ -107,5 +107,10 @@ db.piRNA_samexp.aggregate([{"$match":{"GeneSymbol":"hsa_piRNA_28605"}},{"$unwind
 
 db.ncrna_anno.find({"GeneSymbol": "hsa-miR-4792"})
 
-db.mir2target.find({'miRNA': 'hsa-miR-21-5p'})
 
+db.func_miRNA.find().count()
+
+
+db.mir2target.find({'miRNA': 'hsa-miR-21-5p'}).limit(10)
+
+db.mir2target.findOne({"miRNA" : "hsa-miR-199a-3p"})
