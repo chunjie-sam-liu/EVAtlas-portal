@@ -9,7 +9,9 @@ GET http://localhost:5000/api/misc/tcga_mirna/a
 ###
 # mirna function
 # use precursor
-GET http://localhost:5000/api/misc/func_mirna/hsa-let-7a
+GET http://localhost:5000/api/misc/func_mirna/hsa-miR-21
+
+
 
 ###
 # snorna tcga expression

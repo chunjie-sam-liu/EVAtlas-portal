@@ -7,6 +7,8 @@ import { RnaExpr } from 'src/app/shared/model/rna-expr';
 import { map } from 'rxjs/operators';
 import { DrugRecord } from 'src/app/shared/model/drug';
 import { TargetRecord } from 'src/app/shared/model/mir-target';
+import { MirFunc } from 'src/app/shared/model/mir-func';
+import { TcgaMir } from 'src/app/shared/model/tcga-mir';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +38,14 @@ export class RnaDetailApiService extends BaseHttpService {
       source,
       ex_type: exType,
     }).pipe(map((res) => res.data));
+  }
+
+  public getmiRNAFuncs(mirna: string): Observable<MirFunc[]> {
+    return this.getData('misc/func_mirna/'+mirna).pipe(map((res) => res.mir_func_list));
+  }
+
+  public findtcgaExpr(mirna: string): Observable<TcgaMir[]> {
+    return this.getData('misc/tcga_mirna/'+mirna).pipe(map((res) => res.mir_tcga_list));
   }
 
   public getmiRNADrugs(mirna: string): Observable<DrugRecord[]> {

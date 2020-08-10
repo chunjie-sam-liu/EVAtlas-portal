@@ -32,7 +32,6 @@ export class RnaExprComponent implements OnInit {
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
       this.exoDist=this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
-      console.log(res);
     });
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
@@ -41,7 +40,6 @@ export class RnaExprComponent implements OnInit {
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
       this.exoSouDist=this._plotDistS(res, this.exoSouDistTitle, this.rnaSymbol);
-      console.log(res);
     });
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {

@@ -15,7 +15,7 @@
       </ng-container>
 
       <ng-container *ngIf="isMiRNA; else empty">
-        <app-rna-misc></app-rna-misc>
+        <app-rna-misc [rnaSymbol]="rnaSymbol" [rnaType]="rnaType"></app-rna-misc>
       </ng-container>
 
       <ng-template #loading>
