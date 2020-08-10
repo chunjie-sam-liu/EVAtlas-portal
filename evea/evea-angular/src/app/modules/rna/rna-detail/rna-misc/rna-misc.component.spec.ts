@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RnaKeggComponent } from './rna-kegg.component';
+import { RnaMiscComponent } from './rna-misc.component';
 
-describe('RnaKeggComponent', () => {
-  let component: RnaKeggComponent;
-  let fixture: ComponentFixture<RnaKeggComponent>;
+describe('RnaMiscComponent', () => {
+  let component: RnaMiscComponent;
+  let fixture: ComponentFixture<RnaMiscComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RnaKeggComponent ]
+      declarations: [ RnaMiscComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RnaKeggComponent);
+    fixture = TestBed.createComponent(RnaMiscComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
