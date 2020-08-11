@@ -29,94 +29,51 @@ export class RnaMiscComponent implements OnInit {
     this.tcgaExpTitle=`${this.rnaSymbol} from TCGA average expression across cancers`;
 
     this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol).subscribe((res) => {
+      console.log(res);
       this.tcgaExp=this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
     });
 
     this.rnaSymbol=this.rnaSymbol.replace(/-[3|5]p/, "");
     this.rnaDetailApiService.getmiRNAFuncs(this.rnaSymbol).subscribe((res) => {
-      console.log(res);
       this.dataSourceFunc=new MatTableDataSource(res);
       this.dataSourceFunc.paginator=this.paginatorFunc;
-      console.log(this.dataSourceFunc);
+    });
+  }
+  private _plotDist(d: TcgaMir[], title: string, r: string): EChartOption {
+    const yAxis=[];
+    const xAxis=[];
+    console.log(d);
+    for (let key in d[0]) {
+      yAxis.push(d[0][key]);
+      xAxis.push(key);
+    };
+    const dataShadow=[];
+    const data=d.map((v) => v.ACC_case);
+    const dataAxis=d.map((v) => {
+      dataShadow.push(data[0]+data[0]*0.1);
+      return v.ACC_case;
     });
 
-    // private _plotDist(d: TcgaMir[], title: string, r: string): EChartOption {
-    //   console.log(d);
-    //   const dd=d.sort((a, b) => (a.average>b.average? -1:1));
-    //   const dataShadow=[];
-    //   const data=dd.map((v) => v.average);
-    //   const dataAxis=dd.map((v) => {
-    //     dataShadow.push(data[0]+data[0]*0.1);
-    //     return v.tissues.replace('_', ' ');
-    //   });
-
-    //   return {
-    //     title: { show: false, text: title },
-    //     grid: { top: '8%', left: '12%', right: '2%', bottom: '20%' },
-    //     toolbox: {
-    //       showTtile: true,
-    //       feature: {
-    //         data: { show: false },
-    //         saveAsImage: { title: 'Save as image' },
-    //       },
-    //     },
-    //     xAxis: {
-    //       axisLabel: {
-    //         rotate: '45',
-    //         textStyle: { color: '#000' },
-    //       },
-    //       axisTick: { show: false },
-    //       axisLine: { show: false },
-    //       data: dataAxis,
-    //       z: 10,
-    //     },
-    //     yAxis: {
-    //       type: 'value',
-    //       show: true,
-    //       name: `${r} expression (RPM)`,
-    //       nameLocation: 'center',
-    //       nameTextStyle: { fontWeight: 'bolder' },
-    //       nameGap: 50,
-    //       axisLine: { show: false },
-    //       axisTick: { show: false },
-    //       axisLabel: {
-    //         textStyle: {
-    //           color: '#999',
-    //         },
-    //       },
-    //     },
-    //     dataZoom: [{ type: 'inside' }],
-    //     series: [
-    //       {
-    //         type: 'bar',
-    //         itemStyle: { color: 'rgba(0,0,0,0.05)' },
-    //         barGap: '-100%',
-    //         barCategoryGap: '40%',
-    //         data: dataShadow,
-    //         animation: false,
-    //       },
-    //       {
-    //         type: 'bar',
-    //         itemStyle: {
-    //           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    //             { offset: 0, color: '#83bff6' },
-    //             { offset: 0.5, color: '#188df0' },
-    //             { offset: 1, color: '#188df0' },
-    //           ]),
-    //         },
-    //         emphasis: {
-    //           itemStyle: {
-    //             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    //               { offset: 0, color: '#2378f7' },
-    //               { offset: 0.7, color: '#2378f7' },
-    //               { offset: 1, color: '#83bff6' },
-    //             ]),
-    //           },
-    //         },
-    //         data,
-    //       },
-    //     ],
-    //   };
-    // };
-  }
+    return {
+      legend: {},
+      tooltip: {},
+      dataset: {
+        dimensions: ['Sample', 'cancer', 'normal'],
+        source: [
+          { Sample: 'Matcha Latte', 'cancer': 43.3, 'normal': 85.8 },
+          { Sample: 'Milk Tea', 'cancer': 83.1, 'normal': 73.4 },
+          { Sample: 'Cheese Cocoa', 'cancer': 86.4, 'normal': 65.2 },
+          { Sample: 'Walnut Brownie', 'cancer': 72.4, 'normal': 53.9 }
+        ]
+      },
+      xAxis: { type: 'category' },
+      yAxis: {},
+      // Declare several bar series, each will be mapped
+      // to a column of dataset.source by default.
+      series: [
+        { type: 'bar' },
+        { type: 'bar' }
+      ]
+    };
+  };
 }

@@ -19,18 +19,15 @@
     <mat-paginator #paginatorFunc [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </mat-card>
 
-  <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
-      <mat-card-title>rna tcga expression
-        test----
+      <mat-card-title>
+        {{ tcgaExpTitle }}
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <p>misc
-        content---------------------
-        content---------------------
-        content---------------------
-      </p>
-    </mat-card-content>
+    <div *ngIf="!tcgaExp">
+      <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+    </div>
+    <div echarts [options]="tcgaExp" class="chart-hight"></div>
   </mat-card>
 </div>
