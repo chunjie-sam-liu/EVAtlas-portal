@@ -1,6 +1,6 @@
 
 # mirna tcga expression
-GET http://localhost:5000/api/misc/tcga_mirna/hsa-let-7a-5p
+GET http://localhost:5000/api/misc/tcga_mirna/hsa-miR-101-3p
 
 ###
 # return null if not include
