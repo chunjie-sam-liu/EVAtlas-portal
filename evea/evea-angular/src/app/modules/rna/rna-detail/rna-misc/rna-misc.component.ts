@@ -33,46 +33,119 @@ export class RnaMiscComponent implements OnInit {
       this.tcgaExp=this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
     });
 
-    this.rnaSymbol=this.rnaSymbol.replace(/-[3|5]p/, "");
-    this.rnaDetailApiService.getmiRNAFuncs(this.rnaSymbol).subscribe((res) => {
+    let rnaSymbolSub=this.rnaSymbol.replace(/-[3|5]p/, "");
+    this.rnaDetailApiService.getmiRNAFuncs(rnaSymbolSub).subscribe((res) => {
       this.dataSourceFunc=new MatTableDataSource(res);
       this.dataSourceFunc.paginator=this.paginatorFunc;
     });
   }
   private _plotDist(d: TcgaMir[], title: string, r: string): EChartOption {
-    const yAxis=[];
-    const xAxis=[];
-    console.log(d);
-    for (let key in d[0]) {
-      yAxis.push(d[0][key]);
-      xAxis.push(key);
+    const source=[];
+    let sam;
+    let test_source=[]
+    d.map((t, i) => {
+      for (var dise in t) {
+        sam=dise.split("_");
+        let push_data={};
+        push_data['Sample']=sam[0];
+        push_data[sam[1]]=sam[dise];
+        test_source.push(push_data);
+        for (var re in test_source) {
+          // console.log(test_source[re]['Sample']);
+          if (test_source[re]['Sample']==sam[0]&&re.length<3) {//判断source的对象中是否已经包含了该疾病
+            test_source[re][sam[1]]=t[dise];//将该疾病的normal或者case值加入到source的对象中
+          }
+        }
+      }
+    });
+    function getObjectLength(obj) {
+      var i=0;
+      for (var k in obj) {
+        i++;
+      }
+      return i;
+    };//计算每个对象的长度
+    let i=test_source.length;
+    while (i--) {
+      if (getObjectLength(test_source[i])==2) {
+        test_source.splice(i, 1);
+      }
+    };//删除对象元素小于2的对象
+    console.log(test_source);
+    const diseSource=[];
+    const caseSource=[];
+    const normSource=[];
+    var compare=function (obj1, obj2) {
+      var val1=obj1.Sample;
+      var val2=obj2.Sample;
+      if (val1<val2) {
+        return -1;
+      } else if (val1>val2) {
+        return 1;
+      } else {
+        return 0;
+      }
     };
-    const dataShadow=[];
-    const data=d.map((v) => v.ACC_case);
-    const dataAxis=d.map((v) => {
-      dataShadow.push(data[0]+data[0]*0.1);
-      return v.ACC_case;
+    test_source.sort(compare);
+    test_source.map((sam) => {
+      for (var i in sam) {//i为key,sam[i]为value
+        if (i=="Sample") {
+          diseSource.push(sam[i]);
+        } else if (i=="normal") {
+          normSource.push(sam[i]);
+        } else {
+          caseSource.push(sam[i]);
+        }
+      }
     });
 
     return {
-      legend: {},
-      tooltip: {},
-      dataset: {
-        dimensions: ['Sample', 'cancer', 'normal'],
-        source: [
-          { Sample: 'Matcha Latte', 'cancer': 43.3, 'normal': 85.8 },
-          { Sample: 'Milk Tea', 'cancer': 83.1, 'normal': 73.4 },
-          { Sample: 'Cheese Cocoa', 'cancer': 86.4, 'normal': 65.2 },
-          { Sample: 'Walnut Brownie', 'cancer': 72.4, 'normal': 53.9 }
-        ]
+      title: {
       },
-      xAxis: { type: 'category' },
-      yAxis: {},
-      // Declare several bar series, each will be mapped
-      // to a column of dataset.source by default.
+      toolbox: {
+        showTtile: true,
+        feature: {
+          data: { show: false },
+          saveAsImage: { title: 'Save as image' },
+        },
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: {
+        data: ['Case', 'Normal']
+      },
+      grid: {
+        height: "650px",
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+      },
+      yAxis: {
+        type: 'category',
+        data: diseSource
+      },
       series: [
-        { type: 'bar' },
-        { type: 'bar' }
+        {
+          name: 'Case',
+          type: 'bar',
+          data: caseSource,
+          // barWidth: 50
+        },
+        {
+          name: 'Normal',
+          type: 'bar',
+          data: normSource,
+          // barWidth: 50
+        }
       ]
     };
   };

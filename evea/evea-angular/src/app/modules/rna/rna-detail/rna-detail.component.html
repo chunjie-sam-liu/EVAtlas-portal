@@ -10,12 +10,12 @@
       </ng-container>
 
       <ng-container *ngIf="isMiRNA; else empty">
-        <app-mirna-function fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px" [rnaSymbol]="rnaSymbol"
-          [rnaType]="rnaType"></app-mirna-function>
+        <app-rna-misc [rnaSymbol]="rnaSymbol" [rnaType]="rnaType"></app-rna-misc>
       </ng-container>
 
       <ng-container *ngIf="isMiRNA; else empty">
-        <app-rna-misc [rnaSymbol]="rnaSymbol" [rnaType]="rnaType"></app-rna-misc>
+        <app-mirna-function fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px" [rnaSymbol]="rnaSymbol"
+          [rnaType]="rnaType"></app-mirna-function>
       </ng-container>
 
       <ng-template #loading>
