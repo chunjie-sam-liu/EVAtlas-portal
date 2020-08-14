@@ -99,10 +99,10 @@ api.add_resource(TCGAmiRNA, "/tcga_mirna/<string:mirna>")
 
 mir_func_database_fields = {
     "miR_gene_id": fields.String,
-    "Pubmed": fields.String(attribute="pubmed_id"),
+    "pubmed_id": fields.String,
     "timestamps": fields.String,
-    "miRNA id": fields.String(attribute="miRNA_id"),
-    "miRNA Function": fields.String(attribute="mir_function"),
+    "miRNA_id": fields.String,
+    "mir_function": fields.String,
 }
 
 mir_func_database_list_fields = {

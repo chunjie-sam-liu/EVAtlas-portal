@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { EChartOption } from 'echarts';
 import * as echarts from 'echarts';
 import { RnaDetailApiService } from '../rna-detail-api.service';
@@ -21,15 +21,16 @@ export class RnaMiscComponent implements OnInit {
 
   dataSourceFunc: MatTableDataSource<MirFunc>;
   @ViewChild('paginatorFunc', { static: true }) paginatorFunc: MatPaginator;
-  displayedColumnsFunc=['miRNA id', 'miRNA Function', 'Pubmed'];
+  @ViewChild('input') input: ElementRef;
+  displayedColumnsFunc=['miRNA_id', 'mir_function', 'pubmed_id'];
 
   constructor(private rnaDetailApiService: RnaDetailApiService) { }
 
   ngOnInit(): void {
-    this.tcgaExpTitle=`${this.rnaSymbol} from TCGA average expression across cancers`;
+    this.tcgaExpTitle=`${this.rnaSymbol} from TCGA average expression across cases vs normals`;
 
     this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.tcgaExp=this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
     });
 

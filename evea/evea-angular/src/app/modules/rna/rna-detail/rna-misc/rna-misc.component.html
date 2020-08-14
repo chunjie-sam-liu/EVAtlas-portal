@@ -3,14 +3,35 @@
     <mat-card-header>
       <mat-card-title> {{ rnaSymbol }} related Functions </mat-card-title>
     </mat-card-header>
+
+    <mat-form-field>
+      <input matInput placeholder="Input keywords" #input />
+      <button mat-icon-button color="warn" matPrefix>
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
     <div class="spinner-container" *ngIf="!displayedColumnsFunc">
       <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
     </div>
 
     <mat-table [dataSource]="dataSourceFunc">
-      <ng-container *ngFor="let col of displayedColumnsFunc" [matColumnDef]="col">
-        <mat-header-cell *matHeaderCellDef> {{ col }} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ row[col] }}</mat-cell>
+      <ng-container matColumnDef="miRNA_id">
+        <mat-header-cell *matHeaderCellDef> miRNA id </mat-header-cell>
+        <mat-cell *matCellDef="let row"><a href="http://www.mirbase.org/textsearch.shtml?q={{ row.miRNA_id }}"
+            target="_blank">{{ row.miRNA_id }}</a></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="mir_function">
+        <mat-header-cell *matHeaderCellDef> miRNA Function </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.mir_function }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pubmed_id">
+        <mat-header-cell *matHeaderCellDef> PMID </mat-header-cell>
+        <mat-cell *matCellDef="let row"><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.pubmed_id }}"
+            target="_blank">
+            {{ row.pubmed_id }}</a></mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumnsFunc"></mat-header-row>
