@@ -12,3 +12,10 @@ GET http://localhost:5000/api/target/filter
   &filter=
   &page=0
   &size=5
+
+###
+  GET http://localhost:5000/api/func/filter
+  ?mirna=hsa-miR-21-5p
+  &filter=
+  &page=0
+  &size=5

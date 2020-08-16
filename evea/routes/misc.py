@@ -1,6 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from evea.db import mongo
-from flask_restful import Api, Resource, fields, marshal_with, reqparse, marshal
+from flask_restful import Api, Resource, fields, marshal_with, marshal
+from flask_restful import reqparse
 
 
 misc = Blueprint("misc", __name__)
@@ -107,20 +108,39 @@ mir_func_database_fields = {
 
 mir_func_database_list_fields = {
     "mir_func_list": fields.List(fields.Nested(mir_func_database_fields)),
-    # "records_num": fields.Integer,
+    "records_num": fields.Integer,
 }
 
 
 class FuncmiRNA(Resource):
     @marshal_with(mir_func_database_list_fields)
-    def get(self, mirna):
-        condition = {"miRNA_id": mirna}
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("mirna", type=str, required=True)
+        parser.add_argument("filter", type=str, default="")
+        parser.add_argument("page", type=int, default=0)
+        parser.add_argument("size", type=int, default=5)
+        args = parser.parse_args()
+
+        record_skip = args.page * args.size
+        record_limit = args.size
+
+        condition = {"miRNA_id": args.mirna}
+        if args.filter != "":
+            condition["mir_function"] = {"$regex": args.filter, "$options": "i"}
+
+        print("test-condition---------------------->")
+        print(condition)
         output = {"_id": 0}
         mcur = mongo.db.func_miRNA.find(condition, output)
-        return {"mir_func_list": list(mcur)}
+        n_record = mcur.count()
+        return {
+            "mir_func_list": list(mcur.skip(record_skip).limit(record_limit)),
+            "n_record": n_record,
+        }
 
 
-api.add_resource(FuncmiRNA, "/func_mirna/<string:mirna>")
+api.add_resource(FuncmiRNA, "/func_mirna/filter")
 
 
 class TCGAsnoRNA(Resource):

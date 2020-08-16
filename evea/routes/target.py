@@ -56,6 +56,7 @@ class FilterTargets(Resource):
         if args.filter != "":
             condition["target"] = {"$regex": args.filter, "$options": "i"}
 
+        print("test-target-condition---------->")
         print(condition)
         mcur = mongo.db.mir2target.find(condition)
         n_record = mcur.count()

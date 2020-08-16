@@ -6,6 +6,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MirFunc } from 'src/app/shared/model/mir-func';
 import { MatPaginator } from '@angular/material/paginator';
 import { TcgaMir } from 'src/app/shared/model/tcga-mir';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { merge } from 'lodash';
+import { RnaFuncDataSrouce } from './rna-func-data-source';
 
 @Component({
   selector: 'app-rna-misc',
@@ -19,7 +23,7 @@ export class RnaMiscComponent implements OnInit {
   tcgaExp: EChartOption;
   tcgaExpTitle: string;
 
-  dataSourceFunc: MatTableDataSource<MirFunc>;
+  dataSourceFunc: RnaFuncDataSrouce;
   @ViewChild('paginatorFunc', { static: true }) paginatorFunc: MatPaginator;
   @ViewChild('input') input: ElementRef;
   displayedColumnsFunc=['miRNA_id', 'mir_function', 'pubmed_id'];
@@ -35,11 +39,41 @@ export class RnaMiscComponent implements OnInit {
     });
 
     let rnaSymbolSub=this.rnaSymbol.replace(/-[3|5]p/, "");
-    this.rnaDetailApiService.getmiRNAFuncs(rnaSymbolSub).subscribe((res) => {
-      this.dataSourceFunc=new MatTableDataSource(res);
-      this.dataSourceFunc.paginator=this.paginatorFunc;
-    });
+    // this.rnaDetailApiService.getmiRNAFuncs(rnaSymbolSub).subscribe((res) => {
+    this.dataSourceFunc=new RnaFuncDataSrouce(this.rnaDetailApiService);
+    // this.dataSourceFunc.paginator=this.paginatorFunc;
+    this.dataSourceFunc.loadFuncRecords(rnaSymbolSub, '', 0, 5);
+    console.log(this.dataSourceFunc);
+    // });
   }
+
+  ngAfterViewInit(): void {
+    this.paginatorFunc.page.pipe(tap(() => this._loadFuncRecords()));
+    merge(this.paginatorFunc.page)
+      .pipe(tap(() => this._loadFuncRecords()))
+      .subscribe();
+
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginatorFunc.pageIndex=0;
+          this._loadFuncRecords();
+        })
+      )
+      .subscribe();
+  }
+
+  private _loadFuncRecords() {
+    this.dataSourceFunc.loadFuncRecords(
+      this.rnaSymbol.replace(/-[3|5]p/, ""),
+      this.input.nativeElement.value,
+      this.paginatorFunc.pageIndex,
+      this.paginatorFunc.pageSize
+    );
+  }
+
   private _plotDist(d: TcgaMir[], title: string, r: string): EChartOption {
     const source=[];
     let sam;
