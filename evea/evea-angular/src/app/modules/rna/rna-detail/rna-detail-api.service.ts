@@ -9,6 +9,7 @@ import { DrugRecord } from 'src/app/shared/model/drug';
 import { TargetRecord } from 'src/app/shared/model/mir-target';
 import { MirFunc } from 'src/app/shared/model/mir-func';
 import { TcgaMir } from 'src/app/shared/model/tcga-mir';
+import rnaTypes from 'src/app/shared/constants/rna-types';
 
 @Injectable({
   providedIn: 'root',
@@ -53,8 +54,11 @@ export class RnaDetailApiService extends BaseHttpService {
     });
   }
 
-  public findtcgaExpr(mirna: string): Observable<TcgaMir[]> {
-    return this.getData('misc/tcga_mirna/'+mirna).pipe(map((res) => res.mir_tcga_list));
+  public findtcgaExpr(rnaid: string, rnatype: string): Observable<TcgaMir[]> {
+    return this.getData('misc/tcga_rna', {
+      rnaid,
+      rnatype
+    }).pipe(map((res) => res.mir_tcga_list));
   }
 
   public getmiRNADrugs(mirna: string): Observable<DrugRecord[]> {

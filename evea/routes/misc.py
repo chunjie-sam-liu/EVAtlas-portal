@@ -88,14 +88,19 @@ mir_tcga_database_list_fields = {
 
 class TCGAmiRNA(Resource):
     @marshal_with(mir_tcga_database_list_fields)
-    def get(self, mirna):
-        condition = {"miRNA_id": mirna}
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("rnaid", type=str)
+        parser.add_argument("rnatype", type=str)
+        args = parser.parse_args()
+        condition = {args.rnatype + "_id": args.rnaid}
         output = {"_id": 0}
-        mcur = mongo.db.tcga_exp_miRNA.find(condition, output)
+        db_name = "tcga_exp_" + args.rnatype
+        mcur = mongo.db[db_name].find(condition, output)
         return {"mir_tcga_list": list(mcur)}
 
 
-api.add_resource(TCGAmiRNA, "/tcga_mirna/<string:mirna>")
+api.add_resource(TCGAmiRNA, "/tcga_rna")
 
 
 mir_func_database_fields = {
@@ -129,8 +134,6 @@ class FuncmiRNA(Resource):
         if args.filter != "":
             condition["mir_function"] = {"$regex": args.filter, "$options": "i"}
 
-        print("test-condition---------------------->")
-        print(condition)
         output = {"_id": 0}
         mcur = mongo.db.func_miRNA.find(condition, output)
         n_record = mcur.count()

@@ -9,7 +9,7 @@
         <app-rna-expr [rnaSymbol]="rnaSymbol" [rnaType]="rnaType"></app-rna-expr>
       </ng-container>
 
-      <ng-container *ngIf="isMiRNA; else empty">
+      <ng-container *ngIf="isRNA; else empty">
         <app-rna-misc [rnaSymbol]="rnaSymbol" [rnaType]="rnaType"></app-rna-misc>
       </ng-container>
 

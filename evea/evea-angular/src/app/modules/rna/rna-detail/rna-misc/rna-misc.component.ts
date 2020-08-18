@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { EChartOption } from 'echarts';
-import * as echarts from 'echarts';
 import { RnaDetailApiService } from '../rna-detail-api.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MirFunc } from 'src/app/shared/model/mir-func';
 import { MatPaginator } from '@angular/material/paginator';
 import { TcgaMir } from 'src/app/shared/model/tcga-mir';
 import { fromEvent } from 'rxjs';
@@ -33,18 +30,13 @@ export class RnaMiscComponent implements OnInit {
   ngOnInit(): void {
     this.tcgaExpTitle=`${this.rnaSymbol} from TCGA average expression across cases vs normals`;
 
-    this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol).subscribe((res) => {
-      // console.log(res);
+    this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol, this.rnaType).subscribe((res) => {
       this.tcgaExp=this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
     });
 
     let rnaSymbolSub=this.rnaSymbol.replace(/-[3|5]p/, "");
-    // this.rnaDetailApiService.getmiRNAFuncs(rnaSymbolSub).subscribe((res) => {
     this.dataSourceFunc=new RnaFuncDataSrouce(this.rnaDetailApiService);
-    // this.dataSourceFunc.paginator=this.paginatorFunc;
     this.dataSourceFunc.loadFuncRecords(rnaSymbolSub, '', 0, 5);
-    console.log(this.dataSourceFunc);
-    // });
   }
 
   ngAfterViewInit(): void {
@@ -106,7 +98,6 @@ export class RnaMiscComponent implements OnInit {
         test_source.splice(i, 1);
       }
     };//删除对象元素小于2的对象
-    console.log(test_source);
     const diseSource=[];
     const caseSource=[];
     const normSource=[];
