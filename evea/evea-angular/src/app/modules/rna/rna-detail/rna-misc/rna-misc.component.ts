@@ -20,6 +20,8 @@ export class RnaMiscComponent implements OnInit {
   tcgaExp: EChartOption;
   tcgaExpTitle: string;
 
+  isMirna: boolean;
+
   dataSourceFunc: RnaFuncDataSrouce;
   @ViewChild('paginatorFunc', { static: true }) paginatorFunc: MatPaginator;
   @ViewChild('input') input: ElementRef;
@@ -37,6 +39,8 @@ export class RnaMiscComponent implements OnInit {
     let rnaSymbolSub=this.rnaSymbol.replace(/-[3|5]p/, "");
     this.dataSourceFunc=new RnaFuncDataSrouce(this.rnaDetailApiService);
     this.dataSourceFunc.loadFuncRecords(rnaSymbolSub, '', 0, 5);
+    this.isMirna=this.rnaType==='miRNA'? true:false;
+
   }
 
   ngAfterViewInit(): void {

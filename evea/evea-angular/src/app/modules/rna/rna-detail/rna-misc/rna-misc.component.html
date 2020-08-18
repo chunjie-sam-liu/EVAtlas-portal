@@ -1,5 +1,6 @@
 <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4" *ngIf="isMirna">
     <mat-card-header>
       <mat-card-title> {{ rnaSymbol }} related Functions </mat-card-title>
     </mat-card-header>
@@ -39,6 +40,7 @@
     </mat-table>
     <mat-paginator #paginatorFunc [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </mat-card>
+
 
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
