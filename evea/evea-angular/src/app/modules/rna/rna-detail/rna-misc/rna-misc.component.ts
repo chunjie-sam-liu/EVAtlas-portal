@@ -150,14 +150,15 @@ export class RnaMiscComponent implements OnInit {
       },
       grid: {
         height: "650px",
-        left: '3%',
-        right: '4%',
+        left: '1%',
+        right: '9%',
         bottom: '3%',
         containLabel: true
       },
       xAxis: {
         type: 'value',
-        boundaryGap: [0, 0.01]
+        boundaryGap: [0, 0.01],
+        name: `RPKM`,
       },
       yAxis: {
         type: 'category',
