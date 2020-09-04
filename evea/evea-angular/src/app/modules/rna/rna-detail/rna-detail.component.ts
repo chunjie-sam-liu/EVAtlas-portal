@@ -22,7 +22,7 @@ export class RnaDetailComponent implements OnInit {
     this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => {
       this.rnaBasicInfo=res;
       this.rnaType=res.class;
-      if (this.rnaType==="miRNA"||this.rnaType==="snoRNA"||this.rnaType==="tRNA") {
+      if (this.rnaType==="miRNA"||this.rnaType==="snoRNA"||this.rnaType==="tRNA"||this.rnaType==="piRNA"||this.rnaType==="snRNA"||this.rnaType==="rRNA"||this.rnaType==="pRNA"||this.rnaType==="scRNA") {
         this.isRNA=true;
       } else {
         this.isRNA=false;

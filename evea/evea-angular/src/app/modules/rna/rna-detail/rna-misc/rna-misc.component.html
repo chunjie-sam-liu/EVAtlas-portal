@@ -38,7 +38,8 @@
       <mat-header-row *matHeaderRowDef="displayedColumnsFunc"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumnsFunc"></mat-row>
     </mat-table>
-    <mat-paginator #paginatorFunc [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <mat-paginator #paginatorFunc [length]="dataSourceFunc.resultLength" [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons></mat-paginator>
   </mat-card>
 
 

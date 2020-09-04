@@ -113,7 +113,7 @@ mir_func_database_fields = {
 
 mir_func_database_list_fields = {
     "mir_func_list": fields.List(fields.Nested(mir_func_database_fields)),
-    "records_num": fields.Integer,
+    "n_record": fields.Integer,
 }
 
 
@@ -137,6 +137,7 @@ class FuncmiRNA(Resource):
         output = {"_id": 0}
         mcur = mongo.db.func_miRNA.find(condition, output)
         n_record = mcur.count()
+        print(n_record)
         return {
             "mir_func_list": list(mcur.skip(record_skip).limit(record_limit)),
             "n_record": n_record,
