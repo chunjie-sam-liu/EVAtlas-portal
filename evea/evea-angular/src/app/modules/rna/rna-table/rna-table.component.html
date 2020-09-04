@@ -20,9 +20,7 @@
 
     <ng-container matColumnDef="loci">
       <mat-header-cell *matHeaderCellDef>Position</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let rna"
-        >{{ rna.chromosome }}: {{ rna.start | number }} - {{ rna.end | number }}</mat-cell
-      >
+      <mat-cell class="duration-cell" *matCellDef="let rna">{{ rna.chromosome }}: {{ rna.start }} - {{ rna.end }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="strand">
