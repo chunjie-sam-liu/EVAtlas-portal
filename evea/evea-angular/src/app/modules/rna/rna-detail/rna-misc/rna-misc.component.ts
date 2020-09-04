@@ -23,7 +23,7 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
   isMirna: boolean;
 
   dataSourceFunc: RnaFuncDataSrouce;
-  @ViewChild('paginatorFunc', { static: true }) paginatorFunc: MatPaginator;
+  @ViewChild('paginatorFunc') paginatorFunc: MatPaginator;
   @ViewChild('input') input: ElementRef;
   displayedColumnsFunc = ['miRNA_id', 'mir_function', 'pubmed_id'];
 

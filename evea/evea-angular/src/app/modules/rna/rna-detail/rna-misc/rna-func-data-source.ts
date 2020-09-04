@@ -6,12 +6,12 @@ import { tap, map, catchError, finalize } from 'rxjs/operators';
 import { MirFunc } from 'src/app/shared/model/mir-func';
 
 export class RnaFuncDataSrouce implements DataSource<MirFunc> {
-  private funcRecordSubject=new BehaviorSubject<MirFunc[]>([]);
-  private loadingSubject=new BehaviorSubject<boolean>(false);
-  public loading$=this.loadingSubject.asObservable();
+  private funcRecordSubject = new BehaviorSubject<MirFunc[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  public loading$ = this.loadingSubject.asObservable();
   public resultLength: number;
 
-  constructor(private rnaDetailApiService: RnaDetailApiService) { }
+  constructor(private rnaDetailApiService: RnaDetailApiService) {}
 
   public loadFuncRecords(mirna: string, filter: string, pageIndex: number, pageSize: number) {
     this.loadingSubject.next(true);
@@ -19,7 +19,7 @@ export class RnaFuncDataSrouce implements DataSource<MirFunc> {
       .getFuncRecords(mirna, filter, pageIndex, pageSize)
       .pipe(
         tap((val) => {
-          this.resultLength=val.n_record;
+          this.resultLength = val.n_record;
         }),
         map((res) => res.mir_func_list),
         catchError(() => of([])),
