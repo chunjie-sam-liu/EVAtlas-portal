@@ -11,7 +11,7 @@
       </button>
     </mat-form-field>
 
-    <div class="spinner-container" *ngIf="!displayedColumnsFunc">
+    <div class="spinner-container" *ngIf="dataSourceFunc.loading$ | async">
       <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
     </div>
 

@@ -8,13 +8,13 @@ export default [
     name: 'Adipose',
     img: 'Adipose.png',
     title: 'Adipose',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Adrenal_gland',
     img: 'Adrenal_gland.png',
     title: 'Adrenal gland',
-    select: 'tissues'
+    select: 'tissues',
   },
   // {
   //   name: 'Bladder',
@@ -25,7 +25,7 @@ export default [
     name: 'Blood',
     img: 'Blood.png',
     title: 'Blood',
-    select: 'tissues'
+    select: 'tissues',
   },
   // {
   //   name: 'Bone_marrow',
@@ -41,103 +41,103 @@ export default [
     name: 'Brain',
     img: 'Brain.png',
     title: 'Brain',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Breast',
     img: 'Breast.png',
     title: 'Breast',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Cervix',
     img: 'Cervix.png',
     title: 'Cervix',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Colorectum',
     img: 'Colorectum.png',
     title: 'Colorectum',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Epididymal',
     img: 'Epididymal.png',
     title: 'Epididymal',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Hypopharynx',
     img: 'Hypopharynx.png',
     title: 'Hypopharynx',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Kidney',
     img: 'Kidney.png',
     title: 'Kidney',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Lung',
     img: 'Lung.png',
     title: 'Lung',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Lymph',
     img: 'Lymph.png',
     title: 'Lymph',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Mouth',
     img: 'Mouth.png',
     title: 'Mouth',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Nerve',
     img: 'Nerve.png',
     title: 'Nerve',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Ovary',
     img: 'Ovary.png',
     title: 'Ovary',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Pancreas',
     img: 'Pancreas.png',
     title: 'Pancreas',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Prostate',
     img: 'Prostate.png',
     title: 'Prostate',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Skin',
     img: 'Skin.png',
     title: 'Skin',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Stomach',
     img: 'Stomach.png',
     title: 'Stomach',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Tongue',
     img: 'Tongue.png',
     title: 'Tongue',
-    select: 'tissues'
+    select: 'tissues',
   },
   // {
   //   name: 'Umbilical_cord',
@@ -148,12 +148,12 @@ export default [
     name: 'Uterus',
     img: 'Uterus.png',
     title: 'Uterus',
-    select: 'tissues'
+    select: 'tissues',
   },
   {
     name: 'Vessel',
     img: 'Vessel.png',
     title: 'Vessel',
-    select: 'tissues'
+    select: 'tissues',
   },
 ];
