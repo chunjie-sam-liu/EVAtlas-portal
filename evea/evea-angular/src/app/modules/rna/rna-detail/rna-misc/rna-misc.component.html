@@ -1,5 +1,4 @@
 <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4" *ngIf="isMirna">
     <mat-card-header>
       <mat-card-title> {{ rnaSymbol }} related Functions </mat-card-title>
@@ -19,8 +18,9 @@
     <mat-table [dataSource]="dataSourceFunc">
       <ng-container matColumnDef="miRNA_id">
         <mat-header-cell *matHeaderCellDef> miRNA id </mat-header-cell>
-        <mat-cell *matCellDef="let row"><a href="http://www.mirbase.org/textsearch.shtml?q={{ row.miRNA_id }}"
-            target="_blank">{{ row.miRNA_id }}</a></mat-cell>
+        <mat-cell *matCellDef="let row"
+          ><a href="http://www.mirbase.org/textsearch.shtml?q={{ row.miRNA_id }}" target="_blank">{{ row.miRNA_id }}</a></mat-cell
+        >
       </ng-container>
 
       <ng-container matColumnDef="mir_function">
@@ -30,18 +30,21 @@
 
       <ng-container matColumnDef="pubmed_id">
         <mat-header-cell *matHeaderCellDef> PMID </mat-header-cell>
-        <mat-cell *matCellDef="let row"><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.pubmed_id }}"
-            target="_blank">
-            {{ row.pubmed_id }}</a></mat-cell>
+        <mat-cell *matCellDef="let row"
+          ><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.pubmed_id }}" target="_blank"> {{ row.pubmed_id }}</a></mat-cell
+        >
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumnsFunc"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumnsFunc"></mat-row>
     </mat-table>
-    <mat-paginator #paginatorFunc [length]="dataSourceFunc.resultLength" [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons></mat-paginator>
+    <mat-paginator
+      #paginatorFunc
+      [length]="dataSourceFunc.resultLength"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
   </mat-card>
-
 
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>

@@ -22,38 +22,37 @@ export class RnaExprComponent implements OnInit {
   mvSouDist: EChartOption;
   mvSouDistTitle: string;
 
-  constructor(private rnaDetialApiService: RnaDetailApiService) { }
+  constructor(private rnaDetialApiService: RnaDetailApiService) {}
 
   ngOnInit(): void {
-    this.exoDistTitle=`${this.rnaSymbol} from exosomes average expression across tissues`;
-    this.mvDistTitle=`${this.rnaSymbol} from microvesicles average expression across tissues`;
-    this.exoSouDistTitle=`${this.rnaSymbol} from exosomes average expression across sources`;
-    this.mvSouDistTitle=`${this.rnaSymbol} from microvesicles average expression across sources`;
+    this.exoDistTitle = `${this.rnaSymbol} from exosomes average expression across tissues`;
+    this.mvDistTitle = `${this.rnaSymbol} from microvesicles average expression across tissues`;
+    this.exoSouDistTitle = `${this.rnaSymbol} from exosomes average expression across sources`;
+    this.mvSouDistTitle = `${this.rnaSymbol} from microvesicles average expression across sources`;
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
-      this.exoDist=this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
+      this.exoDist = this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
     });
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-      this.mvDist=this._plotDist(res, this.mvDistTitle, this.rnaSymbol);
+      this.mvDist = this._plotDist(res, this.mvDistTitle, this.rnaSymbol);
     });
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
-      this.exoSouDist=this._plotDistS(res, this.exoSouDistTitle, this.rnaSymbol);
+      this.exoSouDist = this._plotDistS(res, this.exoSouDistTitle, this.rnaSymbol);
     });
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-      this.mvSouDist=this._plotDistS(res, this.mvSouDistTitle, this.rnaSymbol);
+      this.mvSouDist = this._plotDistS(res, this.mvSouDistTitle, this.rnaSymbol);
     });
   }
 
   private _plotDist(d: RnaExpr[], title: string, r: string): EChartOption {
-    console.log(d);
-    const dd=d.sort((a, b) => (a.average>b.average? -1:1));
-    const dataShadow=[];
-    const data=dd.map((v) => v.average);
-    const dataAxis=dd.map((v) => {
-      dataShadow.push(data[0]+data[0]*0.1);
+    const dd = d.sort((a, b) => (a.average > b.average ? -1 : 1));
+    const dataShadow = [];
+    const data = dd.map((v) => v.average);
+    const dataAxis = dd.map((v) => {
+      dataShadow.push(data[0] + data[0] * 0.1);
       return v.tissues.replace('_', ' ');
     });
 
@@ -124,15 +123,14 @@ export class RnaExprComponent implements OnInit {
         },
       ],
     };
-  };
+  }
 
   private _plotDistS(d: RnaExpr[], title: string, r: string): EChartOption {
-    console.log(d);
-    const dd=d.sort((a, b) => (a.average>b.average? -1:1));
-    const dataShadow=[];
-    const data=dd.map((v) => v.average);
-    const dataAxis=dd.map((v) => {
-      dataShadow.push(data[0]+data[0]*0.1);
+    const dd = d.sort((a, b) => (a.average > b.average ? -1 : 1));
+    const dataShadow = [];
+    const data = dd.map((v) => v.average);
+    const dataAxis = dd.map((v) => {
+      dataShadow.push(data[0] + data[0] * 0.1);
       return v.source.replace('_', ' ');
     });
 
@@ -187,7 +185,7 @@ export class RnaExprComponent implements OnInit {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
               { offset: 0, color: '#FFA500' },
               { offset: 0.5, color: '#FFA500' },
-              { offset: 1, color: '#FF8C00' }
+              { offset: 1, color: '#FF8C00' },
             ]),
           },
           emphasis: {
@@ -195,7 +193,7 @@ export class RnaExprComponent implements OnInit {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#FF8C00' },
                 { offset: 0.7, color: '#FFA500' },
-                { offset: 1, color: '#FFA500' }
+                { offset: 1, color: '#FFA500' },
               ]),
             },
           },

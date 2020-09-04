@@ -29,8 +29,9 @@
 
     <ng-container matColumnDef="PMID">
       <mat-header-cell *matHeaderCellDef> PMID </mat-header-cell>
-      <mat-cell *matCellDef="let row"><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.PMID }}"
-          target="_blank">{{ row.PMID }}</a></mat-cell>
+      <mat-cell *matCellDef="let row"
+        ><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.PMID }}" target="_blank">{{ row.PMID }}</a></mat-cell
+      >
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumnsDrug"></mat-header-row>
@@ -58,8 +59,9 @@
   <mat-table [dataSource]="dataSourceTarget">
     <ng-container matColumnDef="Target">
       <mat-header-cell *matHeaderCellDef> Target </mat-header-cell>
-      <mat-cell *matCellDef="let row"><a href="https://www.ncbi.nlm.nih.gov/gene/?term={{ row.Target}}"
-          target="_blank">{{ row.Target }}</a></mat-cell>
+      <mat-cell *matCellDef="let row"
+        ><a href="https://www.ncbi.nlm.nih.gov/gene/?term={{ row.Target }}" target="_blank">{{ row.Target }}</a></mat-cell
+      >
     </ng-container>
 
     <ng-container matColumnDef="Confidence">
@@ -79,13 +81,18 @@
 
     <ng-container matColumnDef="PMID">
       <mat-header-cell *matHeaderCellDef> PMID </mat-header-cell>
-      <mat-cell *matCellDef="let row"><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.PMID}}"
-          target="_blank">{{ row.PMID }}</a></mat-cell>
+      <mat-cell *matCellDef="let row"
+        ><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.PMID }}" target="_blank">{{ row.PMID }}</a></mat-cell
+      >
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumnsTarget"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumnsTarget"></mat-row>
   </mat-table>
-  <mat-paginator #paginatorTarget [length]="dataSourceTarget.resultLength" [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    #paginatorTarget
+    [length]="dataSourceTarget.resultLength"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
 </mat-card>

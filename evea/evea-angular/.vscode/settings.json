@@ -26,5 +26,6 @@
   "peacock.remoteColor": "#215732",
   "terminal.integrated.shellArgs.linux": [
     "-i"
-  ]
+  ],
+  "peacock.color": "#215732"
 }
