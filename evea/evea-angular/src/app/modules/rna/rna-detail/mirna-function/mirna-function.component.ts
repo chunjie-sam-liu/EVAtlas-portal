@@ -19,22 +19,22 @@ export class MirnaFunctionComponent implements OnInit, AfterViewInit {
 
   dataSourceDrug: MatTableDataSource<DrugRecord>;
   @ViewChild('paginatorDrug', { static: true }) paginatorDrug: MatPaginator;
-  displayedColumnsDrug = ['FDA', 'CID', 'Small_molecule', 'Source', 'PMID'];
+  displayedColumnsDrug=['FDA', 'CID', 'Small_molecule', 'Source', 'PMID'];
 
   dataSourceTarget: RnaTargetDataSrouce;
   @ViewChild('paginatorTarget', { static: true }) paginatorTarget: MatPaginator;
   @ViewChild('input') input: ElementRef;
-  displayedColumnsTarget = ['Target', 'Confidence', 'Source', 'Experiment', 'PMID'];
+  displayedColumnsTarget=['Target', 'Confidence', 'Source', 'Experiment', 'PMID'];
 
-  constructor(private rnaDetailApiService: RnaDetailApiService) {}
+  constructor(private rnaDetailApiService: RnaDetailApiService) { }
 
   ngOnInit(): void {
     this.rnaDetailApiService.getmiRNADrugs(this.rnaSymbol).subscribe((res) => {
-      this.dataSourceDrug = new MatTableDataSource(res);
-      this.dataSourceDrug.paginator = this.paginatorDrug;
+      this.dataSourceDrug=new MatTableDataSource(res);
+      this.dataSourceDrug.paginator=this.paginatorDrug;
     });
 
-    this.dataSourceTarget = new RnaTargetDataSrouce(this.rnaDetailApiService);
+    this.dataSourceTarget=new RnaTargetDataSrouce(this.rnaDetailApiService);
     this.dataSourceTarget.loadTargetRecords(this.rnaSymbol, '', 0, 5);
   }
   ngAfterViewInit(): void {
@@ -48,7 +48,7 @@ export class MirnaFunctionComponent implements OnInit, AfterViewInit {
         debounceTime(150),
         distinctUntilChanged(),
         tap(() => {
-          this.paginatorTarget.pageIndex = 0;
+          this.paginatorTarget.pageIndex=0;
           this._loadTargetRecords();
         })
       )

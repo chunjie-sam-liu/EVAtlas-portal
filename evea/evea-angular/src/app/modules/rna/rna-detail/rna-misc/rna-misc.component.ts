@@ -3,9 +3,9 @@ import { EChartOption } from 'echarts';
 import { RnaDetailApiService } from '../rna-detail-api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { TcgaMir } from 'src/app/shared/model/tcga-mir';
-import { fromEvent } from 'rxjs';
+import { merge, fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { merge } from 'lodash';
+// import { merge } from 'lodash';
 import { RnaFuncDataSrouce } from './rna-func-data-source';
 
 @Component({
@@ -13,7 +13,7 @@ import { RnaFuncDataSrouce } from './rna-func-data-source';
   templateUrl: './rna-misc.component.html',
   styleUrls: ['./rna-misc.component.css']
 })
-export class RnaMiscComponent implements OnInit {
+export class RnaMiscComponent implements OnInit, AfterViewInit {
   @Input() rnaSymbol: string;
   @Input() rnaType: string;
 
