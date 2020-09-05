@@ -46,15 +46,15 @@
     ></mat-paginator>
   </mat-card>
 
-  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4" *ngIf="isTcgaExp">
     <mat-card-header>
       <mat-card-title>
         {{ tcgaExpTitle }}
       </mat-card-title>
     </mat-card-header>
-    <div *ngIf="!tcgaExp">
+    <!-- <div *ngIf="!tcgaExp">
       <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-    </div>
+    </div> -->
     <div echarts [options]="tcgaExp" class="chart-tcgahight"></div>
   </mat-card>
 </div>

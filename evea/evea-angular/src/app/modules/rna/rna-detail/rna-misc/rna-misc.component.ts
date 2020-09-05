@@ -21,6 +21,7 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
   tcgaExpTitle: string;
 
   isMirna: boolean;
+  isTcgaExp: boolean;
 
   dataSourceFunc: RnaFuncDataSrouce;
   @ViewChild('paginatorFunc') paginatorFunc: MatPaginator;
@@ -33,13 +34,13 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
     this.tcgaExpTitle = `${this.rnaSymbol} from TCGA average expression across cases vs normals`;
 
     this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol, this.rnaType).subscribe((res) => {
+      this.isTcgaExp = res.length != 0 ? true : false;
       this.tcgaExp = this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
     });
 
     const rnaSymbolSub = this.rnaSymbol.replace(/-[3|5]p/, '');
     this.dataSourceFunc = new RnaFuncDataSrouce(this.rnaDetailApiService);
     this.dataSourceFunc.loadFuncRecords(rnaSymbolSub, '', 0, 5);
-    console.log(this.dataSourceFunc.resultLength);
     this.isMirna = this.rnaType === 'miRNA' ? true : false;
   }
 
