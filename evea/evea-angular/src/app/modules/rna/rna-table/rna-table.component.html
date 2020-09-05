@@ -21,7 +21,7 @@
     <ng-container matColumnDef="loci">
       <mat-header-cell *matHeaderCellDef>Position</mat-header-cell>
       <mat-cell class="duration-cell" *matCellDef="let rna">
-        <ng-container *ngIf="rna.start; else loading">
+        <ng-container *ngIf="rna.start != rna.end; else marked">
           {{ rna.chromosome }}: {{ rna.start | number }} - {{ rna.end | number }}
         </ng-container>
       </mat-cell>
@@ -50,4 +50,4 @@
   <mat-paginator [length]="dataSource.resultLength" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
 </mat-card>
 
-<ng-template #loading> hello c.j. </ng-template>
+<ng-template #marked> Unavailable </ng-template>

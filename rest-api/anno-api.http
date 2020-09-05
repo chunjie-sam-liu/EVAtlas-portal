@@ -4,11 +4,16 @@ GET http://localhost:5000/api/anno?ncrna=hsa-miR-21-5p
 GET http://localhost:5000/api/anno/?ncrna=hsa_rRNA_HUMRGM_1:5025:+
 
 ###
-<<<<<<< HEAD
 GET http://localhost:5000/api/anno/one/hsa_rRNA_HUMRGM_1:5025:+
-=======
+
+###
 GET http://localhost:5000/api/anno/one/hsa-let-7a-3p
 
 ###
+GET http://localhost:5000/api/anno/one/hsa-miR-4792
+
+###
+GET http://localhost:5000/api/anno/one/SNORD22%231668
+
+###
 GET http://localhost:5000/api/anno/?ncrna=hsa_rRNA_HUMRGM_1:5025:+
->>>>>>> fa242ff375ed95c4f3b37b4c800c0f9ac3bf1ba9

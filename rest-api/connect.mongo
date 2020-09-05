@@ -1,4 +1,4 @@
-db.sample_info_exp.aggregate([{"$match":{"srp_id": "SRP168558"}}, {"$project":{"srr_id":1, "condition":1, "ncrna_exp":1}}, {"$match":{"ncrna_exp.ncrna":""} "map_info": {"$push": "$srr_map_info"}, "srr_id": {"$push": "$srr_id"}, "source": {"$addToSet": "$source"}}}])
+// db.sample_info_exp.aggregate([{"$match":{"srp_id": "SRP168558"}}, {"$project":{"srr_id":1, "condition":1, "ncrna_exp":1}}, {"$match":{"ncrna_exp.ncrna":""} "map_info": {"$push": "$srr_map_info"}, "srr_id": {"$push": "$srr_id"}, "source": {"$addToSet": "$source"}}}])
 
 
 
@@ -39,12 +39,12 @@ db.test.find({"GeneSymbol":"hsa-miR-19b-1-5p"})
 db.exp_miRNA.find({'GeneSymbol':"hsa-miR-19b-1-5p", "srr_id": "SRR2105398"})
 
 
-db.sample_info.aggregate([{"$group":{"_id": {"tissues":"$tissues", "ex_type":"$ex_type"}}}
+// db.sample_info.aggregate([{"$group":{"_id": {"tissues":"$tissues", "ex_type":"$ex_type"}}}
 db.test.update({"GeneSymbol": "hsa-miR-4655-3p","srr_id": "SRR2105143"},{ "$push":{"scores":{"$each":[{'1':'2'}, {'3':'4'}, {'5':'6'}]}}})
 
 db.test.find({"GeneSymbol": "pRNA.1"})
 
-db.sample_info.find({}, {"_id":0, ''})
+// db.sample_info.find({}, {"_id":0, ''})
 
 db.miRNA_samexp.distinct("GeneSymbol")
 
@@ -93,7 +93,7 @@ db.ncrna_hit.update({"GeneSymbol":"hsa_tRNA_X54483_357:428:+"}, {"$set":{"chromo
 
 db.ncrna_hit.find({"GeneSymbol":"hsa_rRNA_HUMRGM_1:5025:+"})
 
-db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}, {""}])
+// db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}, {""}])
 
 db.ncrna_hit.findOne({"GeneSymbol":"hsa_piRNA_28605"})
 
@@ -114,3 +114,5 @@ db.func_miRNA.find().count()
 db.mir2target.find({'miRNA': 'hsa-miR-21-5p'}).limit(10)
 
 db.mir2target.findOne({"miRNA" : "hsa-miR-199a-3p"})
+
+db.ncrna_anno.find({"GeneSymbol":"hsa-miR-4792"})

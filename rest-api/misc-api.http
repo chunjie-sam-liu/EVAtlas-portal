@@ -23,5 +23,5 @@ GET http://localhost:5000/api/misc/func_mirna/filter?mirna=hsa-miR-101&filter=&p
 GET http://localhost:5000/api/misc/tcga_rna?rnaid=ACA13&rnatype=snoRNA
 
 ###
-# piRNA  tcga expression
-GET http://localhost:5000/api/misc/tcga_rna?rnaid=ACA13&rnatype=miRNA
+# snoRNA  tcga expression
+GET http://localhost:5000/api/misc/tcga_rna?rnaid=SNORD22%231668&rnatype=snoRNA

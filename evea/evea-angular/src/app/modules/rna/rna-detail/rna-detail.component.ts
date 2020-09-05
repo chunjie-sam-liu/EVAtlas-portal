@@ -19,7 +19,9 @@ export class RnaDetailComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.rnaSymbol = params.rna;
     });
-    this.rnaDetailApiService.findRnaBasicInfo(this.rnaSymbol).subscribe((res) => {
+
+    let annoParam = this.rnaSymbol.replace(/\#/, '%23');
+    this.rnaDetailApiService.findRnaBasicInfo(annoParam).subscribe((res) => {
       this.rnaBasicInfo = res;
       this.rnaType = res.class;
       if (this.rnaType === 'miRNA' || this.rnaType === 'snoRNA' || this.rnaType === 'tRNA') {

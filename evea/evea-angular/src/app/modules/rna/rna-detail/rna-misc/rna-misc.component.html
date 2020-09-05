@@ -1,5 +1,5 @@
 <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
-  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4" *ngIf="isMirna">
+  <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4" *ngIf="dataSourceFunc.resultLength; else empty">
     <mat-card-header>
       <mat-card-title> {{ rnaSymbol }} related Functions </mat-card-title>
     </mat-card-header>
@@ -58,3 +58,5 @@
     <div echarts [options]="tcgaExp" class="chart-tcgahight"></div>
   </mat-card>
 </div>
+
+<ng-template #empty></ng-template>
