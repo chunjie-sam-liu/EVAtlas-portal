@@ -41,9 +41,11 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pubmed</mat-header-cell>
       <!-- <mat-cell *matCellDef="let row">{{ row.pubmed }}</mat-cell> -->
       <mat-cell *matCellDef="let row">
-        <a href='http://www.evtrack.org/study_summary.php?PMID={{ row.pubmed }}'><span class="material-icons">
+        <a href="http://www.evtrack.org/study_summary.php?PMID={{ row.pubmed }}" target="_blank"
+          ><span class="material-icons">
             find_in_page
-          </span></a>
+          </span></a
+        >
       </mat-cell>
     </ng-container>
 
