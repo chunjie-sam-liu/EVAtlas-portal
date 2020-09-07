@@ -115,4 +115,4 @@ db.mir2target.find({'miRNA': 'hsa-miR-21-5p'}).limit(10)
 
 db.mir2target.findOne({"miRNA" : "hsa-miR-199a-3p"})
 
-db.ncrna_anno.find({"GeneSymbol":"hsa-miR-4792"})
+db.ncrna_anno.find({"GeneSymbol":"hsa-miR-4466"})

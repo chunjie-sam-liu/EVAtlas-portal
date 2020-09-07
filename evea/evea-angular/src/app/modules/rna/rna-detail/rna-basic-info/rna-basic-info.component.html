@@ -11,7 +11,7 @@
         </dd>
 
         <dt>Position</dt>
-        <dd>{{ rna.chr }}: {{ rna.start | number }} - {{ rna.end | number }}</dd>
+        <dd *ngIf="rna.start != rna.end; else empty">{{ rna.chr }}: {{ rna.start | number }} - {{ rna.end | number }}</dd>
 
         <dt>Strand</dt>
         <dd>{{ rna.strand }}</dd>
@@ -30,5 +30,6 @@
     <ng-template #loading>
       <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
     </ng-template>
+    <ng-template #empty><dd>Unavailable</dd></ng-template>
   </mat-card-content>
 </mat-card>

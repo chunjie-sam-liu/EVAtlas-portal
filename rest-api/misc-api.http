@@ -24,4 +24,4 @@ GET http://localhost:5000/api/misc/tcga_rna?rnaid=ACA13&rnatype=snoRNA
 
 ###
 # snoRNA  tcga expression
-GET http://localhost:5000/api/misc/tcga_rna?rnaid=SNORD22%231668&rnatype=snoRNA
+GET http://localhost:5000/api/misc/tcga_rna?rnaid=SNORD22&rnatype=snoRNA

@@ -19,24 +19,24 @@ export class SampleStatComponent implements OnInit, OnChanges {
   projectHeatmapTitle: string;
   projectDist: EChartOption;
   projectDistTitle: string;
-  constructor(private contentApiService: ContentApiService) { }
+  constructor(private contentApiService: ContentApiService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.projectHeatmapTitle=`${this.tissueRecord._id} miRNA Heatmap (top 50)`;
-    this.projectDistTitle=`${this.tissueRecord._id} RNA mapping distribution`;
+    this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
+    this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
 
     this.contentApiService.getProjectStat(this.tissueRecord._id).subscribe((res) => {
-      this.projectDist=this._rnaMappingDist(res, this.projectDistTitle);
+      this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
     });
 
     this.contentApiService.getProjectHeatmap(this.tissueRecord._id).subscribe((res) => {
-      this.projectHeatmap=this._rnaHeatmap(res, this.projectHeatmapTitle);
+      this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }
   private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
-    const series=rnaType.map((v) => ({
+    const series = rnaType.map((v) => ({
       name: v.label,
       type: 'bar',
       stack: 'total',
@@ -44,9 +44,9 @@ export class SampleStatComponent implements OnInit, OnChanges {
     }));
 
     d.map((v) => {
-      const tagSum=_sum(_values(v.tag_stat));
+      const tagSum = _sum(_values(v.tag_stat));
       series.map((s) => {
-        s.data.push(v.tag_stat[s.name]/tagSum);
+        s.data.push(v.tag_stat[s.name] / tagSum);
       });
     });
 
@@ -100,159 +100,167 @@ export class SampleStatComponent implements OnInit, OnChanges {
   }
 
   private _rnaHeatmap(d: RnaHeatmap[], title: string): EChartOption {
-    let yAxis=[];
-    const xAxis=[];
-    const xAxis2=[];
-    const data=[];
-    const data2=[];
-    let condition=[];
-    console.log(d);
+    let yAxis = [];
+    const xAxis = [];
+    const xAxis2 = [];
+    const data = [];
+    const data2 = [];
+    let condition = [];
+    // console.log(d);
     d.map((v) => {
       xAxis.push(v.srr_id);
-      xAxis2.push({ "srrId": v.srr_id, "con": v.condition })
+      xAxis2.push({ srrId: v.srr_id, con: v.condition });
       condition.push(v.condition);
       yAxis.push(...v.mir_lst);
     });
-    yAxis=[...new Set(yAxis)];
-    condition=[...new Set(condition)];
+    yAxis = [...new Set(yAxis)];
+    condition = [...new Set(condition)];
 
     d.map((v, i) => {
       v.mir_lst.map((vv, ii) => {
-        data[i*50+yAxis.indexOf(vv)]=[i, yAxis.indexOf(vv), v.exp_lst[ii]];
+        data[i * 50 + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
       });
     });
 
     //mean resu for each miR of single type sample
-    const dataMean=[];
-    let sum=0;
-    let dataMeanS=[];
-    let ydata=[];
-    if (condition.includes('Normal')&&(condition.length>1)) { ; } else {
+    const dataMean = [];
+    let sum = 0;
+    let dataMeanS = [];
+    let ydata = [];
+    if (condition.includes('Normal') && condition.length > 1) {
+    } else {
       yAxis.map((v, i) => {
         xAxis.map((vv, ii) => {
-          if (typeof (data[ii*50+i])!="undefined") {
-            sum=data[ii*50+i][2]+sum;
-          };
+          if (typeof data[ii * 50 + i] != 'undefined') {
+            sum = data[ii * 50 + i][2] + sum;
+          }
         });
-        dataMean.push({ mean: sum/(xAxis.length), mir: v });
-        sum=0;
-      })
-    };
-    dataMeanS=dataMean.sort((a, b) => { return a.mean-b.mean });
-    ydata=dataMeanS.map(function (iterm) {
+        dataMean.push({ mean: sum / xAxis.length, mir: v });
+        sum = 0;
+      });
+    }
+    dataMeanS = dataMean.sort((a, b) => {
+      return a.mean - b.mean;
+    });
+    ydata = dataMeanS.map(function (iterm) {
       return iterm['mir'];
     });
 
     //mean resu for each miR of more than 2 types sample
-    var compare=function (obj1, obj2) {
-      var val1=obj1.Con;
-      var val2=obj2.Con;
-      if (val1<val2) {
+    var compare = function (obj1, obj2) {
+      var val1 = obj1.Con;
+      var val2 = obj2.Con;
+      if (val1 < val2) {
         return -1;
-      } else if (val1>val2) {
+      } else if (val1 > val2) {
         return 1;
       } else {
         return 0;
       }
     };
 
-    let xList=[];
-    let xListN=[];
-    if (condition.includes('Normal')&&(condition.length>1)) {
-      xAxis2.map((x, i) => { xList.push({ "srrId": x.srrId, "Con": x.con, "Oi": i }) });
+    let xList = [];
+    let xListN = [];
+    if (condition.includes('Normal') && condition.length > 1) {
+      xAxis2.map((x, i) => {
+        xList.push({ srrId: x.srrId, Con: x.con, Oi: i });
+      });
       xList.sort(compare);
-      xList.map((x, i) => { xListN.push({ "srrId": x.srrId, "Con": x.Con, "Oi": x.Oi, "Ni": i }) });
+      xList.map((x, i) => {
+        xListN.push({ srrId: x.srrId, Con: x.Con, Oi: x.Oi, Ni: i });
+      });
       //cancer mean & normal mean
-      let canSum=0;
-      let norSum=0;
-      let canNum=0;
-      let norNum=0;
+      let canSum = 0;
+      let norSum = 0;
+      let canNum = 0;
+      let norNum = 0;
       let diffValue;
-      let diffList=[];
-      let diffListS=[];
+      let diffList = [];
+      let diffListS = [];
       yAxis.map((y, i) => {
         xListN.map((x) => {
-          if (x.Con=="Cancer"||x.Con=="cancer"||x.Con=="disease") {
-            canNum=canNum+1;
-            if (typeof (data[x.Oi*50+i])!="undefined") {
-              canSum=data[x.Oi*50+i][2]+canSum;//x.Oi means xZhou, i means yZhou
-            };
+          if (x.Con == 'Cancer' || x.Con == 'cancer' || x.Con == 'disease') {
+            canNum = canNum + 1;
+            if (typeof data[x.Oi * 50 + i] != 'undefined') {
+              canSum = data[x.Oi * 50 + i][2] + canSum; //x.Oi means xZhou, i means yZhou
+            }
           } else {
-            norNum=norNum+1;
-            if (typeof (data[x.Oi*50+i])!="undefined") {
-              norSum=data[x.Oi*50+i][2]+norSum;//x.Oi means xZhou, i means yZhou
-            };
-          };
+            norNum = norNum + 1;
+            if (typeof data[x.Oi * 50 + i] != 'undefined') {
+              norSum = data[x.Oi * 50 + i][2] + norSum; //x.Oi means xZhou, i means yZhou
+            }
+          }
         });
         // diff value
-        diffValue=(canSum/canNum)/(norSum/norNum);
-        canSum=0;
-        norSum=0;
-        canNum=0;
-        norNum=0;
+        diffValue = canSum / canNum / (norSum / norNum);
+        canSum = 0;
+        norSum = 0;
+        canNum = 0;
+        norNum = 0;
         diffList.push({ diffV: diffValue, mir: y });
       });
-      diffListS=diffList.sort((a, b) => { return a.diffV-b.diffV });
-      console.log(diffListS);
-      ydata=diffListS.map(function (iterm) {
+      diffListS = diffList.sort((a, b) => {
+        return a.diffV - b.diffV;
+      });
+      // console.log(diffListS);
+      ydata = diffListS.map(function (iterm) {
         return iterm['mir'];
       });
-    };
+    }
 
     //sorted data2
     d.map((v, i) => {
       v.mir_lst.map((vv, ii) => {
-        data2[i*50+ydata.indexOf(vv)]=[i, ydata.indexOf(vv), v.exp_lst[ii]];
+        data2[i * 50 + ydata.indexOf(vv)] = [i, ydata.indexOf(vv), v.exp_lst[ii]];
       });
     });
 
     //sorted data2 according xAxis
     xListN.map((x) => {
       data2.map((d) => {
-        if (d[0]==x.Oi&&!(d.includes('replaced'))) {
-          d[0]=x.Ni;
+        if (d[0] == x.Oi && !d.includes('replaced')) {
+          d[0] = x.Ni;
           d.push('replaced');
-        };
+        }
       });
     });
-
 
     data2.map((d) => {
       if (d.includes('replaced')) {
         d.splice(3, 1);
-      };
+      }
     });
-    console.log(data2);
+    // console.log(data2);
 
     //xZhou final
-    let xAxisF=[];
-    if (xListN.length>=1) {
-      xAxisF=xListN.map(function (iterm) {
+    let xAxisF = [];
+    if (xListN.length >= 1) {
+      xAxisF = xListN.map(function (iterm) {
         return iterm['srrId'];
       });
     } else {
-      xAxisF=xAxisF.concat(xAxis);
-    };
+      xAxisF = xAxisF.concat(xAxis);
+    }
 
     //quartile data for the range of the visualMap
-    let qArray=[];
+    let qArray = [];
     d.map((q) => {
-      qArray=qArray.concat(q.exp_lst);
+      qArray = qArray.concat(q.exp_lst);
     });
     qArray.sort(function (a, b) {
-      return a-b;
+      return a - b;
     });
-    let qValue=qArray[Math.ceil(qArray.length/4)*3];
+    let qValue = qArray[Math.ceil(qArray.length / 4) * 3];
 
     return {
       title: {
         show: true,
-        text: "Samples",
+        text: 'Samples',
         left: 'center',
-        bottom: '7%'
+        bottom: '7%',
       },
       grid: {
-        height: "600px",
+        height: '600px',
         top: '3%',
         left: '13%',
         right: '2%',
@@ -276,8 +284,8 @@ export class SampleStatComponent implements OnInit, OnChanges {
         splitArea: { show: true },
         data: xAxisF,
         axisLabel: {
-          show: false
-        }
+          show: false,
+        },
       },
       yAxis: {
         type: 'category',
@@ -285,8 +293,8 @@ export class SampleStatComponent implements OnInit, OnChanges {
         splitArea: { show: true },
         data: ydata,
         axisLabel: {
-          interval: 0
-        }
+          interval: 0,
+        },
       },
       visualMap: {
         min: 0,
