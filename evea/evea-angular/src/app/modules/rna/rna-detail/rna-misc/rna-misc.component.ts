@@ -33,10 +33,10 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.tcgaExpTitle = `${this.rnaSymbol} from TCGA average expression across cases vs normals`;
 
-    // if (this.rnaSymbol.indexOf('#') != -1) {
-    //   this.rnaSymbol = this.rnaSymbol.replace(/\#.*/, '');
-    //   console.log(this.rnaSymbol);
-    // }
+    if (this.rnaSymbol.indexOf('#') != -1) {
+      this.rnaSymbol = this.rnaSymbol.replace(/\#.*/, '');
+      console.log(this.rnaSymbol);
+    }
     this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol, this.rnaType).subscribe((res) => {
       this.isTcgaExp = res.length != 0 ? true : false;
       this.tcgaExp = this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
@@ -49,7 +49,6 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.paginatorFunc);
     this.paginatorFunc.page.pipe(tap(() => this._loadFuncRecords()));
     merge(this.paginatorFunc.page)
       .pipe(tap(() => this._loadFuncRecords()))
