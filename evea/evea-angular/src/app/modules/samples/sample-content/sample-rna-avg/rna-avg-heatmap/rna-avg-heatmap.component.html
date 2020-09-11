@@ -1,0 +1,4 @@
+<div *ngIf="!projectHeatmap">
+  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+</div>
+<div echarts [options]="projectHeatmap" style="height: 700px;"></div>

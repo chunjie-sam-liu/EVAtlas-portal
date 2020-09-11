@@ -36,11 +36,11 @@ export class ContentApiService extends BaseHttpService {
     });
   }
 
-  public getProjectHeatmap(id: string): Observable<RnaHeatmap[]> {
+  public getProjectHeatmap(id: string, rnaType: string): Observable<RnaHeatmap[]> {
     return this.getData('ncrna/srpheatmap', {
       srp: id,
-      ncrna: 'miRNA',
-    }).pipe(map((res) => res.srp_heatmap_lst[0].miRNA));
+      ncrna: rnaType,
+    }).pipe(map((res) => res.srp_heatmap_lst[0][rnaType]));
   }
 
   public getRnaAvgRecords(id: string, rnaType: string, filter = '', sortOrder = 'desc', pageIndex = 0, pageSize = 10): Observable<any> {
