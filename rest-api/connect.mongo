@@ -130,3 +130,4 @@ db.ncrna_anno.find({'source': 'codon recognized: AGA'})
 db.ncrna_anno.find({'source': 'Data'})
 
 db.ncrna_anno.find({'chr': 'DQ112819'})
+
