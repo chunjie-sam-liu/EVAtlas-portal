@@ -31,7 +31,7 @@ export class SampleStatComponent implements OnInit, OnChanges {
       this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
     });
 
-    this.contentApiService.getProjectHeatmap(this.tissueRecord._id).subscribe((res) => {
+    this.contentApiService.getProjectHeatmap(this.tissueRecord._id, 'miRNA').subscribe((res) => {
       this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }
