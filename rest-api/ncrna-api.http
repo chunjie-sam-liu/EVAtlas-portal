@@ -62,3 +62,12 @@ GET http://localhost:5000/api/ncrna/ncrnasrpexp
   &sort=desc
   &page=0
   &size=10
+
+
+###
+GET http://localhost:5000/api/ncrna/ncRNA_lst
+  ?ncrna=snoRNA
+  &filter=103
+  &sort=desc
+  &page=0
+  &size=10
