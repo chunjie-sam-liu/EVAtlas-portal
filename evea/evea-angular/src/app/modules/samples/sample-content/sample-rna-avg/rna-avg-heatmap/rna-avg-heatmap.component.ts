@@ -49,10 +49,12 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     conditionA = conditionA.sort();
 
     d.map((v, i) => {
+      let mir_lst_len = v.mir_lst.length;
       v.mir_lst.map((vv, ii) => {
-        data[i * 50 + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
+        data[i * mir_lst_len + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
       });
     });
+    console.log(data);
 
     //mean resu for each miR of single type sample
     const dataMean = [];
@@ -162,7 +164,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         d.splice(3, 1);
       }
     });
-    // console.log(data2);
+    console.log(data2);
 
     //xZhou final
     let xAxisF = [];
