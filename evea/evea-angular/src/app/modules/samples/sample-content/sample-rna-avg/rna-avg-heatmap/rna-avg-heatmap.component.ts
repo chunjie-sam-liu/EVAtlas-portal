@@ -48,12 +48,22 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     yAxis = [...new Set(yAxis)];
     condition = [...new Set(conditionA)];
     conditionA = conditionA.sort();
+    console.log(yAxis);
 
     d.map((v, i) => {
-      let mir_lst_len = v.mir_lst.length;
-      v.mir_lst.map((vv, ii) => {
-        data[i * mir_lst_len + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
-      });
+      if (v.mir_lst.length == 50) {
+        v.mir_lst.map((vv, ii) => {
+          data[i * 50 + yAxis.indexOf(vv)] = [i, yAxis.indexOf(vv), v.exp_lst[ii]];
+        });
+      } else {
+        yAxis.map((vvv, iii) => {
+          // if (v.mir_lst.indexOf(vvv) != -1) {
+          //   data[i * 50 + yAxis.indexOf(vvv)] = [i, vvv, v.exp_lst[v.mir_lst.indexOf(vvv)]];
+          // } else {
+          //   data[i * 50 + yAxis.indexOf(vvv)] = [i, vvv, 0];
+          // }
+        });
+      }
     });
     console.log(data);
 
