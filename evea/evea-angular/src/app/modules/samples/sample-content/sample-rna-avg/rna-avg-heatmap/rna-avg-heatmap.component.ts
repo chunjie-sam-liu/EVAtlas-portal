@@ -25,6 +25,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     this.contentApiService.getProjectHeatmap(this.tissueRecord._id, this.rnaType).subscribe((res) => {
       console.log(this.rnaType);
       console.log(res);
+      // this.rnaType
       this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }

@@ -4,7 +4,6 @@
       <mat-tab *ngFor="let tab of rnaTypes">
         <ng-template mat-tab-label>{{ tab.label }}</ng-template>
 
-        <span> {{ tissueRecord._id }} {{ tab.label }} Heatmap (top 50) </span>
         <app-rna-avg-heatmap
           [rnaType]="tab.label"
           [tissueRecord]="tissueRecord"
@@ -20,5 +19,5 @@
 </mat-card>
 
 <ng-template #empty
-  ><div style="color: red;">No enough data for heatmap!<br /></div
+  ><div style="color: red; margin-bottom: 20px; margin-top: 20px;"><span>No enough data for heatmap!</span><br /></div
 ></ng-template>
