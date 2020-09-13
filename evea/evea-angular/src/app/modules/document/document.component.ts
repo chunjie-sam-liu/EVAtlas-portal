@@ -15,30 +15,30 @@ export interface PeriodicElement {
   Specific_others_counts: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[]=[
+const ELEMENT_DATA: PeriodicElement[] = [
   {
     Source: '1',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Adipose',
-    Specific_miRNA_counts: '4',
-    Specific_piRNA_counts: '6',
-    Specific_others_counts: '45',
+    Specific_miRNA_counts: '3',
+    Specific_piRNA_counts: '1',
+    Specific_others_counts: '56',
   },
   {
     Source: '2',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Adrenal gland',
-    Specific_miRNA_counts: '3',
-    Specific_piRNA_counts: '6',
-    Specific_others_counts: '18',
+    Specific_miRNA_counts: '4',
+    Specific_piRNA_counts: '3',
+    Specific_others_counts: '6',
   },
   {
     Source: '3',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Blood',
-    Specific_miRNA_counts: '34',
-    Specific_piRNA_counts: '63',
-    Specific_others_counts: '147',
+    Specific_miRNA_counts: '6',
+    Specific_piRNA_counts: '6',
+    Specific_others_counts: '74',
   },
   {
     Source: '4',
@@ -52,209 +52,225 @@ const ELEMENT_DATA: PeriodicElement[]=[
     Source: '5',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Bone marrow',
-    Specific_miRNA_counts: '8',
-    Specific_piRNA_counts: '7',
-    Specific_others_counts: '248',
+    Specific_miRNA_counts: '2',
+    Specific_piRNA_counts: '0',
+    Specific_others_counts: '1',
   },
   {
     Source: '6',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Bone marrow',
-    Specific_miRNA_counts: '4',
-    Specific_piRNA_counts: '21',
-    Specific_others_counts: '307',
+    Specific_miRNA_counts: '2',
+    Specific_piRNA_counts: '9',
+    Specific_others_counts: '312',
   },
   {
     Source: '7',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Brain',
-    Specific_miRNA_counts: '5',
-    Specific_piRNA_counts: '79',
-    Specific_others_counts: '71',
+    Specific_miRNA_counts: '1',
+    Specific_piRNA_counts: '7',
+    Specific_others_counts: '8',
   },
   {
     Source: '8',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Brain',
-    Specific_miRNA_counts: '2',
-    Specific_piRNA_counts: '25',
-    Specific_others_counts: '48',
+    Specific_miRNA_counts: '1',
+    Specific_piRNA_counts: '4',
+    Specific_others_counts: '5',
   },
   {
     Source: '9',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Breast',
     Specific_miRNA_counts: '4',
-    Specific_piRNA_counts: '109',
-    Specific_others_counts: '142',
+    Specific_piRNA_counts: '20',
+    Specific_others_counts: '21',
   },
   {
     Source: '10',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Breast',
-    Specific_miRNA_counts: '1',
-    Specific_piRNA_counts: '11',
-    Specific_others_counts: '30',
+    Specific_miRNA_counts: '2',
+    Specific_piRNA_counts: '2',
+    Specific_others_counts: '11',
   },
   {
     Source: '11',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Cervix',
-    Specific_miRNA_counts: '16',
-    Specific_piRNA_counts: '190',
-    Specific_others_counts: '45',
+    Specific_miRNA_counts: '7',
+    Specific_piRNA_counts: '16',
+    Specific_others_counts: '16',
   },
   {
     Source: '12',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Colorectum',
-    Specific_miRNA_counts: '3',
-    Specific_piRNA_counts: '4',
-    Specific_others_counts: '13',
+    Specific_miRNA_counts: '21',
+    Specific_piRNA_counts: '3',
+    Specific_others_counts: '1',
   },
   {
     Source: '13',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Colorectum',
-    Specific_miRNA_counts: '47',
-    Specific_piRNA_counts: '12',
-    Specific_others_counts: '18',
+    Specific_miRNA_counts: '20',
+    Specific_piRNA_counts: '3',
+    Specific_others_counts: '1',
   },
   {
     Source: '14',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Epididymal',
-    Specific_miRNA_counts: '3',
-    Specific_piRNA_counts: '6',
-    Specific_others_counts: '403',
+    Specific_miRNA_counts: '0',
+    Specific_piRNA_counts: '3',
+    Specific_others_counts: '16',
   },
   {
     Source: '15',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Hypopharynx',
     Specific_miRNA_counts: '2',
-    Specific_piRNA_counts: '11',
-    Specific_others_counts: '75',
+    Specific_piRNA_counts: '2',
+    Specific_others_counts: '39',
   },
   {
     Source: '16',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Kidney',
-    Specific_miRNA_counts: '55',
-    Specific_piRNA_counts: '26',
-    Specific_others_counts: '16',
+    Specific_miRNA_counts: '18',
+    Specific_piRNA_counts: '10',
+    Specific_others_counts: '5',
   },
   {
     Source: '17',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Lung',
     Specific_miRNA_counts: '0',
-    Specific_piRNA_counts: '13',
-    Specific_others_counts: '79',
+    Specific_piRNA_counts: '7',
+    Specific_others_counts: '3',
   },
   {
     Source: '18',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Lymph',
-    Specific_miRNA_counts: '7',
-    Specific_piRNA_counts: '15',
-    Specific_others_counts: '41',
+    Specific_miRNA_counts: '4',
+    Specific_piRNA_counts: '3',
+    Specific_others_counts: '16',
   },
   {
     Source: '19',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Mouth',
     Specific_miRNA_counts: '0',
-    Specific_piRNA_counts: '8',
-    Specific_others_counts: '21',
+    Specific_piRNA_counts: '6',
+    Specific_others_counts: '2',
   },
   {
     Source: '20',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Nerve',
-    Specific_miRNA_counts: '5',
-    Specific_piRNA_counts: '11',
-    Specific_others_counts: '151',
+    Specific_miRNA_counts: '0',
+    Specific_piRNA_counts: '4',
+    Specific_others_counts: '2',
   },
   {
     Source: '21',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Ovary',
-    Specific_miRNA_counts: '17',
-    Specific_piRNA_counts: '1',
-    Specific_others_counts: '4',
+    Specific_miRNA_counts: '3',
+    Specific_piRNA_counts: '0',
+    Specific_others_counts: '3',
   },
   {
     Source: '22',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Pancreas',
-    Specific_miRNA_counts: '48',
-    Specific_piRNA_counts: '8',
-    Specific_others_counts: '6',
+    Specific_miRNA_counts: '23',
+    Specific_piRNA_counts: '2',
+    Specific_others_counts: '4',
   },
   {
     Source: '23',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Prostate',
-    Specific_miRNA_counts: '77',
-    Specific_piRNA_counts: '57',
-    Specific_others_counts: 'xx',
+    Specific_miRNA_counts: '21',
+    Specific_piRNA_counts: '2',
+    Specific_others_counts: '0',
   },
   {
     Source: '24',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Prostate',
-    Specific_miRNA_counts: '45',
-    Specific_piRNA_counts: '7',
-    Specific_others_counts: '28',
+    Specific_miRNA_counts: '18',
+    Specific_piRNA_counts: '2',
+    Specific_others_counts: '2',
   },
   {
     Source: '25',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Skin',
-    Specific_miRNA_counts: '12',
-    Specific_piRNA_counts: '39',
-    Specific_others_counts: '52',
+    Specific_miRNA_counts: '0',
+    Specific_piRNA_counts: '16',
+    Specific_others_counts: '8',
   },
   {
     Source: '26',
     EV_type: 'Microvesicle',
     Cancer_Source_type: 'Skin',
-    Specific_miRNA_counts: '6',
-    Specific_piRNA_counts: '5',
-    Specific_others_counts: '92',
+    Specific_miRNA_counts: '0',
+    Specific_piRNA_counts: '2',
+    Specific_others_counts: '15',
   },
   {
     Source: '27',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Stomach',
     Specific_miRNA_counts: '0',
-    Specific_piRNA_counts: '24',
-    Specific_others_counts: '12',
+    Specific_piRNA_counts: '0',
+    Specific_others_counts: '5',
   },
   {
     Source: '28',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Tongue',
-    Specific_miRNA_counts: '3',
-    Specific_piRNA_counts: '126',
-    Specific_others_counts: '106',
+    Specific_miRNA_counts: '1',
+    Specific_piRNA_counts: '7',
+    Specific_others_counts: '14',
   },
   {
     Source: '29',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Uterus',
     Specific_miRNA_counts: '0',
-    Specific_piRNA_counts: '35',
-    Specific_others_counts: '16',
+    Specific_piRNA_counts: '10',
+    Specific_others_counts: '28',
   },
   {
     Source: '30',
     EV_type: 'Exosome',
     Cancer_Source_type: 'Vessel',
-    Specific_miRNA_counts: '5',
-    Specific_piRNA_counts: '45',
-    Specific_others_counts: '8',
+    Specific_miRNA_counts: '1',
+    Specific_piRNA_counts: '5',
+    Specific_others_counts: '11',
+  },
+  {
+    Source: '31',
+    EV_type: 'Cells',
+    Cancer_Source_type: 'Skin Original',
+    Specific_miRNA_counts: '1',
+    Specific_piRNA_counts: '5',
+    Specific_others_counts: '10',
+  },
+  {
+    Source: '32',
+    EV_type: 'Apoptotic.bodies',
+    Cancer_Source_type: 'Skin',
+    Specific_miRNA_counts: '0',
+    Specific_piRNA_counts: '0',
+    Specific_others_counts: '1',
   },
 ];
 
@@ -264,7 +280,7 @@ const ELEMENT_DATA: PeriodicElement[]=[
   styleUrls: ['./document.component.css'],
 })
 export class DocumentComponent implements OnInit {
-  displayedColumns: string[]=[
+  displayedColumns: string[] = [
     'Source',
     'EV_type',
     'Cancer_Source_type',
@@ -272,33 +288,32 @@ export class DocumentComponent implements OnInit {
     'Specific_piRNA_counts',
     'Specific_others_counts',
   ];
-  dataSource=ELEMENT_DATA;
+  dataSource = ELEMENT_DATA;
 
-  public assets=environment.assets;
+  public assets = environment.assets;
 
-
-  exoMappingRateTitle='Exosomes mapping rate';
+  exoMappingRateTitle = 'Exosomes mapping rate';
   exoMappingRate: EChartOption;
 
-  mvMappingRateTitle='Microvesicles mapping rate';
+  mvMappingRateTitle = 'Microvesicles mapping rate';
   mvMappingRate: EChartOption;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     // get exosome data
-    this.exoMappingRate=this._mappingRate(exosomesStat, this.exoMappingRateTitle);
+    this.exoMappingRate = this._mappingRate(exosomesStat, this.exoMappingRateTitle);
 
     // get microvesicle data
-    this.mvMappingRate=this._mappingRate(microvesiclesStat, this.mvMappingRateTitle);
+    this.mvMappingRate = this._mappingRate(microvesiclesStat, this.mvMappingRateTitle);
   }
 
   private _mappingRate(d: MappingDist[], title: string): EChartOption {
-    let dRate=d.map((v) => ({
+    let dRate = d.map((v) => ({
       srrID: v.srr_id,
-      mappingRate: (v.srr_tag_info[1]/v.srr_tag_info[0]).toFixed(2),
+      mappingRate: (v.srr_tag_info[1] / v.srr_tag_info[0]).toFixed(2),
     }));
-    dRate=_sortBy(dRate, ['mappingRate']).reverse();
+    dRate = _sortBy(dRate, ['mappingRate']).reverse();
     return {
       title: {
         show: false,
