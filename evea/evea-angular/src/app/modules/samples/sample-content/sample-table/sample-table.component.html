@@ -41,7 +41,19 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pubmed</mat-header-cell>
       <!-- <mat-cell *matCellDef="let row">{{ row.pubmed }}</mat-cell> -->
       <mat-cell *matCellDef="let row">
-        <a href="http://www.evtrack.org/study_summary.php?PMID={{ row.pubmed }}" target="_blank"
+        <a href="https://pubmed.ncbi.nlm.nih.gov/{{ row.pubmed }}/" target="_blank" *ngIf="row.pubmed != 'NA'; else empty"
+          ><span class="material-icons">
+            find_in_page
+          </span></a
+        >
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="EV-TRACK">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>EV-TRACK</mat-header-cell>
+      <!-- <mat-cell *matCellDef="let row">{{ row.pubmed }}</mat-cell> -->
+      <mat-cell *matCellDef="let row">
+        <a href="http://www.evtrack.org/study_summary.php?PMID={{ row.pubmed }}" target="_blank" *ngIf="row.pubmed != 'NA'; else empty"
           ><span class="material-icons">
             find_in_page
           </span></a
@@ -54,3 +66,5 @@
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </mat-card>
+
+<ng-template #empty>-</ng-template>
