@@ -2,6 +2,11 @@ img {
   width: 50px;
 }
 
+h4 {
+  color: black;
+  font-weight: 600;
+}
+
 a.mat-list-item:hover {
   transition: 300ms;
   border-bottom: 2px solid #da4233;

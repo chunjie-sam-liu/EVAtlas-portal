@@ -27,16 +27,18 @@ export default [
     title: 'Blood',
     select: 'tissues',
   },
-  // {
-  //   name: 'Bone_marrow',
-  //   img: 'Bone_marrow.png',
-  //   title: 'Bone marrow',
-  // },
-  // {
-  //   name: 'Bone',
-  //   img: 'Bone.png',
-  //   title: 'Bone',
-  // },
+  {
+    name: 'Bone_marrow',
+    img: 'Bone_marrow.png',
+    title: 'Bone_marrow',
+    select: 'tissues',
+  },
+  {
+    name: 'Bone',
+    img: 'Bone.png',
+    title: 'Bone',
+    select: 'tissues',
+  },
   {
     name: 'Brain',
     img: 'Brain.png',
