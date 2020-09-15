@@ -13,7 +13,12 @@
     </ng-container>
 
     <ng-container matColumnDef="CID">
-      <mat-header-cell *matHeaderCellDef> CID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>
+        CID
+        <span class="material-icons" tooltip="The expression value in FPKM of this gene.">
+          help
+        </span>
+      </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.CID }}</mat-cell>
     </ng-container>
 

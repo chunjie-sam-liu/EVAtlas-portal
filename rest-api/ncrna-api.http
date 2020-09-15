@@ -23,6 +23,9 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-mir-4292-3p&type=miRNA&ti
 ###
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-miR-22-3p&type=miRNA&source=1&ex_type=Microvesicles
 
+###
+GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa-miR-425-5p&type=miRNA&source=1&ex_type=Microvesicles
+
 
 ###
 GET http://localhost:5000/api/ncrnaexp?ncrna=hsa-miR-21-5p&type=miRNA&tissues=1&ex_type=Exosomes

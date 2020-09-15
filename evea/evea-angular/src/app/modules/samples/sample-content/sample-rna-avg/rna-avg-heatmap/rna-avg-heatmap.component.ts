@@ -57,11 +57,11 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         });
       } else {
         yAxis.map((vvv, iii) => {
-          // if (v.mir_lst.indexOf(vvv) != -1) {
-          //   data[i * 50 + yAxis.indexOf(vvv)] = [i, vvv, v.exp_lst[v.mir_lst.indexOf(vvv)]];
-          // } else {
-          //   data[i * 50 + yAxis.indexOf(vvv)] = [i, vvv, 0];
-          // }
+          if (v.mir_lst.indexOf(vvv) != -1) {
+            data[i * 50 + iii] = [i, iii, v.exp_lst[v.mir_lst.indexOf(vvv)]];
+          } else {
+            data[i * 50 + iii] = [i, iii, 0];
+          }
         });
       }
     });
@@ -76,9 +76,9 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     } else {
       yAxis.map((v, i) => {
         xAxis.map((vv, ii) => {
-          if (typeof data[ii * 50 + i] != 'undefined') {
-            sum = data[ii * 50 + i][2] + sum;
-          }
+          // if (typeof data[ii * 50 + i] != 'undefined') {
+          sum = data[ii * 50 + i][2] + sum;
+          // }
         });
         dataMean.push({ mean: sum / xAxis.length, mir: v });
         sum = 0;
@@ -126,14 +126,14 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         xListN.map((x) => {
           if (x.Con == 'Cancer' || x.Con == 'cancer' || x.Con == 'disease') {
             canNum = canNum + 1;
-            if (typeof data[x.Oi * 50 + i] != 'undefined') {
-              canSum = data[x.Oi * 50 + i][2] + canSum; //x.Oi means xZhou, i means yZhou
-            }
+            // if (typeof data[x.Oi * 50 + i] != 'undefined') {
+            canSum = data[x.Oi * 50 + i][2] + canSum; //x.Oi means xZhou, i means yZhou
+            // }
           } else {
             norNum = norNum + 1;
-            if (typeof data[x.Oi * 50 + i] != 'undefined') {
-              norSum = data[x.Oi * 50 + i][2] + norSum; //x.Oi means xZhou, i means yZhou
-            }
+            // if (typeof data[x.Oi * 50 + i] != 'undefined') {
+            norSum = data[x.Oi * 50 + i][2] + norSum; //x.Oi means xZhou, i means yZhou
+            // }
           }
         });
         // diff value
@@ -154,10 +154,26 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     }
 
     //sorted data2
+    // d.map((v, i) => {
+    //   v.mir_lst.map((vv, ii) => {
+    //     data2[i * 50 + ydata.indexOf(vv)] = [i, ydata.indexOf(vv), v.exp_lst[ii]];
+    //   });
+    // });
+
     d.map((v, i) => {
-      v.mir_lst.map((vv, ii) => {
-        data2[i * 50 + ydata.indexOf(vv)] = [i, ydata.indexOf(vv), v.exp_lst[ii]];
-      });
+      if (v.mir_lst.length == 50) {
+        v.mir_lst.map((vv, ii) => {
+          data2[i * 50 + ydata.indexOf(vv)] = [i, ydata.indexOf(vv), v.exp_lst[ii]];
+        });
+      } else {
+        ydata.map((vvv, iii) => {
+          if (v.mir_lst.indexOf(vvv) != -1) {
+            data2[i * 50 + iii] = [i, iii, v.exp_lst[v.mir_lst.indexOf(vvv)]];
+          } else {
+            data2[i * 50 + iii] = [i, iii, 0];
+          }
+        });
+      }
     });
 
     //sorted data2 according xAxis
