@@ -10,7 +10,7 @@
           *ngIf="tab.label != 'pRNA'; else empty"
         ></app-rna-avg-heatmap>
 
-        <span> {{ tissueRecord._id }} small RNA average expression </span>
+        <h2> {{tab.label}} average expression in {{ tissueRecord._id }}</h2>
         <br />
         <app-rna-avg-table [rnaType]="tab.label" [tissueRecord]="tissueRecord"></app-rna-avg-table>
       </mat-tab>
