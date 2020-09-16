@@ -9,27 +9,32 @@
   <mat-table [dataSource]="dataSourceDrug">
     <ng-container matColumnDef="FDA">
       <mat-header-cell *matHeaderCellDef> FDA </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.FDA }}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.FDA === 'NULL' ? '-': row.FDA }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="CID">
       <mat-header-cell *matHeaderCellDef>
         CID
-        <span class="material-icons" tooltip="The expression value in FPKM of this gene.">
-          help
-        </span>
+        <mat-icon
+        color="warn"
+        matTooltip="PubChem compound ID"
+        matTooltipClass="tooltip-red">help</mat-icon>
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.CID }}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{ row.CID }}" target="_blank">{{ row.CID }}</a>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Small_molecule">
-      <mat-header-cell *matHeaderCellDef> Small_molecule </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Molecule name </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.Small_molecule }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Source">
       <mat-header-cell *matHeaderCellDef> Source </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.Source }}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <a href="http://www.jianglab.cn/SM2miR/" target="_blank">{{ row.Source }}</a>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="PMID">
