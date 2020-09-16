@@ -30,7 +30,7 @@ export default [
   {
     name: 'Bone_marrow',
     img: 'Bone_marrow.png',
-    title: 'Bone_marrow',
+    title: 'Bone marrow',
     select: 'tissues',
   },
   {

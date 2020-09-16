@@ -18,7 +18,7 @@
     </ng-container>
 
     <ng-container matColumnDef="tissues">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Tissue</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Condition</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.tissues | rmcl }}</mat-cell>
     </ng-container>
 
@@ -38,7 +38,7 @@
     </ng-container>
 
     <ng-container matColumnDef="pubmed">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Pubmed</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>PMID</mat-header-cell>
       <!-- <mat-cell *matCellDef="let row">{{ row.pubmed }}</mat-cell> -->
       <mat-cell *matCellDef="let row">
         <a href="https://pubmed.ncbi.nlm.nih.gov/{{ row.pubmed }}/" target="_blank" *ngIf="row.pubmed != 'NA'; else empty"
