@@ -48,7 +48,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     yAxis = [...new Set(yAxis)];
     condition = [...new Set(conditionA)];
     conditionA = conditionA.sort();
-    console.log(yAxis);
+    // console.log(yAxis);
 
     d.map((v, i) => {
       if (v.mir_lst.length == 50) {
@@ -147,7 +147,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       diffListS = diffList.sort((a, b) => {
         return a.diffV - b.diffV;
       });
-      // console.log(diffListS);
+      console.log(diffListS);
       ydata = diffListS.map(function (iterm) {
         return iterm['mir'];
       });
@@ -176,7 +176,8 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       }
     });
 
-    //sorted data2 according xAxis
+    // console.log(data2);
+    //sorted data2 according xAxis(xListN.push({ srrId: x.srrId, Con: x.Con, Oi: x.Oi, Ni: i });)
     xListN.map((x) => {
       data2.map((d) => {
         if (d[0] == x.Oi && !d.includes('replaced')) {
@@ -191,7 +192,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         d.splice(3, 1);
       }
     });
-    console.log(data2);
+    // console.log(data2);
 
     //xZhou final
     let xAxisF = [];
