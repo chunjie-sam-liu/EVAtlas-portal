@@ -11,9 +11,9 @@ export class SampleCardComponent implements OnInit {
   // sources inputt
   @Input() source: any;
 
-  public assets=environment.assets;
+  public assets = environment.assets;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
