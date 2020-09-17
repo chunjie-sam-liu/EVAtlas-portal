@@ -20,9 +20,10 @@ export class RnaDetailComponent implements OnInit {
       this.rnaSymbol = params.rna;
     });
 
-    let annoParam = this.rnaSymbol.replace(/\#/, '%23');
+    const annoParam = this.rnaSymbol.replace(/\#/, '%23');
     this.rnaDetailApiService.findRnaBasicInfo(annoParam).subscribe((res) => {
       this.rnaBasicInfo = res;
+      console.log(this.rnaBasicInfo);
       this.rnaType = res.class;
       if (this.rnaType === 'miRNA' || this.rnaType === 'snoRNA' || this.rnaType === 'tRNA') {
         this.isRNA = true;
