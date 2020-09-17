@@ -28,9 +28,9 @@ export default [
     select: 'tissues',
   },
   {
-    name: 'Bone_marrow',
+    name: 'Bone marrow',
     img: 'Bone_marrow.png',
-    title: 'Bone marrow',
+    title: 'Bone_marrow',
     select: 'tissues',
   },
   {
