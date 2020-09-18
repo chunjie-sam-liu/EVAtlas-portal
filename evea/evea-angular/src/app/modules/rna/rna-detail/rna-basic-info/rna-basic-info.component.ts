@@ -10,7 +10,12 @@ export class RnaBasicInfoComponent implements OnInit {
   @Input() rnaSymbol: string;
   @Input() rnaBasicInfo: RnaBasicInfo;
 
+  rnaSymbolShow: string;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
+    console.log(this.rnaSymbolShow);
+  }
 }

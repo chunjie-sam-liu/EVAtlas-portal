@@ -1,13 +1,13 @@
 <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
   <mat-card-header>
-    <mat-card-title> {{ rnaSymbol }} basic information </mat-card-title>
+    <mat-card-title> {{ rnaSymbolShow }} basic information </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <div *ngIf="rnaBasicInfo as rna; else loading">
       <dl>
         <dt>Symbol</dt>
         <dd>
-          <a [href]="rna.query_url" target="_blank">{{ rnaSymbol }}</a>
+          <a [href]="rna.query_url" target="_blank">{{ rnaSymbolShow }}</a>
         </dd>
 
         <dt>Position</dt>
