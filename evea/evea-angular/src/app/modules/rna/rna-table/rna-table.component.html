@@ -14,7 +14,7 @@
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
       <mat-cell class="description-cell" *matCellDef="let rna">
-        <a [routerLink]="['detail', rna.GeneSymbol]">{{ rna.GeneSymbol }}</a>
+        <a [routerLink]="['detail', rna.go]">{{ rna.GeneSymbol }}</a>
       </mat-cell>
     </ng-container>
 

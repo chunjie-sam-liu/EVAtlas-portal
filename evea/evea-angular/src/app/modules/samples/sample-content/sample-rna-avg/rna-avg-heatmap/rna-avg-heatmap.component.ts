@@ -23,9 +23,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
     this.contentApiService.getProjectHeatmap(this.tissueRecord._id, this.rnaType).subscribe((res) => {
-      console.log(this.rnaType);
-      console.log(res);
-      // this.rnaType
       this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }
@@ -38,7 +35,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     const data2 = [];
     let condition = [];
     let conditionA = [];
-    // console.log(d);
     d.map((v) => {
       xAxis.push(v.srr_id);
       xAxis2.push({ srrId: v.srr_id, con: v.condition });
@@ -48,7 +44,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     yAxis = [...new Set(yAxis)];
     condition = [...new Set(conditionA)];
     conditionA = conditionA.sort();
-    // console.log(yAxis);
 
     d.map((v, i) => {
       if (v.mir_lst.length == 50) {
@@ -65,7 +60,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         });
       }
     });
-    console.log(data);
 
     //mean resu for each miR of single type sample
     const dataMean = [];
@@ -76,9 +70,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     } else {
       yAxis.map((v, i) => {
         xAxis.map((vv, ii) => {
-          // if (typeof data[ii * 50 + i] != 'undefined') {
           sum = data[ii * 50 + i][2] + sum;
-          // }
         });
         dataMean.push({ mean: sum / xAxis.length, mir: v });
         sum = 0;
@@ -91,7 +83,24 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       return iterm['mir'];
     });
 
-    //mean resu for each miR of more than 2 types sample
+    //calculate mean value of each sample
+    let samSum = 0;
+    let samMean = 0;
+    let xList = [];
+    let xListSingle = [];
+    let xListN = [];
+    let xAxisMean = [];
+    let xListNS = [];
+    xAxis2.map((srrL, srrIndex) => {
+      ydata.map((colEl, colI) => {
+        samSum = data[srrIndex * 50 + colI][2] + samSum;
+      });
+      samMean = samSum / 50;
+      samSum = 0;
+      xAxisMean.push({ srrId: srrL.srrId, con: srrL.con, samMean: samMean });
+    });
+    console.log(xAxisMean);
+
     var compare = function (obj1, obj2) {
       var val1 = obj1.Con;
       var val2 = obj2.Con;
@@ -104,16 +113,31 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       }
     };
 
-    let xList = [];
-    let xListN = [];
+    xAxisMean.map((x, i) => {
+      xListSingle.push({ srrId: x.srrId, Con: x.con, samMean: x.samMean, Oi: i });
+    });
+    // xList.sort(compareMean);
+    xListSingle.sort((a, b) => {
+      return b.samMean - a.samMean;
+    });
+
+    xListSingle.map((x, i) => {
+      xListNS.push({ srrId: x.srrId, Con: x.Con, samMean: x.samMean, Oi: x.Oi, Ni: i });
+    });
+    console.log(xListNS);
+
+    //mean resu for each miR of more than 2 types sample
+
     if (condition.includes('Normal') && condition.length > 1) {
       xAxis2.map((x, i) => {
-        xList.push({ srrId: x.srrId, Con: x.con, Oi: i });
+        xList.push({ srrId: x.srrId, Con: x.con, sMean: x.samMean, Oi: i });
       });
       xList.sort(compare);
+
       xList.map((x, i) => {
-        xListN.push({ srrId: x.srrId, Con: x.Con, Oi: x.Oi, Ni: i });
+        xListN.push({ srrId: x.srrId, Con: x.Con, sMean: x.samMean, Oi: x.Oi, Ni: i });
       });
+
       //cancer mean & normal mean
       let canSum = 0;
       let norSum = 0;
@@ -126,14 +150,10 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         xListN.map((x) => {
           if (x.Con == 'Cancer' || x.Con == 'cancer' || x.Con == 'disease') {
             canNum = canNum + 1;
-            // if (typeof data[x.Oi * 50 + i] != 'undefined') {
             canSum = data[x.Oi * 50 + i][2] + canSum; //x.Oi means xZhou, i means yZhou
-            // }
           } else {
             norNum = norNum + 1;
-            // if (typeof data[x.Oi * 50 + i] != 'undefined') {
             norSum = data[x.Oi * 50 + i][2] + norSum; //x.Oi means xZhou, i means yZhou
-            // }
           }
         });
         // diff value
@@ -147,18 +167,10 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       diffListS = diffList.sort((a, b) => {
         return a.diffV - b.diffV;
       });
-      console.log(diffListS);
       ydata = diffListS.map(function (iterm) {
         return iterm['mir'];
       });
     }
-
-    //sorted data2
-    // d.map((v, i) => {
-    //   v.mir_lst.map((vv, ii) => {
-    //     data2[i * 50 + ydata.indexOf(vv)] = [i, ydata.indexOf(vv), v.exp_lst[ii]];
-    //   });
-    // });
 
     d.map((v, i) => {
       if (v.mir_lst.length == 50) {
@@ -176,9 +188,8 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       }
     });
 
-    // console.log(data2);
-    //sorted data2 according xAxis(xListN.push({ srrId: x.srrId, Con: x.Con, Oi: x.Oi, Ni: i });)
-    xListN.map((x) => {
+    //sorted data2 according xAxis for more than 1 typ data
+    xListNS.map((x) => {
       data2.map((d) => {
         if (d[0] == x.Oi && !d.includes('replaced')) {
           d[0] = x.Ni;
@@ -186,18 +197,36 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         }
       });
     });
+    //sorted data2 according xAxis for more than 2 typs data
+    if (condition.includes('Normal') && condition.length > 1) {
+      xListN.map((x) => {
+        data2.map((d) => {
+          if (d[0] == x.Oi && !d.includes('replaced')) {
+            d[0] = x.Ni;
+            d.push('replaced');
+          }
+        });
+      });
+      let xAxisF = [];
+      if (xListN.length >= 1) {
+        xAxisF = xListN.map(function (iterm) {
+          return iterm['srrId'];
+        });
+      } else {
+        xAxisF = xAxisF.concat(xAxis);
+      }
+    }
 
     data2.map((d) => {
       if (d.includes('replaced')) {
         d.splice(3, 1);
       }
     });
-    // console.log(data2);
 
     //xZhou final
     let xAxisF = [];
-    if (xListN.length >= 1) {
-      xAxisF = xListN.map(function (iterm) {
+    if (xListNS.length >= 1) {
+      xAxisF = xListNS.map(function (iterm) {
         return iterm['srrId'];
       });
     } else {
