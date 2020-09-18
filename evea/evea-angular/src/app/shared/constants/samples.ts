@@ -11,7 +11,7 @@ export default [
     select: 'tissues',
   },
   {
-    name: 'Adrenal_gland',
+    name: 'Adrenal gland',
     img: 'Adrenal_gland.png',
     title: 'Adrenal gland',
     select: 'tissues',

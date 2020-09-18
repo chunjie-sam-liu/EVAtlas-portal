@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'Breast_milk',
+    name: 'Breast milk',
     img: 'Breast_milk.png',
     title: 'Breast milk',
     select: 'source',
@@ -44,7 +44,7 @@ export default [
   {
     name: 'Cell line',
     img: 'Cell_line.png',
-    title: 'Cell line',
+    title: 'Cell_line',
     select: 'source',
   },
 ];
