@@ -17,6 +17,8 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
   @Input() rnaSymbol: string;
   @Input() rnaType: string;
 
+  rnaSymbolShow: string;
+
   tcgaExp: EChartOption;
   tcgaExpTitle: string;
 
@@ -31,15 +33,15 @@ export class RnaMiscComponent implements OnInit, AfterViewInit {
   constructor(private rnaDetailApiService: RnaDetailApiService) {}
 
   ngOnInit(): void {
-    this.tcgaExpTitle = `${this.rnaSymbol} from TCGA average expression across cases vs normals`;
+    this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
+    this.tcgaExpTitle = `${this.rnaSymbolShow} from TCGA average expression across cases vs normals`;
 
     if (this.rnaSymbol.indexOf('#') !== -1) {
       this.rnaSymbol = this.rnaSymbol.replace(/\#.*/, '');
-      console.log(this.rnaSymbol);
     }
     this.rnaDetailApiService.findtcgaExpr(this.rnaSymbol, this.rnaType).subscribe((res) => {
       this.isTcgaExp = res.length !== 0 ? true : false;
-      this.tcgaExp = this._plotDist(res, this.tcgaExpTitle, this.rnaSymbol);
+      this.tcgaExp = this._plotDist(res, this.tcgaExpTitle, this.rnaSymbolShow);
     });
 
     const rnaSymbolSub = this.rnaSymbol.replace(/-[3|5]p/, '');

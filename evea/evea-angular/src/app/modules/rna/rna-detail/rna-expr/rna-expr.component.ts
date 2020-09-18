@@ -13,6 +13,8 @@ export class RnaExprComponent implements OnInit {
   @Input() rnaSymbol: string;
   @Input() rnaType: string;
 
+  rnaSymbolShow: string;
+
   exoDist: EChartOption;
   exoDistTitle: string;
   mvDist: EChartOption;
@@ -25,25 +27,27 @@ export class RnaExprComponent implements OnInit {
   constructor(private rnaDetialApiService: RnaDetailApiService) {}
 
   ngOnInit(): void {
-    this.exoDistTitle = `${this.rnaSymbol} from exosomes average expression across tissues`;
-    this.mvDistTitle = `${this.rnaSymbol} from microvesicles average expression across tissues`;
-    this.exoSouDistTitle = `${this.rnaSymbol} from exosomes average expression across sources`;
-    this.mvSouDistTitle = `${this.rnaSymbol} from microvesicles average expression across sources`;
+    this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
+
+    this.exoDistTitle = `${this.rnaSymbolShow} from exosomes average expression across tissues`;
+    this.mvDistTitle = `${this.rnaSymbolShow} from microvesicles average expression across tissues`;
+    this.exoSouDistTitle = `${this.rnaSymbolShow} from exosomes average expression across sources`;
+    this.mvSouDistTitle = `${this.rnaSymbolShow} from microvesicles average expression across sources`;
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
-      this.exoDist = this._plotDist(res, this.exoDistTitle, this.rnaSymbol);
+      this.exoDist = this._plotDist(res, this.exoDistTitle, this.rnaSymbolShow);
     });
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-      this.mvDist = this._plotDist(res, this.mvDistTitle, this.rnaSymbol);
+      this.mvDist = this._plotDist(res, this.mvDistTitle, this.rnaSymbolShow);
     });
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
-      this.exoSouDist = this._plotDistS(res, this.exoSouDistTitle, this.rnaSymbol);
+      this.exoSouDist = this._plotDistS(res, this.exoSouDistTitle, this.rnaSymbolShow);
     });
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
-      this.mvSouDist = this._plotDistS(res, this.mvSouDistTitle, this.rnaSymbol);
+      this.mvSouDist = this._plotDistS(res, this.mvSouDistTitle, this.rnaSymbolShow);
     });
   }
 

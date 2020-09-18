@@ -36,6 +36,5 @@ export class RnaDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
-    console.log(this.rnaSymbolShow);
   }
 }
