@@ -14,13 +14,14 @@ export class RnaDetailComponent implements OnInit {
   isRNA: boolean;
   isMiRNA: boolean;
   rnaBasicInfo: RnaBasicInfo;
+  rnaSymbolShow: string;
 
   constructor(private route: ActivatedRoute, private rnaDetailApiService: RnaDetailApiService) {
     this.route.params.subscribe((params) => {
       this.rnaSymbol = params.rna;
     });
 
-    let annoParam = this.rnaSymbol.replace(/\#/, '%23');
+    const annoParam = this.rnaSymbol.replace(/\#/, '%23');
     this.rnaDetailApiService.findRnaBasicInfo(annoParam).subscribe((res) => {
       this.rnaBasicInfo = res;
       this.rnaType = res.class;
@@ -33,5 +34,7 @@ export class RnaDetailComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
+  }
 }
