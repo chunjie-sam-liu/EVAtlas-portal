@@ -99,7 +99,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       samSum = 0;
       xAxisMean.push({ srrId: srrL.srrId, con: srrL.con, samMean: samMean });
     });
-    console.log(xAxisMean);
+    // console.log(xAxisMean);
 
     var compare = function (obj1, obj2) {
       var val1 = obj1.Con;
@@ -124,20 +124,12 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     xListSingle.map((x, i) => {
       xListNS.push({ srrId: x.srrId, Con: x.Con, samMean: x.samMean, Oi: x.Oi, Ni: i });
     });
-    console.log(xListNS);
+    // console.log(xListNS);
 
     //mean resu for each miR of more than 2 types sample
-
+    let xListNor = [];
+    let xListCan = [];
     if (condition.includes('Normal') && condition.length > 1) {
-      xAxis2.map((x, i) => {
-        xList.push({ srrId: x.srrId, Con: x.con, sMean: x.samMean, Oi: i });
-      });
-      xList.sort(compare);
-
-      xList.map((x, i) => {
-        xListN.push({ srrId: x.srrId, Con: x.Con, sMean: x.samMean, Oi: x.Oi, Ni: i });
-      });
-
       //cancer mean & normal mean
       let canSum = 0;
       let norSum = 0;
@@ -148,7 +140,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       let diffListS = [];
       yAxis.map((y, i) => {
         xListN.map((x) => {
-          if (x.Con == 'Cancer' || x.Con == 'cancer' || x.Con == 'disease') {
+          if (x.Con == 'Cancer' || x.Con == 'cancer' || x.Con == 'disease' || x.Con == 'Disease') {
             canNum = canNum + 1;
             canSum = data[x.Oi * 50 + i][2] + canSum; //x.Oi means xZhou, i means yZhou
           } else {
@@ -172,6 +164,55 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       });
     }
 
+    let xListMult = [];
+    if (condition.includes('Normal') && condition.length > 1) {
+      xAxis2.map((x, i) => {
+        if (x.con == 'Cancer' || x.con == 'cancer' || x.con == 'disease' || x.con == 'Disease') {
+          xListCan.push({ srrId: x.srrId, Con: x.con, Oi: i });
+        } else {
+          xListNor.push({ srrId: x.srrId, Con: x.con, Oi: i });
+        }
+      });
+      //sort Allmean value of each sample
+      let samSumC = 0;
+      let samMeanC = 0;
+      let xAxisMeanC = [];
+      xListCan.map((c) => {
+        ydata.map((colEl, colI) => {
+          // console.log(c.srrId + ',' + data[c.Oi * 50 + colI][2]);
+          samSumC = data[c.Oi * 50 + colI][2] + samSumC;
+        });
+        samMeanC = samSumC / 50;
+        samSumC = 0;
+        xAxisMeanC.push({ srrId: c.srrId, Con: c.Con, samMean: samMeanC, Oi: c.Oi });
+      });
+      xAxisMeanC.sort((a, b) => {
+        return b.samMean - a.samMean;
+      });
+
+      let samSumN = 0;
+      let samMeanN = 0;
+      let xAxisMeanN = [];
+      xListNor.map((n) => {
+        ydata.map((colEl, colI) => {
+          samSumN = data[n.Oi * 50 + colI][2] + samSumN;
+        });
+        samMeanN = samSumN / 50;
+        samSumN = 0;
+        xAxisMeanN.push({ srrId: n.srrId, Con: n.Con, samMean: samMeanN, Oi: n.Oi });
+      });
+      xAxisMeanN.sort((a, b) => {
+        return b.samMean - a.samMean;
+      });
+
+      xList = xAxisMeanC.concat(xAxisMeanN);
+      // console.log(xList);
+
+      xList.map((x, i) => {
+        xListMult.push({ srrId: x.srrId, Con: x.Con, sMean: x.samMean, Oi: x.Oi, Ni: i });
+      });
+    }
+
     d.map((v, i) => {
       if (v.mir_lst.length == 50) {
         v.mir_lst.map((vv, ii) => {
@@ -188,18 +229,9 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       }
     });
 
-    //sorted data2 according xAxis for more than 1 typ data
-    xListNS.map((x) => {
-      data2.map((d) => {
-        if (d[0] == x.Oi && !d.includes('replaced')) {
-          d[0] = x.Ni;
-          d.push('replaced');
-        }
-      });
-    });
-    //sorted data2 according xAxis for more than 2 typs data
-    if (condition.includes('Normal') && condition.length > 1) {
-      xListN.map((x) => {
+    //sorted data2 according xAxis for  1 type data
+    if ((condition.includes('Normal') && condition.length == 1) || condition.indexOf('Normal') == -1) {
+      xListNS.map((x) => {
         data2.map((d) => {
           if (d[0] == x.Oi && !d.includes('replaced')) {
             d[0] = x.Ni;
@@ -207,9 +239,23 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
           }
         });
       });
-      let xAxisF = [];
-      if (xListN.length >= 1) {
-        xAxisF = xListN.map(function (iterm) {
+    }
+
+    //sorted data2 according xAxis for  2 type data
+    xListMult.map((x) => {
+      data2.map((d) => {
+        if (d[0] == x.Oi && !d.includes('replaced')) {
+          d[0] = x.Ni;
+          d.push('replaced');
+        }
+      });
+    });
+
+    let xAxisF = [];
+    //sorted data2 according xAxis for more than 2 typs data
+    if (condition.includes('Normal') && condition.length > 1) {
+      if (xListMult.length >= 1) {
+        xAxisF = xListMult.map(function (iterm) {
           return iterm['srrId'];
         });
       } else {
@@ -224,15 +270,17 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     });
 
     //xZhou final
-    let xAxisF = [];
-    if (xListNS.length >= 1) {
-      xAxisF = xListNS.map(function (iterm) {
-        return iterm['srrId'];
-      });
-    } else {
-      xAxisF = xAxisF.concat(xAxis);
-    }
+    // let xAxisF = [];
 
+    if ((condition.includes('Normal') && condition.length == 1) || condition.indexOf('Normal') == -1) {
+      if (xListNS.length >= 1) {
+        xAxisF = xListNS.map(function (iterm) {
+          return iterm['srrId'];
+        });
+      } else {
+        xAxisF = xAxisF.concat(xAxis);
+      }
+    }
     //quartile data for the range of the visualMap
     let qArray = [];
     d.map((q) => {
@@ -242,7 +290,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       return a - b;
     });
     let qValue = qArray[Math.ceil(qArray.length / 4) * 3];
-
     return {
       title: {
         show: true,
