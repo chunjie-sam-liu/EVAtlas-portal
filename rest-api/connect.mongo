@@ -131,3 +131,5 @@ db.ncrna_anno.find({'source': 'Data'})
 
 db.ncrna_anno.find({'chr': 'DQ112819'})
 
+
+db.isolation_method.find({'method': 'SINGLE'})
