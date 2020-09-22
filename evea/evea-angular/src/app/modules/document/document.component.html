@@ -1,4 +1,4 @@
-<div fxLayout="column" fxFill>
+<div fxLayout="column" fxLayoutGap="10px" fxFill>
   <div fxFlex="none">
     <h1 class="page-header">
       Document
@@ -14,10 +14,11 @@
         <p>
           EVAtlas (Extracellular vesicle Atlas) is a comprehensive database depositing
           <span style="color: DarkViolet;">
-            expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span
-          >
-          in more than 2,000 EV samples from 24 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to
-          explore the conditional expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated pathways, miRNA
+            expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span>
+          in more than 2,000 EV samples from 24 human tissues(organs) and 40 diseases. In addition, EVAtlas provides
+          modules for user to
+          explore the conditional expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated
+          pathways, miRNA
           functions, and related publications.
         </p>
         <h3>Abstract Summary</h3>
@@ -31,37 +32,117 @@
         <mat-card-title>Function modules</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <h3></h3>
         <ol>
           <li>
             <p>
-              <a routerLink="/samples">Sample module:</a> helps users to search the project and sample information of Exosomes or
-              Microvesicles in tissues , and browse their component ratio, heatmap and expression profiles of 8 types of ncRNAs.
+              <a routerLink="/samples">Sample module:</a> helps users to search the project and sample information of
+              Exosomes or
+              Microvesicles in tissues , and browse their component ratio, heatmap and expression profiles of 8 types of
+              ncRNAs.
             </p>
           </li>
           <li>
             <p>
-              <a routerLink="/rna">Expression module:</a> display the expression distribution of ncRNAs in collected samples and tissues,
-              and provides the basic information and expressin profiles for ncRNAs across samples and conditions. For miRNAs, users can
-              browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related drug, miRNA
+              <a routerLink="/rna">Expression module:</a> display the expression distribution of ncRNAs in collected
+              samples and tissues,
+              and provides the basic information and expressin profiles for ncRNAs across samples and conditions. For
+              miRNAs, users can
+              browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA
+              related drug, miRNA
               regulated pathways, miRNA function, and related publications.
             </p>
           </li>
 
           <li>
             <p>
-              <a routerLink="/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA,
+              <a routerLink="/specific">Specific Expression module:</a> users can browse the specific expression
+              patterns of ncRNAs(miRNA,
               piRNA and others) in tissues and diseases.
             </p>
           </li>
 
           <li>
             <p>
-              <a routerLink="/">Search module:</a> provides a quick search function for users to rapidly inquery the expression profiles of
+              <a routerLink="/">Search module:</a> provides a quick search function for users to rapidly inquery the
+              expression profiles of
               their interested ncRNAs across samples and conditions.
             </p>
           </li>
         </ol>
+      </mat-card-content>
+    </mat-card>
+    <br />
+
+    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+      <mat-card-header>
+        <mat-card-title>Data collection and process</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h3>Data collection</h3>
+        <p>
+          Non-redundant smRNA-seq datasets of human were collected from NCBI GEO and SRA databases. In GEO and SRA
+          databases, smRNA-seq data in EVs were collected through the E-Utilities toolkit with keywords of “gds or sra,
+          human or Homo sapiens, extracellular vesicles or exosomes or microvesicles, miRNA-seq or small RNA-seq or
+          smRNA-seq”. In addition, similar keywords of the above procedure except for “gds or sra” were used to retrieve
+          publications in the PubMed repository. In total, more than 2,306 EV smRNA-seq datasets were collected after
+          the search procedure. Moreover, text screening and manual review were employed to classify the extracellular
+          vesicles for samples used in the study. The criteria used to distinguish the belonging of given samples
+          (exosomes or MVs) were as following:
+        </p>
+        <ol>
+          <li>samples with clearly defined of the belonging were obeyed to the original one;</li>
+          <li>amples with detailed description of isolation method were adapted to the criteria of International Society
+            for Extracellular Vesicles (ISEV);</li>
+          <li>samples extracted by commercial kits were classified according to the introduction of manufacture;</li>
+          <li>samples out of above categories were sorted by the word frequency count of “exosomes” or “microvesicles”;
+            Samples that cannot be grouped were discarded.</li>
+        </ol>
+        <h3>Pre-process</h3>
+        <p>Furthermore, we examined the quality of sequencing data of each dataset using similar methods as EVmiRNA
+          described in our previous study (15). In brief, FastQC (v0.11.5) was used for data quality control (QC), and
+          trimmomatic (v0.36) were employed for adapter sequence removal and FASTQ trimming to obtain high-quality clean
+          reads. Bowtie (v1.2.1) was used to align clean reads to human reference genome GRCh38. Samples with clean
+          reads less than 5 million or the predominant reads out of the range of 15-50 nt or an alignment ratio less
+          than 40% were discarded. Finally, 2030 EV datasets (1506 exosome and 524 MVs datasets) from 24 conditions with
+          40 diseases were kept for further analyses.</p>
+
+        <h3>Read mapping and expression estimation of ncRNA</h3>
+        <p>
+          Before reads mapping, we obtained the reference sequences for the 8 types of ncRNAs from different
+          authoritative databases. Then we used the Bowtie software and the following strategy/flow path for reads
+          mapping.
+        </p>
+        <ol>
+          <li>When a clean read was mapped to the reference sequence of one ncRNA with 0 mismatch uniquely, it was
+            assigned to the ncRNA;</li>
+          <li>When a read was mapped to multiple ncRNAs with 0 mismatch, based on the RNA abundance and possibility, we
+            assigned it to one of those ncRNAs according to the order: rRNA > tRNA > miRNA > piRNA > snRNA > snoRNA >
+            scRNA > pRNA;</li>
+          <li>When a read was mapped to one ncRNA with 1 mismatch uniquely, it was assigned to the ncRNA;</li>
+          <li>When a read was mapped to multiple ncRNAs with 1 mismatch, we followed the order: rRNA > tRNA > miRNA >
+            piRNA > snRNA > snoRNA > scRNA > pRNA;</li>
+          <li>When a read was mapped to multiple miRNAs with 1 mismatch at different sites, we considered that the
+            possibility of mismatch at the 3’ end will be higher than at the 5’ end because of the RNA editing.</li>
+        </ol>
+        <p>The normalization method of expressed reads per million (RPM) was employed to estimate the expression level
+          of ncRNAs using the total mapped reads. The reference sequences of miRNAs were downloaded from miRBase V22
+          (25), while the references of tRNA and snoRNA are obtained from snoDB and GtRNAdb, respectively. Other
+          reference sequences, such as piRNA, snRNA, rRNA, pRNA and scRNA were parsed from human genome annotation of
+          NCBI GenBank or RNACentral. Detailed methods are described on EVAtlas website document page. Finally, ncRNAs
+          with RPM > 1 were kept further analyses and deposited in EVAtlas. </p>
+        <h3>Specifically expressed ncRNAs </h3>
+        <p>To detect specifically expressed ncRNAs, the expression level of a ncRNA in the given condition was
+          represented by its median. The specifically highly expressed ncRNAs from exosomes (22 conditions) and MVs (7
+          conditions) were analyzed separately with SEGtool </p>
+        <h3>Functional annotation for ncRNAs and their expression profiles in cancers</h3>
+        <p>The functional annotation of ncRNAs were integrated into EVAtlas, in which, different types of ncRNAs have
+          their distinct annotations. The basic information, such as gene location and potential functions, was
+          extracted from the corresponding reference database of each ncRNA type and incubated into EVAtlas. For
+          example, the basic information and functions of rRNAs were collected from RNA central. For miRNAs, EVAtlas
+          collected the their potential functions from PubMed, miRNA-targets relations from FFLtool (3), related drugs
+          correlation from SM2miR (30), their expression profiles in cancers from GSCALite (31). For snoRNA and tRNA,
+          their expression profiles were collected from SNORic and TRic(16, 17), while their potential target genes were
+          incubated from snoDB and GtRNAdb (27, 28).</p>
       </mat-card-content>
     </mat-card>
     <br />
@@ -103,68 +184,90 @@
           <li>
             <p>
               We downloaded a total of 2,831 small RNA sequencing datasets of exosomes and microvesicles samples
-              <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a> (up to 30/05/2020). Then, we manually
-              examined the sources of samples and their isolation method to ensure their categories (exosome or microvesicle or others)
-              according to Mateescu's paper (details in the following picture). Finally, after quality control, we obtained
-              <strong style="color: DarkViolet;">2,271</strong> samples from 23 human tissues(organs) and 40 diseases. Furthermore,.
+              <a href="https://www.ncbi.nlm.nih.gov/sra/" target="_blank">NCBI SRA database</a> (up to 30/05/2020).
+              Then, we manually
+              examined the sources of samples and their isolation method to ensure their categories (exosome or
+              microvesicle or others)
+              according to Mateescu's paper (details in the following picture). Finally, after quality control, we
+              obtained
+              <strong style="color: DarkViolet;">2,271</strong> samples from 23 human tissues(organs) and 40 diseases.
+              Furthermore,.
             </p>
             <h3>EV isolation techniques</h3>
             <img mat-card-image class="evi_func" [src]="assets + '/imgs/' + 'evisolated.jpg'" />
             <p>
               <cite>
-                Mateescu, Bogdan, et al. "Obstacles and opportunities in the functional analysis of extracellular vesicle RNA-an ISEV
-                position paper." Journal of extracellular vesicles 6.1 (2017): 1286095.</cite
-              >
+                Mateescu, Bogdan, et al. "Obstacles and opportunities in the functional analysis of extracellular
+                vesicle RNA-an ISEV
+                position paper." Journal of extracellular vesicles 6.1 (2017): 1286095.</cite>
             </p>
             <ul>
               <li>
-                (a) Differential centrifugation is the sequential pelleting of particles with decreasing sedimentation coefficients.
-                Typically 2000 g is used to pellet large EVs, 10,000-20,000 g to pellet middle-sized EVs (green) (MVs), and finally ~100,000
-                g to pellet the smallest EVs (different EV subpopulations are indicated in grey and orange) (Exosomes). At these high
+                (a) Differential centrifugation is the sequential pelleting of particles with decreasing sedimentation
+                coefficients.
+                Typically 2000 g is used to pellet large EVs, 10,000-20,000 g to pellet middle-sized EVs (green) (MVs),
+                and finally ~100,000
+                g to pellet the smallest EVs (different EV subpopulations are indicated in grey and orange) (Exosomes).
+                At these high
                 g-forces, complexes of soluble proteins (black dots) may also sediment.
               </li>
               <li>
-                (b) Lipids have a density that is approximately 1 g cm-3, while proteins and RNA have a higher density (>1.3 g cm-3).
-                Therefore density gradients can be used to separate subpopulations of EVs with different ratio of lipids, RNA, and proteins.
-                Moreover, these gradients can be used to purify vesicles away from soluble proteins, RNA, and protein-RNA complexes as the
+                (b) Lipids have a density that is approximately 1 g cm-3, while proteins and RNA have a higher density
+                (>1.3 g cm-3).
+                Therefore density gradients can be used to separate subpopulations of EVs with different ratio of
+                lipids, RNA, and proteins.
+                Moreover, these gradients can be used to purify vesicles away from soluble proteins, RNA, and
+                protein-RNA complexes as the
                 latter structures will not float at the same density as the lipid containing EVs.
               </li>
               <li>
-                (c) Size exclusion chromatography separates particles based on their size, by trapping the smaller molecules (such as
-                proteins and protein complexes) in the pores. The larger molecules (such as EVs) are too large to enter the pores and will
+                (c) Size exclusion chromatography separates particles based on their size, by trapping the smaller
+                molecules (such as
+                proteins and protein complexes) in the pores. The larger molecules (such as EVs) are too large to enter
+                the pores and will
                 elute first.
               </li>
               <li>
-                (d) Precipitation of EV from cell culture medium or body fluids is based on volume-excluding polymers such as polyethylene
-                glycol (PEG) with which biological materials such as proteins and EVs are precipitated from the solution.
+                (d) Precipitation of EV from cell culture medium or body fluids is based on volume-excluding polymers
+                such as polyethylene
+                glycol (PEG) with which biological materials such as proteins and EVs are precipitated from the
+                solution.
               </li>
               <li>
-                (e) (Immuno-)affinity capture isolates vesicles using beads coated with antibodies or proteins (such as heparin) with
-                affinity for an EV transmembrane protein. Vesicles displaying the protein of interest will bind to the beads and can thereby
+                (e) (Immuno-)affinity capture isolates vesicles using beads coated with antibodies or proteins (such as
+                heparin) with
+                affinity for an EV transmembrane protein. Vesicles displaying the protein of interest will bind to the
+                beads and can thereby
                 be isolated from the vesicle-containing solution.
               </li>
             </ul>
 
             <p><b>Small RNA sequencing data mapping Strategy</b></p>
             <p>
-              Datasets with ambiguous description of experiment design and less raw reads were discarded. Subsequently, for each dataset,
-              reads with the multiple N bases (>1) or unexpected length after adapter remove (> 45 nt or < 15 nt) or with low quality (mean
-              quality <=20) were filtered, and dataset with less reads (< 1M) after the procedure were discarded. Finally, 2271 EV datasets
-              were kept for further analysis, which including 1,660 exosome and 563 MV samples from 23 human tissues(organs) and 40 diseases
-              (Table 1). Clean reads were mapped to human pre-miRNA sequences from miRBase V22 and other ncRNAs from Genebank using bowtie
-              (1 mismatch allowed) to identify known ncRNAs and estimate their abundance. The normalization method of RPM (expressed Reads
-              Per Million reads) were employed to assess the expression level of ncRNAs across samples and conditions.
-            </p>
-          </li>
-          <br />
+              Datasets with ambiguous description of experiment design and less raw reads were discarded. Subsequently,
+              for each dataset,
+              reads with the multiple N bases (>1) or unexpected length after adapter remove (> 45 nt or
+              < 15 nt) or with low quality (mean quality <=20) were filtered, and dataset with less reads (< 1M) after
+                the procedure were discarded. Finally, 2271 EV datasets were kept for further analysis, which including
+                1,660 exosome and 563 MV samples from 23 human tissues(organs) and 40 diseases (Table 1). Clean reads
+                were mapped to human pre-miRNA sequences from miRBase V22 and other ncRNAs from Genebank using bowtie (1
+                mismatch allowed) to identify known ncRNAs and estimate their abundance. The normalization method of RPM
+                (expressed Reads Per Million reads) were employed to assess the expression level of ncRNAs across
+                samples and conditions. </p> </li> <br />
           <li>
             <p>
-              Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the snoRNA annotation was
-              obtained from snoRNABase. The annotation information of snRNA, scRNA and pRNA were parsed from ENSEMBL v86 gtf file. The rRNA
-              and tRNA information were incubated from NCBI GeneBank database. The miRNA basic information was collected from miRbase.
-              Pathway information was collected from KEGG database, and use Hypergeometric p-value to filter miRNA pathway pairs.
-              Publication information was collected from NCBI pubmed database. miRNA function was collected from NCBI RIF database. miRNA
-              Drug information was collected from SM2miR (Small molecular miRNA database). miRNA targets was from TargetScan, miRanda,
+              Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the
+              snoRNA annotation was
+              obtained from snoRNABase. The annotation information of snRNA, scRNA and pRNA were parsed from ENSEMBL v86
+              gtf file. The rRNA
+              and tRNA information were incubated from NCBI GeneBank database. The miRNA basic information was collected
+              from miRbase.
+              Pathway information was collected from KEGG database, and use Hypergeometric p-value to filter miRNA
+              pathway pairs.
+              Publication information was collected from NCBI pubmed database. miRNA function was collected from NCBI
+              RIF database. miRNA
+              Drug information was collected from SM2miR (Small molecular miRNA database). miRNA targets was from
+              TargetScan, miRanda,
               TarBase, miRTarBase, miR2Disease, miRecords and miRWalk.
             </p>
             <b>RNA types & annotation</b>
@@ -172,8 +275,10 @@
           </li>
           <li>
             <p>
-              We applied SEGtool to identify Specific miRNAs of cancer and tissue. We used miRNA expression cutoff RPM >= 100 to identify
-              specific miRNAs in cancer group and tissue group. We found that in cancer group, Exosome can identify more specific miRNAs.
+              We applied SEGtool to identify Specific miRNAs of cancer and tissue. We used miRNA expression cutoff RPM
+              >= 100 to identify
+              specific miRNAs in cancer group and tissue group. We found that in cancer group, Exosome can identify more
+              specific miRNAs.
             </p>
             <p>
               <b>Specific miRNA</b>
@@ -218,6 +323,21 @@
     </mat-card>
   </div>
 
+    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+      <mat-card-header>
+        <mat-card-title>Ackownledgements and external links</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Many thanks to the data producers.</p>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
   <div fxFlex="none">
     <app-footer></app-footer>
   </div>
