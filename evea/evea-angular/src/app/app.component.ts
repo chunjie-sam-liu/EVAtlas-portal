@@ -11,5 +11,5 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Extracellular vesicle Expression Atlas';
+  title = 'EVAtlas';
 }
