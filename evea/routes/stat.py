@@ -300,9 +300,22 @@ class SrpRatioStat(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
+        parser.add_argument("samType", type=str)
         args = parser.parse_args()
 
-        condition = {"srp_id": args.srp}
+        # print(args.samType)
+        # print("samType")
+        if args.samType == "Control":
+            condition = {"$and": [{"srp_id": args.srp}, {"condition": "Normal"}]}
+        elif args.samType == "Case":
+            condition = {
+                "$or": [
+                    {"srp_id": args.srp, "condition": "Cancer"},
+                    {"srp_id": args.srp, "condition": "cancer"},
+                    {"srp_id": args.srp, "condition": "Disease"},
+                    {"srp_id": args.srp, "condition": "disease"},
+                ]
+            }
         output = {
             "_id": 0,
             "srr_tag_info": 1,

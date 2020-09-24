@@ -1,23 +1,16 @@
 <div fxLayout fxLayout.lt-xl="column" fxLayoutGap="10px">
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
-      <mat-card-title>{{ projectDistTitle }}</mat-card-title>
+      <mat-card-title>{{ tissueRecord._id }} RNA mapping distribution</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-tab-group mat-align-tabs="start">
-        <mat-tab label="Case">
-          <div *ngIf="!projectDist">
-            <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-          </div>
-          <div echarts [options]="projectDist" class="chart-hight"></div
-        ></mat-tab>
-        <mat-tab label="Control">Content 2</mat-tab>
+        <mat-tab *ngFor="let tab of samTypes">
+          <ng-template mat-tab-label>{{ tab.label }}</ng-template>
+          <br />
+          <app-sample-dist [tissueRecord]="tissueRecord" [samType]="tab.label"></app-sample-dist>
+        </mat-tab>
       </mat-tab-group>
-
-      <!-- <div *ngIf="!projectDist">
-        <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
-      </div>
-      <div echarts [options]="projectDist" class="chart-hight"></div> -->
     </mat-card-content>
   </mat-card>
 </div>

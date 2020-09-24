@@ -1,0 +1,8 @@
+<div *ngIf="!projectDist">
+  <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
+</div>
+<div *ngIf="isDist; else empty" echarts [options]="projectDist" class="chart-hight"></div>
+
+<ng-template #empty
+  ><strong style="color: red;">No {{ samType }} sample in {{ tissueRecord._id }}!</strong></ng-template
+>

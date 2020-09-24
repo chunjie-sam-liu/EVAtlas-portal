@@ -14,6 +14,7 @@ import { SampleRnaAvgComponent } from './sample-content/sample-rna-avg/sample-rn
 import { RnaAvgTableComponent } from './sample-content/sample-rna-avg/rna-avg-table/rna-avg-table.component';
 import { SampleIsolationComponent } from './sample-content/sample-isolation/sample-isolation.component';
 import { RnaAvgHeatmapComponent } from './sample-content/sample-rna-avg/rna-avg-heatmap/rna-avg-heatmap.component';
+import { SampleDistComponent } from './sample-content/sample-stat/sample-dist/sample-dist.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RnaAvgHeatmapComponent } from './sample-content/sample-rna-avg/rna-avg-
     RnaAvgTableComponent,
     SampleIsolationComponent,
     RnaAvgHeatmapComponent,
+    SampleDistComponent,
   ],
   imports: [CommonModule, SamplesRoutingModule, SharedModule],
 })

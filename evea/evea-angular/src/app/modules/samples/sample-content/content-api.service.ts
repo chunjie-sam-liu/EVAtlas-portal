@@ -30,9 +30,10 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.srp_lst));
   }
 
-  public getProjectStat(id: string): Observable<MappingDist[]> {
+  public getProjectStat(id: string, samtype): Observable<MappingDist[]> {
     return this.getData('stat/srpratiostat', {
       srp: id,
+      samType: samtype,
     });
   }
 
