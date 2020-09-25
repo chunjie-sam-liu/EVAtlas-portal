@@ -267,6 +267,11 @@ class SrpShow(Resource):
         }
         condition.append(basic_stat)
         srp_lst = list(mongo.db.sample_info.aggregate(condition))
+        for i in srp_lst:
+            if i["normal_n"] != 0 and i["case_n"] == 0:
+                m = i["normal_n"]
+                i["normal_n"] = i["case_n"]
+                i["case_n"] = m
         return {"srp_lst": srp_lst}
 
 
