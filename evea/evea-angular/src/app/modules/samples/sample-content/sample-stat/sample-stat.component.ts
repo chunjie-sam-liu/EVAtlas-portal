@@ -23,6 +23,12 @@ export class SampleStatComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.tissueRecord.case_n != 0 && this.tissueRecord.normal_n == 0) {
+      this.samTypes = [{ label: 'Case' }];
+    }
+    if (this.tissueRecord.normal_n != 0) {
+      this.samTypes = [{ label: 'Case' }, { label: 'Control' }];
+    }
     // this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
     // this.contentApiService.getProjectStat(this.tissueRecord._id, 'Normal').subscribe((res) => {
     //   this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);

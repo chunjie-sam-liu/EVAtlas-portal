@@ -272,6 +272,9 @@ class SrpShow(Resource):
                 m = i["normal_n"]
                 i["normal_n"] = i["case_n"]
                 i["case_n"] = m
+                i["tag"] = "y"
+            else:
+                i["tag"] = "n"
         return {"srp_lst": srp_lst}
 
 
@@ -308,12 +311,11 @@ class SrpRatioStat(Resource):
         parser.add_argument("samType", type=str)
         args = parser.parse_args()
 
-        # print(args.samType)
-        # print("samType")
+        sear_condition = []
         if args.samType == "Control":
-            condition = {"$and": [{"srp_id": args.srp}, {"condition": "Normal"}]}
+            sear_condition = {"$and": [{"srp_id": args.srp}, {"condition": "Normal"}]}
         elif args.samType == "Case":
-            condition = {
+            sear_condition = {
                 "$or": [
                     {"srp_id": args.srp, "condition": "Cancer"},
                     {"srp_id": args.srp, "condition": "cancer"},
@@ -329,7 +331,7 @@ class SrpRatioStat(Resource):
             "disease": 1,
             "ex_type": 1,
         }
-        mcur = mongo.db.sample_info.find(condition, output)
+        mcur = mongo.db.sample_info.find(sear_condition, output)
         return list(mcur)
 
     def get_old(self):

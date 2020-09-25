@@ -25,6 +25,12 @@ export class SampleDistComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.tissueRecord.normal_n == 0 && this.tissueRecord.tag == 'y') {
+      this.samType = 'Control';
+    }
+    if (this.tissueRecord.normal_n == 0 && this.tissueRecord.tag == 'n') {
+      this.samType = 'Case';
+    }
     this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
     this.contentApiService.getProjectStat(this.tissueRecord._id, this.samType).subscribe((res) => {
       this.isDist = res.length != 0 ? true : false;

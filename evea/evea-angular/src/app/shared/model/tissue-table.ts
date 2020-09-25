@@ -9,4 +9,5 @@ export interface TissueTable {
   normal_n: number;
   case_n: number;
   pubmed: string;
+  tag: string;
 }
