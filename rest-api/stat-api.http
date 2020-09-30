@@ -61,7 +61,7 @@ GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Bone%20marrow
 GET http://localhost:5000/api/stat/Srplst?select=source&query=Cell%20line
 
 ###
-GET http://localhost:5000/api/stat/srpratiostat?srp=SRP223523
+GET http://localhost:5000/api/stat/srpratiostat?srp=SRP065890&samType=Control
 
 
 #get categories for keyword

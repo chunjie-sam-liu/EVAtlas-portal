@@ -9,16 +9,13 @@
   <mat-table [dataSource]="dataSourceDrug">
     <ng-container matColumnDef="FDA">
       <mat-header-cell *matHeaderCellDef> FDA </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.FDA === 'NULL' ? '-': row.FDA }}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.FDA === 'NULL' ? '-' : row.FDA }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="CID">
       <mat-header-cell *matHeaderCellDef>
         CID
-        <mat-icon
-        color="warn"
-        matTooltip="PubChem compound ID"
-        matTooltipClass="tooltip-red">help</mat-icon>
+        <mat-icon color="warn" matTooltip="PubChem compound ID" matTooltipClass="tooltip-red">help</mat-icon>
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{ row.CID }}" target="_blank">{{ row.CID }}</a>
@@ -58,7 +55,7 @@
   <mat-form-field>
     <input matInput placeholder="Input target gene" #input />
     <button mat-icon-button color="warn" matPrefix>
-      <mat-icon>search</mat-icon>
+      <mat-icon style="font-size: 25px;">search</mat-icon>
     </button>
   </mat-form-field>
 

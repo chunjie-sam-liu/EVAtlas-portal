@@ -1,3 +1,7 @@
 .tooltip-red {
   background: #da4233;
 }
+
+mat-icon {
+  font-weight: bold;
+}

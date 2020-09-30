@@ -7,7 +7,7 @@
         <input matInput [formControl]="searchFormControl" [matAutocomplete]="auto" [placeholder]="rnaExample" type="text" />
 
         <button mat-icon-button color="warn" matPrefix>
-          <mat-icon>search</mat-icon>
+          <mat-icon style="font-weight: bold;">search</mat-icon>
         </button>
 
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="rnaSelected($event.option.value)">
