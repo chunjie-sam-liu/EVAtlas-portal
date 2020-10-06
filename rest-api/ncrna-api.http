@@ -30,7 +30,7 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type=rRNA&ex_type=Exosomes
 
 ###srp expression for heatmap
-GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP057172&ncrna=miRNA
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP057172&ncrna=rRNA
 
 #return the top x expressed ncRNA of each ncRNA class for samples
 

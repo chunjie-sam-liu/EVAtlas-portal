@@ -48,6 +48,9 @@ db.sample_info.find({}, {"_id":0, ''})
 
 db.miRNA_samexp.distinct("GeneSymbol")
 
+
+db.spe_disease.deleteMany({})
+
 db.spe_exp.find({"ex_type":"Exosomes", "condition":{"$in":["Cancer", "Disease"]}, "disease":{"$exists": true }, "GeneSymbol":"hsa-miR-99b-5p"}, {"_id":0})
 
 db.spe_exp.aggregate([{"$match":{"disease":{"$exists": true }, "condition":{"$in":["Cancer", "Disease"]}}}, {"$group":{"_id":{"ex_type":"$ex_type", "disease":"$disease", "class":"$class"}, "GeneSymbol":{"$push":"$GeneSymbol"}}}, {"$project":{"ex_type":"$_id.ex_type", "disease":"$_id.disease", "class":"$_id.class", "_id":0, "GeneSymbol":1}}, {"$group":{"_id":{"ex_type":"$ex_type", "disease":"$disease"}, "ncrna":{"$push":{"class": "$class", "GeneSymbol":"$GeneSymbol"}}}},{"$project":{"ex_type":"$_id.ex_type", "disease":"$_id.disease","ncrna":"$ncrna", "_id":0}},{"$out":"spe_disease"}])
@@ -95,7 +98,7 @@ db.ncrna_hit.find({"GeneSymbol":"hsa_rRNA_HUMRGM_1:5025:+"})
 
 db.miRNA_samexp.aggregate([{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}, {""}])
 
-db.ncrna_hit.findOne({"GeneSymbol":"hsa_piRNA_28605"})
+db.ncrna_hit.findOne()
 
 db.piRNA_samexp.find({"GeneSymbol":"hsa_piRNA_28605"})
 
@@ -105,4 +108,8 @@ db.sample_info.distinct("source")
 db.piRNA_samexp.aggregate([{"$match":{"GeneSymbol":"hsa_piRNA_28605"}},{"$unwind": "$exp"}, {"$match": {"exp.RPM": {"$gte": 1}}}])
 
 
-db.ncrna_anno.find({"GeneSymbol": "hsa-miR-4792"})
+db.ncrna_anno.find({"class": "miRNA"})
+
+db.ncrna_anno.find({"GeneSymbol":"hsa-miR-4792"})
+
+db.ncrna_anno.deleteMany({"source":{"$regex":"codon"}})
