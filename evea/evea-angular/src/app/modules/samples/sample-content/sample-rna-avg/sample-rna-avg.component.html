@@ -1,11 +1,22 @@
 <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
-  <mat-card-header>
-    <mat-card-title> {{ tissueRecord._id }} small RNA average expression </mat-card-title>
-  </mat-card-header>
-  <mat-tab-group mat-stretch-tabs dynamicHeight color="warn">
-    <mat-tab *ngFor="let tab of rnaTypes">
-      <ng-template mat-tab-label>{{ tab.label }}</ng-template>
-      <app-rna-avg-table [rnaType]="tab.label" [tissueRecord]="tissueRecord"></app-rna-avg-table>
-    </mat-tab>
-  </mat-tab-group>
+  <mat-card-content>
+    <mat-tab-group mat-stretch-tabs dynamicHeight color="warn">
+      <mat-tab *ngFor="let tab of rnaTypes">
+        <ng-template mat-tab-label>{{ tab.label }}</ng-template>
+
+        <app-rna-avg-heatmap
+          [rnaType]="tab.label"
+          [tissueRecord]="tissueRecord"
+          *ngIf="tab.label != 'pRNA'; else empty"
+        ></app-rna-avg-heatmap>
+
+        <h2>{{ tab.label }} average expression in {{ tissueRecord._id }}</h2>
+        <app-rna-avg-table [rnaType]="tab.label" [tissueRecord]="tissueRecord"></app-rna-avg-table>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
 </mat-card>
+
+<ng-template #empty
+  ><div style="color: red; margin-bottom: 20px; margin-top: 20px;"><span>No enough data for heatmap!</span><br /></div
+></ng-template>

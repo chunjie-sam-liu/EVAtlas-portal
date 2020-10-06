@@ -10,6 +10,7 @@ from evea.routes.search import search  # ok
 from evea.routes.drug import drug  # ok
 from evea.routes.anno import anno
 from evea.routes.spe import spe
+from evea.routes.misc import misc
 
 # routing
 # app.register_blueprint(home, url_prefix='/api/home')
@@ -20,12 +21,8 @@ app.register_blueprint(stat, url_prefix="/api/stat")
 app.register_blueprint(target, url_prefix="/api/target")
 app.register_blueprint(anno, url_prefix="/api/anno")
 app.register_blueprint(spe, url_prefix="/api/spe")
-
-
-# app.register_blueprint(function, url_prefix='/api/function')
-
-
 app.register_blueprint(search, url_prefix="/api/search")
+app.register_blueprint(misc, url_prefix="/api/misc")
 
 
 @app.route("/", methods=["GET"])

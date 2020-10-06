@@ -2,7 +2,7 @@
   <mat-form-field>
     <input matInput placeholder="Input RNA symbol" #input />
     <button mat-icon-button color="warn" matPrefix>
-      <mat-icon>search</mat-icon>
+      <mat-icon style="font-size: 150%;">search</mat-icon>
     </button>
   </mat-form-field>
 
@@ -14,15 +14,17 @@
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
       <mat-cell class="description-cell" *matCellDef="let rna">
-        <a [routerLink]="['detail', rna.GeneSymbol]">{{ rna.GeneSymbol }}</a>
+        <a [routerLink]="['detail', rna.go]">{{ rna.GeneSymbol }}</a>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="loci">
       <mat-header-cell *matHeaderCellDef>Position</mat-header-cell>
-      <mat-cell class="duration-cell" *matCellDef="let rna"
-        >{{ rna.chromosome }}: {{ rna.start | number }} - {{ rna.end | number }}</mat-cell
-      >
+      <mat-cell class="duration-cell" *matCellDef="let rna">
+        <ng-container *ngIf="rna.start != rna.end; else marked">
+          {{ rna.chromosome }}: {{ rna.start | number }} - {{ rna.end | number }}
+        </ng-container>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="strand">
@@ -47,3 +49,5 @@
 
   <mat-paginator [length]="dataSource.resultLength" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
 </mat-card>
+
+<ng-template #marked> Unavailable </ng-template>

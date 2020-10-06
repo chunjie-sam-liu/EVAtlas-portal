@@ -9,11 +9,11 @@
 git pull
 
 source venv/bin/activate
-pip install -r requirement.txt
+pip install -r requirements.txt
 
 cd evea/evea-angular/
 npm install
 
 npm run build:prod
-npm run compodoc
-npm run stat
+# npm run compodoc
+# npm run stat

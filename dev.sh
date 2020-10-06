@@ -8,7 +8,7 @@
 git pull
 
 source venv/bin/activate
-pip install -r requirement.txt
+pip install -r requirements.txt
 
 cd evea/evea-angular/
 npm install

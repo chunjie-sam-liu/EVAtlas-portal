@@ -252,6 +252,8 @@ class SrpShow(Resource):
                 "ex_type": {"$addToSet": "$ex_type"},
                 "disease": {"$addToSet": "$disease"},
                 "material": {"$addToSet": "$material"},
+                "source": {"$addToSet": "$source"},
+                "tissues": {"$addToSet": "$tissues"},
                 inner_query_lst[0]: {"$addToSet": "$" + inner_query_lst[0]},
                 "pubmed": {"$addToSet": "$pubmed_id"},
                 "srr_count": {"$sum": 1},
@@ -265,6 +267,14 @@ class SrpShow(Resource):
         }
         condition.append(basic_stat)
         srp_lst = list(mongo.db.sample_info.aggregate(condition))
+        for i in srp_lst:
+            if i["normal_n"] != 0 and i["case_n"] == 0:
+                m = i["normal_n"]
+                i["normal_n"] = i["case_n"]
+                i["case_n"] = m
+                i["tag"] = "y"
+            else:
+                i["tag"] = "n"
         return {"srp_lst": srp_lst}
 
 
@@ -298,9 +308,21 @@ class SrpRatioStat(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
+        parser.add_argument("samType", type=str)
         args = parser.parse_args()
 
-        condition = {"srp_id": args.srp}
+        sear_condition = []
+        if args.samType == "Control":
+            sear_condition = {"$and": [{"srp_id": args.srp}, {"condition": "Normal"}]}
+        elif args.samType == "Case":
+            sear_condition = {
+                "$or": [
+                    {"srp_id": args.srp, "condition": "Cancer"},
+                    {"srp_id": args.srp, "condition": "cancer"},
+                    {"srp_id": args.srp, "condition": "Disease"},
+                    {"srp_id": args.srp, "condition": "disease"},
+                ]
+            }
         output = {
             "_id": 0,
             "srr_tag_info": 1,
@@ -309,7 +331,7 @@ class SrpRatioStat(Resource):
             "disease": 1,
             "ex_type": 1,
         }
-        mcur = mongo.db.sample_info.find(condition, output)
+        mcur = mongo.db.sample_info.find(sear_condition, output)
         return list(mcur)
 
     def get_old(self):

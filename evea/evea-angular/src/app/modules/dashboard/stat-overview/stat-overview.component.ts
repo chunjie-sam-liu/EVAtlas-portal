@@ -9,7 +9,7 @@ import statDistData from 'src/app/shared/constants/sample-stat-overview';
   styleUrls: ['./stat-overview.component.css'],
 })
 export class StatOverviewComponent implements OnInit {
-  constructor() {}
+  constructor() { }
   pieChart: EChartOption = {
     tooltip: {
       trigger: 'item',
@@ -35,7 +35,7 @@ export class StatOverviewComponent implements OnInit {
   statTitle = 'Tissues and samples in EVatlas';
   statDist: EChartOption = this._statDist(statDistData, this.statTitle);
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   private _statDist(d: any, title: string): EChartOption {
     return {
@@ -44,7 +44,7 @@ export class StatOverviewComponent implements OnInit {
         text: title,
       },
       grid: {
-        top: '2%',
+        top: '8%',
         left: '10%',
         right: '2%',
         bottom: '20%',
@@ -68,9 +68,9 @@ export class StatOverviewComponent implements OnInit {
       xAxis: {
         type: 'category',
         show: true,
-        name: 'Tissues',
+        name: 'Conditions',
         nameLocation: 'center',
-        nameGap: 60,
+        nameGap: 70,
         nameTextStyle: { fontWeight: 'bolder' },
         axisTick: { show: false },
         axisLabel: { show: true, interval: 0, rotate: 45 },

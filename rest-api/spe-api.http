@@ -8,7 +8,7 @@ GET http://localhost:5000/api/spe/spetype?type=tissue&ex_type=Microvesicles
 
 #return filtered disease lst and spe ncrna lst
 ###
-GET http://localhost:5000/api/spe/spetype?type=tissue&ex_type=Exosomes&filter=Adipose
+GET http://localhost:5000/api/spe/spetype?type=tissue&ex_type=Exosomes&filter=Tongue
 
 #return disease lst and spe ncrna lst
 ###

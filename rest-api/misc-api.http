@@ -1,0 +1,27 @@
+
+# mirna tcga expression
+GET http://localhost:5000/api/misc/tcga_rna/hsa-miR-101-3p
+
+###
+GET http://localhost:5000/api/misc/tcga_rna?rnaid=hsa-miR-101-3p&rnatype=miRNA
+###
+# return null if not include
+GET http://localhost:5000/api/misc/tcga_rna/a
+
+###
+# mirna function
+# use precursor
+GET http://localhost:5000/api/misc/func_mirna/hsa-miR-21
+
+###
+GET http://localhost:5000/api/misc/func_mirna/filter?mirna=hsa-miR-101&filter=&page=0&size=5
+
+
+
+###
+# snorna tcga expression
+GET http://localhost:5000/api/misc/tcga_rna?rnaid=ACA13&rnatype=snoRNA
+
+###
+# snoRNA  tcga expression
+GET http://localhost:5000/api/misc/tcga_rna?rnaid=SNORD22&rnatype=snoRNA

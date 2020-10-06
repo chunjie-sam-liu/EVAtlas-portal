@@ -24,13 +24,14 @@ class speCategroy(Resource):
         if args["filter"] != "":
             condition[spe_type] = {"$regex": args["filter"], "$options": "i"}
         spe_lst = list(mongo.db[query_db].find(condition, {"_id": 0}))
-        show_piRNA = mongo.db.display_piRNA.distinct("GeneSymbol")
-        for z in spe_lst:
-            for t in z["ncrna"]:
-                if t["class"] == "piRNA":
-                    t["GeneSymbol"] = list(
-                        set(show_piRNA).intersection(set(t["GeneSymbol"]))
-                    )
+        # print(spe_lst)
+        # show_piRNA = mongo.db.display_piRNA.distinct("GeneSymbol")
+        # for z in spe_lst:
+        #     for t in z["ncrna"]:
+        #         if t["class"] == "piRNA":
+        #             t["GeneSymbol"] = list(
+        #                 set(show_piRNA).intersection(set(t["GeneSymbol"]))
+        #             )
         return {"data": spe_lst}
 
 

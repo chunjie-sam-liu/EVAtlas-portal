@@ -40,8 +40,20 @@ h1.page-header {
 }
 h2.page-subheader {
   margin: 10px 0px;
-  border-bottom: 0.5px solid #da4233;
+  border-bottom: 0.5px solid #b8c3f1;
   font-weight: bolder;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+}
+
+.mat-tab-label {
+  font-weight: bold;
+  font-size: 16px;
+  color: #560395;
 }
 
 a {
@@ -82,4 +94,12 @@ dd {
 
 .chart-hight {
   height: 400px;
+}
+
+.chart-heathight {
+  height: 700px;
+}
+
+.chart-tcgahight {
+  height: 700px;
 }

@@ -22,23 +22,26 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.sample_stats));
   }
 
-  public getTissueTable(tissue: string): Observable<TissueTable[]> {
+  public getTissueTable(select: string, query: string): Observable<TissueTable[]> {
     return this.getData('stat/Srplst', {
-      tissues: tissue,
+      select: select,
+      query: query,
+      // tissues: tissue,
     }).pipe(map((res) => res.srp_lst));
   }
 
-  public getProjectStat(id: string): Observable<MappingDist[]> {
+  public getProjectStat(id: string, samtype): Observable<MappingDist[]> {
     return this.getData('stat/srpratiostat', {
       srp: id,
+      samType: samtype,
     });
   }
 
-  public getProjectHeatmap(id: string): Observable<RnaHeatmap[]> {
+  public getProjectHeatmap(id: string, rnaType: string): Observable<RnaHeatmap[]> {
     return this.getData('ncrna/srpheatmap', {
       srp: id,
-      ncrna: 'miRNA',
-    }).pipe(map((res) => res.srp_heatmap_lst[0].miRNA));
+      ncrna: rnaType,
+    }).pipe(map((res) => res.srp_heatmap_lst[0][rnaType]));
   }
 
   public getRnaAvgRecords(id: string, rnaType: string, filter = '', sortOrder = 'desc', pageIndex = 0, pageSize = 10): Observable<any> {

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from werkzeug.wrappers import AuthorizationMixin
 from evea.db import mongo
 import pymongo
 from flask_restful import Api, Resource, fields, marshal_with, reqparse, marshal
@@ -72,6 +73,7 @@ ncRNA_count_fields = {
     "samples": fields.Integer(attribute="sample_n"),
     "GeneSymbol": fields.String,
     "class": fields.String(attribute="class"),
+    "go": fields.String(attribute="go")
 }
 
 ncRNA_count_fields_lst = {
@@ -143,6 +145,7 @@ class ncRNAexp(Resource):
                     "$project": {
                         "_id": 0,
                         "tissues": "$_id.tissues",
+                        "source": "$_id.source",
                         "exp_lst": 1,
                         "average": {"$avg": "$exp_lst"},
                         "min": {"$min": "$exp_lst"},

@@ -7,9 +7,38 @@
   </div>
 
   <mat-table [dataSource]="dataSourceDrug">
-    <ng-container *ngFor="let col of displayedColumnsDrug" [matColumnDef]="col">
-      <mat-header-cell *matHeaderCellDef> {{ col }} </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row[col] }}</mat-cell>
+    <ng-container matColumnDef="FDA">
+      <mat-header-cell *matHeaderCellDef> FDA </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.FDA === 'NULL' ? '-' : row.FDA }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="CID">
+      <mat-header-cell *matHeaderCellDef>
+        CID
+        <mat-icon color="warn" matTooltip="PubChem compound ID" matTooltipClass="tooltip-red">help</mat-icon>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{ row.CID }}" target="_blank">{{ row.CID }}</a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Small_molecule">
+      <mat-header-cell *matHeaderCellDef> Molecule name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.Small_molecule }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Source">
+      <mat-header-cell *matHeaderCellDef> Source </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <a href="http://www.jianglab.cn/SM2miR/" target="_blank">{{ row.Source }}</a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PMID">
+      <mat-header-cell *matHeaderCellDef> PMID </mat-header-cell>
+      <mat-cell *matCellDef="let row"
+        ><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.PMID }}" target="_blank">{{ row.PMID }}</a></mat-cell
+      >
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumnsDrug"></mat-header-row>
@@ -26,7 +55,7 @@
   <mat-form-field>
     <input matInput placeholder="Input target gene" #input />
     <button mat-icon-button color="warn" matPrefix>
-      <mat-icon>search</mat-icon>
+      <mat-icon style="font-size: 25px;">search</mat-icon>
     </button>
   </mat-form-field>
 
@@ -35,9 +64,33 @@
   </div>
 
   <mat-table [dataSource]="dataSourceTarget">
-    <ng-container *ngFor="let col of displayedColumnsTarget" [matColumnDef]="col">
-      <mat-header-cell *matHeaderCellDef> {{ col }} </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row[col] }}</mat-cell>
+    <ng-container matColumnDef="Target">
+      <mat-header-cell *matHeaderCellDef> Target </mat-header-cell>
+      <mat-cell *matCellDef="let row"
+        ><a href="https://www.ncbi.nlm.nih.gov/gene/?term={{ row.Target }}" target="_blank">{{ row.Target }}</a></mat-cell
+      >
+    </ng-container>
+
+    <ng-container matColumnDef="Confidence">
+      <mat-header-cell *matHeaderCellDef> Confidence </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.Confidence }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Source">
+      <mat-header-cell *matHeaderCellDef> Source </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.Source }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Experiment">
+      <mat-header-cell *matHeaderCellDef> Experiment </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.Experiment }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PMID">
+      <mat-header-cell *matHeaderCellDef> PMID </mat-header-cell>
+      <mat-cell *matCellDef="let row"
+        ><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ row.PMID }}" target="_blank">{{ row.PMID }}</a></mat-cell
+      >
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumnsTarget"></mat-header-row>

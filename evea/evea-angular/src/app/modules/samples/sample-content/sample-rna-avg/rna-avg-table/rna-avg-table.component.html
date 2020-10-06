@@ -1,7 +1,7 @@
 <mat-form-field>
   <input matInput placeholder="Input RNA symbol" #input />
   <button mat-icon-button color="warn" matPrefix>
-    <mat-icon>search</mat-icon>
+    <mat-icon style="font-size: 25px;">search</mat-icon>
   </button>
 </mat-form-field>
 
@@ -13,7 +13,7 @@
   <ng-container matColumnDef="symbol">
     <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
     <mat-cell *matCellDef="let rna">
-      <a [routerLink]="['/rna/detail', rna.GeneSymbol]">{{ rna.GeneSymbol }}</a>
+      <a [routerLink]="['/rna/detail', rna.go]">{{ rna.GeneSymbol }}</a>
     </mat-cell>
   </ng-container>
 
