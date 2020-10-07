@@ -36,8 +36,8 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type
 ###Return all expression for scatter
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type=rRNA&ex_type=Exosomes
 
-###srp expression for heatmap
-GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP057172&ncrna=rRNA
+###srp expression for heatmap, add the tissue selector
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP061240&ncrna=miRNA&tissues=Pancreas
 
 #return the top x expressed ncRNA of each ncRNA class for samples
 
@@ -48,9 +48,10 @@ GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&size=30
 GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&all=1
 
 
-# return the ranked expressed ncRNA with srp_id in the given class
-###
-GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=SRP214462&class=miRNA&page=2&size=5
+# return the ranked expressed ncRNA with srp_id in the given class 
+# new add by zhangq
+### 
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=DRP000998&class=miRNA&page=2&size=5&tissues=Mouth
 
 
 # return all ncRNA

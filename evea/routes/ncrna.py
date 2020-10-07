@@ -73,7 +73,7 @@ ncRNA_count_fields = {
     "samples": fields.Integer(attribute="sample_n"),
     "GeneSymbol": fields.String,
     "class": fields.String(attribute="class"),
-    "go": fields.String(attribute="go")
+    "go": fields.String(attribute="go"),
 }
 
 ncRNA_count_fields_lst = {
@@ -166,13 +166,28 @@ class SrpHeatmap(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
         parser.add_argument("ncrna", type=str)
+        parser.add_argument("tissues", type=str)
         args = parser.parse_args()
+        srr_lst = [
+            k["srr_id"]
+            for k in list(
+                mongo.db.sample_info.find(
+                    {"srp_id": args.srp, "tissues": args.tissues}, {"srr_id": 1}
+                )
+            )
+        ]
         basic_match = {"$match": {"srp_id": {"$in": args["srp"].strip().split(",")}}}
         ncrna_dict = {z: 1 for z in args["ncrna"].strip().split(",")}
         project_show = {"$project": {"_id": 0, "srp_id": 1}}
         project_show["$project"].update(ncrna_dict)
         srp_exp_oj = mongo.db.srp_top_exp.aggregate([basic_match, project_show])
         srp_heatmap_lst = list(srp_exp_oj)
+        ncrna_lst = ncrna_dict.keys()
+        for p in srp_exp_oj:
+            for j in ncrna_lst:
+                for q in p[j]:
+                    if q["srr_id"] not in srr_lst:
+                        p[j].remove(q)
         return {"srp_heatmap_lst": srp_heatmap_lst}
 
 
@@ -237,6 +252,7 @@ class ncRNASrpExp(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str, required=True)
+        parser.add_argument("tissues", type=str, required=True)
         parser.add_argument("class", type=str, required=True)
         parser.add_argument("filter", type=str, default="")
         parser.add_argument("sort", type=str, default="desc")
@@ -250,13 +266,13 @@ class ncRNASrpExp(Resource):
         condition = {
             "srp_id": args.srp,
             "class": args["class"],
+            "tissue_id": args["tissues"],
         }
-
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
 
         mcur = mongo.db.srp_exp.find(condition, {"_id": 0}).sort(
-            "avg", sort_option[args.sort]
+            "case_n", sort_option[args.sort]
         )
         n_record = mcur.count()
         result_lst = list(mcur.skip(record_skip).limit(record_limit))

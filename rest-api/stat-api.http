@@ -60,8 +60,8 @@ GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Bone%20marrow
 #srp_lst for sample page: source selection
 GET http://localhost:5000/api/stat/Srplst?select=source&query=Cell%20line
 
-###
-GET http://localhost:5000/api/stat/srpratiostat?srp=SRP065890&samType=Control
+###add the  tissues and disease selector
+GET http://localhost:5000/api/stat/srpratiostat?srp=SRP061240&samType=Control&tissues=Pancreas
 
 
 #get categories for keyword
