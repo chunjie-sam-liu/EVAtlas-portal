@@ -61,7 +61,10 @@ GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Bone%20marrow
 GET http://localhost:5000/api/stat/Srplst?select=source&query=Cell%20line
 
 ###add the  tissues and disease selector
-GET http://localhost:5000/api/stat/srpratiostat?srp=SRP061240&samType=Control&tissues=Pancreas
+GET http://localhost:5000/api/stat/srpratiostat?srp=SRP061240&samType=Control&type=tissues&keyword=Pancreas
+
+###
+GET http://localhost:5000/api/stat/srpratiostat?srp=SRP150202&samType=Control&type=ex_type&keyword=Exosomes
 
 
 #get categories for keyword

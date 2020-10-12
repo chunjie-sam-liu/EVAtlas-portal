@@ -154,4 +154,6 @@ db.srp_top_exp.find({"srp_id":"SRP061240"})
 
 db.exp_miRNA.aggregate([{"$match":{"srr_id":{"$in": [ "SRR9005552", "SRR9005521", "SRR9005520", "SRR9005519", "SRR9005518", "SRR9005517", "SRR9005513"]}}}, {"$group":{"_id":"$GeneSymbol", "exp_lst":{"$push":"$RPM"}, "avg":{"$avg":"$RPM"}}}])
 
-db.sample_info.find({"condition": {"$in": ["Cancer", "Disease"]}})
+db.sample_info.updateMany({"disease": "Pancreatic cancer"}, {"$set":{"disease": "Pancreatic Cancer"}}, {"multi":true})
+
+db.sample_info.find({'$and': [{'srp_id': 'SRP150202'}, {'condition': 'Normal'}], "ex_type": "Exosomes"})

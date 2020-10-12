@@ -166,13 +166,14 @@ class SrpHeatmap(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
         parser.add_argument("ncrna", type=str)
-        parser.add_argument("tissues", type=str)
+        parser.add_argument("type", type=str)
+        parser.add_argument("keyword", type=str)
         args = parser.parse_args()
         srr_lst = [
             k["srr_id"]
             for k in list(
                 mongo.db.sample_info.find(
-                    {"srp_id": args.srp, "tissues": args.tissues}, {"srr_id": 1}
+                    {"srp_id": args.srp, args.type: args.keyword}, {"srr_id": 1}
                 )
             )
         ]
@@ -180,7 +181,10 @@ class SrpHeatmap(Resource):
         ncrna_dict = {z: 1 for z in args["ncrna"].strip().split(",")}
         project_show = {"$project": {"_id": 0, "srp_id": 1}}
         project_show["$project"].update(ncrna_dict)
-        srp_exp_oj = mongo.db.srp_top_exp.aggregate([basic_match, project_show])
+        if args.type == "tissues":
+            srp_exp_oj = mongo.db.srp_top_exp.aggregate([basic_match, project_show])
+        elif args.type == "ex_type":
+            srp_exp_oj = mongo.db.srp_ev_top_exp.aggregate([basic_match, project_show])
         srp_heatmap_lst = list(srp_exp_oj)
         ncrna_lst = ncrna_dict.keys()
         for p in srp_exp_oj:
@@ -252,8 +256,9 @@ class ncRNASrpExp(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str, required=True)
-        parser.add_argument("tissues", type=str, required=True)
+        parser.add_argument("type", type=str, required=True)
         parser.add_argument("class", type=str, required=True)
+        parser.add_argument("keyword", type=str, required=True)
         parser.add_argument("filter", type=str, default="")
         parser.add_argument("sort", type=str, default="desc")
         parser.add_argument("page", type=int, default=0)
@@ -266,14 +271,19 @@ class ncRNASrpExp(Resource):
         condition = {
             "srp_id": args.srp,
             "class": args["class"],
-            "tissue_id": args["tissues"],
+            args.type: args.keyword,
         }
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
+        if args.type == "tissue_id":
+            mcur = mongo.db.srp_exp.find(condition, {"_id": 0}).sort(
+                "case_n", sort_option[args.sort]
+            )
+        elif args.type == "ex_type":
+            mcur = mongo.db.srp_ev_exp.find(condition, {"_id": 0}).sort(
+                "case_n", sort_option[args.sort]
+            )
 
-        mcur = mongo.db.srp_exp.find(condition, {"_id": 0}).sort(
-            "case_n", sort_option[args.sort]
-        )
         n_record = mcur.count()
         result_lst = list(mcur.skip(record_skip).limit(record_limit))
 

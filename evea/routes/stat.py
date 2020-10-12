@@ -309,8 +309,10 @@ class SrpRatioStat(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("srp", type=str)
         parser.add_argument("samType", type=str)
-        parser.add_argument("tissues", type=str, default="")
+        parser.add_argument("type", type=str)
+        parser.add_argument("keyword", type=str)
         parser.add_argument("disease", type=str, default="")
+
         args = parser.parse_args()
 
         sear_condition = {}
@@ -325,8 +327,7 @@ class SrpRatioStat(Resource):
                     {"srp_id": args.srp, "condition": "disease"},
                 ]
             }
-        if args.tissues:
-            sear_condition["tissues"] = args.tissues
+        sear_condition[args.type] = args.keyword
         if args.disease:
             sear_condition["disease"] = args.disease
         output = {
@@ -338,6 +339,7 @@ class SrpRatioStat(Resource):
             "ex_type": 1,
             "tissues": 1,
         }
+        print(sear_condition)
         mcur = mongo.db.sample_info.find(sear_condition, output)
         return list(mcur)
 
