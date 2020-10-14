@@ -168,6 +168,7 @@ class SrpHeatmap(Resource):
         parser.add_argument("ncrna", type=str)
         parser.add_argument("type", type=str)
         parser.add_argument("keyword", type=str)
+        parser.add_argument("merge", type=int, default=0)
         args = parser.parse_args()
         #        srr_lst = [
         #            k["srr_id"]
@@ -178,7 +179,7 @@ class SrpHeatmap(Resource):
         #            )
         #        ]
         #        basic_match = {"$match": {"srp_id": {"$in": args["srp"].strip().split(",")}}}
-        ncrna_dict = {z: 1 for z in args["ncrna"].strip().split(",")}
+        ncrna_dict = {args.ncrna: 1}
         project_show = {"_id": 0, "srp_id": 1, "condition": 1}
         project_show.update(ncrna_dict)
         if args.type == "tissues":
@@ -190,13 +191,13 @@ class SrpHeatmap(Resource):
                 {"ex_type": args.keyword, "srp_id": args.srp}, project_show
             )
         srp_heatmap_lst = list(srp_exp_oj)
-        #        ncrna_lst = ncrna_dict.keys()
-        #        for p in srp_heatmap_lst:
-        #            for j in ncrna_lst:
-        #                for q in p[j]:
-        #                    if q["srr_id"] not in srr_lst:
-        #                        p[j].remove(q)
-        return {"srp_heatmap_lst": srp_heatmap_lst}
+        if args.merge:
+            if len(srp_heatmap_lst) > 1:
+                new_srp_heatmap_lst = srp_heatmap_lst[0]
+                new_srp_heatmap_lst[args.ncrna].extend(srp_heatmap_lst[1])
+                return {"srp_heatmap_lst": new_srp_heatmap_lst}
+        else:
+            return {"srp_heatmap_lst": srp_heatmap_lst}
 
 
 api.add_resource(SrpHeatmap, "/srpheatmap")

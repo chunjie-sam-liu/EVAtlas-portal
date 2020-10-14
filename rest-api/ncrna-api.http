@@ -37,10 +37,10 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type=rRNA&ex_type=Exosomes
 
 ###srp expression for heatmap, add the tissue selector
-GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP061240&ncrna=miRNA&type=tissues&keyword=Pancreas
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP061240&ncrna=miRNA&type=tissues&keyword=Pancreas&merge=1
 
 ###
-GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP061240&ncrna=miRNA&type=ex_type&keyword=Microvesicles
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP061240&ncrna=miRNA&type=ex_type&keyword=Microvesicles&merge=0
 
 #return the top x expressed ncRNA of each ncRNA class for samples
 
