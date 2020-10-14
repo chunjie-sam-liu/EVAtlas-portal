@@ -169,29 +169,33 @@ class SrpHeatmap(Resource):
         parser.add_argument("type", type=str)
         parser.add_argument("keyword", type=str)
         args = parser.parse_args()
-        srr_lst = [
-            k["srr_id"]
-            for k in list(
-                mongo.db.sample_info.find(
-                    {"srp_id": args.srp, args.type: args.keyword}, {"srr_id": 1}
-                )
-            )
-        ]
-        basic_match = {"$match": {"srp_id": {"$in": args["srp"].strip().split(",")}}}
+        #        srr_lst = [
+        #            k["srr_id"]
+        #            for k in list(
+        #                mongo.db.sample_info.find(
+        #                    {"srp_id": args.srp, args.type: args.keyword}, {"srr_id": #1}
+        #                )
+        #            )
+        #        ]
+        #        basic_match = {"$match": {"srp_id": {"$in": args["srp"].strip().split(",")}}}
         ncrna_dict = {z: 1 for z in args["ncrna"].strip().split(",")}
-        project_show = {"$project": {"_id": 0, "srp_id": 1}}
-        project_show["$project"].update(ncrna_dict)
+        project_show = {"_id": 0, "srp_id": 1, "condition": 1}
+        project_show.update(ncrna_dict)
         if args.type == "tissues":
-            srp_exp_oj = mongo.db.srp_top_exp.aggregate([basic_match, project_show])
+            srp_exp_oj = mongo.db.srp_tissue_top_exp.find(
+                {"tissue_id": args.keyword, "srp_id": args.srp}, project_show
+            )
         elif args.type == "ex_type":
-            srp_exp_oj = mongo.db.srp_ev_top_exp.aggregate([basic_match, project_show])
+            srp_exp_oj = mongo.db.srp_ev_top_exp.find(
+                {"ex_type": args.keyword, "srp_id": args.srp}, project_show
+            )
         srp_heatmap_lst = list(srp_exp_oj)
-        ncrna_lst = ncrna_dict.keys()
-        for p in srp_exp_oj:
-            for j in ncrna_lst:
-                for q in p[j]:
-                    if q["srr_id"] not in srr_lst:
-                        p[j].remove(q)
+        #        ncrna_lst = ncrna_dict.keys()
+        #        for p in srp_heatmap_lst:
+        #            for j in ncrna_lst:
+        #                for q in p[j]:
+        #                    if q["srr_id"] not in srr_lst:
+        #                        p[j].remove(q)
         return {"srp_heatmap_lst": srp_heatmap_lst}
 
 

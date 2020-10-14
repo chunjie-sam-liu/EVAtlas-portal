@@ -157,3 +157,14 @@ db.exp_miRNA.aggregate([{"$match":{"srr_id":{"$in": [ "SRR9005552", "SRR9005521"
 db.sample_info.updateMany({"disease": "Pancreatic cancer"}, {"$set":{"disease": "Pancreatic Cancer"}}, {"multi":true})
 
 db.sample_info.find({'$and': [{'srp_id': 'SRP150202'}, {'condition': 'Normal'}], "ex_type": "Exosomes"})
+
+db.srp_tissue_top_exp.find({"srp_id": "SRP061240", "tissue"})
+
+###
+db.sample_info.distinct("condition")
+
+
+db.sample_info.updateMany({"condition": "cancer"}, {"$set":{"condition": "Cancer"}}, {"multi":true})
+
+
+
