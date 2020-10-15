@@ -15,6 +15,7 @@ export class RnaAvgDataSource implements DataSource<RnaAvgRecord> {
     id: string,
     rnaType: string,
     filter: string,
+    active: string,
     sortOrder: string,
     pageIndex: number,
     pageSize: number,
@@ -23,7 +24,7 @@ export class RnaAvgDataSource implements DataSource<RnaAvgRecord> {
   ) {
     this.loadingSubject.next(true);
     this.contentApiService
-      .getRnaAvgRecords(id, rnaType, filter, sortOrder, pageIndex, pageSize, type, keyword)
+      .getRnaAvgRecords(id, rnaType, filter, active, sortOrder, pageIndex, pageSize, type, keyword)
       .pipe(
         tap((val) => {
           this.resultLength = val.n_record;
