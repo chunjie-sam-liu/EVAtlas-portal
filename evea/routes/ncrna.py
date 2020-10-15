@@ -193,8 +193,10 @@ class SrpHeatmap(Resource):
         srp_heatmap_lst = list(srp_exp_oj)
         if args.merge:
             if len(srp_heatmap_lst) > 1:
+                print(srp_heatmap_lst[0])
                 new_srp_heatmap_lst = srp_heatmap_lst[0]
-                new_srp_heatmap_lst[args.ncrna].extend(srp_heatmap_lst[1])
+                new_srp_heatmap_lst['condition'] = [srp_heatmap_lst[0]['condition'], srp_heatmap_lst[1]['condition']]
+                new_srp_heatmap_lst[args.ncrna].extend(srp_heatmap_lst[1][args.ncrna])
                 return {"srp_heatmap_lst": new_srp_heatmap_lst}
             else:
                 return {"srp_heatmap_lst": srp_heatmap_lst}

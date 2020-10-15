@@ -166,4 +166,10 @@ db.sample_info.distinct("condition")
 db.sample_info.updateMany({"condition": "cancer"}, {"$set":{"condition": "Cancer"}}, {"multi":true})
 
 
-db.srp_tissue_top_exp.findOne()
+db.srp_tissue_top_exp.find({'srp_id': 'SRP061240', 'tissue_id':'Pancreas'})
+
+db.srp_tissue_top_exp.find({'srp_id': 'SRP074421', 'tissue_id':'Adipose'})
+
+db.srp_tissue_top_exp.find({'srp_id': 'SRP122509', 'tissue_id':'Lung'})
+
+db.srp_tissue_top_exp.find({'srp_id': 'SRP223523', 'tissue_id':'Lung'})
