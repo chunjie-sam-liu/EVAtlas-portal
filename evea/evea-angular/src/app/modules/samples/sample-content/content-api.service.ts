@@ -48,7 +48,16 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.srp_heatmap_lst[0][rnaType]));
   }
 
-  public getRnaAvgRecords(id: string, rnaType: string, filter = '', sortOrder = 'desc', pageIndex = 0, pageSize = 10): Observable<any> {
+  public getRnaAvgRecords(
+    id: string,
+    rnaType: string,
+    filter = '',
+    sortOrder = 'desc',
+    pageIndex = 0,
+    pageSize = 10,
+    type: string,
+    keyword: string
+  ): Observable<any> {
     return this.getData('ncrna/ncrnasrpexp', {
       srp: id,
       class: rnaType,
@@ -56,6 +65,8 @@ export class ContentApiService extends BaseHttpService {
       sort: sortOrder,
       page: pageIndex.toString(),
       size: pageSize.toString(),
+      type: type,
+      keyword: keyword,
     });
   }
 

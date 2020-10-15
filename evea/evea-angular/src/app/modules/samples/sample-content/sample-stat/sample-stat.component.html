@@ -8,7 +8,7 @@
         <mat-tab *ngFor="let tab of samTypes">
           <ng-template mat-tab-label>{{ tab.label }}</ng-template>
           <br />
-          <app-sample-dist [tissueRecord]="tissueRecord" [samType]="tab.label"></app-sample-dist>
+          <app-sample-dist [tissueRecord]="tissueRecord" [samType]="tab.label" [sample]="sample"></app-sample-dist>
         </mat-tab>
       </mat-tab-group>
     </mat-card-content>

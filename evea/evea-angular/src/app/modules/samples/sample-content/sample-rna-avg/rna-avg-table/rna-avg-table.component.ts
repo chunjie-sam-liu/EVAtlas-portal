@@ -17,9 +17,11 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() rnaType: string;
   @Input() tissueRecord: TissueTable;
   @Input() sample: any;
+  type: string;
+  keyword: string;
 
   dataSource: RnaAvgDataSource;
-  displayedColumns = ['symbol', 'avg', 'count'];
+  displayedColumns = ['symbol', 'normal_mean', 'normal_n', 'case_mean', 'case_n'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,8 +31,12 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
+    // console.log(this.sample);
+    // this.type=this.sample.select;
+    this.type = 'tissue_id';
+    this.keyword = this.sample.title;
     this.dataSource = new RnaAvgDataSource(this.contentApiService);
-    this.dataSource.loadRnaAvgRecords(this.tissueRecord._id, this.rnaType, '', 'desc', 0, 10);
+    this.dataSource.loadRnaAvgRecords(this.tissueRecord._id, this.rnaType, '', 'desc', 0, 10, this.type, this.keyword);
   }
   ngAfterViewInit(): void {
     this.paginator.page.pipe(tap(() => this._loadRnaAvgRecordsPage()));
@@ -59,7 +65,9 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
       this.input.nativeElement.value,
       this.sort.direction,
       this.paginator.pageIndex,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      this.type,
+      this.keyword
     );
   }
 

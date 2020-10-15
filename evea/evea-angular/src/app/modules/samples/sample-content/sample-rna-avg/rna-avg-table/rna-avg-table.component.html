@@ -9,7 +9,7 @@
   <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
 </div>
 
-<mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="avg" matSortDirection="desc" matSortDisableClear>
+<mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort matSortActive="case_mean" matSortDirection="desc" matSortDisableClear>
   <ng-container matColumnDef="symbol">
     <mat-header-cell *matHeaderCellDef>Symbol</mat-header-cell>
     <mat-cell *matCellDef="let rna">
@@ -17,17 +17,31 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="avg">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Average expression (RPM)</mat-header-cell>
+  <ng-container matColumnDef="normal_mean">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Normal mean value (RPM)</mat-header-cell>
     <mat-cell *matCellDef="let rna">
-      {{ rna.avg | number }}
+      {{ rna.normal_mean | number }}
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="count">
-    <mat-header-cell *matHeaderCellDef>Expressed in number of samples</mat-header-cell>
+  <ng-container matColumnDef="normal_n">
+    <mat-header-cell *matHeaderCellDef>Normal sample number</mat-header-cell>
     <mat-cell *matCellDef="let rna">
-      {{ rna.count | number }}
+      {{ rna.normal_n | number }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="case_mean">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Case mean value (RPM)</mat-header-cell>
+    <mat-cell *matCellDef="let rna">
+      {{ rna.case_mean | number }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="case_n">
+    <mat-header-cell *matHeaderCellDef>Case sample number</mat-header-cell>
+    <mat-cell *matCellDef="let rna">
+      {{ rna.case_n | number }}
     </mat-cell>
   </ng-container>
 

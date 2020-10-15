@@ -15,6 +15,7 @@ import { sortBy as _sortBy, values as _values, sum as _sum, indexOf, functions }
 export class SampleDistComponent implements OnInit, OnChanges {
   @Input() tissueRecord: TissueTable;
   @Input() samType: String;
+  @Input() sample: any;
   samTypes = samTypes;
   projectDist: EChartOption;
   projectDistTitle: string;
@@ -34,8 +35,8 @@ export class SampleDistComponent implements OnInit, OnChanges {
       this.samType = 'Case';
     }
     this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
-    this.type = 'tissues';
-    this.keyword = 'Pancreas';
+    this.type = this.sample.select;
+    this.keyword = this.sample.title;
     this.contentApiService.getProjectStat(this.tissueRecord._id, this.samType, this.type, this.keyword).subscribe((res) => {
       console.log(this.tissueRecord);
       this.isDist = res.length != 0 ? true : false;

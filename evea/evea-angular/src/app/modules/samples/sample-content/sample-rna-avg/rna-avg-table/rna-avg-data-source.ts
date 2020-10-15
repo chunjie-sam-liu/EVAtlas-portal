@@ -9,16 +9,21 @@ export class RnaAvgDataSource implements DataSource<RnaAvgRecord> {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
   public resultLength: number;
-  // type: string;
-  // keyword: string;
 
   constructor(private contentApiService: ContentApiService) {}
-  public loadRnaAvgRecords(id: string, rnaType: string, filter: string, sortOrder: string, pageIndex: number, pageSize: number) {
-    // this.type = 'tissue_id';
-    // this.keyword = 'Mouth';
+  public loadRnaAvgRecords(
+    id: string,
+    rnaType: string,
+    filter: string,
+    sortOrder: string,
+    pageIndex: number,
+    pageSize: number,
+    type: string,
+    keyword: string
+  ) {
     this.loadingSubject.next(true);
     this.contentApiService
-      .getRnaAvgRecords(id, rnaType, filter, sortOrder, pageIndex, pageSize)
+      .getRnaAvgRecords(id, rnaType, filter, sortOrder, pageIndex, pageSize, type, keyword)
       .pipe(
         tap((val) => {
           this.resultLength = val.n_record;
