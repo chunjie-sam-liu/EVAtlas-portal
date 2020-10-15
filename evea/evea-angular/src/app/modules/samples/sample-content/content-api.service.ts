@@ -30,17 +30,21 @@ export class ContentApiService extends BaseHttpService {
     }).pipe(map((res) => res.srp_lst));
   }
 
-  public getProjectStat(id: string, samtype): Observable<MappingDist[]> {
+  public getProjectStat(id: string, samtype, type, keyword): Observable<MappingDist[]> {
     return this.getData('stat/srpratiostat', {
       srp: id,
       samType: samtype,
+      type: type,
+      keyword: keyword,
     });
   }
 
-  public getProjectHeatmap(id: string, rnaType: string): Observable<RnaHeatmap[]> {
+  public getProjectHeatmap(id: string, rnaType: string, type, keyword): Observable<RnaHeatmap[]> {
     return this.getData('ncrna/srpheatmap', {
       srp: id,
       ncrna: rnaType,
+      type: type,
+      keyword: keyword,
     }).pipe(map((res) => res.srp_heatmap_lst[0][rnaType]));
   }
 

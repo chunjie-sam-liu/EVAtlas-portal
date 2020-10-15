@@ -13,11 +13,14 @@ import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
 })
 export class SampleRnaAvgComponent implements OnInit, OnChanges {
   @Input() tissueRecord: TissueTable;
+  @Input() sample: any;
   rnaTypes = rnaTypes;
 
   constructor(private contentApiService: ContentApiService) {}
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.sample);
+  }
 }

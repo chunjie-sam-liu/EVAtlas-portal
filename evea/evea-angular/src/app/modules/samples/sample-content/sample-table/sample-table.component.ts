@@ -30,7 +30,7 @@ export class SampleTableComponent implements OnInit, OnChanges {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      // console.log(this.dataSource);
+      // console.log(this.tissueTable$);
     });
   }
   public showTissueStat(row: TissueTable): void {

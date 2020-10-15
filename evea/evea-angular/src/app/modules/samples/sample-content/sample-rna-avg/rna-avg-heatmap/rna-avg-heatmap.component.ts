@@ -12,6 +12,8 @@ import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
 export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
   @Input() rnaType: string;
   @Input() tissueRecord: TissueTable;
+  type: string;
+  keyword: string;
 
   projectHeatmap: EChartOption;
   projectHeatmapTitle: string;
@@ -22,7 +24,9 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
-    this.contentApiService.getProjectHeatmap(this.tissueRecord._id, this.rnaType).subscribe((res) => {
+    this.type = 'tissues';
+    this.keyword = 'Pancreas';
+    this.contentApiService.getProjectHeatmap(this.tissueRecord._id, this.rnaType, this.type, this.keyword).subscribe((res) => {
       this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }

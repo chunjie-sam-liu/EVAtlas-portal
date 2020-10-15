@@ -36,7 +36,7 @@ GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type
 ###Return all expression for scatter
 GET http://localhost:5000/api/ncrna/ncrnaexp?ncrna=hsa_rRNA_HUMRGM_1:5025:+&type=rRNA&ex_type=Exosomes
 
-###srp expression for heatmap, add the tissue selector
+###srp expression for heatmap, add the tissue selector,merge=1 means cancer with normal
 GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP061240&ncrna=miRNA&type=tissues&keyword=Pancreas&merge=1
 
 ###
@@ -53,7 +53,7 @@ GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&all=1
 
 # return the ranked expressed ncRNA with srp_id in the given class in the tissue_id and ev_type manners
 # new add by zhangq
-### 
+###
 GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=DRP000998&class=miRNA&page=2&size=5&type=tissue_id&keyword=Mouth
 
 ###

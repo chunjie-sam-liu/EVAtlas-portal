@@ -19,6 +19,8 @@ export class SampleDistComponent implements OnInit, OnChanges {
   projectDist: EChartOption;
   projectDistTitle: string;
   isDist: boolean;
+  type: string;
+  keyword: string;
 
   constructor(private contentApiService: ContentApiService) {}
 
@@ -32,7 +34,10 @@ export class SampleDistComponent implements OnInit, OnChanges {
       this.samType = 'Case';
     }
     this.projectDistTitle = `${this.tissueRecord._id} RNA mapping distribution`;
-    this.contentApiService.getProjectStat(this.tissueRecord._id, this.samType).subscribe((res) => {
+    this.type = 'tissues';
+    this.keyword = 'Pancreas';
+    this.contentApiService.getProjectStat(this.tissueRecord._id, this.samType, this.type, this.keyword).subscribe((res) => {
+      console.log(this.tissueRecord);
       this.isDist = res.length != 0 ? true : false;
       this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
     });
