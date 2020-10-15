@@ -160,11 +160,10 @@ db.sample_info.find({'$and': [{'srp_id': 'SRP150202'}, {'condition': 'Normal'}],
 
 db.srp_tissue_top_exp.find({"srp_id": "SRP061240", "tissue"})
 
-###
 db.sample_info.distinct("condition")
 
 
 db.sample_info.updateMany({"condition": "cancer"}, {"$set":{"condition": "Cancer"}}, {"multi":true})
 
 
-
+db.srp_tissue_top_exp.findOne()

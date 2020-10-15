@@ -196,6 +196,8 @@ class SrpHeatmap(Resource):
                 new_srp_heatmap_lst = srp_heatmap_lst[0]
                 new_srp_heatmap_lst[args.ncrna].extend(srp_heatmap_lst[1])
                 return {"srp_heatmap_lst": new_srp_heatmap_lst}
+            else:
+                return {"srp_heatmap_lst": srp_heatmap_lst}
         else:
             return {"srp_heatmap_lst": srp_heatmap_lst}
 
