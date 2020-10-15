@@ -11,7 +11,7 @@
         ></app-rna-avg-heatmap>
 
         <h2>{{ tab.label }} average expression in {{ tissueRecord._id }}</h2>
-        <app-rna-avg-table [rnaType]="tab.label" [tissueRecord]="tissueRecord"></app-rna-avg-table>
+        <app-rna-avg-table [rnaType]="tab.label" [tissueRecord]="tissueRecord" [sample]="sample"></app-rna-avg-table>
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>

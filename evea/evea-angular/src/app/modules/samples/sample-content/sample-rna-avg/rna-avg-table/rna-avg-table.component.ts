@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() rnaType: string;
   @Input() tissueRecord: TissueTable;
+  @Input() sample: any;
 
   dataSource: RnaAvgDataSource;
   displayedColumns = ['symbol', 'avg', 'count'];

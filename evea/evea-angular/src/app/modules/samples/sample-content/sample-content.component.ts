@@ -19,7 +19,6 @@ export class SampleContentComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
     this.tissueTable$ = this.contentApiService.getTissueTable(this.sample.select, changes.sample.currentValue.title);
-    // console.log(this.sample);
     this.showProject = false;
   }
 
