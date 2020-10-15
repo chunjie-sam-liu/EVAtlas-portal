@@ -15,6 +15,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
   @Input() tissueRecord: TissueTable;
   type: string;
   keyword: string;
+  merge: string;
 
   projectHeatmap: EChartOption;
   projectHeatmapTitle: string;
@@ -27,7 +28,8 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     this.projectHeatmapTitle = `${this.tissueRecord._id} miRNA Heatmap (top 50)`;
     this.type = this.sample.select;
     this.keyword = this.sample.title;
-    this.contentApiService.getProjectHeatmap(this.tissueRecord._id, this.rnaType, this.type, this.keyword).subscribe((res) => {
+    this.merge = '1';
+    this.contentApiService.getProjectHeatmap(this.tissueRecord._id, this.rnaType, this.type, this.keyword, this.merge).subscribe((res) => {
       this.projectHeatmap = this._rnaHeatmap(res, this.projectHeatmapTitle);
     });
   }

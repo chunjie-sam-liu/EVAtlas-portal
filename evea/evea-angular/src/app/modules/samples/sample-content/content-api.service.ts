@@ -39,12 +39,13 @@ export class ContentApiService extends BaseHttpService {
     });
   }
 
-  public getProjectHeatmap(id: string, rnaType: string, type, keyword): Observable<RnaHeatmap[]> {
+  public getProjectHeatmap(id: string, rnaType: string, type, keyword, merge): Observable<RnaHeatmap[]> {
     return this.getData('ncrna/srpheatmap', {
       srp: id,
       ncrna: rnaType,
       type: type,
       keyword: keyword,
+      merge: merge,
     }).pipe(map((res) => res.srp_heatmap_lst[0][rnaType]));
   }
 
