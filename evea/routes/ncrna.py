@@ -265,6 +265,7 @@ class ncRNASrpExp(Resource):
         parser.add_argument("class", type=str, required=True)
         parser.add_argument("keyword", type=str, required=True)
         parser.add_argument("filter", type=str, default="")
+        parser.add_argument("active", type=str, default="case_mean")
         parser.add_argument("sort", type=str, default="desc")
         parser.add_argument("page", type=int, default=0)
         parser.add_argument("size", type=int, default=10)
@@ -282,11 +283,11 @@ class ncRNASrpExp(Resource):
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
         if args.type == "tissue_id":
             mcur = mongo.db.srp_exp.find(condition, {"_id": 0}).sort(
-                "case_n", sort_option[args.sort]
+                args.active, sort_option[args.sort]
             )
         elif args.type == "ex_type":
             mcur = mongo.db.srp_ev_exp.find(condition, {"_id": 0}).sort(
-                "case_n", sort_option[args.sort]
+                args.active, sort_option[args.sort]
             )
 
         n_record = mcur.count()

@@ -24,8 +24,8 @@ export class ContentApiService extends BaseHttpService {
 
   public getTissueTable(select: string, query: string): Observable<TissueTable[]> {
     return this.getData('stat/Srplst', {
-      select: select,
-      query: query,
+      select,
+      query,
       // tissues: tissue,
     }).pipe(map((res) => res.srp_lst));
   }
@@ -34,8 +34,8 @@ export class ContentApiService extends BaseHttpService {
     return this.getData('stat/srpratiostat', {
       srp: id,
       samType: samtype,
-      type: type,
-      keyword: keyword,
+      type,
+      keyword,
     });
   }
 
@@ -53,6 +53,7 @@ export class ContentApiService extends BaseHttpService {
     id: string,
     rnaType: string,
     filter = '',
+    active = 'case_mean',
     sortOrder = 'desc',
     pageIndex = 0,
     pageSize = 10,
@@ -63,11 +64,12 @@ export class ContentApiService extends BaseHttpService {
       srp: id,
       class: rnaType,
       filter: filter.toString(),
+      active,
       sort: sortOrder,
       page: pageIndex.toString(),
       size: pageSize.toString(),
-      type: type,
-      keyword: keyword,
+      type,
+      keyword,
     });
   }
 
