@@ -35,7 +35,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
   }
 
   private _rnaHeatmap(d: RnaHeatmap[], title: string): EChartOption {
-    console.log(title, d);
     let yAxis = [];
     const xAxis = [];
     const xAxis2 = [];
@@ -87,7 +86,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     dataMeanS = dataMean.sort((a, b) => {
       return a.mean - b.mean;
     });
-    ydata = dataMeanS.map(item => item.mir);
+    ydata = dataMeanS.map((item) => item.mir);
 
     // calculate mean value of each sample
     let samSum = 0;
@@ -107,7 +106,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     });
     // console.log(xAxisMean);
 
-    const compare =  (obj1, obj2) => {
+    const compare = (obj1, obj2) => {
       const val1 = obj1.Con;
       const val2 = obj2.Con;
       if (val1 < val2) {
@@ -165,7 +164,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       diffListS = diffList.sort((a, b) => {
         return a.diffV - b.diffV;
       });
-      ydata = diffListS.map( item => item.mir);
+      ydata = diffListS.map((item) => item.mir);
     }
 
     const xListMult = [];
@@ -197,7 +196,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       let samSumN = 0;
       let samMeanN = 0;
       const xAxisMeanN = [];
-      console.log('ydata', ydata);
       xListNor.map((n) => {
         ydata.map((colEl, colI) => {
           samSumN = data[n.Oi * 50 + colI][2] + samSumN;
@@ -260,7 +258,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     // sorted data2 according xAxis for more than 2 typs data
     if (condition.includes('Normal') && condition.length > 1) {
       if (xListMult.length >= 1) {
-        xAxisF = xListMult.map(function(iterm) {
+        xAxisF = xListMult.map(function (iterm) {
           return iterm.srrId;
         });
       } else {
@@ -279,7 +277,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
 
     if ((condition.includes('Normal') && condition.length == 1) || condition.indexOf('Normal') == -1) {
       if (xListNS.length >= 1) {
-        xAxisF = xListNS.map(item => item.srrID);
+        xAxisF = xListNS.map((item) => item.srrID);
       } else {
         xAxisF = xAxisF.concat(xAxis);
       }
@@ -289,7 +287,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     d.map((q) => {
       qArray = qArray.concat(q.exp_lst);
     });
-    qArray.sort(function(a, b) {
+    qArray.sort(function (a, b) {
       return a - b;
     });
     const qValue = qArray[Math.ceil(qArray.length / 4) * 3];
