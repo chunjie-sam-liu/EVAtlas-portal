@@ -63,11 +63,38 @@ GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&size=30
 #retuan all expressed ncrnas in ranked order
 GET http://localhost:5000/api/ncrna/samrankexp?sample=SRR10417160&all=1
 
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp
+  ?srp=SRP135648
+  &class=tRNA
+  &filter=
+  &active=case_mean
+  &sort=desc
+  &page=0
+  &size=10
+  &type=tissues
+  &keyword=Lung
 
+
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp
+  ?srp=SRP190242
+  &class=snRNA
+  &filter=
+  &active=case_mean
+  &sort=desc
+  &page=0
+  &size=10
+  &type=source
+  &keyword=Urine
+
+
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=SRP190242&class=snRNA&filter=&active=case_mean&sort=desc&page=0&size=10&type=ex_type&keyword=Exosomes
 # return the ranked expressed ncRNA with srp_id in the given class in the tissue_id and ev_type manners
 # new add by zhangq
 ###
-GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=DRP000998&class=snorna&page=2&size=5&type=tissue_id&keyword=Mouth
+GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=DRP000998&class=snoRNA&page=2&size=5&type=tissues&keyword=Mouth
 
 ###
 GET http://localhost:5000/api/ncrna/ncrnasrpexp?srp=ERP013193&class=miRNA&page=1&size=5&type=ex_type&keyword=Exosomes

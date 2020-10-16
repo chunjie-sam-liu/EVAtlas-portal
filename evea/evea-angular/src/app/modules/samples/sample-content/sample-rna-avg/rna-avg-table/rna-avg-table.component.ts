@@ -17,7 +17,7 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() rnaType: string;
   @Input() tissueRecord: TissueTable;
   @Input() sample: any;
-  type: string;
+  type: string; // tissues & source
   keyword: string;
 
   dataSource: RnaAvgDataSource;
@@ -31,7 +31,7 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnInit(): void {}
   ngOnChanges(changes: SimpleChanges): void {
-    this.type = 'tissue_id';
+    this.type = this.sample.select;
     this.keyword = this.sample.title;
     this.dataSource = new RnaAvgDataSource(this.contentApiService);
     this.dataSource.loadRnaAvgRecords(this.tissueRecord._id, this.rnaType, '', 'case_mean', 'desc', 0, 10, this.type, this.keyword);
