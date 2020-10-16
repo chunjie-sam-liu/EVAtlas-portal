@@ -47,7 +47,7 @@ GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP223523&ncrna=miRNA&type=ti
 
 
 ###
-GET http://localhost:5001/api/ncrna/srpheatmap?srp=SRP122891&ncrna=miRNA&type=tissues&keyword=Lung&merge=1
+GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP122891&ncrna=miRNA&type=tissues&keyword=Lung&merge=1
 
 ###
 GET http://localhost:5000/api/ncrna/srpheatmap?srp=SRP173932&ncrna=tRNA&type=tissues&keyword=Lung&merge=1
