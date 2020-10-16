@@ -190,12 +190,19 @@ class SrpHeatmap(Resource):
             srp_exp_oj = mongo.db.srp_ev_top_exp.find(
                 {"ex_type": args.keyword, "srp_id": args.srp}, project_show
             )
+        elif args.type == "source":
+            srp_exp_oj = mongo.db.srp_source_top_exp.find(
+                {"ex_type": args.keyword, "srp_id": args.srp}, project_show
+            )
         srp_heatmap_lst = list(srp_exp_oj)
         if args.merge:
             if len(srp_heatmap_lst) > 1:
                 print(srp_heatmap_lst[0])
                 new_srp_heatmap_lst = srp_heatmap_lst[0]
-                new_srp_heatmap_lst['condition'] = [srp_heatmap_lst[0]['condition'], srp_heatmap_lst[1]['condition']]
+                new_srp_heatmap_lst["condition"] = [
+                    srp_heatmap_lst[0]["condition"],
+                    srp_heatmap_lst[1]["condition"],
+                ]
                 new_srp_heatmap_lst[args.ncrna].extend(srp_heatmap_lst[1][args.ncrna])
                 return {"srp_heatmap_lst": [new_srp_heatmap_lst]}
             else:
@@ -285,15 +292,18 @@ class ncRNASrpExp(Resource):
         }
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
-        if args.type == "tissue_id":
-            mcur = mongo.db.srp_exp.find(condition, {"_id": 0}).sort(
+        if args.type == "tissues":
+            mcur = mongo.db.srp_tissue_exp.find(condition, {"_id": 0}).sort(
                 args.active, sort_option[args.sort]
             )
         elif args.type == "ex_type":
             mcur = mongo.db.srp_ev_exp.find(condition, {"_id": 0}).sort(
                 args.active, sort_option[args.sort]
             )
-
+        elif args.type == "source":
+            mcur = mongo.db.srp_source_exp.find(condition, {"_id": 0}).sort(
+                args.active, sort_option[args.sort]
+            )
         n_record = mcur.count()
         result_lst = list(mcur.skip(record_skip).limit(record_limit))
 
