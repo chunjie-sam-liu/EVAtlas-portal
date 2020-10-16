@@ -197,6 +197,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       let samSumN = 0;
       let samMeanN = 0;
       const xAxisMeanN = [];
+      console.log('ydata', ydata);
       xListNor.map((n) => {
         ydata.map((colEl, colI) => {
           samSumN = data[n.Oi * 50 + colI][2] + samSumN;
