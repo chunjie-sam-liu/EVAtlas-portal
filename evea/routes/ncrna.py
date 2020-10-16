@@ -170,19 +170,15 @@ class SrpHeatmap(Resource):
         parser.add_argument("keyword", type=str)
         parser.add_argument("merge", type=int, default=0)
         args = parser.parse_args()
-        #        srr_lst = [
-        #            k["srr_id"]
-        #            for k in list(
-        #                mongo.db.sample_info.find(
-        #                    {"srp_id": args.srp, args.type: args.keyword}, {"srr_id": #1}
-        #                )
-        #            )
-        #        ]
-        #        basic_match = {"$match": {"srp_id": {"$in": args["srp"].strip().split(",")}}}
         ncrna_dict = {args.ncrna: 1}
         project_show = {"_id": 0, "srp_id": 1, "condition": 1}
         project_show.update(ncrna_dict)
-        if args.type == "tissues":
+        if args.merge:
+            srp_exp_oj = mongo.db.srp_top_exp_merge.find(
+                {args.type: args.keyword, "srp_id": args.srp},
+                {"_id": 0, "srp_id": 1, args.type: 1, args.ncrna: 1},
+            )
+        elif args.type == "tissues":
             srp_exp_oj = mongo.db.srp_tissue_top_exp.find(
                 {"tissues": args.keyword, "srp_id": args.srp}, project_show
             )
@@ -194,20 +190,9 @@ class SrpHeatmap(Resource):
             srp_exp_oj = mongo.db.srp_source_top_exp.find(
                 {"ex_type": args.keyword, "srp_id": args.srp}, project_show
             )
+
         srp_heatmap_lst = list(srp_exp_oj)
-        if args.merge:
-            if len(srp_heatmap_lst) > 1:
-                new_srp_heatmap_lst = srp_heatmap_lst[0]
-                new_srp_heatmap_lst["condition"] = [
-                    srp_heatmap_lst[0]["condition"],
-                    srp_heatmap_lst[1]["condition"],
-                ]
-                new_srp_heatmap_lst[args.ncrna].extend(srp_heatmap_lst[1][args.ncrna])
-                return {"srp_heatmap_lst": [new_srp_heatmap_lst]}
-            else:
-                return {"srp_heatmap_lst": srp_heatmap_lst}
-        else:
-            return {"srp_heatmap_lst": srp_heatmap_lst}
+        return {"srp_heatmap_lst": srp_heatmap_lst}
 
 
 api.add_resource(SrpHeatmap, "/srpheatmap")
