@@ -43,9 +43,9 @@ export class ContentApiService extends BaseHttpService {
     return this.getData('ncrna/srpheatmap', {
       srp: id,
       ncrna: rnaType,
-      type: type,
-      keyword: keyword,
-      merge: merge,
+      type,
+      keyword,
+      merge,
     }).pipe(map((res) => res.srp_heatmap_lst[0][rnaType]));
   }
 

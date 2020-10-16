@@ -172,4 +172,4 @@ db.srp_tissue_top_exp.find({'srp_id': 'SRP074421', 'tissue_id':'Adipose'})
 
 db.srp_tissue_top_exp.find({'srp_id': 'SRP122509', 'tissue_id':'Lung'})
 
-db.srp_tissue_top_exp.find({'srp_id': 'SRP223523', 'tissue_id':'Lung'})
+db.srp_tissue_top_exp.find({'srp_id': 'SRP223523', 'tissues':'Lung'})

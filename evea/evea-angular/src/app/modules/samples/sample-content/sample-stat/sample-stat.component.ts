@@ -14,7 +14,7 @@ import { sortBy as _sortBy, values as _values, sum as _sum, indexOf, functions }
 })
 export class SampleStatComponent implements OnInit, OnChanges {
   @Input() tissueRecord: TissueTable;
-  @Input() samType: String;
+  @Input() samType: string;
   @Input() sample: any;
   samTypes = samTypes;
   projectDist: EChartOption;
@@ -24,7 +24,6 @@ export class SampleStatComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.sample);
     if (this.tissueRecord.case_n != 0 && this.tissueRecord.normal_n == 0) {
       this.samTypes = [{ label: 'Case' }];
     }

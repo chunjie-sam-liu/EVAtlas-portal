@@ -20,7 +20,5 @@ export class SampleRnaAvgComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.sample);
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 }

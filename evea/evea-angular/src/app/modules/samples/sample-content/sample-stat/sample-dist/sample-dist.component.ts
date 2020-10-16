@@ -38,7 +38,6 @@ export class SampleDistComponent implements OnInit, OnChanges {
     this.type = this.sample.select;
     this.keyword = this.sample.title;
     this.contentApiService.getProjectStat(this.tissueRecord._id, this.samType, this.type, this.keyword).subscribe((res) => {
-      console.log(this.tissueRecord);
       this.isDist = res.length != 0 ? true : false;
       this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
     });

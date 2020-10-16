@@ -3,4 +3,5 @@ export interface RnaHeatmap {
   mir_lst: string[];
   condition: string;
   srr_id: string;
+  tissues: string;
 }
