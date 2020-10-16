@@ -57,7 +57,6 @@ export class RnaAvgTableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private _loadRnaAvgRecordsPage(): void {
-    console.log(this.sort);
     this.dataSource.loadRnaAvgRecords(
       this.tissueRecord._id,
       this.rnaType,
