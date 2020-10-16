@@ -18,28 +18,28 @@
   </ng-container>
 
   <ng-container matColumnDef="normal_mean">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Normal mean value (RPM)</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Control Expr. (RPM)</mat-header-cell>
     <mat-cell *matCellDef="let rna">
       {{ rna.normal_mean | number }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="normal_n">
-    <mat-header-cell *matHeaderCellDef>Normal sample number</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>In #Control Samples</mat-header-cell>
     <mat-cell *matCellDef="let rna">
       {{ rna.normal_n | number }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="case_mean">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Case mean value (RPM)</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Case Expr. (RPM)</mat-header-cell>
     <mat-cell *matCellDef="let rna">
       {{ rna.case_mean | number }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="case_n">
-    <mat-header-cell *matHeaderCellDef>Case sample number</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>In #Case Samples</mat-header-cell>
     <mat-cell *matCellDef="let rna">
       {{ rna.case_n | number }}
     </mat-cell>
