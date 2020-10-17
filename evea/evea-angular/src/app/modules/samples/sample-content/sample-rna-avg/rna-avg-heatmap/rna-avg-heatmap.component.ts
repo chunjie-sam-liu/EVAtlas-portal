@@ -45,7 +45,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     d.map((v) => {
       xAxis.push(v.srr_id);
       xAxis2.push({ srrId: v.srr_id, con: v.condition });
-      conditionA.push(v.condition);
+      conditionA.push(v.condition[0]);
       yAxis.push(...v.mir_lst);
     });
     yAxis = [...new Set(yAxis)];
@@ -104,7 +104,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       samSum = 0;
       xAxisMean.push({ srrId: srrL.srrId, con: srrL.con, samMean });
     });
-    // console.log(xAxisMean);
 
     const compare = (obj1, obj2) => {
       const val1 = obj1.Con;
@@ -129,7 +128,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     xListSingle.map((x, i) => {
       xListNS.push({ srrId: x.srrId, Con: x.Con, samMean: x.samMean, Oi: x.Oi, Ni: i });
     });
-    // console.log(xListNS);
 
     // mean resu for each miR of more than 2 types sample
     const xListNor = [];
@@ -182,7 +180,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       const xAxisMeanC = [];
       xListCan.map((c) => {
         ydata.map((colEl, colI) => {
-          // console.log(c.srrId + ',' + data[c.Oi * 50 + colI][2]);
           samSumC = data[c.Oi * 50 + colI][2] + samSumC;
         });
         samMeanC = samSumC / 50;
@@ -209,8 +206,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       });
 
       xList = xAxisMeanC.concat(xAxisMeanN);
-      // console.log(xList);
-
       xList.map((x, i) => {
         xListMult.push({ srrId: x.srrId, Con: x.Con, sMean: x.samMean, Oi: x.Oi, Ni: i });
       });
@@ -258,9 +253,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     // sorted data2 according xAxis for more than 2 typs data
     if (condition.includes('Normal') && condition.length > 1) {
       if (xListMult.length >= 1) {
-        xAxisF = xListMult.map(function (iterm) {
-          return iterm.srrId;
-        });
+        xAxisF = xListMult.map((item) => item.srrId);
       } else {
         xAxisF = xAxisF.concat(xAxis);
       }
@@ -287,10 +280,9 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     d.map((q) => {
       qArray = qArray.concat(q.exp_lst);
     });
-    qArray.sort(function (a, b) {
-      return a - b;
-    });
+    qArray.sort((a, b) => a - b);
     const qValue = qArray[Math.ceil(qArray.length / 4) * 3];
+    console.log('xAxisF', xAxisF);
     return {
       title: {
         show: true,
@@ -320,6 +312,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
           let htmlStr = '';
           for (let i = 0; i < params.length; i++) {
             const param = params[i];
+            console.log(param);
             const xName = param.name; // x轴的名称
             const seriesName = param.seriesName; // 图例名称
             const value = param.value; // y轴值
@@ -347,6 +340,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
 
             htmlStr += '</div>';
           }
+          console.log(htmlStr);
           return htmlStr;
         },
       },

@@ -158,7 +158,7 @@ db.sample_info.updateMany({"disease": "Pancreatic cancer"}, {"$set":{"disease": 
 
 db.sample_info.find({'$and': [{'srp_id': 'SRP150202'}, {'condition': 'Normal'}], "ex_type": "Exosomes"})
 
-db.srp_tissue_top_exp.find({"srp_id": "SRP061240", "tissue"})
+db.srp_tissue_top_exp.find({"srp_id": "SRP061240"})
 
 db.sample_info.distinct("condition")
 
@@ -175,3 +175,6 @@ db.srp_tissue_top_exp.find({'srp_id': 'SRP122509', 'tissue_id':'Lung'})
 db.srp_tissue_top_exp.find({'srp_id': 'SRP223523', 'tissues':'Lung'})
 
 db.srp_tissue_top_exp.find({'srp_id': 'SRP173932', 'tissues':'Lung'})
+
+
+db.srp_top_exp_merge.find({'srp_id': 'SRP173932', 'tissues': 'Lung'})
