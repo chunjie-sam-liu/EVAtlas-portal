@@ -118,23 +118,24 @@
         <ol>
           <li>
             <p>
-              <a routerLink="/samples">Sample module:</a> helps users to search the project and sample information of Exosomes or
-              Microvesicles in conditions , and browse their component ratio, heatmap and expression profiles of 8 types of ncRNAs.
+              <a routerLink="/samples"><strong>Sample module:</strong></a> helps users to search the project and sample information of
+              Exosomes or Microvesicles in conditions , and browse their component ratio, heatmap and expression profiles of 8 types of
+              ncRNAs.
             </p>
           </li>
           <li>
             <p>
-              <a routerLink="/rna">Expression module:</a> display the expression distribution of ncRNAs in collected samples and tissues,
-              and provides the basic information and expressin profiles for ncRNAs across samples and conditions. For miRNAs, users can
-              browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA related functions,
-              miRNA related TCGA expression, miRNA related drug and miRNA related target genes.
+              <a routerLink="/rna"><strong>Expression module:</strong></a> display the expression distribution of ncRNAs in collected
+              samples and tissues, and provides the basic information and expressin profiles for ncRNAs across samples and conditions. For
+              miRNAs, users can browsed comprehensive miRNA infomation, contain miRNA basic infomation, miRNA expression profiles, miRNA
+              related functions, miRNA related TCGA expression, miRNA related drug and miRNA related target genes.
             </p>
           </li>
 
           <li>
             <p>
-              <a routerLink="/specific">Specific Expression module:</a> users can browse the specific expression patterns of ncRNAs(miRNA,
-              piRNA and others) in conditions.
+              <a routerLink="/specific"><strong>Specific Expression module:</strong></a> users can browse the specific expression patterns
+              of ncRNAs(miRNA, piRNA and others) in conditions.
             </p>
           </li>
         </ol>
@@ -210,8 +211,8 @@
         </ol>
         <p>
           The normalization method of expressed reads per million (RPM) was employed to estimate the expression level of ncRNAs using the
-          total mapped reads. The reference sequences of miRNAs were downloaded from miRBase
-          <a href="http://www.mirbase.org/" target="_blank">V22</a>, while the references of tRNA and snoRNA are obtained from
+          total mapped reads. The reference sequences of miRNAs were downloaded from
+          <a href="http://www.mirbase.org/" target="_blank">miRBase V22</a>, while the references of tRNA and snoRNA are obtained from
           <a href="http://scottgroup.med.usherbrooke.ca/snoDB/" target="_blank">snoDB</a> and
           <a href="http://gtrnadb.ucsc.edu/" target="_blank">GtRNAdb</a>, respectively. Other reference sequences, such as piRNA, snRNA,
           rRNA, pRNA and scRNA were parsed from human genome annotation of NCBI
@@ -229,12 +230,15 @@
           The functional annotation of ncRNAs were integrated into EVAtlas, in which, different types of ncRNAs have their distinct
           annotations. The basic information, such as gene location and potential functions, was extracted from the corresponding reference
           database of each ncRNA type and incubated into EVAtlas. For example, the basic information and functions of rRNAs were collected
-          from RNA central. For miRNAs, EVAtlas collected the their potential functions from
-          <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a>, miRNA-targets relations from
-          <a href="http://bioinfo.life.hust.edu.cn/FFLtool#!/" target="_blank">FFLtool</a>, related drugs correlation from SM2miR, their
-          expression profiles in cancers from <a href="http://bioinfo.life.hust.edu.cn/web/GSCALite/" target="_blank">GSCALite</a>. For
-          snoRNA and tRNA, their expression profiles were collected from <a href="">SNORic</a> and <a href="">TRic</a>, while their
-          potential target genes were incubated from snoDB and GtRNAdb.
+          from RNA central. For miRNAs, EVAtlas collected the their <span style="color: red;">related functions</span> from
+          <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a>,
+          <span style="color: red;">miRNA-targets relations</span> from
+          <a href="http://bioinfo.life.hust.edu.cn/FFLtool#!/" target="_blank">FFLtool</a>,
+          <span style="color: red;"> drugs correlation</span> from SM2miR <a href="http://www.jianglab.cn/SM2miR/" target="_blank"></a>,
+          their <span style="color: red;"> expression profiles</span> in cancers from
+          <a href="http://bioinfo.life.hust.edu.cn/web/GSCALite/" target="_blank">GSCALite</a>. For snoRNA and tRNA, their expression
+          profiles were collected from <a href="">SNORic</a> and <a href="">TRic</a>, while their potential target genes were incubated from
+          snoDB and GtRNAdb.
         </p>
       </mat-card-content>
     </mat-card>
