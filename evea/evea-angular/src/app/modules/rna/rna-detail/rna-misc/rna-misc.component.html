@@ -1,7 +1,12 @@
 <div fxFlex="grow" fxLayout fxLayout.lt-lg="column" fxLayoutGap="10px">
   <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4" *ngIf="isMirna">
     <mat-card-header>
-      <mat-card-title> {{ rnaSymbol }} related functions </mat-card-title>
+      <mat-card-title>
+        {{ rnaSymbol }} related functions
+        <mat-icon color="warn" matTooltip="miRNA functions were collected from NCBI RIF database" matTooltipClass="tooltip-red"
+          >help</mat-icon
+        >
+      </mat-card-title>
     </mat-card-header>
 
     <mat-form-field>
