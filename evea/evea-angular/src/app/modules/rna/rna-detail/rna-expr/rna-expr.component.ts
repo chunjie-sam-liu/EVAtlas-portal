@@ -12,6 +12,8 @@ import { RnaExpr } from 'src/app/shared/model/rna-expr';
 export class RnaExprComponent implements OnInit {
   @Input() rnaSymbol: string;
   @Input() rnaType: string;
+  ismvDist: Boolean;
+  ismvSouDist: Boolean;
 
   rnaSymbolShow: string;
 
@@ -39,6 +41,9 @@ export class RnaExprComponent implements OnInit {
     });
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
+      this.ismvDist = res.length != 0 ? true : false;
+      console.log(this.ismvDist);
+      console.log(res);
       this.mvDist = this._plotDist(res, this.mvDistTitle, this.rnaSymbolShow);
     });
 
@@ -47,6 +52,7 @@ export class RnaExprComponent implements OnInit {
     });
 
     this.rnaDetialApiService.findRnaExprS(this.rnaSymbol, this.rnaType, 1, 'Microvesicles').subscribe((res) => {
+      this.ismvSouDist = res.length != 0 ? true : false;
       this.mvSouDist = this._plotDistS(res, this.mvSouDistTitle, this.rnaSymbolShow);
     });
   }
