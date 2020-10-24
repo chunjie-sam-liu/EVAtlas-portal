@@ -1,6 +1,11 @@
 <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
   <mat-card-header>
-    <mat-card-title> {{ rnaSymbol }} related drugs </mat-card-title>
+    <mat-card-title>
+      {{ rnaSymbol }} related drugs
+      <mat-icon color="warn" matTooltip="miRNA Drug informations were collected from SM2miR" matTooltipClass="tooltip-red"
+        >help</mat-icon
+      ></mat-card-title
+    >
   </mat-card-header>
   <div class="spinner-container" *ngIf="!displayedColumnsDrug">
     <mat-progress-bar mode="query" color="warn"></mat-progress-bar>
@@ -49,7 +54,12 @@
 
 <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
   <mat-card-header>
-    <mat-card-title> {{ rnaSymbol }} target genes </mat-card-title>
+    <mat-card-title>
+      {{ rnaSymbol }} target genes
+      <mat-icon color="warn" matTooltip="miRNA-targets relations were collected from FFLtool" matTooltipClass="tooltip-red"
+        >help</mat-icon
+      ></mat-card-title
+    >
   </mat-card-header>
 
   <mat-form-field>

@@ -10,7 +10,7 @@
     <mat-card fxFlex *ngFor="let ncrna of speTissue.ncrna.sort(sortGS)" appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header class="page-subheader">
         <mat-card-title>
-          {{ ncrna.class }} from {{ tissue.ex_type | lowercase }} specifically expressed in {{ tissue.tissue }}
+          {{ ncrna.class }} from {{ tissue.ex_type | lowercase }} specifically expressed in {{ tissue.tissue }} related conditions
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
