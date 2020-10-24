@@ -1,37 +1,35 @@
 export default [
   {
     rnaType: 'rRNA',
-    total: 38.804
+    total: 38.117,
   },
   {
     rnaType: 'miRNA',
-    total: 25.4173
+    total: 26.9448,
   },
   {
     rnaType: 'tRNA',
-    total: 19.849
+    total: 19.1868,
   },
   {
     rnaType: 'scRNA',
-    total: 12.7177
+    total: 12.5888,
   },
   {
     rnaType: 'piRNA',
-    total: 1.5302
+    total: 1.5117,
   },
   {
     rnaType: 'snRNA',
-    total: 1.0697
+    total: 1.0465,
   },
   {
     rnaType: 'snoRNA',
-    total: 0.6112
+    total: 0.6034,
   },
   {
     rnaType: 'pRNA',
-    total: 0.0009
-  }
-]
-;
-
+    total: 0.0009,
+  },
+];
 
