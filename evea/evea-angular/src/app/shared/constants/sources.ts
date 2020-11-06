@@ -36,7 +36,7 @@ export default [
     select: 'source',
   },
   {
-    name: 'Cells',
+    name: 'Primary cell',
     img: 'Cells.png',
     title: 'Cells',
     select: 'source',
