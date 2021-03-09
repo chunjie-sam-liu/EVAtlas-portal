@@ -178,3 +178,5 @@ db.srp_tissue_top_exp.find({'srp_id': 'SRP173932', 'tissues':'Lung'})
 
 
 db.srp_top_exp_merge.find({'srp_id': 'SRP173932', 'tissues': 'Lung'})
+
+db.snRNA_samexp.findOne()
