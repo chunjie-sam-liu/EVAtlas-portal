@@ -17,9 +17,9 @@ export default [
   {
     label: 'tRNA',
   },
-  {
-    label: 'pRNA',
-  },
+  // {
+  //   label: 'pRNA',
+  // },
   {
     label: 'scRNA',
   },
