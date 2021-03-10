@@ -240,6 +240,41 @@
           profiles were collected from <a href="">SNORic</a> and <a href="">TRic</a>, while their potential target genes were incubated from
           snoDB and GtRNAdb.
         </p>
+        <h3>EVAtlas data contributors</h3>
+        <table mat-table [sampleSource]="sampleSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="gse_id">
+            <th mat-header-cell *matHeaderCellDef>GSE ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.gse_id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Organization">
+            <th mat-header-cell *matHeaderCellDef>Organization</th>
+            <td mat-cell *matCellDef="let element">{{ element.Organization }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Contributor">
+            <th mat-header-cell *matHeaderCellDef>Contributor</th>
+            <td mat-cell *matCellDef="let element">{{ element.Contributor }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Overall_design">
+            <th mat-header-cell *matHeaderCellDef>Overall design</th>
+            <td mat-cell *matCellDef="let element">{{ element.Overall_design }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Summary">
+            <th mat-header-cell *matHeaderCellDef>Summary</th>
+            <td mat-cell *matCellDef="let element">{{ element.Summary }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="pubmed_id">
+            <th mat-header-cell *matHeaderCellDef>PMID</th>
+            <td mat-cell *matCellDef="let element">{{ element.pubmed_id }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedSamples"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedSamples"></tr>
+        </table>
       </mat-card-content>
     </mat-card>
     <br />
