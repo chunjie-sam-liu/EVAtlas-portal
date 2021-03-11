@@ -13,9 +13,7 @@
       <mat-card-content>
         <p>
           EVAtlas (Extracellular vesicle Atlas) is a comprehensive database depositing
-          <span style="color: DarkViolet;">
-            expression profiles of 8 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, scRNA, snRNA, snoRNA, pRNA)</span
-          >
+          <span style="color: DarkViolet;"> expression profiles of 7 types of ncRNAs (miRNA, piRNA, rRNA, tRNA, YRNA, snRNA, snoRNA)</span>
           in more than 2,000 EV samples from 24 human tissues(organs) and 40 diseases. In addition, EVAtlas provides modules for user to
           explore the conditional expression profiles of ncRNAs, miRNA targets, miRNA related drugs, miRNA regulated pathways, miRNA
           functions, and related publications.
@@ -74,10 +72,11 @@
           </li>
           <li>
             <p>
-              <strong>scRNA: </strong>A small conditional RNA (scRNA) is a small RNA molecule or complex (typically less than approximately
-              100 nt) engineered to interact and change conformation conditionally in response to cognate molecular inputs so as to perform
-              signal transduction in vitro, in situ, or in vivo. In the absence of cognate input molecules, scRNAs are engineered to coexist
-              metastably or stably without interacting.
+              <strong>YRNA: </strong>Y RNAs are small non-coding RNAs. They are components of the Ro60 ribonucleoprotein particle which is a
+              target of autoimmune antibodies in patients with systemic lupus erythematosus. They are also reported to be necessary for DNA
+              replication through interactions with chromatin and initiation proteins. However, mouse embryonic stem cells lacking Y RNAs
+              are viable and have normal cell cycles. Humans appear to have four Y RNAs, named hY1, hY3, hY4 and hY5 and also a large number
+              of pseudogenes.
             </p>
           </li>
 
@@ -197,12 +196,12 @@
           </li>
           <li>
             When a read was mapped to multiple ncRNAs with 0 mismatch, based on the RNA abundance and possibility, we assigned it to one of
-            those ncRNAs according to the order: rRNA > tRNA > miRNA > piRNA > snRNA > snoRNA > scRNA > pRNA;
+            those ncRNAs according to the order: rRNA > tRNA > miRNA > piRNA > snRNA > snoRNA > YRNA;
           </li>
           <li>When a read was mapped to one ncRNA with 1 mismatch uniquely, it was assigned to the ncRNA;</li>
           <li>
             When a read was mapped to multiple ncRNAs with 1 mismatch, we followed the order: rRNA > tRNA > miRNA > piRNA > snRNA > snoRNA >
-            scRNA > pRNA;
+            YRNA;
           </li>
           <li>
             When a read was mapped to multiple miRNAs with 1 mismatch at different sites, we considered that the possibility of mismatch at
@@ -215,7 +214,7 @@
           <a href="http://www.mirbase.org/" target="_blank">miRBase V22</a>, while the references of tRNA and snoRNA are obtained from
           <a href="http://scottgroup.med.usherbrooke.ca/snoDB/" target="_blank">snoDB</a> and
           <a href="http://gtrnadb.ucsc.edu/" target="_blank">GtRNAdb</a>, respectively. Other reference sequences, such as piRNA, snRNA,
-          rRNA, pRNA and scRNA were parsed from human genome annotation of NCBI
+          rRNA, and YRNA were parsed from human genome annotation of NCBI
           <a href="https://www.ncbi.nlm.nih.gov/genbank/" target="_blank">GenBank</a> or
           <a href="https://rnacentral.org/" target="_blank">RNACentral</a>.
         </p>
@@ -376,7 +375,7 @@
           <!-- <li>
             <p>
               Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the snoRNA annotation was
-              obtained from snoRNABase. The annotation information of snRNA, scRNA and pRNA were parsed from ENSEMBL v86 gtf file. The rRNA
+              obtained from snoRNABase. The annotation information of snRNA, YRNA and pRNA were parsed from ENSEMBL v86 gtf file. The rRNA
               and tRNA information were incubated from NCBI GeneBank database. The miRNA basic information was collected from miRbase.
               Pathway information was collected from KEGG database, and use Hypergeometric p-value to filter miRNA pathway pairs.
               Publication information was collected from NCBI pubmed database. miRNA function was collected from NCBI RIF database. miRNA
