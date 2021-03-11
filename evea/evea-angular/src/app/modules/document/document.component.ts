@@ -450,6 +450,7 @@ const ELEMENT_SAMPLE: PeriodicElementData[] = [
     gse_id: 'GSE53452',
     Organization:
       'Submission date, Dec 18, 2013, Last update date, May 15, 2019, Contact name, Liang Wang, E-mail(s), liwang@mcw.edu, Phone, 414-955-2574, Organization name, Medical College of Wisconsin, Department, Pathology, Street address, 8701 Watertown Plank Rd., City, Milwaukee, State/province, Wisconsin, ZIP/Postal code, 53226, Country, USA',
+    Contributor: 'Tiezheng Yuan, Xiaoyi Huang, Rachel L Dittmar, Meijun Du, Manish Kohli, Lisa Boardman, Stephen N Thibodeau, Liang Wang',
     Overall_design: 'Refer to individual Series',
     Summary: 'This SuperSeries is composed of the SubSeries listed below.',
     pubmed_id: '24593312',
@@ -575,6 +576,7 @@ const ELEMENT_SAMPLE: PeriodicElementData[] = [
     gse_id: 'GSE129892',
     Organization:
       'Submission date, Apr 16, 2019, Last update date, Mar 05, 2020, Contact name, Danielle Michell, E-mail(s), danielle.michell@vumc.org, Organization name, Vanderbilt Univ. Medical Center, Street address, 2220 Pierece Ave, 312 Preston Research Bldg, City, Nashville, State/province, TN, ZIP/Postal code, 37232, Country, USA',
+    Contributor: 'N Hill, D L Michell, M Ramirez-Solano, Q Sheng, C Pusey, K C Vickers, K J Woollard',
     Overall_design: 'Refer to individual Series',
     Summary: 'This SuperSeries is composed of the SubSeries listed below.',
     pubmed_id: '32214346',
@@ -942,7 +944,7 @@ export class DocumentComponent implements OnInit {
   ];
   dataSource = ELEMENT_DATA;
 
-  displayedSamples: string[] = ['gse_id', 'Organization', 'Contributor', 'Overall_design', 'Summary', 'pubmed_id'];
+  displayedSamples: string[] = ['gse_id', 'Organization', 'Contributor', 'pubmed_id'];
   sampleSource = ELEMENT_SAMPLE;
 
   public assets = environment.assets;
