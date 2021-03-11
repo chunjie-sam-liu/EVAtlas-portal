@@ -12,7 +12,7 @@ export default [
     total: 19.1868,
   },
   {
-    rnaType: 'scRNA',
+    rnaType: 'YRNA',
     total: 12.5888,
   },
   {
@@ -32,4 +32,3 @@ export default [
     total: 0.0009,
   },
 ];
-
