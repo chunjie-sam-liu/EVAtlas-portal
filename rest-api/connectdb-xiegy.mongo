@@ -1,0 +1,8 @@
+db.ncrna_anno.find({"class": "scRNA"})
+db.ncrna_hit.find({"class": "scRNA"})
+
+db.exp_scRNA.find({"GeneSymbol":{"$regex":"BC200", "$options":"i"}})
+
+db.srp_top_exp_merge.findOne()
+
+db.exp_scRNA.remove({"GeneSymbol":"BC200-L129"})
