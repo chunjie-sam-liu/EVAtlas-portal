@@ -38,13 +38,19 @@ export class SampleDistComponent implements OnInit, OnChanges {
     this.type = this.sample.select;
     this.keyword = this.sample.title;
     this.contentApiService.getProjectStat(this.tissueRecord._id, this.samType, this.type, this.keyword).subscribe((res) => {
+      const resNew = res.map((val) => {
+        val.tag_stat.YRNA = val.tag_stat.scRNA;
+        delete val.tag_stat.scRNA;
+        delete val.tag_stat.pRNA;
+        return val;
+      });
       this.isDist = res.length != 0 ? true : false;
-      this.projectDist = this._rnaMappingDist(res, this.projectDistTitle);
+      this.projectDist = this._rnaMappingDist(resNew, this.projectDistTitle);
     });
   }
   private _rnaMappingDist(d: MappingDist[], title: string): EChartOption {
     const series = rnaType.map((v) => ({
-      name: v.label,
+      name: v.show,
       type: 'bar',
       stack: 'total',
       data: [],
