@@ -53,7 +53,7 @@ export class SampleDistComponent implements OnInit, OnChanges {
     d.map((v) => {
       const tagSum = _sum(_values(v.tag_stat));
       series.map((s) => {
-        s.data.push(v.tag_stat[s.name] / tagSum);
+        s.data.push((v.tag_stat[s.name] / tagSum).toFixed(3));
       });
     });
 
