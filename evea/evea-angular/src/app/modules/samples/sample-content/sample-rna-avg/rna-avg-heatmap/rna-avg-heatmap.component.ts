@@ -265,16 +265,14 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       }
     });
 
-    // xZhou final
-    // let xAxisF = [];
-
     if ((condition.includes('Normal') && condition.length == 1) || condition.indexOf('Normal') == -1) {
       if (xListNS.length >= 1) {
-        xAxisF = xListNS.map((item) => item.srrID);
+        xAxisF = xListNS.map((item) => item.srrId);
       } else {
         xAxisF = xAxisF.concat(xAxis);
       }
     }
+
     // quartile data for the range of the visualMap
     let qArray = [];
     d.map((q) => {
@@ -282,7 +280,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     });
     qArray.sort((a, b) => a - b);
     const qValue = qArray[Math.ceil(qArray.length / 4) * 3];
-    console.log('xAxisF', xAxisF);
     return {
       title: {
         show: true,
@@ -307,20 +304,21 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         },
       },
       tooltip: {
+        // position: 'top',
         trigger: 'axis',
-        formatter(params, ticket, callback) {
+        formatter(params) {
           let htmlStr = '';
           for (let i = 0; i < params.length; i++) {
             const param = params[i];
-            console.log(param);
             const xName = param.name; // x轴的名称
             const seriesName = param.seriesName; // 图例名称
             const value = param.value; // y轴值
             const color = param.color; // 图例颜色
             const yZhou = ydata[i];
+            const expValue = param.data[2];
 
             if (i === 0) {
-              htmlStr += 'Sample id: ' + xName + '<br/>'; // x轴的名称
+              htmlStr += 'Sample id: ' + xName + '<br/>' + 'value (RPM): ' + expValue + '<br/>'; // x轴的名称
             }
             htmlStr += '<div>';
 
@@ -329,7 +327,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
             if (seriesName === 'condition') {
               // 前面一条线，后面一条线【具体样式自己写】
               htmlStr += '<div style="border: 1px solid #FFEB3B"></div>';
-              htmlStr += 'Condition：' + value;
+              htmlStr += 'Condition: ' + value;
               htmlStr += '<div style="border: 1px solid #FFEB3B"></div>';
             }
             // else {
@@ -340,7 +338,6 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
 
             htmlStr += '</div>';
           }
-          console.log(htmlStr);
           return htmlStr;
         },
       },
@@ -372,7 +369,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       },
       series: [
         {
-          name: 'Sample ID',
+          name: 'Expression (RPM)',
           type: 'heatmap',
           data: data2,
           label: { show: false },
