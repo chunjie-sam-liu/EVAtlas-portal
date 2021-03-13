@@ -10,7 +10,7 @@ export default [
       'We report the application of miRNA next generation sequencing (NGS) for the analysis of impact of processing on miRNA in human breast milk, donated by 3 volunteers. MiRNA content of total and exosomal fraction was compared between unprocessed milk and sample subjected to either Holder (thermal) pasteurization (HoP) or elevated pressure processing (HPP). NGS reads were mapped to miRBase in order to obtain miRNA counts. Then, we analyzed differences in the miRNA abundance and function between raw and processed material. It was observed that both processing methods reduce number of miRNA reads and HoP is significantly more detrimental to miRNA than HPP.',
     pubmed_id: 'unavailable',
     link: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE142282',
-    link_ref: '-',
+    link_ref: '#',
   },
   {
     gse_id: 'GSE140106',
@@ -35,7 +35,7 @@ export default [
       'Tumor-secreted exosomes have been noted to be critically involved in remodeling tumor microenvironments. In this study we investigated whether Snail-expressing cancer cells-secreted exosomes modulate the inflammasome activity in macrophages.',
     pubmed_id: 'unavailable',
     link: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE99474',
-    link_ref: '-',
+    link_ref: '#',
   },
   {
     gse_id: 'GSE124120',
@@ -71,9 +71,9 @@ export default [
       'To study the expression pattern of exosomal miRNA in the samples from ccRCC patients and healthy control individuals, total RNA was first isolated from the urine exosomes. The contents of small RNAs in the exosomes of ccRCC patients and healthy control individuals were consistent. Afterwards, miRNAs were isolated from total RNA and next-generation sequencing (NGS) was performed to compare the urinary exosome miRNA expression pattern of ccRCC patients with that of healthy individuals. The samples were then analyzed using an ultra-sequencer Illumina HiSeq2500, a platform that can deliver high quality data. After quality controls and adapter elimination, only high quality reads were aligned using a mirDeep2 algorithm against the mirBase v21 database, for the identification and quantification of previously described miRNAs. In total, 126 miRNA species were identified.',
     Summary:
       'Exosome-derived miRNAs are regarded as biomarkers for the diagnosis and prognosis of many human cancers. However, its function in clear cell renal cell carcinoma (ccRCC) remains unclear. In this study, differentially expressed miRNAs from urinal exosomes were identified using next-generation sequencing (NGS) and verified using urine samples of ccRCC patients and healthy donors. Then the exosomes were analyzed in early-stage ccRCC patients, healthy individuals and patients suffering with other urinary system cancers. Afterwards, the target gene of the miRNA was detected. Its biological function was investigated in vitro and in vivo. The results showed that miR-30c-5p could be stably amplified. Its expression pattern was significantly different only between ccRCC patients and healthy control individuals, but not compared with that of other urinary system cancers, which indicated its ccRCC specificity. Additionally, the overexpression of miR-30c-5p inhibited ccRCC progression in vitro and in vivo. Heat shock Protein 5 (HSPA5) was found to be a direct target gene of miR-30c-5p. HSPA5 depletion caused by miR-30c-5p inhibition reversed the promoting effect of ccRCC growth. In conclusion, urinary exosomal miR-30c-5p acts as a potential diagnostic biomarker of early-stage ccRCC, and might modulate the expression of HSPA5, which is correlated with the progression of ccRCC.',
-    pubmed_id: 'https://doi.org/10.1186/s41544-019-0023-z',
+    pubmed_id: '#https://doi.org/10.1186/s41544-019-0023-z',
     link: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE129255',
-    link_ref: '-',
+    link_ref: '#',
   },
   {
     gse_id: 'GSE125905',
@@ -300,7 +300,7 @@ export default [
       'We aimed to compare the exosomal microRNA profile form HeLa cell line with that from human cervical epithelial cell(Hcer)line.exosomes were isolated from conditioned medium of HeLa cell and HCer cell,3 samples for each group.Exosomal microRNAs were sequenced on Proton Sequencers according to Ion PI Hi-Q Sequencing 200 Kit (Life Technologies).According to the results of miRNA sequencing, we found a total 371 different miRNAs the amount of which reach to 10 fold differece between two groups.',
     pubmed_id: 'unavailable',
     link: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE128803',
-    link_ref: '-',
+    link_ref: '#',
   },
   {
     gse_id: 'GSE130654',
@@ -556,7 +556,7 @@ export default [
       'Purpose: The goals of this study are to compare the serum extracellular vesicle (EV) delivered miRNA levels of patients with bone-metastatic prostate cancer (PCa),  non-bone -metastatic PCa and benign prostatic hyperplasia (BPH), and to identify EV-delivered microRNAs in patient’s serum as indicators for bone-metastatic PCa.Methods:Serum extracellular vesicle delivered miRNA profiles of patients with bone-metastatic PCa or non-bone -metastatic PCa or BPH were generated by deep sequencing,  using Illumina HiSeqTM 2500 platformResults: Using an optimized data analysis method, we mapped about 17 million sequence reads per sample. Differential analysis showed the expressions of 35 EV delivered miRNAs were significantly different between serum of patients with PCa and BPH, with a p value <0.05. the expressions of  5 EV delivered miRNAs were confirmed with qRT–PCR.Conclusions: Serum EV-delivered miR-181a-5p is a promising diagnostic biomarker for bone-metastatic PCa.',
     pubmed_id: 'unavailable',
     link: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE134205',
-    link_ref: '-',
+    link_ref: '#',
   },
   {
     gse_id: 'GSE108666',
@@ -569,7 +569,7 @@ export default [
       'The investigation includes findings from our clinical trial, monitoring individualized response to pneumococcal vaccination, where we have carried out integrative profiling assessment of saliva pre and post vaccination in a single individual. This is to our knowledge the most extensive saliva-centered omics dataset on an individual, covering 100 timepoints over the course of one year. The time span covers a healthy period as well as comprehensive monitoring of innate and adaptive immune responses following pneumococcal vaccination. Protein and RNA from saliva were produced at each timepoint (100 timepoints), and mass spectrometry proteomics and RNA-sequencing were carried out for all samples in non-targeted comprehensive profiling. Specifically, a single individual (male, 38) was profiled over multiple timepoints during healthy periods, as well as post treatment with pneumococcal vaccine (PPSV23). Initially pre-immunization samples, including a 24 hour period with hourly sampling (samples P1052515H07-P1052615H08), were collected to provide a comparative baseline. A subsequent 24-hour time course was performed, with again hourly samples taken pre and post vaccination (P1060715H07-P1060815H06). The PPSV23 pneumococcal vaccine was admistered inbetween timepoints at approximately 10.30am, prior to datapoint P1060715H11. Following the vaccination, and after the 24 hour monitoring, daily samples were taken for about a month (up to sample P1070715H08), to capture innate and adaptive responses in saliva. Two more weekly samples followed, with then monthly sample till the end of the investigation. Omics sample analysis includes: RNA-sequencing of total RNA, small RNA sequencing in saliva extracellular vesicles and saliva mass spectrometry proteomics.Note on sample naming: The sample identifier/name P1MMDDYYHhh corresponds to: patient index:P1, date MMDDYY and hour hh preceded by H using 24 hour enumeration.',
     pubmed_id: 'unavailable',
     link: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE108666',
-    link_ref: '-',
+    link_ref: '#',
   },
   {
     gse_id: 'GSE138107',
