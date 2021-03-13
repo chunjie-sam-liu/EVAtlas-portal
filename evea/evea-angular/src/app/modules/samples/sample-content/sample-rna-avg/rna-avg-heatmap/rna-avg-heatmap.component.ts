@@ -3,6 +3,7 @@ import { EChartOption } from 'echarts';
 import { TissueTable } from 'src/app/shared/model/tissue-table';
 import { ContentApiService } from '../../content-api.service';
 import { RnaHeatmap } from 'src/app/shared/model/rna-heatmap';
+import samTypes from 'src/app/shared/constants/sam-types';
 
 @Component({
   selector: 'app-rna-avg-heatmap',
@@ -304,41 +305,9 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         },
       },
       tooltip: {
-        // position: 'top',
-        trigger: 'axis',
-        formatter(params) {
-          let htmlStr = '';
-          for (let i = 0; i < params.length; i++) {
-            const param = params[i];
-            const xName = param.name; // x轴的名称
-            const seriesName = param.seriesName; // 图例名称
-            const value = param.value; // y轴值
-            const color = param.color; // 图例颜色
-            const yZhou = ydata[i];
-            const expValue = param.data[2];
-
-            if (i === 0) {
-              htmlStr += 'Sample id: ' + xName + '<br/>' + 'value (RPM): ' + expValue + '<br/>'; // x轴的名称
-            }
-            htmlStr += '<div>';
-
-            // 具体显示的数据【字段名称：seriesName，值：value】
-            // 这里判断一下name，如果是我们需要特殊处理的，就处理
-            if (seriesName === 'condition') {
-              // 前面一条线，后面一条线【具体样式自己写】
-              htmlStr += '<div style="border: 1px solid #FFEB3B"></div>';
-              htmlStr += 'Condition: ' + value;
-              htmlStr += '<div style="border: 1px solid #FFEB3B"></div>';
-            }
-            // else {
-            //   // 正常显示的数据，走默认
-            //   htmlStr+='<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:'+color+';"></span>';
-            //   htmlStr+=yZhou+'：'+value[2];
-            // }
-
-            htmlStr += '</div>';
-          }
-          return htmlStr;
+        formatter: function (params) {
+          // console.log(params);
+          return 'Expression (RPM): ' + params.data[2] + '<br/>' + 'Sample id: ' + params.name + '<br/>';
         },
       },
       xAxis: {
@@ -372,6 +341,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
           name: 'Expression (RPM)',
           type: 'heatmap',
           data: data2,
+          // dataS: conditionA,
           label: { show: false },
           emphasis: {
             itemStyle: {
@@ -383,7 +353,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         {
           name: 'condition',
           data: conditionA,
-          type: 'line',
+          type: 'heatmap',
         },
       ],
     };
