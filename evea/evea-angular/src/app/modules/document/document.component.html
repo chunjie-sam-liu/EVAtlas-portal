@@ -179,7 +179,7 @@
 
         <h3>Read mapping and expression estimation of ncRNA</h3>
         <p>
-          Before reads mapping, we obtained the reference sequences for the 8 types of ncRNAs from different authoritative databases. Then
+          Before reads mapping, we obtained the reference sequences for the 7 types of ncRNAs from different authoritative databases. Then
           we used the Bowtie software and the following strategy/flow path for reads mapping.
         </p>
         <ol>
@@ -200,6 +200,8 @@
             the 3’ end will be higher than at the 5’ end because of the RNA editing.
           </li>
         </ol>
+        <p>The mapping strategy is shown in the workflow as follow:</p>
+        <img mat-card-image class="zm" [src]="assets + '/imgs/' + 'tag-assignment.svg'" />
         <p>
           The normalization method of expressed reads per million (RPM) was employed to estimate the expression level of ncRNAs using the
           total mapped reads. The reference sequences of miRNAs were downloaded from
