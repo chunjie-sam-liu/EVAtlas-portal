@@ -27,8 +27,8 @@ export default [
     rnaType: 'snoRNA',
     total: 0.6034,
   },
-  {
-    rnaType: 'pRNA',
-    total: 0.0009,
-  },
+  // {
+  //   rnaType: 'pRNA',
+  //   total: 0.0009,
+  // },
 ];
