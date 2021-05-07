@@ -1,6 +1,6 @@
 # EVAtlas-portal
 
-Extracellular vesicle atlas [(EVAtls)](http://bioinfo.life.hust.edu.cn/EVAtlas/): a database for expression profiles of ncRAN in extracellular vesicles
+Extracellular vesicle atlas [(EVAtlas)](http://bioinfo.life.hust.edu.cn/EVAtlas/): a database for expression profiles of ncRAN in extracellular vesicles
 
 # Overview
 
