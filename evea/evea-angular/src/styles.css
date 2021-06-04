@@ -94,6 +94,7 @@ dd {
 
 .chart-hight {
   height: 400px;
+  width: auto !important;
 }
 
 .chart-heathight {
