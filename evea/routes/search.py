@@ -11,9 +11,7 @@ model_rnalist = {"rna": fields.String}
 class RNAList(Resource):
     @marshal_with(model_rnalist)
     def get(self, r):
-        m_cur = mongo.db.rna_symbol.find(
-            {"search_name": {"$regex": r}}, {"rna": 1, "_id": 0}
-        ).limit(5)
+        m_cur = mongo.db.rna_symbol.find({"search_name": {"$regex": r}}, {"rna": 1, "_id": 0}).limit(10)
         return list(m_cur)
 
 
