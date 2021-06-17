@@ -7,13 +7,14 @@
 # Number of input parameters
 
 git pull
+[ -d venv ] || eval '`which python3` -m venv venv'
 
 source venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 
 cd evea/evea-angular/
 npm install
 
 npm run build:prod
-# npm run compodoc
-# npm run stat
+
