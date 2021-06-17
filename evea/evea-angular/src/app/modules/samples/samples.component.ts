@@ -30,8 +30,8 @@ export class SamplesComponent implements OnInit {
 
   public showContent(sample: any): void {
     this.sample = sample;
-    this.samLay = '30%';
-    this.resuLay = '70%';
+    this.samLay = '20%';
+    this.resuLay = '80%';
     this.showStatistics = sample.name === 'stat' ? true : false;
     this.showSample = !this.showStatistics;
   }
