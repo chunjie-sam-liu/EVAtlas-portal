@@ -1,0 +1,56 @@
+.mat-column-_id {
+  overflow: initial;
+}
+
+.mat-column-disease {
+  overflow: initial;
+}
+
+.mat-column-ex_type {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 12% !important;
+  width: 12% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-tissues {
+  overflow: initial;
+}
+
+.mat-column-source {
+  overflow: initial;
+}
+
+.mat-column-material {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 12% !important;
+  width: 12% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-srr_count {
+  overflow: initial;
+}
+
+.mat-column-pubmed {
+  flex: 0 0 5% !important;
+  width: 5% !important;
+}
