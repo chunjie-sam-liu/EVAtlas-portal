@@ -6,3 +6,7 @@ db.exp_scRNA.find({"GeneSymbol":{"$regex":"BC200", "$options":"i"}})
 db.srp_top_exp_merge.findOne()
 
 db.exp_scRNA.remove({"GeneSymbol":"BC200-L129"})
+
+db.ncrna_anno.find({"GeneSymbol": "hsa-mir-7851-3p"})
+
+db.ncrna_anno.find({"GeneSymbol": "hsa-miR-7851-3p"})
