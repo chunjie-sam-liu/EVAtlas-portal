@@ -11,9 +11,9 @@ model_rnalist = {
     "start": fields.Integer,
     "end": fields.Integer,
     "strand": fields.String,
-    # "class": fields.String,
+    "class": fields.String,
     "go": fields.String,
-    # "source": fields.String,
+    "source": fields.String,
 }
 
 
