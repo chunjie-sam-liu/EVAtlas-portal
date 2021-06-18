@@ -1,1 +1,6 @@
 db.ncrna_anno.find({"GeneSymbol": "hsa-miR-1302"})
+
+
+db.rna_symbol.findOne()
+
+db.rna_symbol.find({"search_name": {"$regex": "hsalet7a5p"}})
