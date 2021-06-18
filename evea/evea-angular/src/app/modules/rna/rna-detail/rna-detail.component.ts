@@ -21,7 +21,7 @@ export class RnaDetailComponent implements OnInit {
       this.rnaSymbol = params.rna;
     });
 
-    const annoParam = this.rnaSymbol.replace(/\#/, '%23');
+    const annoParam = this.rnaSymbol.replace(/\#/g, '%23');
     this.rnaDetailApiService.findRnaBasicInfo(annoParam).subscribe((res) => {
       this.rnaBasicInfo = res;
       this.rnaType = res.class;
