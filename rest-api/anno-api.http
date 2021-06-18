@@ -21,3 +21,9 @@ GET http://localhost:5000/api/anno/?ncrna=hsa_rRNA_HUMRGM_1:5025:+
 ###
 
 GET http://localhost:5000/api/anno/one/SNORD3@%231385%3BSNORD3@%231386
+
+###
+GET http://localhost:5000/api/anno/one/SNORA70%23327%3BSNORA70%23328%3BSNORA70%23329%3BSNORA70%23332
+
+###
+GET http://localhost:5000/api/anno/one/SNORD22%231668
