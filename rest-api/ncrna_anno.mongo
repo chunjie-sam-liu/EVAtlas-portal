@@ -1,0 +1,1 @@
+db.ncrna_anno.find({"GeneSymbol": "hsa-miR-1302"})
