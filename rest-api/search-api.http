@@ -2,7 +2,7 @@ GET http://127.0.0.1:5000/api/search/rna/mir
 
 ###
 
-GET http://127.0.0.1:6000/api/search/rna/let7
+GET http://127.0.0.1:5000/api/search/rna/let7
 
 ###
 GET http://bioinfo.life.hust.edu.cn/EVEA/api/search/rna/let7
