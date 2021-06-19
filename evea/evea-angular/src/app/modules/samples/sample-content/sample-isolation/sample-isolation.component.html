@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>
       <a href="https://www.ncbi.nlm.nih.gov/sra/?term={{ tissueRecord._id }}" target="_blank">{{ tissueRecord._id }}</a>
-      {{ tissueRecord.ex_type }} isolation method
+      {{ tissueRecord.ex_type | evRename }} isolation method
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
