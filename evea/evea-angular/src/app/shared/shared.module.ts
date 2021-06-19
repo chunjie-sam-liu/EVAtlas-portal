@@ -13,6 +13,7 @@ import { EchartsModule } from './echarts.module';
 import { RedSeedPipe } from './pipes/red-seed.pipe';
 import { RmclPipe } from './pipes/rmcl.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { EvRenamePipe } from './pipes/ev-rename.pipe';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, SidebarComponent, MaterialElevationDirective, RedSeedPipe, RmclPipe, ReplacePipe],
@@ -29,6 +30,7 @@ import { ReplacePipe } from './pipes/replace.pipe';
     RedSeedPipe,
     RmclPipe,
     ReplacePipe,
+    EvRenamePipe,
   ],
 })
 export class SharedModule {}
