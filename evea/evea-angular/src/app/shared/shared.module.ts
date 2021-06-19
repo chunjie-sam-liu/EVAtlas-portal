@@ -16,7 +16,16 @@ import { ReplacePipe } from './pipes/replace.pipe';
 import { EvRenamePipe } from './pipes/ev-rename.pipe';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, SidebarComponent, MaterialElevationDirective, RedSeedPipe, RmclPipe, ReplacePipe],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    MaterialElevationDirective,
+    RedSeedPipe,
+    RmclPipe,
+    ReplacePipe,
+    EvRenamePipe,
+  ],
   imports: [CommonModule, MaterialModule, EchartsModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     MaterialModule,

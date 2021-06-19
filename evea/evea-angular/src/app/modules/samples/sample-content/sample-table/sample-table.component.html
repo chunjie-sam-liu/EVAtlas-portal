@@ -14,7 +14,7 @@
 
     <ng-container matColumnDef="ex_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>EV type</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.ex_type }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.ex_type | evRename }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="tissues">
