@@ -1,5 +1,5 @@
 export default {
-  legend: ['Exosomes', 'Microvesicles'],
+  legend: ['sEV', 'lEV'],
   xAxis: [
     'Uterus',
     'Colorectum',
@@ -29,4 +29,3 @@ export default {
   exo: [374, 16, 142, 108, 143, 121, 93, 84, 80, 59, 47, 24, 48, 46, 31, 25, 18, 0, 14, 14, 12, 4, 2, 1],
   mv: [0, 255, 111, 111, 4, 0, 0, 0, 0, 0, 1, 24, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0],
 };
-
