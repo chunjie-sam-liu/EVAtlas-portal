@@ -63,6 +63,8 @@ export class SampleDistComponent implements OnInit, OnChanges {
       });
     });
 
+    console.log(d);
+
     return {
       title: {
         show: false,
@@ -98,7 +100,12 @@ export class SampleDistComponent implements OnInit, OnChanges {
         nameTextStyle: { fontWeight: 'bolder' },
         axisTick: { show: false },
         axisLabel: { show: false },
-        data: d.map((v) => `${v.srr_id} (${v.disease}, ${v.ex_type})`),
+        data: d.map(
+          (v) =>
+            `${v.srr_id} (${v.disease}, ${
+              v.ex_type === 'Exosomes' ? v.ex_type.replace('Exosomes', 'sEV') : v.ex_type.replace(/Microvesicles/, 'lEV')
+            })`
+        ),
       },
       yAxis: {
         type: 'value',
