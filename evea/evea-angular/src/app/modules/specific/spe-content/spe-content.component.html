@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <div fxFlex="none">
     <h2 class="page-subheader">
-      <span style="color: #da4233;"> {{ tissue.tissue }} {{ tissue.ex_type | lowercase }} </span>
+      <span style="color: #da4233;"> {{ tissue.tissue }} {{ tissue.ex_type | lowercase | evRenameSpe }} </span>
       specific RNA expression.
     </h2>
   </div>
@@ -10,7 +10,8 @@
     <mat-card fxFlex *ngFor="let ncrna of speTissue.ncrna.sort(sortGS)" appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header class="page-subheader">
         <mat-card-title>
-          {{ ncrna.show }} from {{ tissue.ex_type | lowercase }} specifically expressed in {{ tissue.tissue }} related conditions
+          {{ ncrna.show }} from {{ tissue.ex_type | lowercase | evRenameSpe }} specifically expressed in {{ tissue.tissue }} related
+          conditions
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>

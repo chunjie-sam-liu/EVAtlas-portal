@@ -63,8 +63,6 @@ export class SampleDistComponent implements OnInit, OnChanges {
       });
     });
 
-    console.log(d);
-
     return {
       title: {
         show: false,
