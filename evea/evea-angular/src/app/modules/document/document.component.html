@@ -109,9 +109,8 @@
         <ol>
           <li>
             <p>
-              <a routerLink="/samples"><strong>Sample module:</strong></a> helps users to search the project and sample information of
-              Exosomes or Microvesicles in conditions , and browse their component ratio, heatmap and expression profiles of 7 types of
-              ncRNAs.
+              <a routerLink="/samples"><strong>Sample module:</strong></a> helps users to search the project and sample information of sEV
+              or lEV in conditions , and browse their component ratio, heatmap and expression profiles of 7 types of ncRNAs.
             </p>
           </li>
           <li>
@@ -155,15 +154,14 @@
       <mat-card-content>
         <h3>Data collection</h3>
         <p>
-          Non-redundant smRNA-seq datasets of human were collected from NCBI
+          We used keywords "(((extracellular vesicle OR exosome OR microvesicle OR EV) AND (smRNA-seq OR miRNA-seq OR small RNA-seq))) AND
+          (Homo sapiens)" to retrieved human EV related smRNA-seq datasets from NCBI
           <a href="https://www.ncbi.nlm.nih.gov/gds/" target="_blank">GEO</a> and
-          <a href="https://www.ncbi.nlm.nih.gov/sra/?term=" target="_blank">SRA</a> databases. In GEO and SRA databases, smRNA-seq data in
-          EVs were collected through the E-Utilities toolkit with keywords of “gds or sra, human or Homo sapiens, extracellular vesicles or
-          exosomes or microvesicles, miRNA-seq or small RNA-seq or smRNA-seq”. In addition, similar keywords of the above procedure except
-          for “gds or sra” were used to retrieve publications in the PubMed repository. In total, more than 2,306 EV smRNA-seq datasets were
-          collected after the search procedure. Moreover, text screening and manual review were employed to classify the extracellular
-          vesicles for samples used in the study. The criteria used to distinguish the belonging of given samples (exosomes or MVs) were as
-          following:
+          <a href="https://www.ncbi.nlm.nih.gov/sra/?term=" target="_blank">SRA</a> databases. Then, we manually reviewed the study design
+          or the related paper to label each dataset with sEV or lEV based on the exact EV size or type description. Finally, we obtained
+          2030 high quality EV datasets (1506 sEV and 524 lEV datasets) from 57 studies. For better meta-analysis, all the datasets were
+          well-curated and classified into 24 conditions, 8 sources and over 40 diseases. The criteria used to distinguish the belonging of
+          given samples (sEVs or lEVs) were as following:
         </p>
         <ol>
           <li>samples with clearly defined of the belonging were obeyed to the original one;</li>
@@ -173,8 +171,8 @@
           </li>
           <li>samples extracted by commercial kits were classified according to the introduction of manufacture;</li>
           <li>
-            samples out of above categories were sorted by the word frequency count of “exosomes” or “microvesicles”; Samples that cannot be
-            grouped were discarded.
+            samples out of above categories were defined as sEVs or lEVs based on the word frequency count of "exosomes" or "microvesicles";
+            Samples that cannot be grouped were discarded.
           </li>
         </ol>
         <h3>Pre-process</h3>
@@ -187,8 +185,8 @@
           sequence removal and FASTQ trimming to obtain high-quality clean reads.
           <a href="http://bowtie-bio.sourceforge.net/index.shtml" target="_blank">Bowtie</a> (v1.2.1) was used to align clean reads to human
           reference genome GRCh38. Samples with clean reads less than 5 million or the predominant reads out of the range of 15-50 nt or an
-          alignment ratio less than 40% were discarded. Finally, 2030 EV datasets (1506 exosome and 524 MVs datasets) from 24 conditions
-          with 40 diseases were kept for further analyses.
+          alignment ratio less than 40% were discarded. Finally, 2030 EV datasets (1506 sEVs and 524 lEVs datasets) from 24 conditions with
+          40 diseases were kept for further analyses.
         </p>
 
         <h3>Read mapping and expression estimation of ncRNA</h3>
@@ -232,7 +230,7 @@
         <h3>Specifically expressed ncRNAs</h3>
         <p>
           To detect specifically expressed ncRNAs, the expression level of a ncRNA in the given condition was represented by its median. The
-          specifically highly expressed ncRNAs from exosomes (22 conditions) and MVs (7 conditions) were analyzed separately with
+          specifically highly expressed ncRNAs from sEVs (22 conditions) and lEVs (7 conditions) were analyzed separately with
           <a href="http://bioinfo.life.hust.edu.cn/SEGtool/" target="_blank">SEGtool</a>.
         </p>
         <h3>Functional annotation for ncRNAs and their expression profiles in cancers</h3>
@@ -363,8 +361,8 @@
           <li>
             <p>
               We applied SEGtool(exp_cutoff = 3,multi_cpu = 4, detect_mod=3) to identify Specific miRNAs of cancer and tissue. We used miRNA
-              expression cutoff RPM >= 100 to identify specific miRNAs in cancer group and tissue group. We found that in cancer group,
-              Exosome can identify more specific miRNAs.
+              expression cutoff RPM >= 100 to identify specific miRNAs in cancer group and tissue group. We found that in cancer group, sEV
+              can identify more specific miRNAs.
             </p>
             <p>
               <b>Specific miRNA</b>

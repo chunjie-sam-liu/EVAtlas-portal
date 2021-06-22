@@ -52,10 +52,10 @@ export class DocumentComponent implements OnInit {
 
   public assets = environment.assets;
 
-  exoMappingRateTitle = 'Exosomes mapping rate';
+  exoMappingRateTitle = 'sEVs mapping rate';
   exoMappingRate: EChartOption;
 
-  mvMappingRateTitle = 'Microvesicles mapping rate';
+  mvMappingRateTitle = 'lEVs mapping rate';
   mvMappingRate: EChartOption;
 
   constructor() {}
