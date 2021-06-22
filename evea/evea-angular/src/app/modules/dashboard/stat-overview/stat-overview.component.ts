@@ -32,7 +32,7 @@ export class StatOverviewComponent implements OnInit {
     ],
   };
 
-  statTitle = 'Tissues and samples in EVatlas';
+  statTitle = 'Tissues and samples in EVAtlas';
   statDist: EChartOption = this._statDist(statDistData, this.statTitle);
 
   ngOnInit(): void {}
