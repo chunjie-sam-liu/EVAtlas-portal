@@ -9,7 +9,7 @@ import statDistData from 'src/app/shared/constants/sample-stat-overview';
   styleUrls: ['./stat-overview.component.css'],
 })
 export class StatOverviewComponent implements OnInit {
-  constructor() { }
+  constructor() {}
   pieChart: EChartOption = {
     tooltip: {
       trigger: 'item',
@@ -17,7 +17,7 @@ export class StatOverviewComponent implements OnInit {
     },
     series: [
       {
-        name: 'RNA mapping percentage in MV/EXO',
+        name: 'RNA mapping percentage in EV',
         type: 'pie',
         radius: '90%',
         data: RnaTypeDist.map((v) => ({ name: v.rnaType, value: v.total })),
@@ -35,7 +35,7 @@ export class StatOverviewComponent implements OnInit {
   statTitle = 'Tissues and samples in EVatlas';
   statDist: EChartOption = this._statDist(statDistData, this.statTitle);
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   private _statDist(d: any, title: string): EChartOption {
     return {
