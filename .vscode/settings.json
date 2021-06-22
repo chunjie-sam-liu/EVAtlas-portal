@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "venv/bin/python",
+  "python.defaultInterpreterPath": "venv/bin/python",
   "python.analysis.disabled": ["unresolved-import"],
   "[python]": {
     "editor.insertSpaces": true,
