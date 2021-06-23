@@ -3,8 +3,9 @@
     <h1 class="page-header">Document</h1>
   </div>
 
-  <div fxFlex class="not-float">
-    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+  <!-- Introduction -->
+  <div fxFlex fxLayout="column" fxLayoutGap="10px" class="not-float">
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
         <mat-card-title>Introduction</mat-card-title>
       </mat-card-header>
@@ -18,15 +19,13 @@
           normal). In addition, EVAtlas provides modules for user to explore the conditional expression profiles of ncRNAs, miRNA targets,
           miRNA related drugs, miRNA regulated pathways, miRNA functions, and related publications.
         </p>
-        <h3>Abstract Summary</h3>
-        <img mat-card-image class="zm" [src]="assets + '/imgs/' + 'zm.png'" />
       </mat-card-content>
     </mat-card>
-    <br />
 
-    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <!-- ncRNA types -->
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
-        <mat-card-title>Introduction to ncRNAs</mat-card-title>
+        <mat-card-title>ncRNAs</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <ol>
@@ -48,7 +47,6 @@
               or repeat-derived transcripts, but can also be involved in the regulation of other genetic elements in germ line cells.
             </p>
           </li>
-
           <li>
             <p>
               <strong>rRNA: </strong>Ribosomal ribonucleic acid (rRNA) is a type of non-coding RNA which is the primary component of
@@ -72,14 +70,13 @@
           </li>
           <li>
             <p>
-              <strong>YRNA: </strong>Y RNAs are small non-coding RNAs. They are components of the Ro60 ribonucleoprotein particle which is a
-              target of autoimmune antibodies in patients with systemic lupus erythematosus. They are also reported to be necessary for DNA
-              replication through interactions with chromatin and initiation proteins. However, mouse embryonic stem cells lacking Y RNAs
-              are viable and have normal cell cycles. Humans appear to have four Y RNAs, named hY1, hY3, hY4 and hY5 and also a large number
-              of pseudogenes.
+              <strong>Y RNA: </strong>Y RNAs are small non-coding RNAs. They are components of the Ro60 ribonucleoprotein particle which is
+              a target of autoimmune antibodies in patients with systemic lupus erythematosus. They are also reported to be necessary for
+              DNA replication through interactions with chromatin and initiation proteins. However, mouse embryonic stem cells lacking Y
+              RNAs are viable and have normal cell cycles. Humans appear to have four Y RNAs, named hY1, hY3, hY4 and hY5 and also a large
+              number of pseudogenes.
             </p>
           </li>
-
           <li>
             <p>
               <strong>snRNA: </strong>Small nuclear RNA (snRNA) is a class of small RNA molecules that are found within the splicing
@@ -101,9 +98,9 @@
         </ol>
       </mat-card-content>
     </mat-card>
-    <br />
 
-    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <!-- Functional modules -->
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
         <mat-card-title>Function modules</mat-card-title>
       </mat-card-header>
@@ -147,9 +144,9 @@
         </ol>
       </mat-card-content>
     </mat-card>
-    <br />
 
-    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <!-- Data collection -->
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
         <mat-card-title>Data collection and process</mat-card-title>
       </mat-card-header>
@@ -252,9 +249,9 @@
         </p>
       </mat-card-content>
     </mat-card>
-    <br />
 
-    <div fxLayout.lt-lg="column" fxLayoutGap="10px">
+    <!-- sEV and lEV mapping rate -->
+    <div fxFlex fxLayout.lt-lg="column" fxLayoutGap="10px">
       <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
         <mat-card-header>
           <mat-card-title>{{ exoMappingRateTitle }}</mat-card-title>
@@ -280,9 +277,9 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <br />
 
-    <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
+    <!-- EV isolation techniques -->
+    <mat-card fxFlex appMaterialElevation defaultElevation="4" raisedElevation="4">
       <mat-card-header>
         <mat-card-title>EV isolation techniques</mat-card-title>
       </mat-card-header>
@@ -346,7 +343,16 @@
               Per Million reads) were employed to assess the expression level of ncRNAs across samples and conditions.
             </p> -->
           </li>
-          <br />
+          <li>
+            <p>
+              <cite>
+                Thery, Clotilde, et al. "Minimal information for studies of extracellular vesicles 2018 (MISEV2018): a position statement of
+                the International Society for Extracellular Vesicles and update of the MISEV2014 guidelines." Journal of extracellular
+                vesicles 7.1 (2018): 1535750.</cite
+              >
+            </p>
+          </li>
+          <!-- <img mat-card-image class="zm" [src]="assets + '/imgs/' + 'zm.png'" /> -->
           <!-- <li>
             <p>
               Annotation data source: The annotation file of piRNAs was downloaded from piRNAQuest database, which the snoRNA annotation was
@@ -409,6 +415,7 @@
     </mat-card>
   </div>
 
+  <!-- Acknowledgements -->
   <mat-card appMaterialElevation defaultElevation="4" raisedElevation="4">
     <mat-card-header>
       <mat-card-title>Acknowledgements and external links</mat-card-title>
@@ -477,6 +484,7 @@
       </table>
     </mat-card-content>
   </mat-card>
+
   <div fxFlex="none">
     <app-footer></app-footer>
   </div>
