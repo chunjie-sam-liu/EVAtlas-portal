@@ -12,20 +12,11 @@ api = Api(stat)
 
 category_stat_field = {
     "category_stat": fields.Nested(
-        {
-            "sample_n": fields.Integer,
-            "category_type": fields.Nested(
-                {"ex_type": fields.String, "tissues": fields.String}
-            ),
-        }
+        {"sample_n": fields.Integer, "category_type": fields.Nested({"ex_type": fields.String, "tissues": fields.String}),}
     ),
     "category_n": fields.Integer,
-    "ex_type_lst": fields.List(
-        fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String})
-    ),
-    "tissues_type_lst": fields.List(
-        fields.Nested({"sample_n": fields.Integer, "source_type": fields.String})
-    ),
+    "ex_type_lst": fields.List(fields.Nested({"sample_n": fields.Integer, "ex_type": fields.String})),
+    "tissues_type_lst": fields.List(fields.Nested({"sample_n": fields.Integer, "source_type": fields.String})),
 }
 
 
@@ -35,12 +26,7 @@ class CategoryStat(Resource):
         sample_category = {}
         category_stat_oj = mongo.db.sample_info.aggregate(
             [
-                {
-                    "$group": {
-                        "_id": {"ex_type": "$ex_type", "tissues": "$tissues"},
-                        "sample_n": {"$sum": 1},
-                    }
-                },
+                {"$group": {"_id": {"ex_type": "$ex_type", "tissues": "$tissues"}, "sample_n": {"$sum": 1},}},
                 {"$project": {"_id": 0, "category_type": "$_id", "sample_n": 1}},
             ]
         )
@@ -71,9 +57,7 @@ class CategoryStat(Resource):
 api.add_resource(CategoryStat, "/category")
 
 exp_stat_field = {
-    "exp_level": fields.List(
-        fields.Nested({"exp_flag": fields.String, "count": fields.Integer})
-    ),
+    "exp_level": fields.List(fields.Nested({"exp_flag": fields.String, "count": fields.Integer})),
     "count": fields.Integer,
     "ncRNA": fields.String,
 }
@@ -104,11 +88,7 @@ class SamplesExpStat(Resource):
             ncRNA_lst = args["ncRNA_type"].strip().split(",")
         query_lst = args["querys"].strip().split(",")
         if query_type != "sample":
-            samples_lst = list(
-                mongo.db.sample_info.find(
-                    {query_type: {"$in": query_lst}}, {"srr_id": 1, "_id": 0}
-                )
-            )
+            samples_lst = list(mongo.db.sample_info.find({query_type: {"$in": query_lst}}, {"srr_id": 1, "_id": 0}))
             query_lst = [z["srr_id"] for z in samples_lst]
         exp_stat_oj = mongo.db.sample_exp.aggregate(
             [
@@ -133,21 +113,11 @@ class SamplesExpStat(Resource):
                                                 "then": "100",
                                                 "else": {
                                                     "$cond": {
-                                                        "if": {
-                                                            "$gte": [
-                                                                "$ncrna_exp.RPM",
-                                                                10,
-                                                            ]
-                                                        },
+                                                        "if": {"$gte": ["$ncrna_exp.RPM", 10,]},
                                                         "then": "10",
                                                         "else": {
                                                             "$cond": {
-                                                                "if": {
-                                                                    "$gte": [
-                                                                        "$ncrna_exp.RPM",
-                                                                        1,
-                                                                    ]
-                                                                },
+                                                                "if": {"$gte": ["$ncrna_exp.RPM", 1,]},
                                                                 "then": "1",
                                                                 "else": "0",
                                                             }
@@ -162,18 +132,11 @@ class SamplesExpStat(Resource):
                         },
                     }
                 },
-                {
-                    "$group": {
-                        "_id": {"ncrna": "$ncrna_exp.ncrna", "exp_flag": "$exp_flag"},
-                        "total": {"$sum": 1},
-                    }
-                },
+                {"$group": {"_id": {"ncrna": "$ncrna_exp.ncrna", "exp_flag": "$exp_flag"}, "total": {"$sum": 1},}},
                 {
                     "$group": {
                         "_id": "$_id.ncrna",
-                        "exp_level": {
-                            "$push": {"exp_flag": "$_id.exp_flag", "count": "$total"}
-                        },
+                        "exp_level": {"$push": {"exp_flag": "$_id.exp_flag", "count": "$total"}},
                         "count": {"$sum": "$total"},
                     }
                 },
@@ -195,10 +158,7 @@ class OverAllMappingDistribution(Resource):
         args = parser.parse_args()
         query_type = args["query_type"]
         query_item = args["query_item"]
-        mcur = mongo.db.sample_info.find(
-            {query_type: query_item},
-            {"_id": 0, "srr_id": 1, "tag_stat": 1, "srr_tag_info": 1},
-        )
+        mcur = mongo.db.sample_info.find({query_type: query_item}, {"_id": 0, "srr_id": 1, "tag_stat": 1, "srr_tag_info": 1},)
         return list(mcur)
 
 
@@ -213,9 +173,7 @@ class SampleStat(Resource):
         parser.add_argument("detail", type=int, default=0)
         args = parser.parse_args()
         condition = []
-        basic_match = {
-            "$match": {"tissues": args["tissues"], "ex_type": args["ex_type"]}
-        }
+        basic_match = {"$match": {"tissues": args["tissues"], "ex_type": args["ex_type"]}}
         condition.append(basic_match)
         basic_stat = {
             "$group": {
@@ -257,12 +215,8 @@ class SrpShow(Resource):
                 inner_query_lst[0]: {"$addToSet": "$" + inner_query_lst[0]},
                 "pubmed": {"$addToSet": "$pubmed_id"},
                 "srr_count": {"$sum": 1},
-                "normal_n": {
-                    "$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 1, 0]}
-                },
-                "case_n": {
-                    "$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 0, 1]}
-                },
+                "normal_n": {"$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 1, 0]}},
+                "case_n": {"$sum": {"$cond": [{"$eq": ["$condition", "Normal"]}, 0, 1]}},
             }
         }
         condition.append(basic_stat)

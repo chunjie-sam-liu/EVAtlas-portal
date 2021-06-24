@@ -35,12 +35,7 @@ class ncRNASampleExp(Resource):
         query_db = "exp_" + args["type"]
         ncrna_exp_oj = mongo.db[query_db].aggregate(
             [
-                {
-                    "$match": {
-                        "GeneSymbol": {"$in": query_mir_lst},
-                        "srr_id": {"$in": query_lst},
-                    }
-                },
+                {"$match": {"GeneSymbol": {"$in": query_mir_lst}, "srr_id": {"$in": query_lst}}},
                 {"$project": {"GeneSymbol": 1, "srr_id": 1, "RPM": 1, "_id": 0}},
             ]
         )
@@ -60,9 +55,7 @@ source_ex_type_exp_fields = {
     "stat": fields.List(fields.Float),
 }
 
-source_ex_type_exp_fields_lst = {
-    "source_ex_type_exp": fields.List(fields.Nested(source_ex_type_exp_fields))
-}
+source_ex_type_exp_fields_lst = {"source_ex_type_exp": fields.List(fields.Nested(source_ex_type_exp_fields))}
 
 ncRNA_count_fields = {
     "chromosome": fields.String(attribute="chromosome"),
@@ -100,9 +93,7 @@ class ncRNAlist(Resource):
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
 
-        mcur = mongo.db.ncrna_hit.find(condition, {"_id": 0}).sort(
-            "sample_n", sort_option[args.sort]
-        )
+        mcur = mongo.db.ncrna_hit.find(condition, {"_id": 0}).sort("sample_n", sort_option[args.sort])
         n_record = mcur.count()
 
         ncrna_lst = list(mcur.skip(record_skip).limit(record_limit))
@@ -131,13 +122,7 @@ class ncRNAexp(Resource):
         print(args)
         ncrna_exp_oj = mongo.db[ncrna_exp_db].aggregate(
             [
-                {
-                    "$match": {
-                        "GeneSymbol": {
-                            "$regex": re.compile(r"{0}".format(ncrna_query), re.I)
-                        }
-                    }
-                },
+                {"$match": {"GeneSymbol": {"$regex": re.compile(r"{0}".format(ncrna_query), re.I)}}},
                 {"$unwind": "$exp"},
                 {"$match": {"exp.ex_type": args["ex_type"]}},
                 {"$group": {"_id": condition, "exp_lst": {"$push": "$exp.RPM"}}},
@@ -175,21 +160,14 @@ class SrpHeatmap(Resource):
         project_show.update(ncrna_dict)
         if args.merge:
             srp_exp_oj = mongo.db.srp_top_exp_merge.find(
-                {args.type: args.keyword, "srp_id": args.srp},
-                {"_id": 0, "srp_id": 1, args.type: 1, args.ncrna: 1},
+                {args.type: args.keyword, "srp_id": args.srp}, {"_id": 0, "srp_id": 1, args.type: 1, args.ncrna: 1},
             )
         elif args.type == "tissues":
-            srp_exp_oj = mongo.db.srp_tissue_top_exp.find(
-                {"tissues": args.keyword, "srp_id": args.srp}, project_show
-            )
+            srp_exp_oj = mongo.db.srp_tissue_top_exp.find({"tissues": args.keyword, "srp_id": args.srp}, project_show)
         elif args.type == "ex_type":
-            srp_exp_oj = mongo.db.srp_ev_top_exp.find(
-                {"ex_type": args.keyword, "srp_id": args.srp}, project_show
-            )
+            srp_exp_oj = mongo.db.srp_ev_top_exp.find({"ex_type": args.keyword, "srp_id": args.srp}, project_show)
         elif args.type == "source":
-            srp_exp_oj = mongo.db.srp_source_top_exp.find(
-                {"ex_type": args.keyword, "srp_id": args.srp}, project_show
-            )
+            srp_exp_oj = mongo.db.srp_source_top_exp.find({"ex_type": args.keyword, "srp_id": args.srp}, project_show)
 
         srp_heatmap_lst = list(srp_exp_oj)
         return {"srp_heatmap_lst": srp_heatmap_lst}
@@ -276,18 +254,13 @@ class ncRNASrpExp(Resource):
         }
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
+        print(condition)
         if args.type == "tissues":
-            mcur = mongo.db.srp_tissue_exp.find(condition, {"_id": 0}).sort(
-                args.active, sort_option[args.sort]
-            )
+            mcur = mongo.db.srp_tissue_exp.find(condition, {"_id": 0}).sort(args.active, sort_option[args.sort])
         elif args.type == "ex_type":
-            mcur = mongo.db.srp_ev_exp.find(condition, {"_id": 0}).sort(
-                args.active, sort_option[args.sort]
-            )
+            mcur = mongo.db.srp_ev_exp.find(condition, {"_id": 0}).sort(args.active, sort_option[args.sort])
         elif args.type == "source":
-            mcur = mongo.db.srp_source_exp.find(condition, {"_id": 0}).sort(
-                args.active, sort_option[args.sort]
-            )
+            mcur = mongo.db.srp_source_exp.find(condition, {"_id": 0}).sort(args.active, sort_option[args.sort])
         n_record = mcur.count()
         result_lst = list(mcur.skip(record_skip).limit(record_limit))
 
