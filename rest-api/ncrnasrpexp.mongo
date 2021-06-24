@@ -1,0 +1,1 @@
+db.srp_tissue_exp.find({'srp_id': 'SRP074421', 'class': 'scRNA', 'tissues': 'Adipose'})
