@@ -70,3 +70,7 @@ GET http://localhost:5000/api/stat/srpratiostat?srp=SRP150202&samType=Control&ty
 #get categories for keyword
 ###
 GET http://localhost:5000/api/stat/catekey?cate=source
+
+
+###
+GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Adipose
