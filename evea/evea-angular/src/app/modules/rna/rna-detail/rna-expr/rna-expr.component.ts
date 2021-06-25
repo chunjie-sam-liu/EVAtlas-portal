@@ -31,10 +31,10 @@ export class RnaExprComponent implements OnInit {
   ngOnInit(): void {
     this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
 
-    this.exoDistTitle = `${this.rnaSymbolShow} from sEV average expression across tissues`;
-    this.mvDistTitle = `${this.rnaSymbolShow} from lEV average expression across tissues`;
-    this.exoSouDistTitle = `${this.rnaSymbolShow} from sEV average expression across sources`;
-    this.mvSouDistTitle = `${this.rnaSymbolShow} from lEV average expression across sources`;
+    this.exoDistTitle = `${this.rnaSymbolShow} from exosome average expression across tissues`;
+    this.mvDistTitle = `${this.rnaSymbolShow} from microvesicle average expression across tissues`;
+    this.exoSouDistTitle = `${this.rnaSymbolShow} from exosome average expression across sources`;
+    this.mvSouDistTitle = `${this.rnaSymbolShow} from microvesicle average expression across sources`;
 
     this.rnaDetialApiService.findRnaExpr(this.rnaSymbol, this.rnaType, 1, 'Exosomes').subscribe((res) => {
       this.exoDist = this._plotDist(res, this.exoDistTitle, this.rnaSymbolShow);
