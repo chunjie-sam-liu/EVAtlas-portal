@@ -24,7 +24,7 @@
 
     <ng-container matColumnDef="source">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Source</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.source | rmcl }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.source | rmcl | cellsRename }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="material">

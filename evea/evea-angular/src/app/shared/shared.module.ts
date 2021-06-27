@@ -15,6 +15,7 @@ import { RmclPipe } from './pipes/rmcl.pipe';
 import { ReplacePipe } from './pipes/replace.pipe';
 import { EvRenamePipe } from './pipes/ev-rename.pipe';
 import { EvRenameSpePipe } from './pipes/ev-rename-spe.pipe';
+import { CellsRenamePipe } from './pipes/cells-rename.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EvRenameSpePipe } from './pipes/ev-rename-spe.pipe';
     ReplacePipe,
     EvRenamePipe,
     EvRenameSpePipe,
+    CellsRenamePipe,
   ],
   imports: [CommonModule, MaterialModule, EchartsModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -43,6 +45,7 @@ import { EvRenameSpePipe } from './pipes/ev-rename-spe.pipe';
     ReplacePipe,
     EvRenamePipe,
     EvRenameSpePipe,
+    CellsRenamePipe,
   ],
 })
 export class SharedModule {}
