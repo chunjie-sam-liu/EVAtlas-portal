@@ -1,5 +1,5 @@
 export default {
-  legend: ['exosome', 'microvesicle'],
+  legend: ['sEV', 'lEV'],
   xAxis: [
     'Uterus',
     'Colorectum',

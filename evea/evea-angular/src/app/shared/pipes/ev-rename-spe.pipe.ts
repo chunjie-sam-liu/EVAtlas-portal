@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EvRenameSpePipe implements PipeTransform {
   transform(value: string, ...args: unknown[]): unknown {
-    return value === 'exosomes' ? value.replace('exosomes', 'exosomes') : value.replace(/microvesicles/, 'microvesicles');
+    return value === 'exosomes' ? value.replace('exosomes', 'sEVs') : value.replace(/microvesicles/, 'lEVs');
   }
 }

@@ -1,7 +1,7 @@
 export default [
   {
     Source: '1',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Adipose',
     Specific_miRNA_counts: '3',
     Specific_piRNA_counts: '1',
@@ -9,7 +9,7 @@ export default [
   },
   {
     Source: '2',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Adrenal gland',
     Specific_miRNA_counts: '4',
     Specific_piRNA_counts: '3',
@@ -17,7 +17,7 @@ export default [
   },
   {
     Source: '3',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Blood',
     Specific_miRNA_counts: '6',
     Specific_piRNA_counts: '6',
@@ -25,7 +25,7 @@ export default [
   },
   {
     Source: '4',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Bone',
     Specific_miRNA_counts: '8',
     Specific_piRNA_counts: '30',
@@ -33,7 +33,7 @@ export default [
   },
   {
     Source: '5',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Bone marrow',
     Specific_miRNA_counts: '2',
     Specific_piRNA_counts: '0',
@@ -41,7 +41,7 @@ export default [
   },
   {
     Source: '6',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Bone marrow',
     Specific_miRNA_counts: '2',
     Specific_piRNA_counts: '9',
@@ -49,7 +49,7 @@ export default [
   },
   {
     Source: '7',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Brain',
     Specific_miRNA_counts: '1',
     Specific_piRNA_counts: '7',
@@ -57,7 +57,7 @@ export default [
   },
   {
     Source: '8',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Brain',
     Specific_miRNA_counts: '1',
     Specific_piRNA_counts: '4',
@@ -65,7 +65,7 @@ export default [
   },
   {
     Source: '9',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Breast',
     Specific_miRNA_counts: '4',
     Specific_piRNA_counts: '20',
@@ -73,7 +73,7 @@ export default [
   },
   {
     Source: '10',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Breast',
     Specific_miRNA_counts: '2',
     Specific_piRNA_counts: '2',
@@ -81,7 +81,7 @@ export default [
   },
   {
     Source: '11',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Cervix',
     Specific_miRNA_counts: '7',
     Specific_piRNA_counts: '16',
@@ -89,7 +89,7 @@ export default [
   },
   {
     Source: '12',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Colorectum',
     Specific_miRNA_counts: '21',
     Specific_piRNA_counts: '3',
@@ -97,7 +97,7 @@ export default [
   },
   {
     Source: '13',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Colorectum',
     Specific_miRNA_counts: '20',
     Specific_piRNA_counts: '3',
@@ -105,7 +105,7 @@ export default [
   },
   {
     Source: '14',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Epididymal',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '3',
@@ -113,7 +113,7 @@ export default [
   },
   {
     Source: '15',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Hypopharynx',
     Specific_miRNA_counts: '2',
     Specific_piRNA_counts: '2',
@@ -121,7 +121,7 @@ export default [
   },
   {
     Source: '16',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Kidney',
     Specific_miRNA_counts: '18',
     Specific_piRNA_counts: '10',
@@ -129,7 +129,7 @@ export default [
   },
   {
     Source: '17',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Lung',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '7',
@@ -137,7 +137,7 @@ export default [
   },
   {
     Source: '18',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Lymph',
     Specific_miRNA_counts: '4',
     Specific_piRNA_counts: '3',
@@ -145,7 +145,7 @@ export default [
   },
   {
     Source: '19',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Mouth',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '6',
@@ -153,7 +153,7 @@ export default [
   },
   {
     Source: '20',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Nerve',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '4',
@@ -161,7 +161,7 @@ export default [
   },
   {
     Source: '21',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Ovary',
     Specific_miRNA_counts: '3',
     Specific_piRNA_counts: '0',
@@ -169,7 +169,7 @@ export default [
   },
   {
     Source: '22',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Pancreas',
     Specific_miRNA_counts: '23',
     Specific_piRNA_counts: '2',
@@ -177,7 +177,7 @@ export default [
   },
   {
     Source: '23',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Prostate',
     Specific_miRNA_counts: '21',
     Specific_piRNA_counts: '2',
@@ -185,7 +185,7 @@ export default [
   },
   {
     Source: '24',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Prostate',
     Specific_miRNA_counts: '18',
     Specific_piRNA_counts: '2',
@@ -193,7 +193,7 @@ export default [
   },
   {
     Source: '25',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Skin',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '16',
@@ -201,7 +201,7 @@ export default [
   },
   {
     Source: '26',
-    EV_type: 'microvesicle',
+    EV_type: 'lEV',
     Cancer_Source_type: 'Skin',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '2',
@@ -209,7 +209,7 @@ export default [
   },
   {
     Source: '27',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Stomach',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '0',
@@ -217,7 +217,7 @@ export default [
   },
   {
     Source: '28',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Tongue',
     Specific_miRNA_counts: '1',
     Specific_piRNA_counts: '7',
@@ -225,7 +225,7 @@ export default [
   },
   {
     Source: '29',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Uterus',
     Specific_miRNA_counts: '0',
     Specific_piRNA_counts: '10',
@@ -233,7 +233,7 @@ export default [
   },
   {
     Source: '30',
-    EV_type: 'exosome',
+    EV_type: 'sEV',
     Cancer_Source_type: 'Vessel',
     Specific_miRNA_counts: '1',
     Specific_piRNA_counts: '5',

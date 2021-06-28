@@ -101,7 +101,7 @@ export class SampleDistComponent implements OnInit, OnChanges {
         data: d.map(
           (v) =>
             `${v.srr_id} (${v.disease}, ${
-              v.ex_type === 'Exosomes' ? v.ex_type.replace('Exosomes', 'Exosomes') : v.ex_type.replace(/Microvesicles/, 'Microvesicles')
+              v.ex_type === 'Exosomes' ? v.ex_type.replace('Exosomes', 'sEVs') : v.ex_type.replace(/Microvesicles/, 'lEVs')
             })`
         ),
       },
