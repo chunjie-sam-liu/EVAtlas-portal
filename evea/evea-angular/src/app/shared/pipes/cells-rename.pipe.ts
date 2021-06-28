@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CellsRenamePipe implements PipeTransform {
   transform(value: string[], ...args: unknown[]): unknown {
-    return value.map((v) => v.replace(/Cells/, 'Primary cell'));
+    const tranValue = value.map((v) => (v === 'Cell_line' ? v.replace('_', ' ') : v.replace(/Cell_line: /, '')));
+    return tranValue.map((v) => v.replace(/Cells/, 'Primary cell'));
   }
 }
