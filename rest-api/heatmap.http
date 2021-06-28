@@ -1,0 +1,39 @@
+
+
+###
+GET http://localhost:5000/api/stat/Srplst?select=tissues&query=Adipose
+
+###
+GET http://localhost:5000/api/sample/project/SRP074421
+
+###
+GET http://localhost:5000/api/ncrna/srpheatmap
+    ?srp=SRP074421
+    &ncrna=scRNA
+    &type=tissues
+    &keyword=Adipose
+    &merge=1
+
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp
+    ?srp=SRP074421
+    &class=scRNA
+    &filter=
+    &active=case_mean
+    &sort=desc
+    &page=0
+    &size=10
+    &type=tissues
+    &keyword=Adipose
+
+###
+GET http://localhost:5000/api/ncrna/ncrnasrpexp
+    ?srp=ERP013193
+    &class=scRNA
+    &filter=
+    &active=case_mean
+    &sort=desc
+    &page=0
+    &size=10
+    &type=source
+    &keyword=Breast%20milk
