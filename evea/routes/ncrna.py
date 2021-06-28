@@ -158,6 +158,7 @@ class SrpHeatmap(Resource):
         ncrna_dict = {args.ncrna: 1}
         project_show = {"_id": 0, "srp_id": 1, "condition": 1}
         project_show.update(ncrna_dict)
+
         if args.merge:
             srp_exp_oj = mongo.db.srp_top_exp_merge.find(
                 {args.type: args.keyword, "srp_id": args.srp}, {"_id": 0, "srp_id": 1, args.type: 1, args.ncrna: 1},
@@ -254,7 +255,7 @@ class ncRNASrpExp(Resource):
         }
         if args.filter != "":
             condition["GeneSymbol"] = {"$regex": args.filter, "$options": "i"}
-        print(condition)
+
         if args.type == "tissues":
             mcur = mongo.db.srp_tissue_exp.find(condition, {"_id": 0}).sort(args.active, sort_option[args.sort])
         elif args.type == "ex_type":
