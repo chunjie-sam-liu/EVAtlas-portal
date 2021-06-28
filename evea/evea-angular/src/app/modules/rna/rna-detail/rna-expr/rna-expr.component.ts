@@ -92,7 +92,7 @@ export class RnaExprComponent implements OnInit {
         name: `${r} expression (RPM)`,
         nameLocation: 'center',
         nameTextStyle: { fontWeight: 'bolder' },
-        nameGap: 50,
+        nameGap: 40,
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
