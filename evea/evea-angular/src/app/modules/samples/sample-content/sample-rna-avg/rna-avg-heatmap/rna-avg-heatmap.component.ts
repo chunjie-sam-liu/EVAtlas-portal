@@ -229,10 +229,10 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     });
 
     // sorted data2 according xAxis for  1 type data
-    if ((condition.includes('Normal') && condition.length == 1) || condition.indexOf('Normal') == -1) {
+    if ((condition.includes('Normal') && condition.length === 1) || condition.indexOf('Normal') === -1) {
       xListNS.map((x) => {
         data2.map((d) => {
-          if (d[0] == x.Oi && !d.includes('replaced')) {
+          if (d[0] === x.Oi && !d.includes('replaced')) {
             d[0] = x.Ni;
             d.push('replaced');
           }
@@ -243,7 +243,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
     // sorted data2 according xAxis for  2 type data
     xListMult.map((x) => {
       data2.map((d) => {
-        if (d[0] == x.Oi && !d.includes('replaced')) {
+        if (d[0] === x.Oi && !d.includes('replaced')) {
           d[0] = x.Ni;
           d.push('replaced');
         }
@@ -266,7 +266,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
       }
     });
 
-    if ((condition.includes('Normal') && condition.length == 1) || condition.indexOf('Normal') == -1) {
+    if ((condition.includes('Normal') && condition.length === 1) || condition.indexOf('Normal') === -1) {
       if (xListNS.length >= 1) {
         xAxisF = xListNS.map((item) => item.srrId);
       } else {
@@ -305,7 +305,7 @@ export class RnaAvgHeatmapComponent implements OnInit, OnChanges {
         },
       },
       tooltip: {
-        formatter: function (params) {
+        formatter(params) {
           // console.log(params);
           return 'Expression (RPM): ' + params.data[2] + '<br/>' + 'Sample id: ' + params.name + '<br/>';
         },
