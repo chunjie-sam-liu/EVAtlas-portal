@@ -19,6 +19,30 @@
           normal). In addition, EVAtlas provides modules for user to explore the conditional expression profiles of ncRNAs, miRNA targets,
           miRNA related drugs, miRNA regulated pathways, miRNA functions, and related publications.
         </p>
+        <div class="limitation">
+          <h4>Correct use of EVAtlas:</h4>
+          <ol>
+            <li>
+              Since the consensus has not yet emerged on specific markers of EV subtypes, it is difficult to discriminate exosomes and
+              microvesicles without live imaging techniques. As we collected datasets from various studies in which researchers used
+              different EV isolation methods, we unified these datasets EV nomenclature based on
+              <a href="https://www.tandfonline.com/doi/full/10.1080/20013078.2018.1535750">MISEV2018 guidelines</a> to minimize ambiguity.
+              In our EVAtlas, we classified EV type by physical size into small EV (sEV) and large EV (lEV) based on the EV isolation
+              methods described in papers. Meanwhile, we provided EV isolation method from papers for each study to help users to judge the
+              EV subtype.
+            </li>
+            <li>
+              Although, EVAtlas collected and analyzed almost all publically available EV miRNA-seq datasets. The ncRNA expression landscape
+              from inadequate number of datasets may lead to biases, the EVAtlas only present EV ncRNA expression from currently available
+              datasets. To have a whole picture of EV ncRNA expression landscape required a large amount of samples, we will keep pace with
+              new available EV smRNA-seq datasets and update EVATlas regularly.
+            </li>
+            <li>
+              For the correct use of multi-dataset cross validation, users should take care of the EV isolation method because different
+              isolation methods do not isolate EVs with high specificity.
+            </li>
+          </ol>
+        </div>
       </mat-card-content>
     </mat-card>
 
@@ -237,12 +261,10 @@
           The functional annotation of ncRNAs were integrated into EVAtlas, in which, different types of ncRNAs have their distinct
           annotations. The basic information, such as gene location and potential functions, was extracted from the corresponding reference
           database of each ncRNA type and incubated into EVAtlas. For example, the basic information and functions of rRNAs were collected
-          from RNA central. For miRNAs, EVAtlas collected the their <span style="color: red;">related functions</span> from
-          <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a>,
-          <span style="color: red;">miRNA-targets relations</span> from
-          <a href="http://bioinfo.life.hust.edu.cn/FFLtool#!/" target="_blank">FFLtool</a>,
-          <span style="color: red;"> drugs correlation</span> from SM2miR <a href="http://www.jianglab.cn/SM2miR/" target="_blank"></a>,
-          their <span style="color: red;"> expression profiles</span> in cancers from
+          from RNA central. For miRNAs, EVAtlas collected the their related functions from
+          <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a>, miRNA-targets relations from
+          <a href="http://bioinfo.life.hust.edu.cn/FFLtool#!/" target="_blank">FFLtool</a>, drugs correlation from SM2miR
+          <a href="http://www.jianglab.cn/SM2miR/" target="_blank"></a>, their expression profiles in cancers from
           <a href="http://bioinfo.life.hust.edu.cn/web/GSCALite/" target="_blank">GSCALite</a>. For snoRNA and tRNA, their expression
           profiles were collected from <a href="">SNORic</a> and <a href="">TRic</a>, while their potential target genes were incubated from
           snoDB and GtRNAdb.
