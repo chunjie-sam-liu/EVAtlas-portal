@@ -2,18 +2,37 @@
   <p>
     Extracellular vesicles (EVs) released by live cells are important vectors for signal transduction and cell communication, especially for
     the interactivity between distant cells. Exosomes secreted from endosomal system and microvesicles (MVs) shed from plasma membrane are
-    the two main sources of EVs. The contents of EVs comprise multiple kinds of biomolecules from source cells, such as lipid, protein,
-    metabolite, DNA and RNA. Non-coding RNAs (ncRNAs) are well-studied and important molecules in EVs, which can be delivered into and
-    regulate target cells, and show a physiological- and pathological-specificity to serve as candidate biomarkers.
+    the two main sources of EVs.
+    <span style="color: red;">
+      Since the consensus has not yet emerged on specific markers of EV subtypes, it is difficult to discriminate exosomes and microvesicles
+      without live imaging techniques. As we collected datasets from various studies in which researchers used different EV isolation
+      methods, we unified these datasets EV nomenclature based on
+      <a href="https://www.tandfonline.com/doi/full/10.1080/20013078.2018.1535750">MISEV2018 guidelines</a> to minimize ambiguity. In our
+      EVAtlas, we classified EV type by physical size into small EV (sEV) and large EV (lEV) based on the EV isolation methods described in
+      papers.
+    </span>
+    The contents of EVs comprise multiple kinds of biomolecules from source cells, such as lipid, protein, metabolite, DNA and RNA.
+    Non-coding RNAs (ncRNAs) are well-studied and important molecules in EVs, which can be delivered into and regulate target cells, and
+    show a physiological- and pathological-specificity to serve as candidate biomarkers.
   </p>
+
   <p>
     Extracellular Vesicle Atlas (EVAtlas) is an update of
     <a href="http://bioinfo.life.hust.edu.cn/EVmiRNA#!/" target="_blank">EVmiRNA</a> database. We performed a unified read dynamic
     assignment algorithm (RDAA) considering mismatch and multi-mapping reads to quantify the expression profiles of seven ncRNA types
     (miRNA, snoRNA, piRNA, snRNA, rRNA, tRNA and Y RNA) in more than 2,030 high-quality small RNA-seq datasets of EV samples from 24 human
-    tissues of different conditions (disease and normal). EVAtlas provides four functional modules: (i) browse and compare the distribution
-    of ncRNAs in EVs from 24 conditions and eight sources (plasma, serum, saliva, urine, sperm, breast milk, primary cell and cell line );
-    (ii) prioritize candidate ncRNAs in condition related tissues based on their expression; (iii) explore the specifically expressed ncRNAs
-    in EVs from 24 conditions; (iv) investigate ncRNA functions, related drugs, target genes and EVs isolation methods.
+    tissues of different conditions (disease and normal).
+    <span style="color: red;"
+      >Although, EVAtlas collected and analyzed almost all publically available EV miRNA-seq datasets. The ncRNA expression landscape from
+      inadequate number of datasets may lead to biases, the EVAtlas only present EV ncRNA expression from currently available datasets. To
+      have a whole picture of EV ncRNA expression landscape required a large amount of samples, we will keep pace with new available EV
+      smRNA-seq datasets and update EVATlas regularly.
+    </span>
+  </p>
+  <p>
+    EVAtlas provides four functional modules: (i) browse and compare the distribution of ncRNAs in EVs from 24 conditions and eight sources
+    (plasma, serum, saliva, urine, sperm, breast milk, primary cell and cell line ); (ii) prioritize candidate ncRNAs in condition related
+    tissues based on their expression; (iii) explore the specifically expressed ncRNAs in EVs from 24 conditions; (iv) investigate ncRNA
+    functions, related drugs, target genes and EVs isolation methods.
   </p>
 </mat-card>
