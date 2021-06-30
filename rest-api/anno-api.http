@@ -27,3 +27,10 @@ GET http://localhost:5000/api/anno/one/SNORA70%23327%3BSNORA70%23328%3BSNORA70%2
 
 ###
 GET http://localhost:5000/api/anno/one/SNORD22%231668
+
+
+###
+GET http://bioinfo.life.hust.edu.cn/EVAtlas/api/sample/project/SRP043122
+
+###
+GET http://bioinfo.life.hust.edu.cn/EVAtlas/api/sample/project/SRP061240
