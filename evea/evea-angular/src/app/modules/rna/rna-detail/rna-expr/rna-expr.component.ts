@@ -31,7 +31,7 @@ export class RnaExprComponent implements OnInit {
   ngOnInit(): void {
     this.rnaSymbolShow = this.rnaSymbol.replace(/\#.*/, '');
 
-    this.exoDistTitle = `${this.rnaSymbolShow} from sEV average expression across tissues`;
+    this.exoDistTitle = `${this.rnaSymbolShow} from sEV  ion across tissues`;
     this.mvDistTitle = `${this.rnaSymbolShow} from lEV average expression across tissues`;
     this.exoSouDistTitle = `${this.rnaSymbolShow} from sEV average expression across sources`;
     this.mvSouDistTitle = `${this.rnaSymbolShow} from lEV average expression across sources`;
@@ -92,7 +92,7 @@ export class RnaExprComponent implements OnInit {
         name: `${r} expression (RPM)`,
         nameLocation: 'center',
         nameTextStyle: { fontWeight: 'bolder' },
-        nameGap: 40,
+        nameGap: 45,
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
