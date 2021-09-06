@@ -11,19 +11,19 @@ from pymongo import MongoClient
 
 
 db_dict = {
-    "id": "EVAtlas",
+    "id": "EVEA",
     "title": "Extracellular Vesicle Atlas",
     "url": "http://bioinfo.life.hust.edu.cn/EVAtlas/",
     "description": "In EVAtlas, we performed a unified read dynamic assignment algorithm (RDAA) considering mismatch and multi-mapping reads to quantify the expression profiles of seven ncRNA types (miRNA, snoRNA, piRNA, snRNA, rRNA, tRNA and Y RNA) in more than 2,030 high-quality small RNA-seq datasets of EV samples from 24 human tissues of different conditions (disease and normal).",
     "basicInfo": "EVAtlas provides four functional modules: (i) browse and compare the distribution of ncRNAs in EVs from 24 conditions and eight sources (plasma, serum, saliva, urine, sperm, breast milk, primary cell and cell line ); (ii) prioritize candidate ncRNAs in condition related tissues based on their expression; (iii) explore the specifically expressed ncRNAs in EVs from 24 conditions; (iv) investigate ncRNA functions, related drugs, target genes and EVs isolation methods.",
     "categories": ["Extracellular vesicles (EVs)", "ncRNAs", "expression profiles", "disease"],
     "species": ["Homo Sapiens"],
-    "updatedAt": "2021-06-01",
+    "updatedAt": "2021-06-01 11:11:12",
 }
 
 
 class Mongoncrna:
-    __mongo = MongoClient("mongodb://usr:pd@ip:port/dbname")
+    __mongo = MongoClient("")
 
     def __init__(self, col_name="ncRNA_expr"):
         self.__col_name = col_name
@@ -46,7 +46,7 @@ class ENTRY(object):
         self.title = title
         self.url = url
         self.dbId = "EVEA"
-        self.updatedAt = "2021-06-01"
+        self.updatedAt = "2021-06-01 11:11:11"
         self.description = ""
         self.basicInfo = ""
         self.species = ["Homo Sapiens"]
@@ -69,7 +69,6 @@ def get_entry(it, type="ncRNA ID"):
 
 mongo_pea = Mongoncrna()
 ncrna_ids = mongo_pea.get_ncrnas()
-print(len(ncrna_ids))
 
 with open("/home/xiegy/tmp/index_eva.bs", "w") as fh:
     header = "DB" + "\t" + json.dumps(db_dict) + "\n"
